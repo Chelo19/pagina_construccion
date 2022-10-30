@@ -1,24 +1,24 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import {supabase} from '../supabase/client';
+import {useNavigate} from 'react-router-dom';
 
 function Login(){
 
     const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const navigate = useNavigate();
+
+    const [password, setPassword] = useState("");       // aprovechar y hacerlo mejor con password
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        try {
-        const result = await supabase.auth.signInWithOtp({
-            email,
-        });
-        } catch (error) {
+        try{
+            await supabase.auth.signInWithOtp({email});
+        } catch (error){
             console.error(error);
         }
         
     };
-
 
     return(
         <div>
