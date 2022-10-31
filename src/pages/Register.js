@@ -2,17 +2,18 @@ import {useState} from 'react';
 import {supabase} from '../supabase/client';
 
 
-function TaskForm(){
+function RegisterUser(){
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
     const [service, setName] = useState(''); 
     const [location, setLocation] = useState('');
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const user = supabase.auth.getSession();        // para saber si hay sesion
-        console.log(user);
-
-        const result = await supabase.from("services").insert({
+        const result = await supabase.from("account").insert({
+            email: email,
+            password: password,
             name: service,
             location: location
         });
@@ -24,8 +25,14 @@ function TaskForm(){
 
             <form onSubmit={handleSubmit}>
                 <br/>
-                Registro de servicio
+                Registro de usuario
                 <br/>
+                <input type="email" name="email" placeholder="youremail@example.com"
+                    onChange={(e) => setEmail(e.target.value)}
+                /><br/>
+                <input type="password" name="password" placeholder="Password"
+                    onChange={(e) => setPassword(e.target.value)}
+                /><br/>
                 <input type="text" name="service" placeholder="Write a name"
                     onChange={(e) => setName(e.target.value)}
                 /><br/>
@@ -42,4 +49,4 @@ function TaskForm(){
     );
 }
 
-export default TaskForm;
+export default RegisterUser;
