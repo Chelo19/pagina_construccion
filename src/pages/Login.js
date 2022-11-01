@@ -14,6 +14,8 @@ function Login(){
         <div>
             <AuthLogin/>
             <br/>
+                Don't have an account?<br/>
+            <a href='/Register'>Click here</a>
         </div>
     );
 }

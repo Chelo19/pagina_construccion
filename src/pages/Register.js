@@ -14,6 +14,8 @@ function Register(){
         <div>
             <AuthRegister/>
             <br/>
+                Already have an account?<br/>
+            <a href='/Login'>Click here</a>
         </div>
     );
 }
