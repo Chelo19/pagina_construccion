@@ -38,7 +38,7 @@ function App() {
   return(
     <div className="App">
       <br/>
-      <button onClick={navRegister}>Registro</button>
+      <button onClick={navRegister}>Register</button>
       <button onClick={navLogin}>Login</button>
       <button onClick={navHome}>Home</button>
       <Routes>

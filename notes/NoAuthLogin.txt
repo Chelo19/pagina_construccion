@@ -1,0 +1,41 @@
+ const loginNoAuth = async (e) => {
+        e.preventDefault();
+        const { data, error } = await supabase
+        .from('account')
+        .select('password')
+        .match({email});
+        console.log(data);
+        if(data.length == 0){
+            document.getElementById('wrongPassEmail').innerHTML='Wrong Password or Email';
+        }
+        else{
+            if(data[0].password == password){
+                navigate('/');
+            }
+            else{
+                document.getElementById('wrongPassEmail').innerHTML='Wrong Password or Email';
+            }
+        }
+    }
+
+
+<form onSubmit={loginNoAuth}>
+                NoAuthLogin<br/>
+                <input
+                    type = "email"
+                    name = "email"
+                    placeholder = "youremail@example.com"
+                    onChange={(e) => setEmail(e.target.value)}
+                /><br/>
+                <input
+                    type = "password"
+                    name = "password"
+                    placeholder = "password"
+                    onChange={(e) => setPassword(e.target.value)}
+                /><br/>
+                <button>
+                    Send
+                </button>
+                <br/><br/>
+                <div id="wrongPassEmail"></div>
+            </form>
