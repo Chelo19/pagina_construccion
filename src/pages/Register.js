@@ -1,5 +1,6 @@
 import {useState} from 'react';
 import {supabase} from '../supabase/client';
+import "../styles/Register.css";
 
 
 function RegisterUser(){
@@ -41,7 +42,7 @@ function RegisterUser(){
                 /><br/>
 
                 <button>
-                    Guardar
+                    Save
                 </button>
             </form>
 

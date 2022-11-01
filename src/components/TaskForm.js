@@ -34,7 +34,7 @@ function TaskForm(){
                 /><br/>
 
                 <button>
-                    Guardar
+                    Save
                 </button>
             </form>
 

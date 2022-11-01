@@ -45,7 +45,7 @@ function Login(){
                 <input 
                     type = "email" 
                     name = "email" 
-                    placeholder = "youremail@site.com"
+                    placeholder = "youremail@example.com"
                     onChange={(e) => setEmail(e.target.value)}
                 />
                 <button>
@@ -57,7 +57,7 @@ function Login(){
                 <input
                     type = "email"
                     name = "email"
-                    placeholder = "youremail@site.com"
+                    placeholder = "youremail@example.com"
                     onChange={(e) => setEmail(e.target.value)}
                 /><br/>
                 <input
