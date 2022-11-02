@@ -4,6 +4,7 @@ import {useNavigate} from 'react-router-dom';
 import UserArea from '../components/UserArea';
 import RemoveFromDB from '../components/RemoveFromDB';
 import AddToDB from '../components/AddToDB';
+import FetchDB from '../components/FetchDB';
 
 function Home(){
 
@@ -29,6 +30,8 @@ function Home(){
             <UserArea/>
             <br/>
             <AddToDB/>
+            <br/>
+            <FetchDB/>
             <br/>
             <RemoveFromDB/>
         </div>
