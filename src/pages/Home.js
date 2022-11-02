@@ -5,6 +5,8 @@ import UserArea from '../components/UserArea';
 import RemoveFromDB from '../components/RemoveFromDB';
 import AddToDB from '../components/AddToDB';
 import FetchDB from '../components/FetchDB';
+import '../styles/Home.css';
+
 
 function Home(){
 
@@ -25,7 +27,7 @@ function Home(){
     }
 
     return(
-        <div>
+        <div className='home'>
             <br/>
             <UserArea/>
             <br/>

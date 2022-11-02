@@ -1,0 +1,9 @@
+.services_container{
+    background-color: blue;
+    margin: 10px;
+    padding: 20px;
+}
+
+.service{
+    background-color: red;
+}

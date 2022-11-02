@@ -1,5 +1,6 @@
 import {useEffect, useState} from 'react';
 import {supabase} from '../supabase/client';
+import '../styles/FetchDB.css';
 
 
 export default function FetchDB(){
@@ -23,9 +24,9 @@ export default function FetchDB(){
     };
 
     return(
-        <div>
+        <div className='services_container'>
             {services && (
-                <div className='services'>
+                <div className='service'>
                     {services.map(service => (
                         <p key={service.id}>id: {service.id} <br/> name: {service.name}</p>
                     ))}

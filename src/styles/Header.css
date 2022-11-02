@@ -1,0 +1,102 @@
+header{
+    width: 100%;
+    height: 500px;
+}
+
+.background_img{
+    background: url(../../img/construction_img.jpg);
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.header{
+    width: 100%;
+    height: 150px;
+}
+
+.header_top{
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    font-size: 14px;
+    font-weight: 10;
+    height: 20%;
+    background-color: #161825;
+    display: flex;
+    align-items: center;
+}
+
+.header_top_info{
+    width: 100%;
+}
+
+.header_top_info_row{
+    display: flex;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+#phone{
+    margin-left: 0;
+    margin-right: auto;
+}
+
+#social{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#contact{
+    margin-left: auto;
+    margin-right: 0;
+}
+
+.header_bottom{
+    font-family: 'Poppins', sans-serif;
+    background-color: rgba(255, 255, 255, 0.6);
+    width: 90%;
+    height: 70px;
+    padding-bottom: -100px;
+    margin-top: auto;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    align-items: center;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+#logo{
+    font-size: 2.5em;
+}
+
+#logo:hover{
+    color: rgb(255, 127, 34);
+}
+
+.header_bottom_row{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.header_bottom_row_buttons{
+    display: flex;
+    align-items: center;
+}
+
+.header_bottom_row_buttons_individual{
+    
+    border-radius: 5px;
+    margin: 2px;
+    padding: 14px;
+}
+
+.header_bottom_row_buttons_individual:hover{
+    color: rgb(255, 127, 34);
+    background-color: rgba(255, 127, 34, 0.15);
+}

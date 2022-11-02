@@ -2,6 +2,8 @@ import {useEffect, useState} from 'react';
 import {supabase} from '../supabase/client';
 import {useNavigate} from 'react-router-dom';
 import AuthRegister from '../components/AuthRegister';
+import '../styles/Register.css';
+
 
 function Register(){
 
@@ -11,7 +13,7 @@ function Register(){
     const navigate = useNavigate();
 
     return(
-        <div>
+        <div className='register'>
             <AuthRegister/>
             <br/>
                 Already have an account?<br/>

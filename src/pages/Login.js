@@ -2,6 +2,8 @@ import {useEffect, useState} from 'react';
 import {supabase} from '../supabase/client';
 import {useNavigate} from 'react-router-dom';
 import AuthLogin from '../components/AuthLogin';
+import '../styles/Login.css';
+
 
 function Login(){
 
@@ -11,7 +13,7 @@ function Login(){
     const navigate = useNavigate();
 
     return(
-        <div>
+        <div className='login'>
             <AuthLogin/>
             <br/>
                 Don't have an account?<br/>

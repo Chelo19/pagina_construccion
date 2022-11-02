@@ -6,6 +6,7 @@ import Register from './pages/Register';
 import Login from './pages/Login';
 import Home from './pages/Home';
 import NotFound from './pages/NotFound';
+import Header from './components/Header';
 
 import {supabase} from './supabase/client';
 
@@ -37,10 +38,13 @@ function App() {
 
   return(
     <div className="App">
+      <Header/>
       <br/>
-      <button onClick={navRegister}>Register</button>
-      <button onClick={navLogin}>Login</button>
-      <button onClick={navHome}>Home</button>
+      <div className='navBar'>
+        <button onClick={navRegister}>Register</button>
+        <button onClick={navLogin}>Login</button>
+        <button onClick={navHome}>Home</button>
+      </div>
       <Routes>
         <Route path="/" element={<Home/>}/>
         <Route path="/register" element={<Register/>}/>
