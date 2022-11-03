@@ -1,13 +1,6 @@
 header{
     width: 100%;
-    height: 500px;
-}
-
-.background_img{
-    background: url(../../img/construction_img.jpg);
-    background-size: 100% 100%;
-    background-position: center;
-    background-repeat: no-repeat;
+    position: absolute;
 }
 
 .header{
@@ -69,6 +62,8 @@ header{
 
 #logo{
     font-size: 2.5em;
+    text-decoration: none;
+    color: #161825;
 }
 
 #logo:hover{
@@ -90,13 +85,16 @@ header{
 }
 
 .header_bottom_row_buttons_individual{
-    
-    border-radius: 5px;
+    text-decoration: none;
+    color: #161825;
+    border-radius: 8px;
     margin: 2px;
     padding: 14px;
 }
 
 .header_bottom_row_buttons_individual:hover{
-    color: rgb(255, 127, 34);
-    background-color: rgba(255, 127, 34, 0.15);
+    text-decoration: none;
+    color: rgba(255, 255, 255, .7);
+    transition: .5s;
+    background-color: rgba(255, 127, 34, 0.8);
 }

@@ -1,3 +1,98 @@
 .home{
     text-align: center;
 }
+
+
+.background_img{
+    background: url(../img/construction_img2.jpg);
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 650px;
+    margin-top: -50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 80px;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.big_buttons{
+    margin-top: -100px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.big_buttons_container{
+    width: 90%;
+    height: 75%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.big_buttons_container_buttons{
+    position: relative;
+    width: 180px;
+    height: 180px;
+    background-color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 30px;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+    font-size: 15px;
+}
+
+.big_buttons_container_buttons:hover{
+    width: 190px;
+    height: 190px;
+}
+
+.big_buttons_container_buttons_wrap{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#construcciones{
+    height: 130px;
+    width: 130px;
+}
+
+.big_buttons_container_buttons_img{
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.big_buttons_container_buttons_description{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: .5s ease;
+    background-color: #ff7f22;
+    border-radius: 5px;
+}
+
+.big_buttons_container_buttons:hover .big_buttons_container_buttons_description{
+    opacity: 1;
+}
+
+.big_buttons_container_buttons_description_text{
+    color: white;
+    font-size: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}

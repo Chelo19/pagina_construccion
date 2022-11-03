@@ -40,11 +40,6 @@ function App() {
     <div className="App">
       <Header/>
       <br/>
-      <div className='navBar'>
-        <button onClick={navRegister}>Register</button>
-        <button onClick={navLogin}>Login</button>
-        <button onClick={navHome}>Home</button>
-      </div>
       <Routes>
         <Route path="/" element={<Home/>}/>
         <Route path="/register" element={<Register/>}/>

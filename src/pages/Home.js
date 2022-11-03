@@ -27,7 +27,48 @@ function Home(){
     }
 
     return(
-        <div className='home'>
+        <body>
+            <div>
+                <div className='background_img'>
+                    DREC CONSTRUCCIONES
+                </div>
+                <div className='big_buttons'>
+                    <div className='big_buttons_container'>
+                        <div className='big_buttons_container_buttons'>
+                            <img id='construcciones' className='big_buttons_container_buttons_img' src={require('../img/certificate.png')}/>
+                            <a href='/Login' className='big_buttons_container_buttons_description'>
+                                <div className='big_buttons_container_buttons_description_text'>
+                                    CONSTRUCCIONES
+                                </div>
+                            </a>
+                        </div>
+                        <div className='big_buttons_container_buttons'>
+                            <img id='construcciones' className='big_buttons_container_buttons_img' src={require('../img/certificate.png')}/>
+                            <a href='/Login' className='big_buttons_container_buttons_description'>
+                                <div className='big_buttons_container_buttons_description_text'>
+                                    MATERIALES
+                                </div>
+                            </a>
+                        </div>
+                        <div className='big_buttons_container_buttons'>
+                            <img id='construcciones' className='big_buttons_container_buttons_img' src={require('../img/certificate.png')}/>
+                            <a href='/Login' className='big_buttons_container_buttons_description'>
+                                <div className='big_buttons_container_buttons_description_text'>
+                                    SERVICIOS
+                                </div>
+                            </a>
+                        </div>
+                        <div className='big_buttons_container_buttons'>
+                            <img id='construcciones' className='big_buttons_container_buttons_img' src={require('../img/certificate.png')}/>
+                            <a href='/Login' className='big_buttons_container_buttons_description'>
+                                <div className='big_buttons_container_buttons_description_text'>
+                                    NOSOTROS
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <br/>
             <UserArea/>
             <br/>
@@ -36,7 +77,7 @@ function Home(){
             <FetchDB/>
             <br/>
             <RemoveFromDB/>
-        </div>
+        </body>
         
     );
 }
