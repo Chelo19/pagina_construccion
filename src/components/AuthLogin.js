@@ -30,6 +30,7 @@ export default function AuthLogin(){
         <div> 
             <br/>
             <div>
+                <br/><br/><br/><br/>
                 <h1>Sign In</h1>
                 <input 
                     type = "email" 

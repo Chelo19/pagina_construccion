@@ -68,6 +68,90 @@ function Home(){
                         </div>
                     </div>
                 </div>
+                <div className='our_projects_presentation'>
+                    <a href='/Login' className='our_projects_presentation_text'>
+                        OUR PROJECTS
+                    </a>
+                </div>
+                <div className='our_projects'>
+                    <div className='our_projects_container'>
+                        <a href='/Login' className='our_projects_container_button'>
+                            <div className='our_projects_container_button_top'></div>
+                            <div className='our_projects_container_button_bottom'>
+                                <div className='our_projects_container_button_bottom_text'>
+                                    BUTTON 1
+                                </div>
+                            </div>
+                        </a>
+                        <a href='/Login' className='our_projects_container_button'>
+                            <div className='our_projects_container_button_top'></div>
+                            <div className='our_projects_container_button_bottom'>
+                                <div className='our_projects_container_button_bottom_text'>
+                                    BUTTON 2
+                                </div>
+                            </div>
+                        </a>
+                        <a href='/Login' className='our_projects_container_button'>
+                            <div className='our_projects_container_button_top'></div>
+                            <div className='our_projects_container_button_bottom'>
+                                <div className='our_projects_container_button_bottom_text'>
+                                    BUTTON 3
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <br/><br/><br/><br/>
+                <div className='staff'>
+                    <div className='staff_left'>
+                        <div className='staff_left_container'>
+                            <div className='staff_left_container_text'>
+                                Contamos con los mejores socios para la realización de tu servicio
+                            </div>
+                        </div>
+                    </div>
+                    <div className='staff_right'>
+                        <div className='staff_right_card'>
+                            <div className='staff_right_card_top'></div>
+                            <div className='staff_right_card_bottom'>
+                                <div className='staff_right_card_bottom_content'>
+                                        <a className='staff_right_card_bottom_content_name' href='/Login'>Ing. Marcelo De León</a>
+                                        <div className='staff_right_card_bottom_content_icons'>
+                                            <a className='staff_right_card_bottom_content_icons_individual' href='/Login'><img id='logo_fb' src={require('../img/certificate.png')}></img></a>
+                                            <a className='staff_right_card_bottom_content_icons_individual' href='/Login'><img id='logo_mail' src={require('../img/certificate.png')}></img></a>
+                                            <a className='staff_right_card_bottom_content_icons_individual' href='/Login'><img id='logo_phone' src={require('../img/certificate.png')}></img></a>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                        <div className='staff_right_card'>
+                            <div className='staff_right_card_top'></div>
+                            <div className='staff_right_card_bottom'>
+                                <div className='staff_right_card_bottom_content'>
+                                        <a className='staff_right_card_bottom_content_name' href='/Login'>Ing. Marcelo De León</a>
+                                        <div className='staff_right_card_bottom_content_icons'>
+                                            <a className='staff_right_card_bottom_content_icons_individual' href='/Login'><img id='logo_fb' src={require('../img/certificate.png')}></img></a>
+                                            <a className='staff_right_card_bottom_content_icons_individual' href='/Login'><img id='logo_mail' src={require('../img/certificate.png')}></img></a>
+                                            <a className='staff_right_card_bottom_content_icons_individual' href='/Login'><img id='logo_phone' src={require('../img/certificate.png')}></img></a>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                        <div className='staff_right_card'>
+                            <div className='staff_right_card_top'></div>
+                            <div className='staff_right_card_bottom'>
+                                <div className='staff_right_card_bottom_content'>
+                                    <a className='staff_right_card_bottom_content_name' href='/Login'>Ing. Marcelo De León</a>
+                                    <div className='staff_right_card_bottom_content_icons'>
+                                        <a className='staff_right_card_bottom_content_icons_individual' href='/Login'><img id='logo_fb' src={require('../img/certificate.png')}></img></a>
+                                        <a className='staff_right_card_bottom_content_icons_individual' href='/Login'><img id='logo_mail' src={require('../img/certificate.png')}></img></a>
+                                        <a className='staff_right_card_bottom_content_icons_individual' href='/Login'><img id='logo_phone' src={require('../img/certificate.png')}></img></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <br/>
             <UserArea/>

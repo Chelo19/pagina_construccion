@@ -30,6 +30,7 @@ export default function AuthRegister(){
         <div> 
             <br/>
             <div>
+                <br/><br/><br/><br/>
                 <h1>Sign Up</h1>
                 <input 
                     type = "email" 
