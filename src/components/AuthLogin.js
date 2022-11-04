@@ -17,6 +17,7 @@ export default function AuthLogin(){
             console.log(data);
             if (error) throw error;
             alert("Succesfully logged in");
+            document.location.reload();
         } catch(e){
             alert(e.message);
         }

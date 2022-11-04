@@ -1,9 +1,35 @@
 import {useEffect, useState} from 'react';
 import {supabase} from '../supabase/client';
 import '../styles/Header.css';
-
+import HeaderButtonsUser from './subcomponents/HeaderButtonsUser';
+import HeaderButtonsNoUser from './subcomponents/HeaderButtonsNoUser';
 
 export default function Header(){
+
+    const [user, setUser] = useState(null);
+    var HeaderButtons;
+
+    useEffect(() => {
+        getUserMethod();
+    });
+    
+    const getUserMethod = async () => {
+        const { data: { user } } = await supabase.auth.getUser();
+        if(!user){
+            console.log("No existe sesion");
+        } else{
+            console.log("Si hay sesion");
+            setUser(user);
+        }
+    }
+
+    if(user){
+        HeaderButtons = <HeaderButtonsNoUser/>;
+    }
+    else{
+        HeaderButtons = <HeaderButtonsUser/>;
+    }
+    
     return(
         <header>
             <div className='header'>
@@ -31,12 +57,7 @@ export default function Header(){
                             <a href='/' className='header_bottom_row_buttons_individual'>
                                 Home
                             </a>
-                            <a href='/Login' className='header_bottom_row_buttons_individual'>
-                                Login
-                            </a>
-                            <a href='/UserArea' className='header_bottom_row_buttons_individual'>
-                                Cuenta
-                            </a>
+                            {HeaderButtons}
                         </div>
                     </div>
                 </div>
