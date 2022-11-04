@@ -18,9 +18,6 @@ function App() {
     if(!session){
         navigate('/login');
       }
-      else{
-        navigate('/');
-      }
     })
   });
 

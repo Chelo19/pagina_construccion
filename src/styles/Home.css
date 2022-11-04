@@ -47,9 +47,11 @@ body{
     border-radius: 5px;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
     font-size: 15px;
+    transition: .5s;
 }
 
 .big_buttons_container_buttons:hover{
+    transition: .5s;
     width: 190px;
     height: 190px;
 }
@@ -113,9 +115,11 @@ body{
     font-size: 40px;
     color: #161825;
     text-decoration: none;
+    transition: .5s;
 }
 
 .our_projects_presentation_text:hover{
+    transition: .5s;
     font-size: 45px;
     color: #ff7f22;
 }
@@ -146,9 +150,11 @@ body{
     border-radius: 5px;
     box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
     opacity: .9;
+    transition: 3s;
 }
 
 .our_projects_container_button:hover{
+    transition: 3s;
     width: 70%;
     opacity: 1;
 }
@@ -241,9 +247,11 @@ body{
     margin-left: 15px;
     width: 25%;
     height: 68%;
+    transition: 1s;
 }
 
 .staff_right_card:hover{
+    transition: 1s;
     width: 27%;
 }
 

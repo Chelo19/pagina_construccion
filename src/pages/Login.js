@@ -14,10 +14,10 @@ function Login(){
 
     return(
         <div className='login'>
-            <AuthLogin/>
-            <br/>
-                Don't have an account?<br/>
-            <a href='/Register'>Click here</a>
+            <div className='orange_background'>
+                <AuthLogin/>    
+            </div>
+            
         </div>
     );
 }

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { supabase } from "../supabase/client";
+import '../styles/AuthLogin.css';
 
 export default function AuthLogin(){
     const [email, setEmail] = useState(null);
@@ -28,32 +29,36 @@ export default function AuthLogin(){
 
     return(
         <div> 
-            <br/>
-            <div>
-                <br/><br/><br/><br/>
-                <h1>Sign In</h1>
-                <input 
-                    type = "email" 
-                    name = "email" 
-                    placeholder = "youremail@example.com"
-                    onChange={(e) => setEmail(e.target.value)}
-                /><br/>
-                <input 
-                    type = "password" 
-                    name = "password" 
-                    placeholder = "password"
-                    onChange={(e) => setPassword(e.target.value)}
-                /><br/>
+            <div className="credentials_box">
+                <div className="credentials_box_container">
+                    <div className="credentials_box_container_main">
+                        <h1>Sign In</h1>
+                        <input 
+                            type = "email" 
+                            name = "email" 
+                            placeholder = "youremail@example.com"
+                            onChange={(e) => setEmail(e.target.value)}
+                        /><br/>
+                        <input 
+                            type = "password" 
+                            name = "password" 
+                            placeholder = "password"
+                            onChange={(e) => setPassword(e.target.value)}
+                        /><br/>
 
-                <button onClick={hangleSignIn}>
-                    Sign In
-                </button>
+                        <button onClick={hangleSignIn}>
+                            Sign In
+                        </button>
 
-                <br/><br/>
-                <button onClick={userSituation}>
-                    User Situation
-                </button>
-
+                        <br/><br/>
+                        <button onClick={userSituation}>
+                            User Situation
+                        </button>
+                        <br/><br/>
+                            Don't have an account?<br/>
+                        <a href='/Register'>Click here</a>
+                    </div>
+                </div>
             </div>
         </div>
     )

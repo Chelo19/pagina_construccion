@@ -46,7 +46,7 @@ header{
 
 .header_bottom{
     font-family: 'Poppins', sans-serif;
-    background-color: rgba(255, 255, 255, 0.6);
+    background-color: rgba(235, 235, 235, 0.7);
     width: 90%;
     height: 70px;
     padding-bottom: -100px;
@@ -58,15 +58,23 @@ header{
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    transition: .5s;
+}
+
+.header_bottom:hover{
+    transition: .5s;
+    background-color: rgb(255, 255, 255);
 }
 
 #logo{
     font-size: 2.5em;
     text-decoration: none;
     color: #161825;
+    transition: .5s;
 }
 
 #logo:hover{
+    transition: .5s;
     color: rgb(255, 127, 34);
 }
 
@@ -90,11 +98,12 @@ header{
     border-radius: 8px;
     margin: 2px;
     padding: 14px;
+    transition: .5s;
 }
 
 .header_bottom_row_buttons_individual:hover{
     text-decoration: none;
-    color: rgba(255, 255, 255, .7);
+    color: #ebebeb;
     transition: .5s;
     background-color: rgba(255, 127, 34, 0.8);
 }
