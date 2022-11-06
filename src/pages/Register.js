@@ -12,9 +12,20 @@ function Register(){
 
     const navigate = useNavigate();
 
+    useEffect(() => {
+        getUserMethod();
+    });
+
+    const getUserMethod = async () => {
+        const { data: { user } } = await supabase.auth.getUser();
+        if(user) navigate('/');
+    }
+
     return(
         <div className='register'>
-            <AuthRegister/>
+            <div className='orange_background'>
+                <AuthRegister/>    
+            </div>
             <br/>
                 Already have an account?<br/>
             <a href='/Login'>Click here</a>

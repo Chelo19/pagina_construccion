@@ -1,4 +1,4 @@
-import {useEffect} from 'react';
+import {useEffect, useState} from 'react';
 import {supabase} from '../supabase/client';
 import {useNavigate} from 'react-router-dom';
 import UserArea from '../components/UserArea';
@@ -11,6 +11,33 @@ import '../styles/Home.css';
 function Home(){
 
     const navigate = useNavigate();
+
+    const [uuid, setUuid] = useState(null);
+
+    useEffect(() => {       // EL PROBLEMA SE ENCUENTRA EN QUE NO SE PUEDEN USAR LOS USESTATE EN EL USEEFFECT
+        insertUuid();       // INTENTAR APLICAR LA FUNCION INSERTUUID EN UN EVENTO
+    }, [])                  // DA ERROR 400 PORQUE NO SE ESTABLECE EL VALOR DE "UUID"
+
+    const insertUuid = async () => {
+
+        const { data: { user } } = await supabase.auth.getUser();
+
+        setUuid(user.id);
+
+        const { data, error } = await supabase
+        .from('account')
+        .select()
+        .eq('email', user.email);
+
+        if(data[0].uuid == null){
+            console.log("ENTRO");
+            const { errorInsert } = await supabase
+            .from('account')
+            .insert({uuid: uuid});
+        }
+        
+    }
+    
     
 
     return(

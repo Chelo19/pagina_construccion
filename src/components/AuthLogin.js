@@ -1,10 +1,13 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { supabase } from "../supabase/client";
 import '../styles/AuthLogin.css';
 
 export default function AuthLogin(){
     const [email, setEmail] = useState(null);
     const [password, setPassword] = useState(null);
+
+    const navigate = useNavigate();
 
     const hangleSignIn = async (e) => {
         e.preventDefault();
@@ -18,6 +21,7 @@ export default function AuthLogin(){
             if (error) throw error;
             alert("Succesfully logged in");
             document.location.reload();
+            navigate('/');
         } catch(e){
             alert(e.message);
         }

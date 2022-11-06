@@ -7,10 +7,16 @@ import '../styles/Login.css';
 
 function Login(){
 
-    const [email, setEmail] = useState(null);
-    const [password, setPassword] = useState(null);
-
     const navigate = useNavigate();
+
+    useEffect(() => {
+        getUserMethod();
+    });
+
+    const getUserMethod = async () => {
+        const { data: { user } } = await supabase.auth.getUser();
+        if(user) navigate('/');
+    }
 
     return(
         <div className='login'>

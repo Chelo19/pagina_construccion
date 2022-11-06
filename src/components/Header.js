@@ -15,12 +15,7 @@ export default function Header(){
     
     const getUserMethod = async () => {
         const { data: { user } } = await supabase.auth.getUser();
-        if(!user){
-            console.log("No existe sesion");
-        } else{
-            console.log("Si hay sesion");
-            setUser(user);
-        }
+        if(user) setUser(user);
     }
 
     if(user){
