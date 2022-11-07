@@ -1,6 +1,5 @@
 import {useEffect, useState} from 'react';
 import {supabase} from '../supabase/client';
-import {useNavigate} from 'react-router-dom';
 import UserArea from '../components/UserArea';
 import RemoveFromDB from '../components/RemoveFromDB';
 import AddToDB from '../components/AddToDB';
@@ -8,33 +7,31 @@ import FetchDB from '../components/FetchDB';
 import '../styles/Home.css';
 
 
-function Home(){
+export default function Home(){
 
-    const navigate = useNavigate();
-
-    const [uuid, setUuid] = useState(null);
-
-    useEffect(() => {       // EL PROBLEMA SE ENCUENTRA EN QUE NO SE PUEDEN USAR LOS USESTATE EN EL USEEFFECT
-        insertUuid();       // INTENTAR APLICAR LA FUNCION INSERTUUID EN UN EVENTO
-    }, [])                  // DA ERROR 400 PORQUE NO SE ESTABLECE EL VALOR DE "UUID"
+    useEffect(() => {       
+        insertUuid();       
+    }, [])                  
 
     const insertUuid = async () => {
 
         const { data: { user } } = await supabase.auth.getUser();
 
-        setUuid(user.id);
-
-        const { data, error } = await supabase
-        .from('account')
-        .select()
-        .eq('email', user.email);
-
-        if(data[0].uuid == null){
-            console.log("ENTRO");
-            const { errorInsert } = await supabase
+        if(user){
+            const { data, error } = await supabase
             .from('account')
-            .insert({uuid: uuid});
+            .select()
+            .eq('email', user.email);
+            
+            if(data[0].uuid == null){
+                console.log("ENTRO");
+                const { errorInsert } = await supabase
+                .from('account')
+                .update({uuid: user.id})
+                .eq('email', user.email)
+            }
         }
+        
         
     }
     
@@ -179,5 +176,3 @@ function Home(){
         
     );
 }
-
-export default Home;

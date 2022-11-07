@@ -8,6 +8,7 @@ import Home from './pages/Home';
 import NotFound from './pages/NotFound';
 import Header from './components/Header';
 import Account from './pages/Account';
+import Categories from './pages/Categories';
 
 import {supabase} from './supabase/client';
 
@@ -43,7 +44,8 @@ function App() {
         <Route path="/register" element={<Register/>}/>
         <Route path="/login" element={<Login/>}/>
         <Route path="*" element={<NotFound/>}/>
-        <Route path='/Account' element={<Account/>}/>
+        <Route path='/account' element={<Account/>}/>
+        <Route path='/categories' element={<Categories/>}/>
       </Routes>
     </div>
   );

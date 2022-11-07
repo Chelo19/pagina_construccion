@@ -13,12 +13,7 @@ export default function Account(){
     
     const getUserMethod = async () => {
         const { data: { user } } = await supabase.auth.getUser();
-        if(!user){
-            console.log("No existe sesion, redireccionando");
-            navigate('/login');
-        } else{
-            console.log("Si hay sesion");
-        }
+        if(!user) navigate('/Login');
     }
 
     return(

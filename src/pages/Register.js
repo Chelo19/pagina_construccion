@@ -7,9 +7,6 @@ import '../styles/Register.css';
 
 function Register(){
 
-    const [email, setEmail] = useState(null);
-    const [password, setPassword] = useState(null);
-
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -26,9 +23,6 @@ function Register(){
             <div className='orange_background'>
                 <AuthRegister/>    
             </div>
-            <br/>
-                Already have an account?<br/>
-            <a href='/Login'>Click here</a>
         </div>
     );
 }
