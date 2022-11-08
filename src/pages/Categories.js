@@ -10,13 +10,30 @@ export default function Categories(){
     const [location, getLocation] = useState(null);
     const [locationId, getLocationId] = useState(null);
 
+    const [catSelection, getCatSelection] = useState(null);
+
     const [categories, getCategories] = useState(null);
+    const [services, getServices] = useState(null);
+    
+    const [isCategory, getIsCategory] = useState(true);
 
     useEffect(() => {
         if(location == null) getUserLocation();
         if(locationId == null) getUserLocationId();
-        showCategories();
+        if(isCategory){
+            showCategories();
+            getServices(null);
+        }
+        else{
+            showServices();
+            getCategories(null)
+        }
+        if(catSelection != null){
+            getIsCategory(false);
+        }
         console.log(categories);
+        console.log(services);
+        console.log(catSelection);
     })
 
     const getUserLocation = async () => {
@@ -46,14 +63,33 @@ export default function Categories(){
         getCategories(data);
     }
 
+    const showServices = async () => {
+        const { data, error } = await supabase
+        .from('services')
+        .select('*')
+        .eq('category_id', catSelection)
+        getServices(data)
+    }
+
     return(
         <div className='categories'>
             {categories && (
                 <div className='categories_grid'>
                     {categories.map(category => (
-                        <div key={category.id} className='categories_grid_item'>
+                        <div
+                        onClick={(e) => getCatSelection(category.id)} 
+                        key={category.id} className='categories_grid_item'>
                         ID: {category.id}<br/> 
                         {category.name}</div>
+                    ))}
+                </div>
+            )}
+            {services && (
+                <div className='categories_grid'>
+                    {services.map(service => (
+                        <div key={service.id} className='categories_grid_item'>
+                        ID: {service.id}<br/> 
+                        {service.name}</div>
                     ))}
                 </div>
             )}

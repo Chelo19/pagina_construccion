@@ -9,6 +9,7 @@ import NotFound from './pages/NotFound';
 import Header from './components/Header';
 import Account from './pages/Account';
 import Categories from './pages/Categories';
+import Services from './pages/Services';
 
 import {supabase} from './supabase/client';
 
@@ -46,6 +47,7 @@ function App() {
         <Route path="*" element={<NotFound/>}/>
         <Route path='/account' element={<Account/>}/>
         <Route path='/categories' element={<Categories/>}/>
+        <Route path='/services' element={<Services/>}/>
       </Routes>
     </div>
   );
