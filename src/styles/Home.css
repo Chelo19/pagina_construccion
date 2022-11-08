@@ -17,6 +17,7 @@ body{
     justify-content: center;
     font-size: 80px;
     color: rgba(255, 255, 255, 0.6);
+    background-attachment: fixed;
 }
 
 .big_buttons{

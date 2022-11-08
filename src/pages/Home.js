@@ -47,7 +47,7 @@ export default function Home(){
                     <div className='big_buttons_container'>
                         <div className='big_buttons_container_buttons'>
                             <img id='construcciones' className='big_buttons_container_buttons_img' src={require('../img/certificate.png')}/>
-                            <a href='/Login' className='big_buttons_container_buttons_description'>
+                            <a href='/Categories' className='big_buttons_container_buttons_description'>
                                 <div className='big_buttons_container_buttons_description_text'>
                                     CONSTRUCCIONES
                                 </div>
@@ -55,7 +55,7 @@ export default function Home(){
                         </div>
                         <div className='big_buttons_container_buttons'>
                             <img id='construcciones' className='big_buttons_container_buttons_img' src={require('../img/certificate.png')}/>
-                            <a href='/Login' className='big_buttons_container_buttons_description'>
+                            <a href='/Categories' className='big_buttons_container_buttons_description'>
                                 <div className='big_buttons_container_buttons_description_text'>
                                     MATERIALES
                                 </div>
@@ -63,7 +63,7 @@ export default function Home(){
                         </div>
                         <div className='big_buttons_container_buttons'>
                             <img id='construcciones' className='big_buttons_container_buttons_img' src={require('../img/certificate.png')}/>
-                            <a href='/Login' className='big_buttons_container_buttons_description'>
+                            <a href='/Categories' className='big_buttons_container_buttons_description'>
                                 <div className='big_buttons_container_buttons_description_text'>
                                     SERVICIOS
                                 </div>
@@ -71,7 +71,7 @@ export default function Home(){
                         </div>
                         <div className='big_buttons_container_buttons'>
                             <img id='construcciones' className='big_buttons_container_buttons_img' src={require('../img/certificate.png')}/>
-                            <a href='/Login' className='big_buttons_container_buttons_description'>
+                            <a href='/Categories' className='big_buttons_container_buttons_description'>
                                 <div className='big_buttons_container_buttons_description_text'>
                                     NOSOTROS
                                 </div>
@@ -80,13 +80,13 @@ export default function Home(){
                     </div>
                 </div>
                 <div className='our_projects_presentation'>
-                    <a href='/Login' className='our_projects_presentation_text'>
+                    <a href='/Categories' className='our_projects_presentation_text'>
                         OUR PROJECTS
                     </a>
                 </div>
                 <div className='our_projects'>
                     <div className='our_projects_container'>
-                        <a href='/Login' className='our_projects_container_button'>
+                        <a href='/Categories' className='our_projects_container_button'>
                             <div className='our_projects_container_button_top'></div>
                             <div className='our_projects_container_button_bottom'>
                                 <div className='our_projects_container_button_bottom_text'>
@@ -94,7 +94,7 @@ export default function Home(){
                                 </div>
                             </div>
                         </a>
-                        <a href='/Login' className='our_projects_container_button'>
+                        <a href='/Categories' className='our_projects_container_button'>
                             <div className='our_projects_container_button_top'></div>
                             <div className='our_projects_container_button_bottom'>
                                 <div className='our_projects_container_button_bottom_text'>
@@ -102,7 +102,7 @@ export default function Home(){
                                 </div>
                             </div>
                         </a>
-                        <a href='/Login' className='our_projects_container_button'>
+                        <a href='/Categories' className='our_projects_container_button'>
                             <div className='our_projects_container_button_top'></div>
                             <div className='our_projects_container_button_bottom'>
                                 <div className='our_projects_container_button_bottom_text'>
@@ -168,8 +168,6 @@ export default function Home(){
             <UserArea/>
             <br/>
             <AddToDB/>
-            <br/>
-            <FetchDB/>
             <br/>
             <RemoveFromDB/>
         </body>

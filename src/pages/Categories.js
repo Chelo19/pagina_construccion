@@ -47,13 +47,13 @@ export default function Categories(){
     }
 
     return(
-        <div className='container'>
+        <div className='categories'>
             {categories && (
-                <div className='container_center'>
+                <div className='categories_grid'>
                     {categories.map(category => (
-                        <p key={category.id}>
-                        id: {category.id}<br/> 
-                        name: {category.name}</p>
+                        <div key={category.id} className='categories_grid_item'>
+                        ID: {category.id}<br/> 
+                        {category.name}</div>
                     ))}
                 </div>
             )}
