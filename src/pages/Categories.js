@@ -20,21 +20,9 @@ export default function Categories(){
     useEffect(() => {
         if(location == null) getUserLocation();
         if(locationId == null) getUserLocationId();
-        if(isCategory){
-            showCategories();
-            getServices(null);
-        }
-        else{
-            showServices();
-            getCategories(null)
-        }
-        if(catSelection != null){
-            getIsCategory(false);
-        }
-        console.log(categories);
-        console.log(services);
-        console.log(catSelection);
+        showDisplay();
     })
+    
 
     const getUserLocation = async () => {
         const { data: { user } } = await supabase.auth.getUser();
@@ -53,6 +41,23 @@ export default function Categories(){
         .select()
         .eq('name', location);
         getLocationId(data[0].id);
+    }
+
+    const showDisplay = async () => {
+        if(isCategory){
+            showCategories();
+            getServices(null);
+        }
+        else{
+            showServices();
+            getCategories(null)
+        }
+        if(catSelection != null){
+            getIsCategory(false);
+        }
+        console.log(categories);
+        console.log(services);
+        console.log(catSelection);
     }
 
     const showCategories = async () => {
@@ -79,8 +84,13 @@ export default function Categories(){
                         <div
                         onClick={(e) => getCatSelection(category.id)} 
                         key={category.id} className='categories_grid_item'>
-                        ID: {category.id}<br/> 
-                        {category.name}</div>
+                        <div className='categories_grid_item_top'>
+
+                        </div>
+                        <div className='categories_grid_item_bottom'>
+                            ID: {category.id}<br/> 
+                            {category.name}</div>
+                        </div>
                     ))}
                 </div>
             )}
@@ -88,8 +98,14 @@ export default function Categories(){
                 <div className='categories_grid'>
                     {services.map(service => (
                         <div key={service.id} className='categories_grid_item'>
-                        ID: {service.id}<br/> 
-                        {service.name}</div>
+                            <div className='categories_grid_item_top'>
+
+                            </div>
+                            <div className='categories_grid_item_bottom'>
+                                ID: {service.id}<br/> 
+                                {service.name}
+                            </div>
+                        </div>
                     ))}
                 </div>
             )}
