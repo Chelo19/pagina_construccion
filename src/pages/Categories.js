@@ -77,38 +77,45 @@ export default function Categories(){
     }
 
     return(
-        <div className='categories'>
-            {categories && (
-                <div className='categories_grid'>
-                    {categories.map(category => (
-                        <div
-                        onClick={(e) => getCatSelection(category.id)} 
-                        key={category.id} className='categories_grid_item'>
-                        <div className='categories_grid_item_top'>
-
-                        </div>
-                        <div className='categories_grid_item_bottom'>
-                            ID: {category.id}<br/> 
-                            {category.name}</div>
-                        </div>
-                    ))}
+        <div>
+            <div className='categories'>
+                <div className='categories_container'>
+                    <a href='/Categories' className='categories_container_text'>
+                        Explora nuestros diferentes servicios en {location}
+                    </a>
                 </div>
-            )}
-            {services && (
-                <div className='categories_grid'>
-                    {services.map(service => (
-                        <div key={service.id} className='categories_grid_item'>
+                {categories && (
+                    <div className='categories_grid'>
+                        {categories.map(category => (
+                            <div
+                            onClick={(e) => getCatSelection(category.id)} 
+                            key={category.id} className='categories_grid_item'>
                             <div className='categories_grid_item_top'>
 
                             </div>
                             <div className='categories_grid_item_bottom'>
-                                ID: {service.id}<br/> 
-                                {service.name}
+                                ID: {category.id}<br/> 
+                                {category.name}</div>
                             </div>
-                        </div>
-                    ))}
-                </div>
-            )}
+                        ))}
+                    </div>
+                )}
+                {services && (
+                    <div className='categories_grid'>
+                        {services.map(service => (
+                            <div key={service.id} className='categories_grid_item'>
+                                <div className='categories_grid_item_top'>
+
+                                </div>
+                                <div className='categories_grid_item_bottom'>
+                                    ID: {service.id}<br/> 
+                                    {service.name}
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                )}
+            </div>
         </div>
     )
 }
