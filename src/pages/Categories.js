@@ -11,9 +11,11 @@ export default function Categories(){
     const [locationId, getLocationId] = useState(null);
 
     const [catSelection, getCatSelection] = useState(null);
+    const [serSelection, getSerSelection] = useState(null);
 
     const [categories, getCategories] = useState(null);
     const [services, getServices] = useState(null);
+    const [currentService, getCurrentService] = useState(null);
     
     const [isCategory, getIsCategory] = useState(true);
 
@@ -58,6 +60,7 @@ export default function Categories(){
         console.log(categories);
         console.log(services);
         console.log(catSelection);
+        console.log(serSelection);
     }
 
     const showCategories = async () => {
@@ -96,6 +99,23 @@ export default function Categories(){
                             <div className='categories_grid_item_bottom'>
                                 ID: {category.id}<br/> 
                                 {category.name}</div>
+                            </div>
+                        ))}
+                    </div>
+                )}
+                {services && (
+                    <div className='categories_grid'>
+                        {services.map(service => (
+                            <div 
+                            onClick={(e) => getSerSelection(service.id)}
+                            key={service.id} className='categories_grid_item'>
+                                <div className='categories_grid_item_top'>
+
+                                </div>
+                                <div className='categories_grid_item_bottom'>
+                                    ID: {service.id}<br/> 
+                                    {service.name}
+                                </div>
                             </div>
                         ))}
                     </div>
