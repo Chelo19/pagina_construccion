@@ -10,6 +10,7 @@ import Header from './components/Header';
 import Account from './pages/Account';
 import Categories from './pages/Categories';
 import Services from './pages/Services';
+import MyServices from './pages/MyServices';
 
 import {supabase} from './supabase/client';
 
@@ -48,6 +49,7 @@ function App() {
         <Route path='/account' element={<Account/>}/>
         <Route path='/categories' element={<Categories/>}/>
         <Route path='/services' element={<Services/>}/>
+        <Route path='/my-services' element={<MyServices/>}/>
       </Routes>
     </div>
   );

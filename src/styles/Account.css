@@ -1,12 +1,6 @@
-body{
+.account_background{
+    height: 97vh;
     background-color: #ebebeb;
-    background: url('../img/construction_img2.jpg');
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-.background{
-    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -23,6 +17,7 @@ body{
     align-items: center;
     padding: 10px;
     border-radius: 10px;
+    border: 2px solid rgba(0, 0, 0, 0.3);
 }
 
 .selections_item{
@@ -35,6 +30,12 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: 3s;
+}
+
+.selections_item:hover{
+    transition: 1s;
+    background-color: rgba(255, 175, 117, 0.8);
 }
 
 .selections_item_left{
@@ -55,9 +56,6 @@ body{
     gap: 10px;
 }
 
-#data{
-    height: 100%;
-}
 
 #package{
     width: 90px;
@@ -89,4 +87,69 @@ body{
 
 .selections_item_description:hover{
     color: #ff7f22;
+}
+
+.selections_account{
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.9);
+    width: 47%;
+    border-radius: 10px;
+    margin: 10px;
+    border: 2px solid rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: 3s;
+}
+
+.selections_account:hover{
+    transition: 1s;
+    background-color: rgba(255, 175, 117, 0.8);
+}
+
+.account_data{
+    width: 100%;
+    height: 80%;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: black;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    gap: 30px;
+}
+
+.account_data_title{
+    font-size: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.account_data_info{
+    padding: 15px;
+    font-size: 15px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.account_data_info_text{
+    display: flex;
+    align-items: center;
+    justify-content: left;
+}
+
+#link{
+    color: black;
+    text-decoration: none;
+    transition: .5s;
+}
+
+#link:hover{
+    color: #ff7f22;
+    transition: .5s;
 }

@@ -28,12 +28,10 @@ export default function Categories(){
 
     const getUserLocation = async () => {
         const { data: { user } } = await supabase.auth.getUser();
-
         const { data, error } = await supabase
         .from('account')
         .select()
         .eq('uuid', user.id);
-
         getLocation(data[0].location);
     };
 

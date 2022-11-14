@@ -1,0 +1,7 @@
+.my_services_background{
+    height: 97vh;
+    background-color: #ebebeb;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
