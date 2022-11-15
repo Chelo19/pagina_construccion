@@ -35,7 +35,7 @@
 
 .selections_item:hover{
     transition: 1s;
-    background-color: rgba(255, 175, 117, 0.8);
+    background-color: rgba(255, 175, 117, 0.5);
 }
 
 .selections_item_left{
@@ -55,7 +55,6 @@
     justify-content: center;
     gap: 10px;
 }
-
 
 #package{
     width: 90px;
@@ -105,7 +104,7 @@
 
 .selections_account:hover{
     transition: 1s;
-    background-color: rgba(255, 175, 117, 0.8);
+    background-color: rgba(255, 175, 117, 0.5);
 }
 
 .account_data{

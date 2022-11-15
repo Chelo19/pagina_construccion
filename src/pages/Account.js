@@ -51,15 +51,15 @@ export default function Account(){
                 </div>
                 <div className='selections_item'>
                     <div className='selections_item_left'>
-                        <a href='/login' id='package'>
+                        <a href='/client-service' id='package'>
                             <img src={require('../img/serviciocliente.png')} id='package'/>
                         </a>
                     </div>
                     <div className='selections_item_right'>
-                        <a href='/login' className='selections_item_title'>
+                        <a href='/client-service' className='selections_item_title'>
                             <span>Servicio al cliente</span>
                         </a>
-                        <a href='/login' className='selections_item_description'>
+                        <a href='/client-service' className='selections_item_description'>
                             <span>Contacta con un socio para resolver dudas que tengas</span>
                         </a>
                     </div>

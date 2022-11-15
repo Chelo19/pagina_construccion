@@ -5,7 +5,7 @@ import '../styles/MyServices.css';
 
 export default function MyServices(){
 
-    const navigate = useNavigate(); 
+    const navigate = useNavigate();
 
     useEffect(() => {
         getClientServices();

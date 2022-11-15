@@ -11,6 +11,7 @@ import Account from './pages/Account';
 import Categories from './pages/Categories';
 import Services from './pages/Services';
 import MyServices from './pages/MyServices';
+import ClientService from './pages/ClientService';
 
 import {supabase} from './supabase/client';
 
@@ -39,18 +40,19 @@ function App() {
 
   return(
     <div className="App">
-      <Header/>
-      <br/>
-      <Routes>
-        <Route path="/" element={<Home/>}/>
-        <Route path="/register" element={<Register/>}/>
-        <Route path="/login" element={<Login/>}/>
-        <Route path="*" element={<NotFound/>}/>
-        <Route path='/account' element={<Account/>}/>
-        <Route path='/categories' element={<Categories/>}/>
-        <Route path='/services' element={<Services/>}/>
-        <Route path='/my-services' element={<MyServices/>}/>
-      </Routes>
+        <Header/>
+        <br/>
+        <Routes>
+          <Route path="/" element={<Home/>}/>
+          <Route path="/register" element={<Register/>}/>
+          <Route path="/login" element={<Login/>}/>
+          <Route path="*" element={<NotFound/>}/>
+          <Route path='/account' element={<Account/>}/>
+          <Route path='/categories' element={<Categories/>}/>
+          <Route path='/services' element={<Services/>}/>
+          <Route path='/my-services' element={<MyServices/>}/>
+          <Route path='/client-service' element={<ClientService/>}/>
+        </Routes>
     </div>
   );
 }
