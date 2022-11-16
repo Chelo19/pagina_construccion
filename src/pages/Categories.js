@@ -7,7 +7,7 @@ import '../styles/Categories.css';
 
 export default function Categories(){
     
-    const [location, getLocation] = useState(null);
+    const [location, getLocation] = useState('Monterrey');
     const [locationId, getLocationId] = useState(null);
 
     const [catSelection, getCatSelection] = useState(null);

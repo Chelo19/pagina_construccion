@@ -48,10 +48,7 @@ export default function Header(){
                         <div>
                             <a href='/' id='logo'>DREC</a>
                         </div>
-                        <div className='header_bottom_row_buttons'>
-                            <a href='/' className='header_bottom_row_buttons_individual'>
-                                Home
-                            </a>
+                        <div>
                             {HeaderButtons}
                         </div>
                     </div>

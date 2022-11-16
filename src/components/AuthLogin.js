@@ -33,7 +33,7 @@ export default function AuthLogin(){
     }
 
     return(
-        <div> 
+        <div>
             <div className="credentials_box">
                 <div className="credentials_box_container">
                     <div className="credentials_box_container_main">
