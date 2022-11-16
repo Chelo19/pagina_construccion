@@ -34,7 +34,7 @@ export default function Account(){
     return(
         <div className='account_background'>
             <div className='selections'>
-                <div className='selections_item'>
+                <div className='selections_item' id='my_services_grid'>
                     <div className='selections_item_left'>
                         <a href='/login' id='package'>
                             <img src={require('../img/package.png')} id='package'/>
@@ -49,7 +49,7 @@ export default function Account(){
                         </a>
                     </div>
                 </div>
-                <div className='selections_item'>
+                <div className='selections_item' id='client_service_grid'>
                     <div className='selections_item_left'>
                         <a href='/client-service' id='package'>
                             <img src={require('../img/serviciocliente.png')} id='package'/>
@@ -64,7 +64,7 @@ export default function Account(){
                         </a>
                     </div>
                 </div>
-                <div className='selections_account'>
+                <div className='selections_account' id='account_grid'>
                     <div className='account_data'>
                         <a href='/login' id='package'>
                                 <img src={require('../img/cuenta.png')} id='package'/>

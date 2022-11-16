@@ -47,31 +47,31 @@ function Login(){
                     </div>
                     <div className='login_right'>
                         <div className='login_form'>
-                            <h2>Login</h2>
+                            <h2>Iniciar Sesión</h2>
                             <div className='login_input'>
                                 <span>Email</span>
                                 <input 
                                     type = "email" 
                                     name = "email" 
-                                    placeholder = "youremail@example.com"
+                                    placeholder = "tuemail@gmail.com"
                                     onChange={(e) => setEmail(e.target.value)}
                                 />
                             </div>
                             <div className='login_input'>
-                                <span>Password</span>
+                                <span>Contraseña</span>
                                 <input 
                                     type = "password" 
                                     name = "password" 
-                                    placeholder = "password"
+                                    placeholder = "contraseña"
                                     onChange={(e) => setPassword(e.target.value)}
                                 />
                             </div>
                             <div id='sign_in_button'>
-                                <a href='#' onClick={hangleSignIn}>Sign In</a>
+                                <a href='#' onClick={hangleSignIn}>Iniciar sesión</a>
                             </div><br/>
                             <div className='login_input'>
-                                    ¿No tienes una cuenta?&nbsp;
-                                    <a href='/Register'>Haz click aquí</a>
+                                ¿No tienes una cuenta?&nbsp;
+                                <a href='/Register'>Haz click aquí</a>
                             </div>
                         </div>
                     </div>
