@@ -1,6 +1,9 @@
+import { useEffect, useState } from 'react';
+import {supabase} from '../../supabase/client';
 import '../../styles/Header.css';
 
 export default function HeaderButtonsUser(){
+
     return(
         <div>
             <ul className='horizontal_menu_header'>

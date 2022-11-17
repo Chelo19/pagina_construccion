@@ -1,6 +1,7 @@
 import '../src/styles/App.css';
 import { useEffect } from 'react';
 import {Routes, Route, useNavigate} from 'react-router-dom';
+import { UserProvider} from './context/UserContext';
 
 import Register from './pages/Register';
 import Login from './pages/Login';
@@ -12,6 +13,9 @@ import Categories from './pages/Categories';
 import Services from './pages/Services';
 import MyServices from './pages/MyServices';
 import ClientService from './pages/ClientService';
+import UpdatePassword from './pages/UpdatePassword';
+import RecoverPassword from './pages/RecoverPassword';
+import AdminHub from './pages/AdminHub';
 
 import {supabase} from './supabase/client';
 
@@ -52,10 +56,12 @@ function App() {
           <Route path='/services' element={<Services/>}/>
           <Route path='/my-services' element={<MyServices/>}/>
           <Route path='/client-service' element={<ClientService/>}/>
+          <Route path='/update-password' element={<UpdatePassword/>}/>
+          <Route path='/recover-password' element={<RecoverPassword/>}/>
+          <Route path='/admin-hub' element={<AdminHub/>}/>
         </Routes>
     </div>
   );
 }
 
 export default App;
-export var isLogged;

@@ -4,11 +4,9 @@ import {useNavigate} from 'react-router-dom';
 import '../styles/Login.css';
 
 
-function Login(){
+function RecoverPassword(){
 
     const [email, setEmail] = useState(null);
-    const [password, setPassword] = useState(null);
-    const [user, setUser] = useState(null);
 
     const navigate = useNavigate();
 
@@ -21,24 +19,33 @@ function Login(){
         if(user) navigate('/');
     }
 
-    const hangleSignIn = async (e) => {
+    useEffect(() => {
+        supabase.auth.onAuthStateChange(async (event, session) => {
+          if (event == "PASSWORD_RECOVERY") {
+            const newPassword = prompt("What would you like your new password to be?");
+            const { data, error } = await supabase.auth
+              .updateUser({ password: newPassword })
+     
+            if (data) alert("Password updated successfully!")
+            if (error) alert("There was an error updating your password.")
+          }
+        })
+    }, [])
+
+    const sendToken = async (e) => {
         e.preventDefault();
         try{
-            console.log(email + " " + password);
-            const { data, error } = await supabase.auth.signInWithPassword({
-                email,
-                password,
-              });
-            console.log(data);
-            if (error) throw error;
-            alert("Succesfully logged in");
-            document.location.reload();
-            navigate('/');
-        } catch(e){
-            alert(e.message);
+            console.log(email);
+            const { data, error } = await supabase.auth.resetPasswordForEmail(email, {
+                redirectTo: 'http://localhost:3000/update-password',
+            });
+            if(!error) alert("Correcto");
+            else if(error) alert(error.message);
+        } catch(error){
+            console.log(error);
         }
-    };
-
+    }
+      
     return(
         <div>
             <div className='login_container'>
@@ -48,7 +55,7 @@ function Login(){
                     </div>
                     <div className='login_right'>
                         <div className='login_form'>
-                            <h2>Iniciar Sesión</h2>
+                            <h2>Recuperar contraseña</h2>
                             <div className='login_input'>
                                 <span>Email</span>
                                 <input 
@@ -58,25 +65,11 @@ function Login(){
                                     onChange={(e) => setEmail(e.target.value)}
                                 />
                             </div>
-                            <div className='login_input'>
-                                <span>Contraseña</span>
-                                <input 
-                                    type = "password" 
-                                    name = "password" 
-                                    placeholder = "contraseña"
-                                    onChange={(e) => setPassword(e.target.value)}
-                                />
-                            </div>
                             <div id='sign_in_button'>
-                                <a href='#' onClick={hangleSignIn}>Iniciar sesión</a>
+                                <a href='#' onClick={sendToken}>Enviar verificación al correo</a>
                             </div><br/>
                             <div className='login_input'>
-                                ¿No tienes una cuenta?&nbsp;
-                                <a href='/Register'>Haz click aquí</a>
-                            </div>
-                            <div className='login_input'>
-                                ¿Olvidaste tu contraseña?&nbsp;
-                                <a href='/recover-password'>Recuperar cuenta</a>
+                                <a href='/Login'>Regresar a inicio de sesión</a>
                             </div>
                         </div>
                     </div>
@@ -86,4 +79,4 @@ function Login(){
     );
 }
 
-export default Login;
+export default RecoverPassword;

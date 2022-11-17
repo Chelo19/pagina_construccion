@@ -5,9 +5,11 @@ import RemoveFromDB from '../components/RemoveFromDB';
 import AddToDB from '../components/AddToDB';
 import FetchDB from '../components/FetchDB';
 import '../styles/Home.css';
+import { AuthRedirect } from '../hooks/authUser';
 
 
 export default function Home(){
+    AuthRedirect();
 
     useEffect(() => {       
         insertUuid();       

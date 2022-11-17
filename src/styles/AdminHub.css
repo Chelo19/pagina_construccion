@@ -1,0 +1,22 @@
+.admin_background{
+    height: 97vh;
+    background-color: #ebebeb;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#edit_services{
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+}
+
+#edit_users{
+    grid-column: 1 / 2;
+    grid-row: 2;
+}
+
+#edit_something{
+    grid-column: 2;
+    grid-row: 1 / 2;
+}
