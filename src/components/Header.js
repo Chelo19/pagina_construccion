@@ -45,10 +45,10 @@ export default function Header(){
                 </div>
                 <div className='header_bottom'>
                     <div className='header_bottom_row'>
-                        <div>
+                        <div className='logo_header'>
                             <a href='/' id='logo'>DREC</a>
                         </div>
-                        <div>
+                        <div className='header_buttons_container'>
                             {HeaderButtons}
                         </div>
                     </div>

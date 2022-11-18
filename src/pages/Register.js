@@ -25,6 +25,7 @@ function Register(){
 
     const hangleSignUp = async (e) => {
         e.preventDefault();
+        /*
         const { data, error } = await supabase
         .from('account')
         .select('email')
@@ -34,6 +35,7 @@ function Register(){
             alert("Este usuario ya ha sido registrado")
             return;
         }
+        */
         try{
             const { data, error } = await supabase.auth.signUp({
                 email,
@@ -48,7 +50,6 @@ function Register(){
         } catch(e){
             alert(e.message);
         }
-        
     };
 
     return(
@@ -90,12 +91,12 @@ function Register(){
                             </div>
                             <div className='register_input'>
                                 <span>Localización</span>
-                                <input 
-                                    type = "text" 
-                                    name = "location" 
-                                    placeholder = "localización"
-                                    onChange={(e) => setLocation(e.target.value)}
-                                />
+                                <select name='location' onChange={(e) => setLocation(e.target.value)}>
+                                    <option value={"Monterrey"}>Localización</option>
+                                    <option value={"Monterrey"}>Monterrey</option>
+                                    <option value={"Sabinas"}>Sabinas</option>
+                                    <option value={"Nuevo Laredo"}>Nuevo Laredo</option>
+                                </select>
                             </div>
                             <div id='register_button'>
                                 <a href='#' onClick={hangleSignUp}>Registrarse</a>

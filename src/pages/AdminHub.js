@@ -19,11 +19,11 @@ export default function AdminHub(){
             .eq('uuid', user.id);
             console.log(data[0].role);
             if(data[0].role != 'administrador'){
-                navigate("/");
+                navigate("/Login");
             }
         }
         else{
-            navigate("/");
+            navigate("/Login");
         }
     }
 

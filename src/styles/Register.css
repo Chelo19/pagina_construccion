@@ -68,7 +68,20 @@
 }
 
 .register_right .register_form .register_input input{
-    width: 89%;
+    width: 100%;
+    padding: 10px 20px;
+    outline: none;
+    font-weight: 400;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    font-size: 16px;
+    letter-spacing: 1px;
+    color: rgba(0, 0, 0, 0.5);
+    background: transparent;
+    border-radius: 30px;
+}
+
+.register_right .register_form .register_input select{
+    width: 100%;
     padding: 10px 20px;
     outline: none;
     font-weight: 400;

@@ -8,6 +8,7 @@ export default function Account(){
     const [name, getName] = useState(null);
     const [email, getEmail] = useState(null);
     const [location, getLocation] = useState(null);
+    const [newLocation, getNewLocation] = useState(null);
 
     const navigate = useNavigate(); 
 
@@ -29,6 +30,15 @@ export default function Account(){
         getName(data[0].name);
         getEmail(data[0].email);
         getLocation(data[0].location);
+    }
+
+    const updateLocation = async () => {
+        console.log(newLocation);
+        const { data: { user } } = await supabase.auth.getUser();
+        const { data, error } = await supabase
+        .from('account')
+        .update({location: newLocation})
+        .eq('uuid', user.id);
     }
 
     return(
@@ -67,7 +77,7 @@ export default function Account(){
                 <a className='selections_item' id='account_grid'>
                     <div className='account_data'>
                         <a id='package' className='selection_logo'>
-                                <img src={require('../img/cuenta.png')} id='package'/>
+                            <img src={require('../img/cuenta.png')} id='package'/>
                         </a>
                         <div className='account_data_title'>
                             <span>¡Hola {name}!</span>
@@ -76,7 +86,17 @@ export default function Account(){
                             <span>Nombre: {name}</span><br/>
                             <span>Email: {email}</span><br/>
                             <span>Location: {location}</span><br/>
-                            <a href='/login' id='link'>Haz click aquí si deseas cambiar tu dirección</a><br/>
+                            <span>Cambiar localización:</span><br/>
+                            <div className='change_location_account'>
+                                <form onSubmit={updateLocation()}>
+                                    <select onChange={(e) => getNewLocation(e.target.value)}>
+                                        <option value={"Monterrey"}>Localización</option>
+                                        <option value={"Monterrey"}>Monterrey</option>
+                                        <option value={"Sabinas"}>Sabinas</option>
+                                        <option value={"Nuevo Laredo"}>Nuevo Laredo</option>
+                                    </select>
+                                </form>
+                            </div><br/>
                             <a href='/update-password' id='link'>Haz click aquí si deseas cambiar tu contraseña</a>
                         </div>
                     </div>

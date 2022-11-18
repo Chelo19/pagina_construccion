@@ -20,8 +20,8 @@ export default function Categories(){
     const [isCategory, getIsCategory] = useState(true);
 
     useEffect(() => {
-        if(location == null) getUserLocation();
-        if(locationId == null) getUserLocationId();
+        getUserLocation();
+        getUserLocationId();
         showDisplay();
     })
     
@@ -78,61 +78,164 @@ export default function Categories(){
     }
 
     return(
-        <div>
-            <div className='categories'>
-                <div className='categories_container'>
-                    <a href='/Categories' className='categories_container_text'>
-                        Explora nuestros diferentes servicios en {location}
-                    </a>
+        <div className='background_categories'>
+            <div className='categories_gallery'>
+                <div className='category_item'>
+                    <div className='category_item_img'>
+                        <img src={require('../img/category.png')}/>
+                    </div>
+                    <div className='category_item_content'>
+                        <div className='category_item_title'>
+                            <span>Servicio de construccion</span>
+                        </div>
+                        <div className='category_item_description'>
+                            <span>Lorem ipsum dolor sit amet. Ea magnligendi id magni odit? Sed animi error insentium sequi sed delectus explicabo et ipsa quae in sunt incidunt.</span>
+                        </div>
+                    </div>
                 </div>
-                {categories && (
-                    <div className='categories_grid'>
-                        {categories.map(category => (
-                            <div
-                            onClick={(e) => getCatSelection(category.id)} 
-                            key={category.id} className='categories_grid_item'>
-                            <div className='categories_grid_item_top'>
-
-                            </div>
-                            <div className='categories_grid_item_bottom'>
-                                ID: {category.id}<br/> 
-                                {category.name}</div>
-                            </div>
-                        ))}
+                <div className='category_item'>
+                    <div className='category_item_img'>
+                        <img src={require('../img/category.png')}/>
                     </div>
-                )}
-                {services && (
-                    <div className='categories_grid'>
-                        {services.map(service => (
-                            <div 
-                            onClick={(e) => getSerSelection(service.id)}
-                            key={service.id} className='categories_grid_item'>
-                                <div className='categories_grid_item_top'>
-
-                                </div>
-                                <div className='categories_grid_item_bottom'>
-                                    ID: {service.id}<br/> 
-                                    {service.name}
-                                </div>
-                            </div>
-                        ))}
+                    <div className='category_item_content'>
+                        <div className='category_item_title'>
+                            <span>Servicio de construccion</span>
+                        </div>
+                        <div className='category_item_description'>
+                            <span>Lorem ipsum dolor sit amet. Ea magnligendi id magni odit? Sed animi error insentium sequi sed delectus explicabo et ipsa quae in sunt incidunt.</span>
+                        </div>
                     </div>
-                )}
-                {services && (
-                    <div className='categories_grid'>
-                        {services.map(service => (
-                            <div key={service.id} className='categories_grid_item'>
-                                <div className='categories_grid_item_top'>
-
-                                </div>
-                                <div className='categories_grid_item_bottom'>
-                                    ID: {service.id}<br/> 
-                                    {service.name}
-                                </div>
-                            </div>
-                        ))}
+                </div>
+                <div className='category_item'>
+                    <div className='category_item_img'>
+                        <img src={require('../img/category.png')}/>
                     </div>
-                )}
+                    <div className='category_item_content'>
+                        <div className='category_item_title'>
+                            <span>Servicio de construccion</span>
+                        </div>
+                        <div className='category_item_description'>
+                            <span>Lorem ipsum dolor sit amet. Ea magnligendi id magni odit? Sed animi error insentium sequi sed delectus explicabo et ipsa quae in sunt incidunt.</span>
+                        </div>
+                    </div>
+                </div>
+                <div className='category_item'>
+                    <div className='category_item_img'>
+                        <img src={require('../img/category.png')}/>
+                    </div>
+                    <div className='category_item_content'>
+                        <div className='category_item_title'>
+                            <span>Servicio de construccion</span>
+                        </div>
+                        <div className='category_item_description'>
+                            <span>Lorem ipsum dolor sit amet. Ea magnligendi id magni odit? Sed animi error insentium sequi sed delectus explicabo et ipsa quae in sunt incidunt.</span>
+                        </div>
+                    </div>
+                </div>
+                <div className='category_item'>
+                    <div className='category_item_img'>
+                        <img src={require('../img/category.png')}/>
+                    </div>
+                    <div className='category_item_content'>
+                        <div className='category_item_title'>
+                            <span>Servicio de construccion</span>
+                        </div>
+                        <div className='category_item_description'>
+                            <span>Lorem ipsum dolor sit amet. Ea magnligendi id magni odit? Sed animi error insentium sequi sed delectus explicabo et ipsa quae in sunt incidunt.</span>
+                        </div>
+                    </div>
+                </div>
+                <div className='category_item'>
+                    <div className='category_item_img'>
+                        <img src={require('../img/category.png')}/>
+                    </div>
+                    <div className='category_item_content'>
+                        <div className='category_item_title'>
+                            <span>Servicio de construccion</span>
+                        </div>
+                        <div className='category_item_description'>
+                            <span>Lorem ipsum dolor sit amet. Ea magnligendi id magni odit? Sed animi error insentium sequi sed delectus explicabo et ipsa quae in sunt incidunt.</span>
+                        </div>
+                    </div>
+                </div>
+                <div className='category_item'>
+                    <div className='category_item_img'>
+                        <img src={require('../img/category.png')}/>
+                    </div>
+                    <div className='category_item_content'>
+                        <div className='category_item_title'>
+                            <span>Servicio de construccion</span>
+                        </div>
+                        <div className='category_item_description'>
+                            <span>Lorem ipsum dolor sit amet. Ea magnligendi id magni odit? Sed animi error insentium sequi sed delectus explicabo et ipsa quae in sunt incidunt.</span>
+                        </div>
+                    </div>
+                </div>
+                <div className='category_item'>
+                    <div className='category_item_img'>
+                        <img src={require('../img/category.png')}/>
+                    </div>
+                    <div className='category_item_content'>
+                        <div className='category_item_title'>
+                            <span>Servicio de construccion</span>
+                        </div>
+                        <div className='category_item_description'>
+                            <span>Lorem ipsum dolor sit amet. Ea magnligendi id magni odit? Sed animi error insentium sequi sed delectus explicabo et ipsa quae in sunt incidunt.</span>
+                        </div>
+                    </div>
+                </div>
+                <div className='category_item'>
+                    <div className='category_item_img'>
+                        <img src={require('../img/category.png')}/>
+                    </div>
+                    <div className='category_item_content'>
+                        <div className='category_item_title'>
+                            <span>Servicio de construccion</span>
+                        </div>
+                        <div className='category_item_description'>
+                            <span>Lorem ipsum dolor sit amet. Ea magnligendi id magni odit? Sed animi error insentium sequi sed delectus explicabo et ipsa quae in sunt incidunt.</span>
+                        </div>
+                    </div>
+                </div>
+                <div className='category_item'>
+                    <div className='category_item_img'>
+                        <img src={require('../img/category.png')}/>
+                    </div>
+                    <div className='category_item_content'>
+                        <div className='category_item_title'>
+                            <span>Servicio de construccion</span>
+                        </div>
+                        <div className='category_item_description'>
+                            <span>Lorem ipsum dolor sit amet. Ea magnligendi id magni odit? Sed animi error insentium sequi sed delectus explicabo et ipsa quae in sunt incidunt.</span>
+                        </div>
+                    </div>
+                </div>
+                <div className='category_item'>
+                    <div className='category_item_img'>
+                        <img src={require('../img/category.png')}/>
+                    </div>
+                    <div className='category_item_content'>
+                        <div className='category_item_title'>
+                            <span>Servicio de construccion</span>
+                        </div>
+                        <div className='category_item_description'>
+                            <span>Lorem ipsum dolor sit amet. Ea magnligendi id magni odit? Sed animi error insentium sequi sed delectus explicabo et ipsa quae in sunt incidunt.</span>
+                        </div>
+                    </div>
+                </div>
+                <div className='category_item'>
+                    <div className='category_item_img'>
+                        <img src={require('../img/category.png')}/>
+                    </div>
+                    <div className='category_item_content'>
+                        <div className='category_item_title'>
+                            <span>Servicio de construccion</span>
+                        </div>
+                        <div className='category_item_description'>
+                            <span>Lorem ipsum dolor sit amet. Ea magnligendi id magni odit? Sed animi error insentium sequi sed delectus explicabo et ipsa quae in sunt incidunt.</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     )

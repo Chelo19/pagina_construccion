@@ -187,6 +187,37 @@ header{
     .header_bottom:hover{
         background-color: #161825;
     }
+
+    .header_bottom_row{
+        margin: 0;
+        height: 10vh;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .logo_header{
+        width: 20%;
+        font-size: 10px;
+    }
+
+    .logo_header a{
+        margin-left: 20px;
+    }
+
+    .header_buttons_container{
+        width: 80%;
+        height: 100%;
+        display: flex;
+        justify-content: left;
+    }
+
+    .header_buttons{
+        height: 100%;
+        width: 100%;
+        display: flex;
+        justify-content: right;
+        align-items: center;
+    }
     
     #logo{
         color: #ebebeb;
@@ -194,6 +225,17 @@ header{
 
     .logo:hover{
         color: #ff7f22;
+    }
+
+    .horizontal_menu_header{
+        display: flex;
+        flex-direction: row;
+        justify-content: left;
+        padding: 0;
+    }
+
+    .horizontal_menu_header li{
+        margin: 0;
     }
 
     .horizontal_menu_header li a{

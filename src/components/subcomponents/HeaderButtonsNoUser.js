@@ -32,7 +32,7 @@ export default function HeaderButtonsNoUser(){
     }
 
     return(
-        <div>
+        <div className='header_buttons'>
             <ul className='horizontal_menu_header'>
                 {role == 'administrador' &&
                     <li><a href='/admin-hub'>Admin</a></li>   
