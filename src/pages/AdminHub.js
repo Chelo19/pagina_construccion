@@ -31,17 +31,17 @@ export default function AdminHub(){
     return(
         <div className="admin_background">
             <div className='selections'>
-                <a href='/admin-hub' id='edit_services' className='selections_item'>
+                <a href='/edit-services' id='edit_services' className='selections_item'>
                     <div className='selections_item_left'>
-                        <a href='/admin-hub' id='package' className='selection_logo'>
+                        <a href='/edit-services' id='package' className='selection_logo'>
                             <img src={require('../img/package.png')} id='package'/>
                         </a>
                     </div>
                     <div className='selections_item_right'>
-                        <a href='/admin-hub' className='selections_item_title'>
+                        <a href='/edit-services' className='selections_item_title'>
                             <span>Editar Servicios</span>
                         </a>
-                        <a href='/admin-hub' className='selections_item_description'>
+                        <a href='/edit-services' className='selections_item_description'>
                             <span>Edita los datos de un servicio en específico</span>
                         </a>
                     </div>

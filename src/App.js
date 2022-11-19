@@ -16,6 +16,7 @@ import ClientService from './pages/ClientService';
 import UpdatePassword from './pages/UpdatePassword';
 import RecoverPassword from './pages/RecoverPassword';
 import AdminHub from './pages/AdminHub';
+import EditServices from './pages/EditServices';
 
 import {supabase} from './supabase/client';
 
@@ -59,6 +60,7 @@ function App() {
           <Route path='/update-password' element={<UpdatePassword/>}/>
           <Route path='/recover-password' element={<RecoverPassword/>}/>
           <Route path='/admin-hub' element={<AdminHub/>}/>
+          <Route path='/edit-services' element={<EditServices/>}/>
         </Routes>
     </div>
   );

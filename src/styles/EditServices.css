@@ -1,0 +1,14 @@
+.background_edit_services{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 97vh;
+}
+
+.edit_services_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
