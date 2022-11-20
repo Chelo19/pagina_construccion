@@ -6,18 +6,21 @@ import { key } from 'localforage';
 
 export default function EditServices(){
 
-    const[serviceId, setServiceId] = useState(null);
     const[serSelection, setSerSelection] = useState(null);
+
+    const[serviceId, setServiceId] = useState(null);
     const[services, setServices] = useState([]);
 
+    const[imgUrl, setImgUrl] = useState(null);
+
     const getServicesData = async () => {
+        getBucketData();
         const { data, error } = await supabase
         .from('services')
         .select('*')
         .eq('category_id', 1)
         if(data){
-            setServices(data);
-            console.log(listServices);
+            setServices(data);  
         }
         else{
             console.log(error);
@@ -25,8 +28,32 @@ export default function EditServices(){
     }
 
     const listServices = services.map((service) => 
-        <li key={service.id}>{service.name}</li>
+    <div className='category_item' onClick={(e) => setServiceId(service.id)} key={service.id}>
+        <div className='category_item_img'>
+            <img src={service.img_url}/>
+            {service.img_url}
+        </div>
+        <div className='category_item_content'>
+            <div className='category_item_title'>
+                <span>{service.name}</span>
+            </div>
+            <div className='category_item_description'>
+                <span>{service.description}</span>
+            </div>
+        </div>
+    </div>
     )
+
+    const getBucketData = async(e) => {
+        const { data, error } = await supabase
+        .storage
+        .from('services-img')
+        .list('public', {
+            limit: 100,
+            offset: 0,
+            sortBy: { column: 'name', order: 'asc' },
+        })
+    }
 
     useEffect(() => {
     })
@@ -40,14 +67,36 @@ export default function EditServices(){
 
         const {data, error} = await supabase
         .storage
-        .from('categories-img')
-        .upload('services/' + serviceId, file);
+        .from('services-img')
+        .upload('public/service' + serviceId + ".png", file);
 
         if(data){
             console.log(data);
+            getImgUrl();
         }
         else if(error){
             console.log(error);
+        }
+    }
+
+    const getImgUrl = async(e) => {
+        const { data } = supabase
+        .storage
+        .from('services-img')
+        .getPublicUrl("public/service" + serviceId + ".png")
+        if(data.publicUrl != null){
+            console.log("entra");
+            const { error } = await supabase
+            .from('services')
+            .update({ img_url: data.publicUrl })
+            .eq('id', serviceId)
+            if(error){
+                console.log(error);
+            }
+        }
+        else{
+            console.log("else");
+            getImgUrl();
         }
     }
 
@@ -57,7 +106,7 @@ export default function EditServices(){
         <div className='background_edit_services'>
             <div className='edit_services_container'>
                 <input 
-                type="number"
+                type="text"
                 name="serviceId"
                 placeholder='serviceId'
                 onChange={(e) => setServiceId(e.target.value)}
@@ -70,7 +119,16 @@ export default function EditServices(){
                 }}
                 />
             </div><br/>
-            <ul>{listServices}</ul>
+            <div className='categories_gallery'>
+                {listServices}
+            </div>
+            <div>
+                {serviceId}
+            </div>
+            <div>
+                <input onClick={getImgUrl} type='button' value={"CLICK"}>
+                </input>
+            </div>
         </div>
     )
 }
