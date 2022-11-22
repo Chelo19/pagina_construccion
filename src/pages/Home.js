@@ -47,7 +47,7 @@ export default function Home(){
                 </div>
                 <div className='big_buttons'>
                     <div className='big_buttons_container'>
-                        <div className='big_buttons_container_buttons'>
+                        <div className='big_buttons_container_buttons' id='big_button_1'>
                             <img id='construcciones' className='big_buttons_container_buttons_img' src={require('../img/certificate.png')}/>
                             <a href='/Categories' className='big_buttons_container_buttons_description'>
                                 <div className='big_buttons_container_buttons_description_text'>
@@ -55,7 +55,7 @@ export default function Home(){
                                 </div>
                             </a>
                         </div>
-                        <div className='big_buttons_container_buttons'>
+                        <div className='big_buttons_container_buttons' id='big_button_2'>
                             <img id='construcciones' className='big_buttons_container_buttons_img' src={require('../img/certificate.png')}/>
                             <a href='/Categories' className='big_buttons_container_buttons_description'>
                                 <div className='big_buttons_container_buttons_description_text'>
@@ -63,7 +63,7 @@ export default function Home(){
                                 </div>
                             </a>
                         </div>
-                        <div className='big_buttons_container_buttons'>
+                        <div className='big_buttons_container_buttons' id='big_button_3'>
                             <img id='construcciones' className='big_buttons_container_buttons_img' src={require('../img/certificate.png')}/>
                             <a href='/Categories' className='big_buttons_container_buttons_description'>
                                 <div className='big_buttons_container_buttons_description_text'>
@@ -71,7 +71,7 @@ export default function Home(){
                                 </div>
                             </a>
                         </div>
-                        <div className='big_buttons_container_buttons'>
+                        <div className='big_buttons_container_buttons' id='bit_button_4'>
                             <img id='construcciones' className='big_buttons_container_buttons_img' src={require('../img/certificate.png')}/>
                             <a href='/Categories' className='big_buttons_container_buttons_description'>
                                 <div className='big_buttons_container_buttons_description_text'>
@@ -83,32 +83,38 @@ export default function Home(){
                 </div>
                 <div className='our_projects_presentation'>
                     <a href='/Categories' className='our_projects_presentation_text'>
-                        OUR PROJECTS
+                        NUESTROS PROYECTOS
                     </a>
                 </div>
                 <div className='our_projects'>
                     <div className='our_projects_container'>
                         <a href='/Categories' className='our_projects_container_button'>
-                            <div className='our_projects_container_button_top'></div>
+                            <div className='our_projects_container_button_top'>
+                                <img src={require('../img/services/service_4.jpg')}/>
+                            </div>
                             <div className='our_projects_container_button_bottom'>
                                 <div className='our_projects_container_button_bottom_text'>
-                                    BUTTON 1
+                                    SERVICIO 1
                                 </div>
                             </div>
                         </a>
                         <a href='/Categories' className='our_projects_container_button'>
-                            <div className='our_projects_container_button_top'></div>
+                            <div className='our_projects_container_button_top'>
+                                <img src={require('../img/services/service_2.jpg')}/>
+                            </div>
                             <div className='our_projects_container_button_bottom'>
                                 <div className='our_projects_container_button_bottom_text'>
-                                    BUTTON 2
+                                    SERVICIO 2
                                 </div>
                             </div>
                         </a>
                         <a href='/Categories' className='our_projects_container_button'>
-                            <div className='our_projects_container_button_top'></div>
+                            <div className='our_projects_container_button_top'>
+                                <img src={require('../img/services/service_3.jpg')}/>
+                            </div>
                             <div className='our_projects_container_button_bottom'>
                                 <div className='our_projects_container_button_bottom_text'>
-                                    BUTTON 3
+                                    SERVICIO 3
                                 </div>
                             </div>
                         </a>
