@@ -80,7 +80,7 @@ export default function Categories(){
     return(
         <div className='background_categories'>
             <div className='categories_gallery'>
-                <div className='category_item'>
+                <a href='/services' className='category_item'>
                     <div className='category_item_img'>
                         <img src={require('../img/category.png')}/>
                     </div>
@@ -92,7 +92,7 @@ export default function Categories(){
                             <span>Lorem ipsum dolor sit amet. Ea magnligendi id magni odit? Sed animi error insentium sequi sed delectus explicabo et ipsa quae in sunt incidunt.</span>
                         </div>
                     </div>
-                </div>
+                </a>
                 <div className='category_item'>
                     <div className='category_item_img'>
                         <img src={require('../img/category.png')}/>

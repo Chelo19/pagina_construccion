@@ -20,3 +20,11 @@
     grid-column: 2;
     grid-row: 1 / 2;
 }
+
+@media (max-width: 500px){
+    .admin_background{
+        height: 83vh;
+        margin-top: 120px;
+    }
+
+}

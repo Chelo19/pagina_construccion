@@ -19,10 +19,12 @@
 
 .category_item{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: black;
     width: 24%;
     height: 500px;
     text-align: center;
     border-radius: 10px;
+    text-decoration: none;
 }
 
 .category_item_img{
@@ -52,6 +54,12 @@
     align-items: center;
     justify-content: center;
     font-size: 30px;
+    transition: .5s;
+}
+
+.category_item:hover .category_item_title{
+    color: #ff7f22;
+    transition: .5s;
 }
 
 .category_item_title span{

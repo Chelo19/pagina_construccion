@@ -1,0 +1,15 @@
+.service_background{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 83vh;
+    margin-top: 100px;
+}
+
+.service_display{
+    width: 80%;
+    height: 100%;
+    border-radius: 10px;
+    border: 2px solid rgba(0, 0, 0, 0.3);
+}

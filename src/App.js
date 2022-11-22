@@ -11,6 +11,7 @@ import Header from './components/Header';
 import Account from './pages/Account';
 import Categories from './pages/Categories';
 import Services from './pages/Services';
+import Service from './pages/Service';
 import MyServices from './pages/MyServices';
 import ClientService from './pages/ClientService';
 import UpdatePassword from './pages/UpdatePassword';
@@ -55,6 +56,7 @@ function App() {
           <Route path='/account' element={<Account/>}/>
           <Route path='/categories' element={<Categories/>}/>
           <Route path='/services' element={<Services/>}/>
+          <Route path='/service' element={<Service/>}/>
           <Route path='/my-services' element={<MyServices/>}/>
           <Route path='/client-service' element={<ClientService/>}/>
           <Route path='/update-password' element={<UpdatePassword/>}/>
