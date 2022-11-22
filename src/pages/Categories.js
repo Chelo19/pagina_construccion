@@ -80,9 +80,9 @@ export default function Categories(){
     return(
         <div className='background_categories'>
             <div className='categories_gallery'>
-                <a href='/services' className='category_item'>
+                <a href='/service' className='category_item'>
                     <div className='category_item_img'>
-                        <img src={require('../img/category.png')}/>
+                        <img src={require('../img/services/service_4.jpg')}/>
                     </div>
                     <div className='category_item_content'>
                         <div className='category_item_title'>
@@ -93,9 +93,9 @@ export default function Categories(){
                         </div>
                     </div>
                 </a>
-                <div className='category_item'>
+                <a href='/service' className='category_item'>
                     <div className='category_item_img'>
-                        <img src={require('../img/category.png')}/>
+                        <img src={require('../img/services/service_1.jpg')}/>
                     </div>
                     <div className='category_item_content'>
                         <div className='category_item_title'>
@@ -105,10 +105,10 @@ export default function Categories(){
                             <span>Lorem ipsum dolor sit amet. Ea magnligendi id magni odit? Sed animi error insentium sequi sed delectus explicabo et ipsa quae in sunt incidunt.</span>
                         </div>
                     </div>
-                </div>
-                <div className='category_item'>
+                </a>
+                <a href='/service' className='category_item'>
                     <div className='category_item_img'>
-                        <img src={require('../img/category.png')}/>
+                        <img src={require('../img/services/service_2.jpg')}/>
                     </div>
                     <div className='category_item_content'>
                         <div className='category_item_title'>
@@ -118,10 +118,10 @@ export default function Categories(){
                             <span>Lorem ipsum dolor sit amet. Ea magnligendi id magni odit? Sed animi error insentium sequi sed delectus explicabo et ipsa quae in sunt incidunt.</span>
                         </div>
                     </div>
-                </div>
-                <div className='category_item'>
+                </a>
+                <a href='/service' className='category_item'>
                     <div className='category_item_img'>
-                        <img src={require('../img/category.png')}/>
+                        <img src={require('../img/services/service_3.jpg')}/>
                     </div>
                     <div className='category_item_content'>
                         <div className='category_item_title'>
@@ -131,10 +131,10 @@ export default function Categories(){
                             <span>Lorem ipsum dolor sit amet. Ea magnligendi id magni odit? Sed animi error insentium sequi sed delectus explicabo et ipsa quae in sunt incidunt.</span>
                         </div>
                     </div>
-                </div>
-                <div className='category_item'>
+                </a>
+                <a href='/service' className='category_item'>
                     <div className='category_item_img'>
-                        <img src={require('../img/category.png')}/>
+                        <img src={require('../img/services/service_3.jpg')}/>
                     </div>
                     <div className='category_item_content'>
                         <div className='category_item_title'>
@@ -144,10 +144,10 @@ export default function Categories(){
                             <span>Lorem ipsum dolor sit amet. Ea magnligendi id magni odit? Sed animi error insentium sequi sed delectus explicabo et ipsa quae in sunt incidunt.</span>
                         </div>
                     </div>
-                </div>
-                <div className='category_item'>
+                </a>
+                <a href='/service' className='category_item'>
                     <div className='category_item_img'>
-                        <img src={require('../img/category.png')}/>
+                        <img src={require('../img/services/service_2.jpg')}/>
                     </div>
                     <div className='category_item_content'>
                         <div className='category_item_title'>
@@ -157,10 +157,10 @@ export default function Categories(){
                             <span>Lorem ipsum dolor sit amet. Ea magnligendi id magni odit? Sed animi error insentium sequi sed delectus explicabo et ipsa quae in sunt incidunt.</span>
                         </div>
                     </div>
-                </div>
-                <div className='category_item'>
+                </a>
+                <a href='/service' className='category_item'>
                     <div className='category_item_img'>
-                        <img src={require('../img/category.png')}/>
+                        <img src={require('../img/services/service_1.jpg')}/>
                     </div>
                     <div className='category_item_content'>
                         <div className='category_item_title'>
@@ -170,10 +170,10 @@ export default function Categories(){
                             <span>Lorem ipsum dolor sit amet. Ea magnligendi id magni odit? Sed animi error insentium sequi sed delectus explicabo et ipsa quae in sunt incidunt.</span>
                         </div>
                     </div>
-                </div>
-                <div className='category_item'>
+                </a>
+                <a href='/service' className='category_item'>
                     <div className='category_item_img'>
-                        <img src={require('../img/category.png')}/>
+                        <img src={require('../img/services/service_4.jpg')}/>
                     </div>
                     <div className='category_item_content'>
                         <div className='category_item_title'>
@@ -183,10 +183,10 @@ export default function Categories(){
                             <span>Lorem ipsum dolor sit amet. Ea magnligendi id magni odit? Sed animi error insentium sequi sed delectus explicabo et ipsa quae in sunt incidunt.</span>
                         </div>
                     </div>
-                </div>
-                <div className='category_item'>
+                </a>
+                <a href='/service' className='category_item'>
                     <div className='category_item_img'>
-                        <img src={require('../img/category.png')}/>
+                        <img src={require('../img/services/service_4.jpg')}/>
                     </div>
                     <div className='category_item_content'>
                         <div className='category_item_title'>
@@ -196,10 +196,10 @@ export default function Categories(){
                             <span>Lorem ipsum dolor sit amet. Ea magnligendi id magni odit? Sed animi error insentium sequi sed delectus explicabo et ipsa quae in sunt incidunt.</span>
                         </div>
                     </div>
-                </div>
-                <div className='category_item'>
+                </a>
+                <a href='/service' className='category_item'>
                     <div className='category_item_img'>
-                        <img src={require('../img/category.png')}/>
+                        <img src={require('../img/services/service_1.jpg')}/>
                     </div>
                     <div className='category_item_content'>
                         <div className='category_item_title'>
@@ -209,10 +209,10 @@ export default function Categories(){
                             <span>Lorem ipsum dolor sit amet. Ea magnligendi id magni odit? Sed animi error insentium sequi sed delectus explicabo et ipsa quae in sunt incidunt.</span>
                         </div>
                     </div>
-                </div>
-                <div className='category_item'>
+                </a>
+                <a href='/service' className='category_item'>
                     <div className='category_item_img'>
-                        <img src={require('../img/category.png')}/>
+                        <img src={require('../img/services/service_2.jpg')}/>
                     </div>
                     <div className='category_item_content'>
                         <div className='category_item_title'>
@@ -222,10 +222,10 @@ export default function Categories(){
                             <span>Lorem ipsum dolor sit amet. Ea magnligendi id magni odit? Sed animi error insentium sequi sed delectus explicabo et ipsa quae in sunt incidunt.</span>
                         </div>
                     </div>
-                </div>
-                <div className='category_item'>
+                </a>
+                <a href='/service' className='category_item'>
                     <div className='category_item_img'>
-                        <img src={require('../img/category.png')}/>
+                        <img src={require('../img/services/service_3.jpg')}/>
                     </div>
                     <div className='category_item_content'>
                         <div className='category_item_title'>
@@ -235,7 +235,7 @@ export default function Categories(){
                             <span>Lorem ipsum dolor sit amet. Ea magnligendi id magni odit? Sed animi error insentium sequi sed delectus explicabo et ipsa quae in sunt incidunt.</span>
                         </div>
                     </div>
-                </div>
+                </a>
             </div>
         </div>
     )

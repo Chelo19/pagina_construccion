@@ -8,8 +8,133 @@
 }
 
 .service_display{
-    width: 80%;
+    width: 90%;
     height: 100%;
     border-radius: 10px;
-    border: 2px solid rgba(0, 0, 0, 0.3);
+    display: flex;
+}
+
+.service_display_left{
+    width: 60%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.service_gallery{
+    width: 90%;
+    height: 90%;
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    grid-template-rows: 33% 33% 33%;
+    grid-gap: 10px
+}
+
+.service_img{
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+.service_img img{
+    border-radius: 10px;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+#main_service_img{
+    grid-column: 1 / 5;
+    grid-row: 1 / 3;
+}
+
+#first_service_img{
+    grid-column: 1 / 2;
+    grid-row: 3;
+}
+
+#second_service_img{
+    grid-column: 2 / 3;
+    grid-row: 3;
+}
+
+#third_service_img{
+    grid-column: 3 / 4;
+    grid-row: 3;
+}
+
+#fourth_service_img{
+    grid-column: 4;
+    grid-row: 3;
+}
+
+.service_display_right{
+    width: 40%;
+    height: 100%;
+    font-size: 2em;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.service_info{
+    width: 80%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.service_info h2{
+    color: rgba(0, 0, 0, 0.5);
+    font-weight: 600;
+    font-size: 1.3em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    border-right: 10px solid #ff7f22;
+    border-bottom: 10px solid #ff7f22;
+    padding-bottom: 10px;
+    text-align: left;
+    display: inline-block;
+    letter-spacing: 1px;
+}
+
+.service_info span{
+    font-size: 16px;
+    margin-bottom: 5px;
+    display: inline-block;
+    color: rgba(0, 0, 0, 0.5);
+    font-weight: 300;
+    letter-spacing: 2px;
+}
+
+.service_info_cotizar{
+    display: flex;
+    justify-content: center;
+    width: 80%;
+    margin: 0;
+}
+
+.service_info_cotizar a{
+    text-decoration: none;
+    text-align: center;
+    width: 100%;
+    padding: 10px 20px;
+    outline: none;
+    font-weight: 400;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    font-size: 16px;
+    letter-spacing: 1px;
+    color: #ebebeb;
+    background: transparent;
+    border-radius: 30px;
+    background-color: rgba(255, 127, 34, 0.7);
+    transition: .5s;
+}
+
+.service_info_cotizar a:hover{
+    background-color: rgba(255, 127, 34, .9);
+    transition: .5s;
 }

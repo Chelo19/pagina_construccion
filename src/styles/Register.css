@@ -156,8 +156,8 @@
         background-color: rgba(235, 235, 235, 0.9);
     }
 
-    .register_right .register_form input{
-        width: 50%;
+    .register_right .register_form .register_input input{
+        width: 80%;
     }
 
     .register_right .register_form h3{
