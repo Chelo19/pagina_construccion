@@ -23,7 +23,7 @@ export default function Categories(){
         getUserLocation();
         getUserLocationId();
         showDisplay();
-    })
+    }, [])
     
 
     const getUserLocation = async () => {
