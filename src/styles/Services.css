@@ -1,4 +1,4 @@
-.background_categories{
+.services_background{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -6,7 +6,7 @@
     height: 97vh;
 }
 
-.categories_gallery{
+.services_gallery{
     padding: 10px;
     box-sizing: border-box;
     width: 100%;
@@ -17,7 +17,7 @@
     gap: 10px;
 }
 
-.category_item{
+.services_item{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     color: black;
     width: 24%;
@@ -27,25 +27,27 @@
     text-decoration: none;
 }
 
-.category_item:hover .category_item_content{
+.services_item:hover .services_item_content{ 
     border-right: 5px solid #ff7e22;
     border-bottom: 5px solid #ff7e22;
     transition: 1s;
 }
 
-.category_item_img{
+.services_img{
     height: 70%;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     border-radius: 10px;
 }
 
-.category_item_img img{
+.services_img img{
     object-fit: cover;
     height: 100%;
     width: 100%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
 
-.category_item_content{
+.services_item_content{
     background-color: #ebebeb;
     border-right: 5px solid #ff7e226e;
     border-bottom: 5px solid #ff7e226e;
@@ -59,30 +61,29 @@
     transition: 1s;
 }
 
-.category_item_title{
-    height: 30%;
+.services_title{
+    height: 50%;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 30px;
-    transition: .5s;
+    font-size: 15px;
+    transition: 1s;
 }
 
-.category_item:hover .category_item_title{
+.services_item:hover .services_title{
     color: #ff7f22;
-    transition: .5s;
+    transition: 1s;
 }
 
-.category_item_title span{
+.services_title h1{
     width: 100%;
     text-align: left;
     padding-left: 10px;
     padding-right: 10px;
 }
 
-.category_item_description{
-    height: 60%;
+.services_description{
     width: 100%;
     display: flex;
     align-items: center;
@@ -90,23 +91,9 @@
     font-size: 16px;
 }
 
-.category_item_description span{
+.services_description span{
     width: 100%;
     text-align: left;
     padding-left: 10px;
     padding-right: 10px;
-}
-
-@media(max-width: 500px){
-    .category_item{
-        width: 100%;
-    }
-
-    .category_item_title{
-        font-size: 25px;
-    }
-
-    .category_item_description{
-        font-size: 12px;
-    }
 }
