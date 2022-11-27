@@ -4,16 +4,57 @@ import UserArea from '../components/UserArea';
 import RemoveFromDB from '../components/RemoveFromDB';
 import AddToDB from '../components/AddToDB';
 import FetchDB from '../components/FetchDB';
+import { useNavigate, useParams } from "react-router-dom";
 import '../styles/Home.css';
 import { AuthRedirect } from '../hooks/authUser';
 
 
 export default function Home(){
+    const [locationId, setLocationId] = useState(null);
+    const [locationName, setLocationName] = useState(null);
+    const [loadingScreen, setLoadingScreen] = useState(true);
+    const navigate = useNavigate();
     AuthRedirect();
 
+    const getUserData = async () => {
+        try{
+            const {
+            data: { user },
+            } = await supabase.auth.getUser();
+        
+            const { data, error } = await supabase
+            .from("account")
+            .select()
+            .eq("uuid", user.id);
+            
+            setLocationName(data[0].location);
+            console.log(locationName);        //log
+            setLoadingScreen(false);
+        }
+        catch{
+
+        }
+    };
+        
+    const getLocationId = async () => {
+        try{
+            const { data, error} = await supabase
+            .from("location")
+            .select()
+            .eq("name", locationName);
+            setLocationId(data[0].id);    
+            console.log(locationId);        //log
+            setLoadingScreen(false);
+        } catch{
+
+        }
+    }
+
     useEffect(() => {       
-        insertUuid();       
-    }, [])                  
+        insertUuid(); 
+        getUserData();
+        getLocationId();
+    }, [loadingScreen])              
 
     const insertUuid = async () => {
 
@@ -40,8 +81,9 @@ export default function Home(){
     
 
     return(
-        <body>
-            <div>
+        <div>
+            {!loadingScreen
+            ? <>
                 <div className='background_img'>
                     DREC CONSTRUCCIONES
                 </div>
@@ -49,7 +91,7 @@ export default function Home(){
                     <div className='big_buttons_container'>
                         <div className='big_buttons_container_buttons' id='big_button_1'>
                             <img id='construcciones' className='big_buttons_container_buttons_img' src={require('../img/certificate.png')}/>
-                            <a href='/Categories' className='big_buttons_container_buttons_description'>
+                            <a href='' className='big_buttons_container_buttons_description' onClick={() => navigate(`/categories/${locationId}`)}>
                                 <div className='big_buttons_container_buttons_description_text'>
                                     CONSTRUCCIONES
                                 </div>
@@ -57,7 +99,7 @@ export default function Home(){
                         </div>
                         <div className='big_buttons_container_buttons' id='big_button_2'>
                             <img id='construcciones' className='big_buttons_container_buttons_img' src={require('../img/certificate.png')}/>
-                            <a href='/Categories' className='big_buttons_container_buttons_description'>
+                            <a href='' className='big_buttons_container_buttons_description' onClick={() => navigate(`/categories/${locationId}`)}>
                                 <div className='big_buttons_container_buttons_description_text'>
                                     MATERIALES
                                 </div>
@@ -65,7 +107,7 @@ export default function Home(){
                         </div>
                         <div className='big_buttons_container_buttons' id='big_button_3'>
                             <img id='construcciones' className='big_buttons_container_buttons_img' src={require('../img/certificate.png')}/>
-                            <a href='/Categories' className='big_buttons_container_buttons_description'>
+                            <a href='' className='big_buttons_container_buttons_description' onClick={() => navigate(`/categories/${locationId}`)}>
                                 <div className='big_buttons_container_buttons_description_text'>
                                     SERVICIOS
                                 </div>
@@ -73,7 +115,7 @@ export default function Home(){
                         </div>
                         <div className='big_buttons_container_buttons' id='bit_button_4'>
                             <img id='construcciones' className='big_buttons_container_buttons_img' src={require('../img/certificate.png')}/>
-                            <a href='/Categories' className='big_buttons_container_buttons_description'>
+                            <a href='' className='big_buttons_container_buttons_description' onClick={() => navigate(`/categories/${locationId}`)}>
                                 <div className='big_buttons_container_buttons_description_text'>
                                     NOSOTROS
                                 </div>
@@ -88,7 +130,7 @@ export default function Home(){
                 </div>
                 <div className='our_projects'>
                     <div className='our_projects_container'>
-                        <a href='/Categories' className='our_projects_container_button'>
+                        <a href='' className='our_projects_container_button' onClick={() => navigate(`/categories/${locationId}`)}>
                             <div className='our_projects_container_button_top'>
                                 <img src={require('../img/services/service_4.jpg')}/>
                             </div>
@@ -98,7 +140,7 @@ export default function Home(){
                                 </div>
                             </div>
                         </a>
-                        <a href='/Categories' className='our_projects_container_button'>
+                        <a href='' className='our_projects_container_button' onClick={() => navigate(`/categories/${locationId}`)}>
                             <div className='our_projects_container_button_top'>
                                 <img src={require('../img/services/service_2.jpg')}/>
                             </div>
@@ -108,7 +150,7 @@ export default function Home(){
                                 </div>
                             </div>
                         </a>
-                        <a href='/Categories' className='our_projects_container_button'>
+                        <a href='' className='our_projects_container_button' onClick={() => navigate(`/categories/${locationId}`)}>
                             <div className='our_projects_container_button_top'>
                                 <img src={require('../img/services/service_3.jpg')}/>
                             </div>
@@ -171,14 +213,13 @@ export default function Home(){
                         </div>
                     </div>
                 </div>
+            </>
+        : <div className='loading_screen'>
+            <div className='loading_screen_animation'>
+                Cargando datos...
             </div>
-            <br/>
-            <UserArea/>
-            <br/>
-            <AddToDB/>
-            <br/>
-            <RemoveFromDB/>
-        </body>
+            </div>}
+        </div>
         
     );
 }

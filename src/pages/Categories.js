@@ -1,73 +1,29 @@
 import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { supabase } from "../supabase/client";
-import { useNavigate } from "react-router-dom";
 import "../styles/Categories.css";
-import Service from "./Service";
 
 export default function Categories() {
-  const [locationName, setLocationName] = useState(null);
-  const [locationId, setLocationId] = useState(null);
+  let { id } = useParams();
   
   const [loadingScreen, setLoadingScreen] = useState(true);
-  const [categories, setCategories] = useState(null);
+  const [categories, setCategories] = useState();
 
   const navigate = useNavigate();
 
-  const getUserData = async () => {
-    try{
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
-  
-      const { data, error } = await supabase
-        .from("account")
-        .select()
-        .eq("uuid", user.id);
-        
-      setLocationName(data[0].location);
-      console.log(locationName);        //log
-    }
-    catch{
-
-    }
-  };
-  
-  const getLocationId = async () => {
-    try{
-      const { data, error} = await supabase
-      .from("location")
-      .select()
-      .eq("name", locationName);
-      setLocationId(data[0].id);    
-      console.log(locationId);        //log
-    } catch{
-
-    }
-  }
-
-  const getCategories = async () => {
-    const { data, error } = await supabase
-    .from("categories")
-    .select()
-    .eq("location_id", locationId);
-    setCategories(data);
-    console.log(categories);    //log
-    if(data){
-      setLoadingScreen(false);
-    }
-  }
-
   const showCategories = async () => {
-    
-    getUserData();
-    getLocationId();
-    getCategories();
-    
-  }
-  
+    const { data, error } = await supabase
+      .from("categories")
+      .select("*")
+      .eq("location_id", id);
+    setCategories(data);
+    console.log(data);
+    setLoadingScreen(false);
+  };
 
   useEffect(() => {
     showCategories();
+    console.log(categories)
   }, [loadingScreen]);
 
   
@@ -77,9 +33,9 @@ export default function Categories() {
       {!loadingScreen 
         ? categories.map((category) => {
           return(
-            <div className="category_item" key={category.id} onClick={() => navigate(`/services/${category.id}`)}>
+            <a href="" className="category_item" key={category.id} onClick={() => navigate(`/services/${category.id}`)}>
               <div className="category_img">
-
+                <img src={category.img_url[0]}/>
               </div>
               <div className="category_item_content">
                 <div className="category_item_title">
@@ -87,7 +43,7 @@ export default function Categories() {
                 </div>
               </div>
 
-            </div>
+            </a>
           )
 
         })

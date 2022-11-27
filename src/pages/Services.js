@@ -1,14 +1,16 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { supabase } from "../supabase/client";
-import Service from "./Service";
 import "../styles/Services.css";
 
 export default function Services() {
   let { id } = useParams();
+
   const [loadingScreen, setLoadingScreen] = useState(true);
   const [services, setServices] = useState();
+
   const navigate = useNavigate();
+
   const showServices = async () => {
     const { data, error } = await supabase
       .from("services")
@@ -30,7 +32,7 @@ export default function Services() {
         {!loadingScreen
           ? services.map((service) => {
             return (
-              <div className="services_item" key={service.id} onClick={() => navigate(`/service/${service.id}`)}>
+              <a href="" className="services_item" key={service.id} onClick={() => navigate(`/service/${service.id}`)}>
                 <div className="services_img">
                   <img src={service.img_url[0]}/>
                 </div>
@@ -42,7 +44,7 @@ export default function Services() {
                     <span>{service.description}</span>
                   </div>
                 </div>
-              </div>
+              </a>
               );
             })
             
