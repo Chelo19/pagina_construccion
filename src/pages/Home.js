@@ -10,8 +10,8 @@ import { AuthRedirect } from '../hooks/authUser';
 
 
 export default function Home(){
-    const [locationId, setLocationId] = useState(null);
-    const [locationName, setLocationName] = useState(null);
+    const [locationId, setLocationId] = useState(1);
+    const [locationName, setLocationName] = useState("Monterrey");
     const [loadingScreen, setLoadingScreen] = useState(true);
     const navigate = useNavigate();
     AuthRedirect();
