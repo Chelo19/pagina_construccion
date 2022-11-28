@@ -2,7 +2,7 @@
   "name": "drec_react",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://chelo19.github.io/Drec/",
+  "homepage": "https://chelo19.github.io/Drec",
   "dependencies": {
     "-": "^0.0.1",
     "@supabase/supabase-js": "^2.0.4",
@@ -21,7 +21,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "predeploy": "npm run build",
+    "predeploy": "npm run build && echo 'grupodrec.com' > ./build/CNAME",
     "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
