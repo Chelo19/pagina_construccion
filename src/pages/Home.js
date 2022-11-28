@@ -178,9 +178,9 @@ export default function Home(){
                                 <div className='staff_right_card_bottom_content'>
                                         <a className='staff_right_card_bottom_content_name' href='/Login'>Marcelo De León</a>
                                         <div className='staff_right_card_bottom_content_icons'>
-                                            <a className='staff_right_card_bottom_content_icons_individual' href='/Login'><img id='logo_fb' src={require('../img/certificate.png')}></img></a>
-                                            <a className='staff_right_card_bottom_content_icons_individual' href='/Login'><img id='logo_mail' src={require('../img/certificate.png')}></img></a>
-                                            <a className='staff_right_card_bottom_content_icons_individual' href='/Login'><img id='logo_phone' src={require('../img/certificate.png')}></img></a>
+                                            <a className='staff_right_card_bottom_content_icons_individual' href='/login'><img id='logo_fb' src={require('../img/certificate.png')}></img></a>
+                                            <a className='staff_right_card_bottom_content_icons_individual' href='/login'><img id='logo_mail' src={require('../img/certificate.png')}></img></a>
+                                            <a className='staff_right_card_bottom_content_icons_individual' href='/login'><img id='logo_phone' src={require('../img/certificate.png')}></img></a>
                                         </div>
                                     </div>
                                 </div>
