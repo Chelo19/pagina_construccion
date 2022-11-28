@@ -32,7 +32,7 @@ export default function Services() {
         {!loadingScreen
           ? services.map((service) => {
             return (
-              <a href="" className="services_item" key={service.id} onClick={() => navigate(`/service/${service.id}`)}>
+              <a Link to="/service/" className="services_item" key={service.id} onClick={() => navigate(`/service/${service.id}`)}>
                 <div className="services_img">
                   <img src={service.img_url[0]}/>
                 </div>

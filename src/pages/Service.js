@@ -53,7 +53,7 @@ export default function Service(props) {
                 <span>{service.description}</span>
                 <br />
                 <div className="service_info_cotizar">
-                  <a href="/service">Cotizar servicio con un socio</a>
+                  <a Link to="/service/" >Cotizar servicio con un socio</a>
                 </div>
               </div>
             </div>

@@ -91,7 +91,7 @@ export default function Home(){
                     <div className='big_buttons_container'>
                         <div className='big_buttons_container_buttons' id='big_button_1'>
                             <img id='construcciones' className='big_buttons_container_buttons_img' src={require('../img/certificate.png')}/>
-                            <a href='/categories/' Link to="/categories/" className='big_buttons_container_buttons_description' onClick={() => navigate(`/categories/${locationId}`)}>
+                            <a Link to="/categories/" className='big_buttons_container_buttons_description' onClick={() => navigate(`/categories/${locationId}`)}>
                                 <div className='big_buttons_container_buttons_description_text'>
                                     CONSTRUCCIONES
                                 </div>
@@ -99,7 +99,7 @@ export default function Home(){
                         </div>
                         <div className='big_buttons_container_buttons' id='big_button_2'>
                             <img id='construcciones' className='big_buttons_container_buttons_img' src={require('../img/certificate.png')}/>
-                            <a href='#/categories/' Link to="/categories/" className='big_buttons_container_buttons_description' onClick={() => navigate(`/categories/${locationId}`)}>
+                            <a Link to="/categories/" className='big_buttons_container_buttons_description' onClick={() => navigate(`/categories/${locationId}`)}>
                                 <div className='big_buttons_container_buttons_description_text'>
                                     MATERIALES
                                 </div>

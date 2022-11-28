@@ -33,7 +33,7 @@ export default function Categories() {
       {!loadingScreen 
         ? categories.map((category) => {
           return(
-            <a href="/services/" Link to="/services/" className="category_item" key={category.id} onClick={() => navigate(`/services/${category.id}`)}>
+            <a Link to="/services/" className="category_item" key={category.id} onClick={() => navigate(`/services/${category.id}`)}>
               <div className="category_img">
                 <img src={category.img_url[0]}/>
               </div>
