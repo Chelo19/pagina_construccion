@@ -18,6 +18,7 @@ import UpdatePassword from "./pages/UpdatePassword";
 import RecoverPassword from "./pages/RecoverPassword";
 import AdminHub from "./pages/AdminHub";
 import EditServices from "./pages/EditServices";
+import Navbar from "./components/NavBar";
 
 import { supabase } from "./supabase/client";
 
@@ -46,6 +47,7 @@ function App() {
 
   return (
     <div className="App">
+      <Navbar/>
       <Header />
       <br />
       <Routes>
