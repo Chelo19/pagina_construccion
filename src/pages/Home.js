@@ -176,7 +176,7 @@ export default function Home(){
                             <div className='staff_right_card_top'></div>
                             <div className='staff_right_card_bottom'>
                                 <div className='staff_right_card_bottom_content'>
-                                        <a className='staff_right_card_bottom_content_name' href='/Login'>Marcelo De León</a>
+                                        <a className='staff_right_card_bottom_content_name' Link to="/categories/">Marcelo De León</a>
                                         <div className='staff_right_card_bottom_content_icons'>
                                             <a className='staff_right_card_bottom_content_icons_individual' Link to="/categories/" ><img id='logo_fb' src={require('../img/certificate.png')}></img></a>
                                             <a className='staff_right_card_bottom_content_icons_individual' Link to="/categories/" ><img id='logo_mail' src={require('../img/certificate.png')}></img></a>
@@ -189,7 +189,7 @@ export default function Home(){
                             <div className='staff_right_card_top'></div>
                             <div className='staff_right_card_bottom'>
                                 <div className='staff_right_card_bottom_content'>
-                                        <a className='staff_right_card_bottom_content_name' href='/Login'>Marcelo De León</a>
+                                        <a className='staff_right_card_bottom_content_name' Link to="/categories/">Marcelo De León</a>
                                         <div className='staff_right_card_bottom_content_icons'>
                                             <a className='staff_right_card_bottom_content_icons_individual' Link to="/categories/" ><img id='logo_fb' src={require('../img/certificate.png')}></img></a>
                                             <a className='staff_right_card_bottom_content_icons_individual' Link to="/categories/" ><img id='logo_mail' src={require('../img/certificate.png')}></img></a>
@@ -202,7 +202,7 @@ export default function Home(){
                             <div className='staff_right_card_top'></div>
                             <div className='staff_right_card_bottom'>
                                 <div className='staff_right_card_bottom_content'>
-                                    <a className='staff_right_card_bottom_content_name' href='/Login'>Marcelo De León</a>
+                                    <a className='staff_right_card_bottom_content_name' Link to="/categories/">Marcelo De León</a>
                                     <div className='staff_right_card_bottom_content_icons'>
                                         <a className='staff_right_card_bottom_content_icons_individual' Link to="/categories/" ><img id='logo_fb' src={require('../img/certificate.png')}></img></a>
                                         <a className='staff_right_card_bottom_content_icons_individual' Link to="/categories/" ><img id='logo_mail' src={require('../img/certificate.png')}></img></a>

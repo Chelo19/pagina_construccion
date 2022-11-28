@@ -35,15 +35,15 @@ export default function HeaderButtonsNoUser(){
         <div className='header_buttons'>
             <ul className='horizontal_menu_header'>
                 {role == 'administrador' &&
-                    <li><a href='/admin-hub'>Admin</a></li>   
+                    <li><a Link to="/admin-hub/">Admin</a></li>   
                 }
-                <li><a href='/'>Home</a></li>
+                <li><a Link to="/">Home</a></li>
                 <li>
-                    <a href='/account'>Cuenta</a>
+                    <a Link to="/account/">Cuenta</a>
                     <ul className='vertical_menu_header'>
-                        <li><a href='/my-services'>Mis Servicios</a></li>
-                        <li><a href='/client-service'>Servicio al Cliente</a></li>
-                        <li><a href='/' onClick={signOut}>Cerrar sesion</a></li>
+                        <li><a Link to="/my-services/">Mis Servicios</a></li>
+                        <li><a Link to="/client-service/">Servicio al Cliente</a></li>
+                        <li><a Link to="/"onClick={signOut}>Cerrar sesion</a></li>
                     </ul>
                 </li>
             </ul>
