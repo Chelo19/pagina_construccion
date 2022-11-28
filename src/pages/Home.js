@@ -91,7 +91,7 @@ export default function Home(){
                     <div className='big_buttons_container'>
                         <div className='big_buttons_container_buttons' id='big_button_1'>
                             <img id='construcciones' className='big_buttons_container_buttons_img' src={require('../img/certificate.png')}/>
-                            <a Link to="/categories/" className='big_buttons_container_buttons_description' onClick={() => navigate(`/categories/${locationId}`)}>
+                            <a href='/categories/' Link to="/categories/" className='big_buttons_container_buttons_description' onClick={() => navigate(`/categories/${locationId}`)}>
                                 <div className='big_buttons_container_buttons_description_text'>
                                     CONSTRUCCIONES
                                 </div>
@@ -99,7 +99,7 @@ export default function Home(){
                         </div>
                         <div className='big_buttons_container_buttons' id='big_button_2'>
                             <img id='construcciones' className='big_buttons_container_buttons_img' src={require('../img/certificate.png')}/>
-                            <a href='' Link to="/categories/" className='big_buttons_container_buttons_description' onClick={() => navigate(`/categories/${locationId}`)}>
+                            <a href='#/categories/' Link to="/categories/" className='big_buttons_container_buttons_description' onClick={() => navigate(`/categories/${locationId}`)}>
                                 <div className='big_buttons_container_buttons_description_text'>
                                     MATERIALES
                                 </div>
@@ -107,7 +107,7 @@ export default function Home(){
                         </div>
                         <div className='big_buttons_container_buttons' id='big_button_3'>
                             <img id='construcciones' className='big_buttons_container_buttons_img' src={require('../img/certificate.png')}/>
-                            <a href='' className='big_buttons_container_buttons_description' onClick={() => navigate(`/categories/${locationId}`)}>
+                            <a Link to="/categories/" className='big_buttons_container_buttons_description' onClick={() => navigate(`/categories/${locationId}`)}>
                                 <div className='big_buttons_container_buttons_description_text'>
                                     SERVICIOS
                                 </div>
@@ -115,7 +115,7 @@ export default function Home(){
                         </div>
                         <div className='big_buttons_container_buttons' id='bit_button_4'>
                             <img id='construcciones' className='big_buttons_container_buttons_img' src={require('../img/certificate.png')}/>
-                            <a href='' className='big_buttons_container_buttons_description' onClick={() => navigate(`/categories/${locationId}`)}>
+                            <a Link to="/categories/" className='big_buttons_container_buttons_description' onClick={() => navigate(`/categories/${locationId}`)}>
                                 <div className='big_buttons_container_buttons_description_text'>
                                     NOSOTROS
                                 </div>
@@ -124,13 +124,13 @@ export default function Home(){
                     </div>
                 </div>
                 <div className='our_projects_presentation'>
-                    <a href='/Categories' className='our_projects_presentation_text'>
+                    <a Link to="/categories/" className='our_projects_presentation_text'>
                         NUESTROS PROYECTOS
                     </a>
                 </div>
                 <div className='our_projects'>
                     <div className='our_projects_container'>
-                        <a href='' className='our_projects_container_button' onClick={() => navigate(`/categories/${locationId}`)}>
+                        <a Link to="/categories/" className='our_projects_container_button' onClick={() => navigate(`/categories/${locationId}`)}>
                             <div className='our_projects_container_button_top'>
                                 <img src={require('../img/services/service_4.jpg')}/>
                             </div>
@@ -140,7 +140,7 @@ export default function Home(){
                                 </div>
                             </div>
                         </a>
-                        <a href='' className='our_projects_container_button' onClick={() => navigate(`/categories/${locationId}`)}>
+                        <a Link to="/categories/" className='our_projects_container_button' onClick={() => navigate(`/categories/${locationId}`)}>
                             <div className='our_projects_container_button_top'>
                                 <img src={require('../img/services/service_2.jpg')}/>
                             </div>
@@ -150,7 +150,7 @@ export default function Home(){
                                 </div>
                             </div>
                         </a>
-                        <a href='' className='our_projects_container_button' onClick={() => navigate(`/categories/${locationId}`)}>
+                        <a Link to="/categories/" className='our_projects_container_button' onClick={() => navigate(`/categories/${locationId}`)}>
                             <div className='our_projects_container_button_top'>
                                 <img src={require('../img/services/service_3.jpg')}/>
                             </div>
@@ -178,9 +178,9 @@ export default function Home(){
                                 <div className='staff_right_card_bottom_content'>
                                         <a className='staff_right_card_bottom_content_name' href='/Login'>Marcelo De León</a>
                                         <div className='staff_right_card_bottom_content_icons'>
-                                            <a className='staff_right_card_bottom_content_icons_individual' href='/login'><img id='logo_fb' src={require('../img/certificate.png')}></img></a>
-                                            <a className='staff_right_card_bottom_content_icons_individual' href='/login'><img id='logo_mail' src={require('../img/certificate.png')}></img></a>
-                                            <a className='staff_right_card_bottom_content_icons_individual' href='/login'><img id='logo_phone' src={require('../img/certificate.png')}></img></a>
+                                            <a className='staff_right_card_bottom_content_icons_individual' Link to="/categories/" ><img id='logo_fb' src={require('../img/certificate.png')}></img></a>
+                                            <a className='staff_right_card_bottom_content_icons_individual' Link to="/categories/" ><img id='logo_mail' src={require('../img/certificate.png')}></img></a>
+                                            <a className='staff_right_card_bottom_content_icons_individual' Link to="/categories/" ><img id='logo_phone' src={require('../img/certificate.png')}></img></a>
                                         </div>
                                     </div>
                                 </div>
@@ -191,9 +191,9 @@ export default function Home(){
                                 <div className='staff_right_card_bottom_content'>
                                         <a className='staff_right_card_bottom_content_name' href='/Login'>Marcelo De León</a>
                                         <div className='staff_right_card_bottom_content_icons'>
-                                            <a className='staff_right_card_bottom_content_icons_individual' href='/Login'><img id='logo_fb' src={require('../img/certificate.png')}></img></a>
-                                            <a className='staff_right_card_bottom_content_icons_individual' href='/Login'><img id='logo_mail' src={require('../img/certificate.png')}></img></a>
-                                            <a className='staff_right_card_bottom_content_icons_individual' href='/Login'><img id='logo_phone' src={require('../img/certificate.png')}></img></a>
+                                            <a className='staff_right_card_bottom_content_icons_individual' Link to="/categories/" ><img id='logo_fb' src={require('../img/certificate.png')}></img></a>
+                                            <a className='staff_right_card_bottom_content_icons_individual' Link to="/categories/" ><img id='logo_mail' src={require('../img/certificate.png')}></img></a>
+                                            <a className='staff_right_card_bottom_content_icons_individual' Link to="/categories/" ><img id='logo_phone' src={require('../img/certificate.png')}></img></a>
                                         </div>
                                     </div>
                                 </div>
@@ -204,9 +204,9 @@ export default function Home(){
                                 <div className='staff_right_card_bottom_content'>
                                     <a className='staff_right_card_bottom_content_name' href='/Login'>Marcelo De León</a>
                                     <div className='staff_right_card_bottom_content_icons'>
-                                        <a className='staff_right_card_bottom_content_icons_individual' href='/Login'><img id='logo_fb' src={require('../img/certificate.png')}></img></a>
-                                        <a className='staff_right_card_bottom_content_icons_individual' href='/Login'><img id='logo_mail' src={require('../img/certificate.png')}></img></a>
-                                        <a className='staff_right_card_bottom_content_icons_individual' href='/Login'><img id='logo_phone' src={require('../img/certificate.png')}></img></a>
+                                        <a className='staff_right_card_bottom_content_icons_individual' Link to="/categories/" ><img id='logo_fb' src={require('../img/certificate.png')}></img></a>
+                                        <a className='staff_right_card_bottom_content_icons_individual' Link to="/categories/" ><img id='logo_mail' src={require('../img/certificate.png')}></img></a>
+                                        <a className='staff_right_card_bottom_content_icons_individual' Link to="/categories/" ><img id='logo_phone' src={require('../img/certificate.png')}></img></a>
                                     </div>
                                 </div>
                             </div>
