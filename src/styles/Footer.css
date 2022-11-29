@@ -109,3 +109,23 @@
     border-radius: 90px;
     padding: 5px;
 }
+
+@media(max-width:500px){
+
+    .footer_horizontal{
+        flex-direction: column;
+    }
+
+    .footer_vertical_left{
+        width: 100%;
+    }
+
+    .footer_vertical_mid{
+        width: 100%;
+    }
+
+    .footer_vertical_right{
+        width: 100%;
+    }
+
+}

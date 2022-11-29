@@ -6,17 +6,6 @@ body{
     background-color: #ebebeb;
 }
 
-.loading_screen{
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.loading_screen_animation{
-    font-size: 30px;
-}
-
 .background_img{
     background: url(../img/construction_img2.jpg);
     background-position: center;
@@ -29,6 +18,16 @@ body{
     font-size: 80px;
     color: rgba(255, 255, 255, 0.6);
     background-attachment: fixed;
+}
+
+.span_background_home{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.span_background_home_responsive{
+    display: none;
 }
 
 .big_buttons{
@@ -350,9 +349,21 @@ body{
     .background_img{
         margin-top: 60px;
         font-size: 30px;
-        height: 20vh;
+        height: 80vh;
+        padding: 20px;
+        background-color: #161825;
+    }
+
+    .span_background_home{
+        display: none;
     }
     
+    .span_background_home_responsive{
+        display: flex;
+        text-align: center;
+        color: #ebebebab;
+    }
+
     .big_buttons{
         margin: 0;
         height: 300px;
@@ -515,6 +526,15 @@ body{
     }
 
     .staff_right_card_bottom_content_name{
+        font-size: 10px;
+        margin: 0;
+    }
+
+    .staff_right_card:hover .staff_right_card_bottom_content_name{
+        font-size: 10px;
+    }
+
+    .staff_right_card_bottom_content_name:hover{
         font-size: 10px;
         margin: 0;
     }

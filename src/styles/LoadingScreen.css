@@ -1,0 +1,14 @@
+.loading_screen{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loading_screen_animation{
+    color: #ebebeb;
+    background-color: #ff7f22;
+    border-radius: 90px;
+    padding: 30px;
+    font-size: 30px;
+}

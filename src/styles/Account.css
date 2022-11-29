@@ -225,6 +225,10 @@
         gap: 3%;
     }
 
+    .selection_logo{
+        padding: 20px;
+    }
+
     #my_services_grid{
         height: 35%;
     }
@@ -237,8 +241,13 @@
         height: 60%;
     }
 
+    .selections_item_right{
+        justify-content: center;
+        gap: 0;
+    }
+
     .selections_item_title{
-        font-size: 20px;
+        font-size: 18px;
     }
 
     .selections_item_title:hover{
@@ -250,7 +259,7 @@
     }
 
     .selections_item_description{
-        font-size: 12px;
+        font-size: 10px;
     }
 
     .account_data{

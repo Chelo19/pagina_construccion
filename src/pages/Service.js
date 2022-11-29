@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { supabase } from "../supabase/client";
 import "../styles/Service.css";
 import { useParams } from "react-router-dom";
+import LoadingScreen from "../components/LoadingScreen";
 
 export default function Service(props) {
   const { id } = useParams();
@@ -59,9 +60,7 @@ export default function Service(props) {
             </div>
           </div>
         </div>
-      ) : (
-        "Cargando contenido..."
-      )}
+      ) : <LoadingScreen/>}
     </>
   );
 }

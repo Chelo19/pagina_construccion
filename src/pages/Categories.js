@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { supabase } from "../supabase/client";
 import "../styles/Categories.css";
+import LoadingScreen from "../components/LoadingScreen";
 
 export default function Categories() {
   let { id } = useParams();
@@ -48,9 +49,7 @@ export default function Categories() {
 
         })
       
-        : (
-          <div>Cargando contenido...</div>
-        )}
+        : <LoadingScreen/>}
       </div>
     </div>
   );

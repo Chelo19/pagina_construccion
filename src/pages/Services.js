@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { supabase } from "../supabase/client";
 import "../styles/Services.css";
+import LoadingScreen from "../components/LoadingScreen";
 
 export default function Services() {
   let { id } = useParams();
@@ -48,7 +49,7 @@ export default function Services() {
               );
             })
             
-            : "Cargando contenido..."}
+            : <LoadingScreen/>}
       </div>
     </div>
     

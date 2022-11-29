@@ -3,8 +3,7 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 83vh;
-    margin-top: 100px;
+    margin-top: 150px;
 }
 
 .service_display{
@@ -137,4 +136,39 @@
 .service_info_cotizar a:hover{
     background-color: rgba(255, 127, 34, .9);
     transition: .5s;
+}
+
+@media(max-width: 500px){
+
+    .service_background{
+        margin-top: 80px;
+    }
+
+    .service_display{
+        flex-direction: column-reverse;
+        gap: 60px;
+    }
+    
+    .service_display_left{
+        width: 100%;
+    }
+
+    .service_display_right{
+        width: 100%;
+    }
+
+    .service_gallery{
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .service_info h2{
+        padding-right: 15px;
+    }
+
+    .service_info_cotizar{
+        width: 100%;
+    }
+
 }

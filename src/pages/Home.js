@@ -7,6 +7,7 @@ import FetchDB from '../components/FetchDB';
 import { useNavigate, useParams } from "react-router-dom";
 import '../styles/Home.css';
 import { AuthRedirect } from '../hooks/authUser';
+import LoadingScreen from '../components/LoadingScreen';
 
 
 export default function Home(){
@@ -85,7 +86,8 @@ export default function Home(){
             {!loadingScreen
             ? <>
                 <div className='background_img'>
-                    DREC CONSTRUCCIONES
+                    <span className='span_background_home_responsive'>Grupo Drec te da la bienvenida!<br/>contamos con los mejores servicios de construcción y los mejores socios para todo tipo de requerimientos</span>
+                    <span className='span_background_home'>DREC CONSTRUCCIONES</span>
                 </div>
                 <div className='big_buttons'>
                     <div className='big_buttons_container'>
@@ -214,15 +216,7 @@ export default function Home(){
                     </div>
                 </div>
             </>
-        : <div className='loading_screen'>
-            <div className='loading_screen_animation'>
-                Cargando datos...
-            </div>
-            </div>}
-            <br/>
-            <br/>
-            <br/>
-            <br/>
+        : <LoadingScreen/>}
         </div>
         
     );
