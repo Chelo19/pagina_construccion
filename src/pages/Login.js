@@ -72,11 +72,11 @@ function Login(){
                             </div><br/>
                             <div className='login_input'>
                                 ¿No tienes una cuenta?&nbsp;
-                                <a href='/Register'>Haz click aquí</a>
+                                <a Link to="/register/" onClick={() => navigate(`/register`)}>Haz click aquí</a>
                             </div>
                             <div className='login_input'>
                                 ¿Olvidaste tu contraseña?&nbsp;
-                                <a href='/recover-password'>Recuperar cuenta</a>
+                                <a Link to="/recover-password/" onClick={() => navigate(`/recover-password`)}>Recuperar cuenta</a>
                             </div>
                         </div>
                     </div>

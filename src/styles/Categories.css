@@ -9,7 +9,7 @@
 .categories_gallery{
     padding: 10px;
     box-sizing: border-box;
-    width: 100%;
+    width: 80%;
     height: 70%;
     display: flex;
     justify-content: center;
@@ -21,7 +21,7 @@
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     color: black;
     width: 24%;
-    height: 500px;
+    height: 400px;
     text-align: center;
     border-radius: 10px;
     text-decoration: none;

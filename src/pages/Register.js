@@ -102,7 +102,7 @@ function Register() {
               <br />
               <div className="register_input">
                 ¿Ya tienes una cuenta?&nbsp;
-                <a href="/Login">Haz click aquí</a>
+                <a Link to="/login/" onClick={() => navigate(`/login`)}>Haz click aquí</a>
               </div>
             </div>
           </div>
