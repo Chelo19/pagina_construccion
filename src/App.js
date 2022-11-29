@@ -18,7 +18,7 @@ import UpdatePassword from "./pages/UpdatePassword";
 import RecoverPassword from "./pages/RecoverPassword";
 import AdminHub from "./pages/AdminHub";
 import EditServices from "./pages/EditServices";
-import Navbar from "./components/NavBar";
+import Footer from "./components/Footer";
 
 import { supabase } from "./supabase/client";
 
@@ -65,6 +65,7 @@ function App() {
         <Route path="/admin-hub" element={<AdminHub />} />
         <Route path="/edit-services" element={<EditServices />} />
       </Routes>
+      <Footer/>
     </div>
   );
 }

@@ -219,6 +219,10 @@ export default function Home(){
                 Cargando datos...
             </div>
             </div>}
+            <br/>
+            <br/>
+            <br/>
+            <br/>
         </div>
         
     );
