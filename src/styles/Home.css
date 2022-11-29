@@ -348,9 +348,9 @@ body{
 @media(max-width: 500px){
 
     .background_img{
-        margin-top: 10px;
+        margin-top: 60px;
         font-size: 30px;
-        height: 40vh;
+        height: 20vh;
     }
     
     .big_buttons{
@@ -422,7 +422,7 @@ body{
     }
 
     .our_projects_presentation_text{
-        font-size: 30px;
+        font-size: 25px;
     }
 
     .our_projects_presentation_text:hover{

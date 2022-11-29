@@ -44,7 +44,7 @@ export default function Account(){
     return(
         <div className='account_background'>
             <div className='selections'>
-                <a href='/my-services' className='selections_item' id='my_services_grid'>
+                <a Link to="/my-services/" onClick={() => navigate(`/my-services`)} className='selections_item' id='my_services_grid'>
                     <div className='selections_item_left'>
                         <a Link to="/my-services/" onClick={() => navigate(`/my-services`)} className='selection_logo'>
                             <img src={require('../img/package.png')} id='package'/>

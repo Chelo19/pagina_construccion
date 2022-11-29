@@ -98,3 +98,25 @@
     padding-left: 10px;
     padding-right: 10px;
 }
+
+@media(max-width: 500px){
+    .services_gallery{
+        height: 100%;
+        margin-top: 170px;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        justify-content:flex-start;
+    }
+
+    .services_item{
+        width: 100%;
+    }
+
+    .services_title{
+        font-size: 9px;
+    }
+
+    .services_description{
+        font-size: 8px;
+    }
+}
