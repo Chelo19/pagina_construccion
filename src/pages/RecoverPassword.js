@@ -69,7 +69,7 @@ function RecoverPassword(){
                                 <a href='#' onClick={sendToken}>Enviar verificación al correo</a>
                             </div><br/>
                             <div className='login_input'>
-                                <a href='/Login'>Regresar a inicio de sesión</a>
+                                <a Link to="/login/" onClick={() => navigate(`/login`)}>Regresar a inicio de sesión</a>
                             </div>
                         </div>
                     </div>
