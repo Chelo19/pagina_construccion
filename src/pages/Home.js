@@ -124,7 +124,7 @@ export default function Home(){
                     </div>
                 </div>
                 <div className='our_projects_presentation'>
-                    <a Link to="/categories/" className='our_projects_presentation_text'>
+                    <a Link to="/categories/" onClick={() => navigate(`/categories/${locationId}`)} className='our_projects_presentation_text'>
                         NUESTROS PROYECTOS
                     </a>
                 </div>

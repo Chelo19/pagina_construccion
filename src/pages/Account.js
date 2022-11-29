@@ -46,30 +46,30 @@ export default function Account(){
             <div className='selections'>
                 <a href='/my-services' className='selections_item' id='my_services_grid'>
                     <div className='selections_item_left'>
-                        <a href='/my-services' className='selection_logo'>
+                        <a Link to="/my-services/" onClick={() => navigate(`/my-services`)} className='selection_logo'>
                             <img src={require('../img/package.png')} id='package'/>
                         </a>
                     </div>
                     <div className='selections_item_right'>
-                        <a href='/my-services' className='selections_item_title'>
+                        <a Link to="/my-services/" onClick={() => navigate(`/my-services`)} className='selections_item_title'>
                             <span>Mis servicios</span>
                         </a>
-                        <a href='/my-services' className='selections_item_description'>
+                        <a Link to="/my-services/" onClick={() => navigate(`/my-services`)} className='selections_item_description'>
                             <span>Revisa el estado del servicio que hayas contratado</span>
                         </a>
                     </div>
                 </a>
-                <a href='/client-service' className='selections_item' id='client_service_grid'>
+                <a Link to="/client-service/" onClick={() => navigate(`/client-service`)} className='selections_item' id='client_service_grid'>
                     <div className='selections_item_left'>
-                        <a href='/client-service' className='selection_logo'>
+                        <a Link to="/client-service/" onClick={() => navigate(`/client-service`)} className='selection_logo'>
                             <img src={require('../img/serviciocliente.png')} id='package'/>
                         </a>
                     </div>
                     <div className='selections_item_right'>
-                        <a href='/client-service' className='selections_item_title'>
+                        <a Link to="/client-service/" onClick={() => navigate(`/client-service`)} className='selections_item_title'>
                             <span>Servicio al cliente</span>
                         </a>
-                        <a href='/client-service' className='selections_item_description'>
+                        <a Link to="/client-service/" onClick={() => navigate(`/client-service`)} className='selections_item_description'>
                             <span>Contacta con un socio para resolver dudas que tengas</span>
                         </a>
                     </div>
@@ -97,7 +97,7 @@ export default function Account(){
                                     </select>
                                 </form>
                             </div><br/>
-                            <a href='/update-password' id='link'>Haz click aquí si deseas cambiar tu contraseña</a>
+                            <a Link to="/update-password/" onClick={() => navigate(`/update-password`)} id='link'>Haz click aquí si deseas cambiar tu contraseña</a>
                         </div>
                     </div>
                 </a>
