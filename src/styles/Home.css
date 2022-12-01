@@ -14,20 +14,22 @@ body{
     height: 650px;
     display: flex;
     align-items: center;
-    justify-content: center;
     font-size: 80px;
-    color: rgba(255, 255, 255, 0.6);
+    color: #ebebeb75;
     background-attachment: fixed;
-}
-
-.span_background_home{
-    display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: center;
+    font-family: 'Poppins', sans-serif;
 }
 
-.span_background_home_responsive{
-    display: none;
+#background_img_title{
+    align-self: right;
+    font-size: 200px;
+}
+
+#background_img_eslogan{
+    font-size: 30px;
+    text-align: center;
 }
 
 .big_buttons{
@@ -348,21 +350,20 @@ body{
 
     .background_img{
         margin-top: 60px;
-        font-size: 30px;
         height: 80vh;
         padding: 20px;
         background-color: #161825;
     }
 
-    .span_background_home{
-        display: none;
+    #background_img_title{
+        align-self: right;
+        font-size: 120px;
     }
     
-    .span_background_home_responsive{
-        display: flex;
-        text-align: center;
-        color: #ebebebab;
+    #background_img_eslogan{
+        font-size: 20px;
     }
+    
 
     .big_buttons{
         margin: 0;

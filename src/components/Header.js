@@ -46,12 +46,23 @@ export default function Header(){
                 <div className='header_bottom'>
                     <div className='header_bottom_row'>
                         <div className='logo_header'>
+                            <a href='/'><img id='logoimg_header' src={require('../img/logodrecfullsize.png')}/></a>
                             <a href='/' id='logo'>DREC</a>
                         </div>
                         <div className='header_buttons_container'>
                             {HeaderButtons}
+                            <div id='bars_icon_container'>
+                                    <img id='bars_icon' src={require('../img/menudesplegable.png')}></img>
+                            </div>
                         </div>
                     </div>
+                </div>
+                <div className='bars_menu_div'>
+                    <ul className='bars_menu'>
+                        <li>Menu Principal</li>
+                        <li>Cuenta</li>
+                        <li>Contenido</li>
+                    </ul>
                 </div>
             </div>
         </header>
