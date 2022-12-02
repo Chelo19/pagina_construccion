@@ -2,12 +2,20 @@ import {useEffect, useState} from 'react';
 import {supabase} from '../supabase/client';
 import {useNavigate} from 'react-router-dom';
 import '../styles/AdminHub.css';
+import '../styles/Account.css';
+import { Link } from 'react-router-dom';
 
 export default function AdminHub(){
     const navigate = useNavigate();
+    
+    const [locationId, setLocationId] = useState(1);
+    const [locationName, setLocationName] = useState("Monterrey");
 
     useEffect(() => {
         getUserMethod();
+        getUserData();
+        getLocationId();
+        console.log(locationId);
     }, []);
 
     const getUserMethod = async () => {
@@ -27,55 +35,86 @@ export default function AdminHub(){
         }
     }
 
+    const getUserData = async () => {
+        try{
+            const {
+            data: { user },
+            } = await supabase.auth.getUser();
+        
+            const { data, error } = await supabase
+            .from("account")
+            .select()
+            .eq("uuid", user.id);
+            
+            setLocationName(data[0].location);
+            console.log(locationName);        //log
+        }
+        catch{
+
+        }
+    };
+
+    const getLocationId = async () => {
+        try{
+            const { data, error} = await supabase
+            .from("location")
+            .select()
+            .eq("name", locationName);
+            setLocationId(data[0].id);    
+            console.log(locationId);        //log
+        } catch{
+
+        }
+    }
 
     return(
         <div className="admin_background">
             <div className='selections'>
-                <a href='/edit-services' id='edit_services' className='selections_item'>
+                <Link to={`/edit-services/${locationId}`} id='edit_services' className='selections_item'>
                     <div className='selections_item_left'>
-                        <a href='/edit-services' id='package' className='selection_logo'>
+                        <Link to={`/edit-services/${locationId}`} id='package' className='selection_logo' style={{ color: 'inherit', textDecoration: 'inherit'}}>
                             <img src={require('../img/package.png')} id='package'/>
-                        </a>
+                        </Link>
                     </div>
                     <div className='selections_item_right'>
-                        <a href='/edit-services' className='selections_item_title'>
+                        <Link to={`/edit-services/${locationId}`} className='selections_item_title'>
                             <span>Editar Servicios</span>
-                        </a>
-                        <a href='/edit-services' className='selections_item_description'>
+                        </Link>
+                        <Link to={`/edit-services/${locationId}`} className='selections_item_description'>
                             <span>Edita los datos de un servicio en específico</span>
-                        </a>
+                        </Link>
                     </div>
-                </a>
-                <a href='/admin-hub' id='edit_users' className='selections_item'>
+                </Link>
+                <Link to={'/admin-hub'} id='edit_users' className='selections_item'>
                     <div className='selections_item_left'>
-                        <a href='/admin-hub' id='package' className='selection_logo'>
+                        <Link to={'/admin-hub'} id='package' className='selection_logo'>
                             <img src={require('../img/package.png')} id='package'/>
-                        </a>
+                        </Link>
                     </div>
                     <div className='selections_item_right'>
-                        <a href='/admin-hub' className='selections_item_title'>
+                        <Link to={'/admin-hub'} className='selections_item_title'>
                             <span>Editar Usuarios</span>
-                        </a>
-                        <a href='/admin-hub' className='selections_item_description'>
+                        </Link>
+                        <Link to={'/admin-hub'} className='selections_item_description'>
                             <span>Edita los datos de un usuario en específico</span>
-                        </a>
+                        </Link>
                     </div>
-                </a>
-                <a href='/admin-hub' id='edit_something' className='selections_item'>
+                </Link>
+                <Link to={'/admin-hub'} id='edit_something' className='selections_item'>
                     <div className='selections_item_left'>
-                        <a href='/admin-hub' id='package' className='selection_logo'>
+                        <Link to={'/admin-hub'} id='package' className='selection_logo'>
                             <img src={require('../img/package.png')} id='package'/>
-                        </a>
+                        </Link>
                     </div>
                     <div className='selections_item_right'>
-                        <a href='/admin-hub' className='selections_item_title'>
+                        <Link to={'/admin-hub'} className='selections_item_title'>
                             <span>Edita algo</span>
-                        </a>
-                        <a href='/admin-hub' className='selections_item_description'>
-                            <span>Edita los datos de algo   </span>
-                        </a>
+                        </Link>
+                        <Link to={'/admin-hub'} className='selections_item_description'>
+                            <span>Edita los datos de algo</span>
+                        </Link>
                     </div>
-                </a>
+                </Link>
             </div>
         </div>
     )

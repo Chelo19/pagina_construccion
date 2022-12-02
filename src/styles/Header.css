@@ -191,152 +191,107 @@ header{
     padding: 15px 15px 15px 20px;
 }
 
-#bars_icon_container{
-    display: none;
-}
-
-.bars_menu{
+.header_responsive{
     display: none;
 }
 
 @media screen and (max-width: 768px){
-    .header_top{
+    .header_default{
         display: none;
     }
 
-    .header_bottom{
-        width: 100%;
-        height: 90px;
-        background-color: #161825;
-        border-radius: 0;
-    }
-
-    .header_bottom:hover{
-        background-color: #161825;
-    }
-
-    .header_bottom_row{
-        margin: 0;
-        height: 100%;
+    .header_responsive{
         display: flex;
-        justify-content: space-between;
+        width: 100%;
+        flex-direction: column;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .header_responsive_background{
+        height: 90px;
+        background-color: #ff7f22;
     }
 
     .logo_header{
-        width: 30%;
-        height: 100%;
+        margin-top: -90px;
+        margin-left: 10px;
+        height: 90px;
         font-size: 10px;
         gap: 10px;
-        background-color: rgba(235, 235, 235, 0.6);
-        justify-content: center;
-    }
-
-    .logo_header:hover{
-        background-color: rgba(255, 127, 34, 0.8);
+        display: flex;
+        align-self: flex-start;
+        align-items: center;
     }
 
     #logoimg_header{
-        width: 65px;
+        width: 68px;
         height: 60px;
-        opacity: 1;
     }
 
-    #logoimg_header:hover .logo_header{
-        background-color: #ff7f22;
+    #logoimg_header:hover{
+        width: 75px;
+        height: 70px;
     }
-    
 
     #logo{
-        display: none;
-    }
-
-    .header_buttons_container{
-        width: 80%;
-        height: 100%;
-        display: flex;
-        justify-content: right;
-    }
-
-    .header_buttons{
-        height: 100%;
-        width: 100%;
-        display: flex;
-        justify-content: right;
-        align-items: center;
-    }
-    
-    #logo{
-        color: #ebebeb;
-    }
-
-    .logo:hover{
-        color: #ff7f22;
-    }
-
-    .horizontal_menu_header{
-        display: none;       /* cambiar a flex para mostrarlo */ 
-        flex-direction: row;
-        justify-content: left;
-        padding: 0;
-        margin-right: 10px;
-    }
-
-    .horizontal_menu_header li{
-        margin: 0;
-    }
-
-    .horizontal_menu_header li a{
-        color: #ebebeb;
-    }
-
-    .horizontal_menu_header:hover{
-        background-color: #161825;
-    }
-
-    .vertical_menu_header{
-        background-color: #ff7f22;
-    }
-
-    .header_buttons{
-        display: none;
-    }
-
-    .header_buttons_container{
-        width: 80%;
-    }
-
-    #bars_icon_container{
-        height: 90px;
-        width: 90px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    
-    #bars_icon{
-        width: 40px;
-        height: 40px;
-        filter: invert(1);
-    }
-
-    #bars_icon:hover .bars_menu_div{
-        background-color: blue;
-    }
-
-    .bars_menu_div{
-        background-color: red;
-        width: 50%;
-        margin-left: auto;
+        font-size: 60px;
+        color: #3f3d3d;
     }
 
     .bars_menu{
+        align-self: flex-end;
+        margin-top: -90px;
+        width: 50%;
+        display: flex;
         display: flex;
         flex-direction: column;
-        padding: 0;
-        margin: 0;
+        align-items: center;
+    }
+
+    .bars_icon_container_background{
+        background-color: #3f3d3d;
+        align-self: flex-end;
+    }
+
+    .bars_icon_container{
+        width: 90px;
+        height: 90px;
+        display: flex;
         justify-content: center;
         align-items: center;
-        color: #ebebeb;
+        list-style: none;
+        align-self: flex-end;
+    }
+
+    #bars_icon{
+        width: 50px;
+        height: 50px;
+        filter: invert(1);
+    }
+
+    .bars_menu_div{
+        width: 100%;
+        background-color: #525252;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        gap: 15px;
+        justify-content: space-evenly;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        border-bottom-left-radius: 10px;
+    }
+
+    .bars_menu_div a{
+        text-decoration: none;
+    }
+
+    .bars_menu_item{
+        background-color: #ff7f22;
+        padding: 10px;
+        width: 80%;
+        border-radius: 10px;
+        color: #3f3d3d;
     }
 
 }

@@ -18,6 +18,7 @@ import UpdatePassword from "./pages/UpdatePassword";
 import RecoverPassword from "./pages/RecoverPassword";
 import AdminHub from "./pages/AdminHub";
 import EditServices from "./pages/EditServices";
+import EditService from "./pages/EditService";
 import Footer from "./components/Footer";
 
 import { supabase } from "./supabase/client";
@@ -63,7 +64,8 @@ function App() {
         <Route path="/update-password" element={<UpdatePassword />} />
         <Route path="/recover-password" element={<RecoverPassword />} />
         <Route path="/admin-hub" element={<AdminHub />} />
-        <Route path="/edit-services" element={<EditServices />} />
+        <Route path="/edit-services/:id" element={<EditServices />} />
+        <Route path="/edit-service/:id" element={<EditService />} />
       </Routes>
       <br/>
       <br/>
