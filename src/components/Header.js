@@ -83,24 +83,24 @@ export default function Header(){
                     </div>
                     {!isBarMenu ? (
                         <div className='bars_menu_div'>
-                            <div className='bars_menu_item' onClick={changeIsBarMenu}>
-                                <Link to={'/'} style={{ color: 'inherit', textDecoration: 'inherit'}}>
+                            <div className='bars_menu_item'>
+                                <Link to={'/'} style={{ color: 'inherit', textDecoration: 'inherit'}} onClick={changeIsBarMenu}>
                                     <a>Menu Principal</a>
                                 </Link>
                             </div>
-                            <div className='bars_menu_item' onClick={changeIsBarMenu}>
-                                <Link to={'/account'} style={{ color: 'inherit', textDecoration: 'inherit'}}>
+                            <div className='bars_menu_item'>
+                                <Link to={'/account'} style={{ color: 'inherit', textDecoration: 'inherit'}} onClick={changeIsBarMenu}>
                                     <a>Cuenta</a>
                                 </Link>
                             </div>
-                            <div className='bars_menu_item' onClick={changeIsBarMenu}>
-                                <Link to={'/categories/1'} style={{ color: 'inherit', textDecoration: 'inherit'}}>
+                            <div className='bars_menu_item'>
+                                <Link to={'/categories/1'} style={{ color: 'inherit', textDecoration: 'inherit'}} onClick={changeIsBarMenu}>
                                     <a>Contenido</a>
                                 </Link>
                             </div>
                             {!isAdmin && (
                                 <div className='bars_menu_item' onClick={changeIsBarMenu}>
-                                    <Link to={'/admin-hub'} style={{ color: 'inherit', textDecoration: 'inherit'}}>
+                                    <Link to={'/admin-hub'} style={{ color: 'inherit', textDecoration: 'inherit'}} onClick={changeIsBarMenu}>
                                         <a>Administrador</a>
                                     </Link>
                                 </div>
