@@ -30,6 +30,18 @@ export default function Header(){
         }
     }
 
+    const signOut = async (e) => {
+        e.preventDefault();
+        try{
+            const { error } = await supabase.auth.signOut()
+            console.log("SignOut");
+            document.location.reload();
+            if(error) throw error;
+        } catch(e){
+            alert(e.message);
+        }
+    }
+
     if(user){
         HeaderButtons = <HeaderButtonsNoUser/>;
     }
@@ -96,6 +108,11 @@ export default function Header(){
                             <div className='bars_menu_item'>
                                 <Link to={'/categories/1'} style={{ color: 'inherit', textDecoration: 'inherit'}} onClick={changeIsBarMenu}>
                                     <a>Contenido</a>
+                                </Link>
+                            </div>
+                            <div className='bars_menu_item'>
+                                <Link to={'/'} style={{ color: 'inherit', textDecoration: 'inherit'}} onClick={signOut}>
+                                    <a>Cerrar Sesión</a>
                                 </Link>
                             </div>
                             {!isAdmin && (

@@ -39,7 +39,7 @@ export default function HeaderButtonsNoUser(){
         <div className='header_buttons'>
             <ul className='horizontal_menu_header'>
                 {role == 'administrador' &&
-                    <li><a Link to="/admin-hub/" onClick={() => navigate(`/admin-hub`)}>Admin</a></li>   
+                    <li><a Link to="/admin-hub/" onClick={() => navigate(`/admin-hub`)}>Administrador</a></li>   
                 }
                 <li><a Link to="/" onClick={() => navigate(`/`)}>Home</a></li>
                 <li>
