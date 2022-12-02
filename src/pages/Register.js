@@ -32,7 +32,7 @@ function Register() {
         password,
       });
       if (error) throw error;
-      alert("Check your email");
+      alert("¡Revisa tu email para confirmar tu cuenta!");
 
       const { errorInsert } = await supabase
         .from("account")

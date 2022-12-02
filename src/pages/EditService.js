@@ -30,9 +30,43 @@ export default function EditService() {
   }, [isLoading]);
 
   const submitNewData = async () => {
-    alert('Datos agregados newName: ' + newName + " newDescription: " + newDescription);
-    
+    if(newName != null && newDescription != null){
+      const { error } = await supabase
+      .from('services')
+      .update({ name: newName, description: newDescription })
+      .eq('id', id)
+      alert('Nombre y descripción agregados correctamente');
+      document.location.reload();
+      return;
+    }
+    if(newDescription == null){
+      sumbitOnlyName();
+      alert('Nombre agregado correctamente');
+      document.location.reload();
+      return;
+    }
+    if(newName == null){
+      sumbitOnlyDescription();
+      alert('Descripción agregada correctamente');
+      document.location.reload();
+      return;
+    }
   }
+
+  const sumbitOnlyName = async () => {
+    const { error } = await supabase
+    .from('services')
+    .update({ name: newName })
+    .eq('id', id)
+  }
+
+  const sumbitOnlyDescription = async () => {
+    const { error } = await supabase
+    .from('services')
+    .update({ description: newDescription })
+    .eq('id', id)
+  }
+
 
   return (
     <>
@@ -41,7 +75,6 @@ export default function EditService() {
           <div className="edit_service_service_display">
             <div className="edit_service_service_display_left">
               <div className="edit_service_service_gallery">
-                {console.log(service.img_url)}
                 <div id="edit_service_main_service_img" className="edit_service_service_img">
                   <img src={service.img_url[0]}/>
                 </div>

@@ -19,6 +19,13 @@ export default function Header(){
     const getUserMethod = async () => {
         const { data: { user } } = await supabase.auth.getUser();
         if(user) setUser(user);
+        const { data, error } = await supabase
+        .from('account')
+        .select()
+        .eq('uuid', user.id);
+        if(data[0].role == 'administrador'){
+            setIsAdmin(true);
+        }
     }
 
     const changeIsBarMenu = () => {
@@ -115,7 +122,7 @@ export default function Header(){
                                     <a>Cerrar Sesión</a>
                                 </Link>
                             </div>
-                            {!isAdmin && (
+                            {isAdmin && (
                                 <div className='bars_menu_item' onClick={changeIsBarMenu}>
                                     <Link to={'/admin-hub'} style={{ color: 'inherit', textDecoration: 'inherit'}} onClick={changeIsBarMenu}>
                                         <a>Administrador</a>
