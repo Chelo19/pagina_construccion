@@ -86,7 +86,7 @@ export default function Home(){
             {!loadingScreen
             ? <>
                 <div className='background_img'>
-                    <span id='background_img_title'>DREC aa</span>
+                    <span id='background_img_title'>DREC</span>
                     <span id='background_img_eslogan'><i>"La construcción que siempre debiste tener"</i></span>
                 </div>
                 <div className='big_buttons'>
