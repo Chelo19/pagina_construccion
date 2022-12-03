@@ -10,6 +10,9 @@ export default function EditEnterprises(){
     const [locationName, setLocationName] = useState("Monterrey");
     const [loadingScreen, setLoadingScreen] = useState(true);
     const [enterprises, setEnterprises] = useState();
+    const [selection, setSelection] = useState(null);
+    const [selectionUrl, setSelectionUrl] = useState(null);
+    const [newFile, setNewFile] = useState(null);
 
     const getUserData = async () => {
         try{
@@ -38,7 +41,6 @@ export default function EditEnterprises(){
             .select()
             .eq("name", locationName);
             setLocationId(data[0].id);
-            console.log(data[0].id);
             setLoadingScreen(false);
         } catch{
 
@@ -60,8 +62,11 @@ export default function EditEnterprises(){
         .select()
         .eq("location_id", locationId);
         setEnterprises(data);
-        console.log(data);
         setLoadingScreen(false);
+    }
+
+    const sumbitNewFile = async () => {
+        
     }
 
     return(
@@ -73,17 +78,18 @@ export default function EditEnterprises(){
                 {!loadingScreen
                 ?
                 <div className='edit_enterprises_enterprises_container'>
-                <div className='edit_enterprises_enterprises_left'>
-                    <div className='edit_enterprises_enterprises_text'>
-                        Contamos con los mejores aliados para la realización de tu servicio
+                    <div className='edit_enterprises_enterprises_left'>
+                        <div className='edit_enterprises_enterprises_text'>
+                            Contamos con los mejores aliados para la realización de tu servicio
+                        </div>
                     </div>
-                </div>
-                <div className='edit_enterprises_enterprises_right'>
-                    <div className='edit_enterprises_enterprises_gallery'>
-                        {enterprises.map((enterprise) => {
+                    <div className='edit_enterprises_enterprises_right'>
+                        <div className='edit_enterprises_enterprises_gallery'>
+                            {enterprises.map((enterprise) => {
                             return(
-                                <div className='edit_enterprises_enterprises_item' key={enterprise.id}>
+                                <div className='edit_enterprises_enterprises_item' key={enterprise.id} onClick={(e) => setSelection(enterprise.id)}>
                                     <img src={enterprise.img_url[0]}/>
+                                    <span>{enterprise.id}</span>
                                 </div>
                             );
                         })}
@@ -91,6 +97,22 @@ export default function EditEnterprises(){
                 </div>
             </div>
             : <LoadingScreen/>}
+            </div>
+            <div className='edit_enterprises_selection'>
+                <span>Logo seleccionado: {selection}</span>
+                <div id='edit_enterprises_new_file'>
+                    Nueva imagen:
+                    <input
+                        type={"file"}
+                        accept={".png, .jpg, .jpeg"}
+                        onChange={(e) => setNewFile(e.target.files)}
+                    />
+                </div>
+                <input 
+                    type={"submit"}
+                    onClick={sumbitNewFile}
+                    value={"Actualizar imagen"}>
+                </input>
             </div>
         </div>
     )
