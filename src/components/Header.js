@@ -22,13 +22,13 @@ export default function Header(){
         if(user) {
             setIsLogged(true);
             setUser(user);
-        }
-        const { data, error } = await supabase
-        .from('account')
-        .select()
-        .eq('uuid', user.id);
-        if(data[0].role == 'administrador'){
-            setIsAdmin(true);
+            const { data, error } = await supabase
+            .from('account')
+            .select()
+            .eq('uuid', user.id);
+            if(data[0].role == 'administrador'){
+                setIsAdmin(true);
+            }
         }
     }
 
