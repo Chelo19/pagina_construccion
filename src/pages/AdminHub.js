@@ -85,32 +85,32 @@ export default function AdminHub(){
                         </Link>
                     </div>
                 </Link>
-                <Link to={'/admin-hub'} id='edit_users' className='selections_item'>
+                <Link to={`/edit-categories/${locationId}`} id='edit_users' className='selections_item'>
                     <div className='selections_item_left'>
-                        <Link to={'/admin-hub'} id='package' className='selection_logo'>
+                        <Link to={`/edit-categories/${locationId}`} id='package' className='selection_logo'>
                             <img src={require('../img/package.png')} id='package'/>
                         </Link>
                     </div>
                     <div className='selections_item_right'>
-                        <Link to={'/admin-hub'} className='selections_item_title'>
-                            <span>Editar Usuarios</span>
+                        <Link to={`/edit-categories/${locationId}`} className='selections_item_title'>
+                            <span>Editar Categorías</span>
                         </Link>
-                        <Link to={'/admin-hub'} className='selections_item_description'>
-                            <span>Edita los datos de un usuario en específico</span>
+                        <Link to={`/edit-categories/${locationId}`} className='selections_item_description'>
+                            <span>Edita los datos de una categoría en específico</span>
                         </Link>
                     </div>
                 </Link>
-                <Link to={'/admin-hub'} id='edit_something' className='selections_item'>
+                <Link to={`/edit-enterprises/${locationId}`} id='edit_something' className='selections_item'>
                     <div className='selections_item_left'>
-                        <Link to={'/admin-hub'} id='package' className='selection_logo'>
+                        <Link to={`/edit-enterprises/${locationId}`} id='package' className='selection_logo'>
                             <img src={require('../img/package.png')} id='package'/>
                         </Link>
                     </div>
                     <div className='selections_item_right'>
-                        <Link to={'/admin-hub'} className='selections_item_title'>
+                        <Link to={`/edit-enterprises/${locationId}`} className='selections_item_title'>
                             <span>Edita algo</span>
                         </Link>
-                        <Link to={'/admin-hub'} className='selections_item_description'>
+                        <Link to={`/edit-enterprises/${locationId}`} className='selections_item_description'>
                             <span>Edita los datos de algo</span>
                         </Link>
                     </div>
