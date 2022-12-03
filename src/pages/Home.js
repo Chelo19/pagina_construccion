@@ -14,6 +14,7 @@ export default function Home(){
     const [locationId, setLocationId] = useState(1);
     const [locationName, setLocationName] = useState("Monterrey");
     const [loadingScreen, setLoadingScreen] = useState(true);
+    const [enterprises, setEnterprises] = useState();
     const navigate = useNavigate();
     AuthRedirect();
 
@@ -55,6 +56,7 @@ export default function Home(){
         insertUuid(); 
         getUserData();
         getLocationId();
+        getEnterprises();
     }, [loadingScreen])              
 
     const insertUuid = async () => {
@@ -75,8 +77,14 @@ export default function Home(){
                 .eq('email', user.email)
             }
         }
-        
-        
+    }
+
+    const getEnterprises = async () => {
+        const { data, error } = await supabase
+        .from('enterprises')
+        .select();
+        setEnterprises(data);
+        console.log(data);
     }
     
     
@@ -89,45 +97,10 @@ export default function Home(){
                     <span id='background_img_title'>DREC</span>
                     <span id='background_img_eslogan'><i>"La construcción que siempre debiste tener"</i></span>
                 </div>
-                <div className='big_buttons'>
-                    <div className='big_buttons_container'>
-                        <div className='big_buttons_container_buttons' id='big_button_1'>
-                            <img id='construcciones' className='big_buttons_container_buttons_img' src={require('../img/certificate.png')}/>
-                            <a Link to="/categories/" className='big_buttons_container_buttons_description' onClick={() => navigate(`/categories/${locationId}`)}>
-                                <div className='big_buttons_container_buttons_description_text'>
-                                    CONSTRUCCIONES
-                                </div>
-                            </a>
-                        </div>
-                        <div className='big_buttons_container_buttons' id='big_button_2'>
-                            <img id='construcciones' className='big_buttons_container_buttons_img' src={require('../img/certificate.png')}/>
-                            <a Link to="/categories/" className='big_buttons_container_buttons_description' onClick={() => navigate(`/categories/${locationId}`)}>
-                                <div className='big_buttons_container_buttons_description_text'>
-                                    MATERIALES
-                                </div>
-                            </a>
-                        </div>
-                        <div className='big_buttons_container_buttons' id='big_button_3'>
-                            <img id='construcciones' className='big_buttons_container_buttons_img' src={require('../img/certificate.png')}/>
-                            <a Link to="/categories/" className='big_buttons_container_buttons_description' onClick={() => navigate(`/categories/${locationId}`)}>
-                                <div className='big_buttons_container_buttons_description_text'>
-                                    SERVICIOS
-                                </div>
-                            </a>
-                        </div>
-                        <div className='big_buttons_container_buttons' id='bit_button_4'>
-                            <img id='construcciones' className='big_buttons_container_buttons_img' src={require('../img/certificate.png')}/>
-                            <a Link to="/categories/" className='big_buttons_container_buttons_description' onClick={() => navigate(`/categories/${locationId}`)}>
-                                <div className='big_buttons_container_buttons_description_text'>
-                                    NOSOTROS
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                
                 <div className='our_projects_presentation'>
                     <a Link to="/categories/" onClick={() => navigate(`/categories/${locationId}`)} className='our_projects_presentation_text'>
-                        NUESTROS PROYECTOS
+                        NUESTROS SERVICIOS
                     </a>
                 </div>
                 <div className='our_projects'>
@@ -164,54 +137,13 @@ export default function Home(){
                         </a>
                     </div>
                 </div>
-                <br/><br/><br/><br/>
-                <div className='staff'>
-                    <div className='staff_left'>
-                        <div className='staff_left_container'>
-                            <div className='staff_left_container_text'>
-                                Contamos con los mejores socios para la realización de tu servicio
-                            </div>
+                <div className='enterprises'>
+                    <div className='enterprises_container'>
+                        <div className='enterprises_left'>
+
                         </div>
-                    </div>
-                    <div className='staff_right'>
-                        <div className='staff_right_card'>
-                            <div className='staff_right_card_top'></div>
-                            <div className='staff_right_card_bottom'>
-                                <div className='staff_right_card_bottom_content'>
-                                        <a className='staff_right_card_bottom_content_name' Link to="/categories/">Marcelo De León</a>
-                                        <div className='staff_right_card_bottom_content_icons'>
-                                            <a className='staff_right_card_bottom_content_icons_individual' Link to="/categories/" ><img id='logo_fb' src={require('../img/certificate.png')}></img></a>
-                                            <a className='staff_right_card_bottom_content_icons_individual' Link to="/categories/" ><img id='logo_mail' src={require('../img/certificate.png')}></img></a>
-                                            <a className='staff_right_card_bottom_content_icons_individual' Link to="/categories/" ><img id='logo_phone' src={require('../img/certificate.png')}></img></a>
-                                        </div>
-                                    </div>
-                                </div>
-                        </div>
-                        <div className='staff_right_card'>
-                            <div className='staff_right_card_top'></div>
-                            <div className='staff_right_card_bottom'>
-                                <div className='staff_right_card_bottom_content'>
-                                        <a className='staff_right_card_bottom_content_name' Link to="/categories/">Marcelo De León</a>
-                                        <div className='staff_right_card_bottom_content_icons'>
-                                            <a className='staff_right_card_bottom_content_icons_individual' Link to="/categories/" ><img id='logo_fb' src={require('../img/certificate.png')}></img></a>
-                                            <a className='staff_right_card_bottom_content_icons_individual' Link to="/categories/" ><img id='logo_mail' src={require('../img/certificate.png')}></img></a>
-                                            <a className='staff_right_card_bottom_content_icons_individual' Link to="/categories/" ><img id='logo_phone' src={require('../img/certificate.png')}></img></a>
-                                        </div>
-                                    </div>
-                                </div>
-                        </div>
-                        <div className='staff_right_card'>
-                            <div className='staff_right_card_top'></div>
-                            <div className='staff_right_card_bottom'>
-                                <div className='staff_right_card_bottom_content'>
-                                    <a className='staff_right_card_bottom_content_name' Link to="/categories/">Marcelo De León</a>
-                                    <div className='staff_right_card_bottom_content_icons'>
-                                        <a className='staff_right_card_bottom_content_icons_individual' Link to="/categories/" ><img id='logo_fb' src={require('../img/certificate.png')}></img></a>
-                                        <a className='staff_right_card_bottom_content_icons_individual' Link to="/categories/" ><img id='logo_mail' src={require('../img/certificate.png')}></img></a>
-                                        <a className='staff_right_card_bottom_content_icons_individual' Link to="/categories/" ><img id='logo_phone' src={require('../img/certificate.png')}></img></a>
-                                    </div>
-                                </div>
-                            </div>
+                        <div className='enterprises_right'>
+
                         </div>
                     </div>
                 </div>

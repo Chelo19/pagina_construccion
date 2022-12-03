@@ -23,6 +23,7 @@
 }
 
 .mid_content{
+    display: none;
     margin-top: 20px;
     margin-left: 20px;
     line-height: 60px;
@@ -118,10 +119,12 @@
 
     .footer_vertical_left{
         width: 100%;
+        display: none;
     }
 
     .footer_vertical_mid{
         width: 100%;
+        display: none;
     }
 
     .footer_vertical_right{

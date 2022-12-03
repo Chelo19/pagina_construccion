@@ -9,6 +9,7 @@ export default function Header(){
 
     const [user, setUser] = useState(null);
     const [isBarMenu, setIsBarMenu] = useState(false);
+    const [isLogged, setIsLogged] = useState(false);
     const [isAdmin, setIsAdmin] = useState(false);
     var HeaderButtons;
 
@@ -18,7 +19,10 @@ export default function Header(){
     
     const getUserMethod = async () => {
         const { data: { user } } = await supabase.auth.getUser();
-        if(user) setUser(user);
+        if(user) {
+            setIsLogged(true);
+            setUser(user);
+        }
         const { data, error } = await supabase
         .from('account')
         .select()
@@ -100,21 +104,44 @@ export default function Header(){
                             <img id='bars_icon' onClick={changeIsBarMenu} src={require('../img/menudesplegable.png')}></img>
                         </div>
                     </div>
-                    {!isBarMenu ? (
+                    {isBarMenu ? (
                         <div className='bars_menu_div'>
                             <div className='bars_menu_item'>
                                 <Link to={'/'} style={{ color: 'inherit', textDecoration: 'inherit'}} onClick={changeIsBarMenu}>
                                     <a>Menu Principal</a>
                                 </Link>
                             </div>
+                            {isLogged ? (
+                                <div className='bars_menu_item'>
+                                    <Link to={'/account'} style={{ color: 'inherit', textDecoration: 'inherit'}} onClick={changeIsBarMenu}>
+                                        <a>Cuenta</a>
+                                    </Link>
+                                </div>
+                            ):
                             <div className='bars_menu_item'>
-                                <Link to={'/account'} style={{ color: 'inherit', textDecoration: 'inherit'}} onClick={changeIsBarMenu}>
-                                    <a>Cuenta</a>
+                                <Link to={'/login'} style={{ color: 'inherit', textDecoration: 'inherit'}} onClick={changeIsBarMenu}>
+                                    <a>Inicia sesion</a>
+                                </Link>
+                            </div>
+                            }
+                            <div className='bars_menu_item'>
+                                <Link to={'/categories/1'} style={{ color: 'inherit', textDecoration: 'inherit'}} onClick={changeIsBarMenu}>
+                                    <a>Mis servicios</a>
+                                </Link>
+                            </div>
+                            <div className='bars_menu_item'>
+                                <Link to={'/'} style={{ color: 'inherit', textDecoration: 'inherit'}} onClick={changeIsBarMenu}>
+                                    <a>Contacto</a>
                                 </Link>
                             </div>
                             <div className='bars_menu_item'>
                                 <Link to={'/categories/1'} style={{ color: 'inherit', textDecoration: 'inherit'}} onClick={changeIsBarMenu}>
-                                    <a>Contenido</a>
+                                    <a>Nosotros</a>
+                                </Link>
+                            </div>
+                            <div className='bars_menu_item'>
+                                <Link to={'/categories/1'} style={{ color: 'inherit', textDecoration: 'inherit'}} onClick={changeIsBarMenu}>
+                                    <a>Servicio al cliente</a>
                                 </Link>
                             </div>
                             <div className='bars_menu_item'>

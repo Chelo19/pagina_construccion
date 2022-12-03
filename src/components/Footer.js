@@ -15,9 +15,6 @@ export default function Footer(){
                     <ul className='footer_vertical_mid'>
                         <div className='mid_content'>
                             <span className='footer_titles'>Información y enlaces</span>
-                            <li><Link to={'/'} style={{ color: 'inherit', textDecoration: 'inherit'}}>Inicio</Link></li>
-                            <li><Link to={'/about-us'} style={{ color: 'inherit', textDecoration: 'inherit'}}>Nosotros</Link></li>
-                            <li><Link to={'/client-service'} style={{ color: 'inherit', textDecoration: 'inherit'}}>Contacto</Link></li>
                             <li><Link to={'/account/'} style={{ color: 'inherit', textDecoration: 'inherit'}}>Cuenta</Link></li> 
                         </div>
                     </ul>
@@ -27,7 +24,7 @@ export default function Footer(){
                             <li>
                                 <Link to={'/'} style={{ color: 'inherit', textDecoration: 'inherit'}}>
                                     <div className='logo_footer_div'>
-                                        <img className='logo_footer' src={require('../img/certificate.png')}></img>
+                                        <img className='logo_footer' src={require('../img/fbicon.png')}></img>
                                     </div>
                                     <span className='right_links'>Facebook</span>
                                 </Link>
@@ -35,17 +32,25 @@ export default function Footer(){
                             <li>
                                 <Link to={'/'} style={{ color: 'inherit', textDecoration: 'inherit'}}>
                                     <div className='logo_footer_div'>
-                                        <img className='logo_footer' src={require('../img/certificate.png')}></img>
+                                        <img className='logo_footer' src={require('../img/igicon.png')}></img>
                                     </div>
-                                    <span className='right_links'>Correo</span>
+                                    <span className='right_links'>Instagram</span>
                                 </Link>
                             </li>
                             <li>
                                 <Link to={'/'} style={{ color: 'inherit', textDecoration: 'inherit'}}>
                                 <div className='logo_footer_div'>
-                                        <img className='logo_footer' src={require('../img/certificate.png')}></img>
+                                        <img className='logo_footer' src={require('../img/whatsicon.png')}></img>
                                     </div>
-                                    <span className='right_links'>Teléfono</span>
+                                    <span className='right_links'>Whatsapp</span>
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to={'/'} style={{ color: 'inherit', textDecoration: 'inherit'}}>
+                                    <div className='logo_footer_div'>
+                                        <img className='logo_footer' src={require('../img/mailicon.png')}></img>
+                                    </div>
+                                    <span className='right_links'>Correo</span>
                                 </Link>
                             </li>
                         </div>
