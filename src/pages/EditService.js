@@ -15,6 +15,9 @@ export default function EditService() {
   const [newName, setNewName] = useState(null);
   const [newDescription, setNewDescription] = useState(null);
 
+  const [selection, setSelection] = useState(null);
+  const [newFile, setNewFile] = useState(null);
+
   const showService = async () => {
     const { data, error } = await supabase
       .from("services")
@@ -67,6 +70,30 @@ export default function EditService() {
     .eq('id', id)
   }
 
+  const uploadBucket = async () => {
+    if(newName != null && newFile != null){
+        console.log("Subiendo a Bucket...");
+        const { data, error } = await supabase
+        .storage
+        .from('enterprises-img')
+        .upload(`${service.category_id}` + '/' + `${service.id}` + '-' + `${selection}`, newFile[0]);
+        console.log("Sale de UploadBucket");
+    }
+    else{
+        alert("Favor de llenar todos los espacios");
+    }
+  }
+
+  const updateImgArray = async () => {
+    const { error } = await supabase
+    .from('services')
+    .update({ img_url: newDescription })
+    .eq('id', id)
+  }
+
+  const removeItem = async () => {
+    console.log(`${service.category_id}` + '/' + `${service.id}` + '-' + `${selection}`);
+  }
 
   return (
     <>
@@ -75,20 +102,25 @@ export default function EditService() {
           <div className="edit_service_service_display">
             <div className="edit_service_service_display_left">
               <div className="edit_service_service_gallery">
-                <div id="edit_service_main_service_img" className="edit_service_service_img">
+                <div id="edit_service_main_service_img" className="edit_service_service_img" onClick={(e) => setSelection(0)}>
                   <img src={service.img_url[0]}/>
+                  <span>0</span>
                 </div>
-                <div id="edit_service_first_service_img" className="edit_service_service_img">
-                  <img src={service.img_url[1]}/>1
+                <div id="edit_service_first_service_img" className="edit_service_service_img" onClick={(e) => setSelection(1)}>
+                  <img src={service.img_url[1]}/>
+                  <span>1</span>
                 </div>
-                <div id="edit_service_second_service_img" className="edit_service_service_img">
-                  <img src={service.img_url[2]}/>2
+                <div id="edit_service_second_service_img" className="edit_service_service_img" onClick={(e) => setSelection(2)}>
+                  <img src={service.img_url[2]}/>
+                  <span>2</span>
                 </div>
-                <div id="edit_service_third_service_img" className="edit_service_service_img">
-                  <img src={service.img_url[3]}/>3
+                <div id="edit_service_third_service_img" className="edit_service_service_img" onClick={(e) => setSelection(3)}>
+                  <img src={service.img_url[3]}/>
+                  <span>3</span>
                 </div>
-                <div id="edit_service_fourth_service_img" className="edit_service_service_img">
-                  <img src={service.img_url[4]}/>4
+                <div id="edit_service_fourth_service_img" className="edit_service_service_img" onClick={(e) => setSelection(4)}>
+                  <img src={service.img_url[4]}/>
+                  <span>4</span>
                 </div>
               </div>
             </div>
@@ -130,6 +162,25 @@ export default function EditService() {
                     onClick={submitNewData}
                     />
                 </div>
+            </div>
+          </div>
+          <div className="edit_service_selection">
+            <div className="edit_service_selection_space">
+              <span>Imagen a cambiar: {selection}</span>
+              <div id='edit_service_new_file'>
+                Nueva imagen:
+                <input
+                  type={"file"}
+                  accept={".png, .jpg, .jpeg"}
+                  onChange={(e) => setNewFile(e.target.files)}
+                />
+              </div>
+              <input 
+                id='edit_enterprises_submit'
+                type={"submit"}
+                onClick={removeItem}
+                value={"Eliminar logo con id: " + selection}>
+              </input>
             </div>
           </div>
         </div>

@@ -136,9 +136,6 @@ export default function EditEnterprises(){
 
     return(
         <div className='edit_enterprises_background'>
-            <div className='edit_enterprises_instructions'>
-                Selecciona el logo que deseas editar
-            </div>
             <div className='edit_enterprises_enterprises'>
                 {!loadingScreen
                 ?
