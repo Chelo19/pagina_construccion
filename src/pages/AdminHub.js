@@ -108,10 +108,10 @@ export default function AdminHub(){
                     </div>
                     <div className='selections_item_right'>
                         <Link to={`/edit-enterprises/${locationId}`} className='selections_item_title'>
-                            <span>Edita algo</span>
+                            <span>Editar Logos</span>
                         </Link>
                         <Link to={`/edit-enterprises/${locationId}`} className='selections_item_description'>
-                            <span>Edita los datos de algo</span>
+                            <span>Edita los logos de la página principal</span>
                         </Link>
                     </div>
                 </Link>

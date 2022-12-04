@@ -14,6 +14,7 @@ export default function EditEnterprises(){
     const [selectionUrl, setSelectionUrl] = useState(null);
     const [newFile, setNewFile] = useState(null);
     const [publicUrlString, setPublicUrlString] = useState(null);
+    const [newName, setNewName] = useState(null);
 
     const getUserData = async () => {
         try{
@@ -66,39 +67,72 @@ export default function EditEnterprises(){
         setLoadingScreen(false);
     }
 
-    const updateBucket = async () => {
-        removeBucket();
-        uploadBucket();
-        getPublicUrl();
+    const removeItem = async () => {
+        if(selection != null){
+            removeBucket();
+            removeDb();
+        }
+        else{
+            alert("Por favor selecciona un logo");
+        }
     }
 
     const removeBucket = async () => {
+        console.log("Eliminando de Bucket...");
         const { data, error } = await supabase
         .storage
         .from('enterprises-img')
         .remove([`${locationId}` + '/' + selection.toString()]);
     }
 
-    const uploadBucket = async () => {
-        console.log("Subiendo...");
-        const { data, error } = await supabase
-        .storage
-        .from('enterprises-img')
-        .upload(`${locationId}` + '/' + selection.toString(), newFile[0]);
-    }
-
-    const getPublicUrl = async () => {
-        const { data } = supabase
-        .storage
-        .from('enterprises-img')
-        .getPublicUrl(`${locationId}` + '/' + selection.toString());
-        setPublicUrlString(data.publicUrl.toString());
-
+    const removeDb = async () => {
+        console.log("Eliminando de DB...");
         const { error } = await supabase
         .from('enterprises')
-        .update({ img_url:  publicUrlString})
-        .eq('id', selection)
+        .delete()
+        .eq('id', selection);
     }
+
+    const uploadItem = async () => {
+        uploadBucket();
+        insertDb();
+    }
+
+    const uploadBucket = async () => {
+        if(newName != null && newFile != null){
+            console.log("Subiendo a Bucket...");
+            const { data, error } = await supabase
+            .storage
+            .from('enterprises-img')
+            .upload(`${locationId}` + '/' + `${newName}`, newFile[0]);
+            console.log("Sale de UploadBucket");
+        }
+        else{
+            alert("Favor de llenar todos los espacios");
+        }
+    }
+
+
+    const insertDb = async () => {
+        if(newName != null && newFile != null){
+            console.log("Obteniendo PublicURL");
+            const { data } = supabase
+            .storage
+            .from('enterprises-img')
+            .getPublicUrl(`${locationId}` + '/' + `${newName}`);
+            console.log("PublicURL " + data.publicUrl.toString());
+    
+            console.log("Subiendo a DB...");
+            const { error } = await supabase
+            .from('enterprises')
+            .insert({ name: newName, img_url: data.publicUrl.toString(), location_id: locationId });
+            console.log(error);
+        }
+    }
+
+    const delay = ms => new Promise(
+        resolve => setTimeout(resolve, ms)
+    );
 
     return(
         <div className='edit_enterprises_background'>
@@ -130,7 +164,16 @@ export default function EditEnterprises(){
             : <LoadingScreen/>}
             </div>
             <div className='edit_enterprises_selection'>
-                <span>Logo seleccionado: {selection}</span>
+                <span>Eliminar Logo</span>
+                <span>Selecciona el logo a eliminar y dale click al botón "Eliminar logo con id"</span>
+                <input 
+                    id='edit_enterprises_submit'
+                    type={"submit"}
+                    onClick={removeItem}
+                    value={"Eliminar logo con id: " + selection}>
+                </input>
+                <span>Agregar Logo</span>
+                <span>Agrega una imagen y un nuevo nombre para el logo y da click al botón "Agregar logo"</span>
                 <div id='edit_enterprises_new_file'>
                     Nueva imagen:
                     <input
@@ -140,14 +183,17 @@ export default function EditEnterprises(){
                     />
                 </div>
                 <input 
+                    type={"text"}
+                    onChange={(e) => setNewName(e.target.value)}
+                    placeholder={"Nuevo nombre"}
+                />
+                <span>Nuevo Nombre: {newName}</span>
+                <input 
                     id='edit_enterprises_submit'
                     type={"submit"}
-                    onClick={updateBucket}
-                    value={"Actualizar imagen"}>
+                    onClick={uploadItem}
+                    value={"Agregar logo"}>
                 </input>
-                <div onClick={removeBucket}>
-                    Remove Bucket
-                </div>
             </div>
         </div>
     )
