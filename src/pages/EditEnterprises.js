@@ -13,6 +13,7 @@ export default function EditEnterprises(){
     const [selection, setSelection] = useState(null);
     const [selectionUrl, setSelectionUrl] = useState(null);
     const [newFile, setNewFile] = useState(null);
+    const [publicUrlString, setPublicUrlString] = useState(null);
 
     const getUserData = async () => {
         try{
@@ -65,8 +66,38 @@ export default function EditEnterprises(){
         setLoadingScreen(false);
     }
 
-    const sumbitNewFile = async () => {
-        
+    const updateBucket = async () => {
+        removeBucket();
+        uploadBucket();
+        getPublicUrl();
+    }
+
+    const removeBucket = async () => {
+        const { data, error } = await supabase
+        .storage
+        .from('enterprises-img')
+        .remove([`${locationId}` + '/' + selection.toString()]);
+    }
+
+    const uploadBucket = async () => {
+        console.log("Subiendo...");
+        const { data, error } = await supabase
+        .storage
+        .from('enterprises-img')
+        .upload(`${locationId}` + '/' + selection.toString(), newFile[0]);
+    }
+
+    const getPublicUrl = async () => {
+        const { data } = supabase
+        .storage
+        .from('enterprises-img')
+        .getPublicUrl(`${locationId}` + '/' + selection.toString());
+        setPublicUrlString(data.publicUrl.toString());
+
+        const { error } = await supabase
+        .from('enterprises')
+        .update({ img_url:  publicUrlString})
+        .eq('id', selection)
     }
 
     return(
@@ -88,7 +119,7 @@ export default function EditEnterprises(){
                             {enterprises.map((enterprise) => {
                             return(
                                 <div className='edit_enterprises_enterprises_item' key={enterprise.id} onClick={(e) => setSelection(enterprise.id)}>
-                                    <img src={enterprise.img_url[0]}/>
+                                    <img src={enterprise.img_url}/>
                                     <span>{enterprise.id}</span>
                                 </div>
                             );
@@ -109,10 +140,14 @@ export default function EditEnterprises(){
                     />
                 </div>
                 <input 
+                    id='edit_enterprises_submit'
                     type={"submit"}
-                    onClick={sumbitNewFile}
+                    onClick={updateBucket}
                     value={"Actualizar imagen"}>
                 </input>
+                <div onClick={removeBucket}>
+                    Remove Bucket
+                </div>
             </div>
         </div>
     )

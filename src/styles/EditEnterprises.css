@@ -1,5 +1,5 @@
 .edit_enterprises_background{
-    height: 100vh;
+    margin-top: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -97,8 +97,9 @@
 .edit_enterprises_selection{
     font-family: 'Poppins', sans-serif;
     width: 100%;
-    height: 150px;
     font-size: 40px;
+    padding-top: 20px;
+    padding-bottom: 20px;
     background-color: #161825;
     color: #ebebeb;
     display: flex;
@@ -106,6 +107,24 @@
     justify-content: center;
     align-items: center;
     gap: 20px;
+}
+
+#edit_enterprises_submit{
+    transition: 1s;
+    width: 10%;
+    height: 30px;
+    border-radius: 10px;
+    border: 2px solid rgba(0, 0, 0, 0.3);
+    color: #ebebeb;
+    background-color: rgba(255, 126, 34, 0.7);
+    font-size: 18px;
+}
+
+#edit_enterprises_submit:hover{
+    transition: .5s;
+    width: 13%;
+    background-color: rgba(255, 126, 34, 1);
+    color: #ebebeb;
 }
 
 #edit_enterprises_new_file{

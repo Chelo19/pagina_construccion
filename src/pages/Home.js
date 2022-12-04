@@ -155,7 +155,7 @@ export default function Home(){
                                 {enterprises.map((enterprise) => {
                                     return(
                                         <div className='enterprises_item' key={enterprise.id}>
-                                            <img src={enterprise.img_url[0]}/>
+                                            <img src={enterprise.img_url}/>
                                         </div>
                                     );
                                 })}
