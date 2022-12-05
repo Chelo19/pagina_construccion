@@ -20,8 +20,6 @@ export default function Home(){
     var locationName;
     var locationId = 1;
     var displayServicesSel = [];
-    var displayServices = [];
-    var services = [];
     AuthRedirect();
     
     useEffect(() => {      
@@ -31,6 +29,7 @@ export default function Home(){
     const insideUseEffect = () => {
         insertUuid();
         getUserData();
+        fkDisplayServices();
     }
     
     const insertUuid = async () => {
@@ -92,66 +91,21 @@ export default function Home(){
         .eq( 'location_id' , locationId );
         setEnterprises(data);
         setLoadingScreen(false);
-        servicesHomePage();
     }
 
-    const servicesHomePage = async () => {
-        getDisplayServices();
-        getServices();
-        setDisplayServices();
-    }
-
-    const getDisplayServices = async () => {
+    const fkDisplayServices = async () => {
         const { data, error } = await supabase
-        .from("display_services")
-        .select("service_id")
-        .eq("location_id", locationId);
-        console.log(data);
-        if(displayServices.length >= data.length){
+        .from('display_services')
+        .select(`service_id, services ( id, name, img_url )`);
+        if(displayServicesSel >= data.length){
+            console.log("displayServicesSel esta lleno");
         }
         else{
             for(var i = 0 ; i < data.length ; i++){
-                displayServices.push(data[i].service_id);
+                displayServicesSel.push(data[i].services);
             }
         }
-        console.log(displayServices);
-        setLoadingScreen(false);
-    };
-
-    const getServices = async () => {
-        const { data, error } = await supabase
-        .from("services")
-        .select("*");
-        if(services.length >= data.length){
-        }
-        else{
-            for(var i = 0 ; i < data.length ; i++){
-                services.push(data[i]);
-            }
-        }
-        console.log(services);
-        setLoadingScreen(false);
-    };
-
-    const setDisplayServices = async () => {
-        if(servicesForDisplay == null){
-            console.log("Entra");
-            for(var i = 0 ; i < displayServices.length ; i++){
-                for(var j = 0 ; j < services.length ; j++){
-                    if(displayServices[i] == services[j].id){
-                        console.log("Ingresa");
-                        console.log(services[j]);
-                        displayServicesSel.push(services[j]);
-                    }
-                }
-            }
-            console.log(displayServicesSel);
-            setServicesForDisplay(displayServicesSel);
-        }
-        else{
-
-        }
-        console.log(servicesForDisplay);
+        setServicesForDisplay(displayServicesSel);
     }
 
     return(
@@ -169,7 +123,6 @@ export default function Home(){
                 </div>
                 <div className='our_projects'>
                     <div className='our_projects_container'>
-                        {console.log(servicesForDisplay)}
                         {servicesForDisplay.map((displayService) => {
                             return(
                                 <Link to={`/service/${displayService.id}`} className='our_projects_container_button' key={displayService.id}>
