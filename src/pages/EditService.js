@@ -18,12 +18,13 @@ export default function EditService() {
   const [selection, setSelection] = useState(null);
   const [newFile, setNewFile] = useState(null);
 
+  const newUrl = [];
+
   const showService = async () => {
     const { data, error } = await supabase
       .from("services")
       .select("*")
       .eq("id", id);
-    console.log(data);
     setService(data[0]);
     setIsLoading(false);
   };
@@ -70,25 +71,63 @@ export default function EditService() {
     .eq('id', id)
   }
 
+  const uploadItem = async () => {
+    updateBucket();
+    updateDb();
+  }
+
+  const updateBucket = async () => {
+    const { data, error } = await supabase
+    .storage
+    .from('services-img')
+    .update(`${service.category_id}` + '/' + `${service.id}` + '-' + `${selection}`, newFile[0], {
+      cacheControl: '3600',
+      upsert: false
+    })
+  }
+
+  const removeBucket = async () => {
+    console.log("Eliminando de Bucket...");
+    const { data, error } = await supabase
+    .storage
+    .from('services-img')
+    .remove([`${service.category_id}` + '/' + `${service.id}` + '-' + `${selection}`])
+    console.log(data);
+    console.log(error);
+  }
+
   const uploadBucket = async () => {
-    if(newName != null && newFile != null){
+    if(newFile != null){
         console.log("Subiendo a Bucket...");
         const { data, error } = await supabase
         .storage
-        .from('enterprises-img')
+        .from('services-img')
         .upload(`${service.category_id}` + '/' + `${service.id}` + '-' + `${selection}`, newFile[0]);
+        console.log('Route: ' + `${service.category_id}` + '/' + `${service.id}` + '-' + `${selection}`);
         console.log("Sale de UploadBucket");
+        document.location.reload();
     }
     else{
-        alert("Favor de llenar todos los espacios");
+        alert("Favor de ingresar una imagen");
     }
   }
 
-  const updateImgArray = async () => {
+  const updateDb = async () => {
+    console.log("Obteniendo PublicURL");
+    const { data } = supabase
+    .storage
+    .from('services-img')
+    .getPublicUrl(`${service.category_id}` + '/' + `${service.id}` + '-');
+
+    for(var i = 0 ; i < 5 ; i++){
+      newUrl.push(data.publicUrl.toString() + `${i}`);
+    }
+
+    console.log("Actualizando DB...");
     const { error } = await supabase
     .from('services')
-    .update({ img_url: newDescription })
-    .eq('id', id)
+    .update({ img_url: newUrl })
+    .eq('id', id);
   }
 
   const removeItem = async () => {
@@ -156,7 +195,7 @@ export default function EditService() {
                 <div className="edit_service_new_info">
                     <span id="edit_service_new_info_title"><bn>Nuevos datos</bn></span>
                     <span><bn>Nuevo nombre:</bn><br/>{newName}</span>
-                    <span><bn>Nueva descripción:</bn><br/>{newDescription}</span>
+                    <span><bn>Nueva descripción:</bn><br/>{newDescription}</span> 
                     <input type={'submit'}
                     value={"Sobreescribir datos"}
                     onClick={submitNewData}
@@ -178,8 +217,8 @@ export default function EditService() {
               <input 
                 id='edit_enterprises_submit'
                 type={"submit"}
-                onClick={removeItem}
-                value={"Eliminar logo con id: " + selection}>
+                onClick={uploadItem}
+                value={`Cambiar imagen de: ${selection}`}>
               </input>
             </div>
           </div>

@@ -11,14 +11,19 @@
     grid-row: 1 / 2;
 }
 
-#edit_users{
+#edit_logos{
     grid-column: 1 / 2;
     grid-row: 2;
 }
 
-#edit_something{
+#edit_logos{
     grid-column: 2;
     grid-row: 1 / 2;
+}
+
+#add_category{
+    grid-column: 2;
+    grid-row: 2;
 }
 
 @media (max-width: 500px){

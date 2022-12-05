@@ -85,7 +85,7 @@ export default function AdminHub(){
                         </Link>
                     </div>
                 </Link>
-                <Link to={`/edit-categories/${locationId}`} id='edit_users' className='selections_item'>
+                <Link to={`/edit-categories/${locationId}`} id='edit_categories' className='selections_item'>
                     <div className='selections_item_left'>
                         <Link to={`/edit-categories/${locationId}`} id='package' className='selection_logo'>
                             <img src={require('../img/package.png')} id='package'/>
@@ -100,7 +100,7 @@ export default function AdminHub(){
                         </Link>
                     </div>
                 </Link>
-                <Link to={`/edit-enterprises/${locationId}`} id='edit_something' className='selections_item'>
+                <Link to={`/edit-enterprises/${locationId}`} id='edit_logos' className='selections_item'>
                     <div className='selections_item_left'>
                         <Link to={`/edit-enterprises/${locationId}`} id='package' className='selection_logo'>
                             <img src={require('../img/package.png')} id='package'/>
@@ -112,6 +112,21 @@ export default function AdminHub(){
                         </Link>
                         <Link to={`/edit-enterprises/${locationId}`} className='selections_item_description'>
                             <span>Edita los logos de la página principal</span>
+                        </Link>
+                    </div>
+                </Link>
+                <Link to={`/add-category/${locationId}`} id='add_category' className='selections_item'>
+                    <div className='selections_item_left'>
+                        <Link to={`/add-category/${locationId}`} id='package' className='selection_logo'>
+                            <img src={require('../img/package.png')} id='package'/>
+                        </Link>
+                    </div>
+                    <div className='selections_item_right'>
+                        <Link to={`/add-category/${locationId}`} className='selections_item_title'>
+                            <span>Agregar Categoría</span>
+                        </Link>
+                        <Link to={`/add-category/${locationId}`} className='selections_item_description'>
+                            <span>Agrega una categoría</span>
                         </Link>
                     </div>
                 </Link>

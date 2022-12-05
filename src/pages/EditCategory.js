@@ -14,12 +14,15 @@ export default function EditCategory() {
 
   const [newName, setNewName] = useState(null);
 
+  const [newFile, setNewFile] = useState(null);
+  
+  const newUrl = [];
+
   const showCategory = async () => {
     const { data, error } = await supabase
       .from("categories")
       .select("*")
       .eq("id", id);
-    console.log(data);
     setCategory(data[0]);
     setIsLoading(false);
   };
@@ -40,6 +43,51 @@ export default function EditCategory() {
     }
   }
 
+  const updateItem = async () => {
+    updateDb();
+    updateBucket();
+  }
+
+  const updateBucket = async () => {
+    const { data, error } = await supabase
+    .storage
+    .from('categories-img')
+    .update(`${category.id}`, newFile[0], {
+      cacheControl: '3600',
+      upsert: false
+    })
+    document.location.reload();
+  }
+
+  const uploadBucket = async () => {
+    if(newFile != null){
+      const { data, error } = await supabase
+      .storage
+      .from('categories-img')
+      .upload(`${category.id}`, newFile[0]);
+      document.location.reload();
+    }
+    else{
+      alert("Favor de ingresar una imagen");
+    }
+  }
+
+  const updateDb = async () => {
+    console.log("Obteniendo PublicURL");
+    const { data } = supabase
+    .storage
+    .from('categories-img')
+    .getPublicUrl(`${category.id}`);
+    console.log(data.publicUrl.toString());
+
+    newUrl.push(data.publicUrl.toString());
+
+    console.log("Actualizando DB...");
+    const { error } = await supabase
+    .from('categories')
+    .update({ img_url: newUrl })
+    .eq('id', id);
+  }
 
   return (
     <>
@@ -78,6 +126,25 @@ export default function EditCategory() {
                     onClick={submitNewData}
                     />
                 </div>
+            </div>
+          </div>
+          <div className="edit_service_selection">
+            <div className="edit_service_selection_space">
+              <span>Cambiar imagen de la categoría: {category.name}</span>
+              <div id='edit_service_new_file'>
+                Nueva imagen:
+                <input
+                  type={"file"}
+                  accept={".png, .jpg, .jpeg"}
+                  onChange={(e) => setNewFile(e.target.files)}
+                />
+              </div>
+              <input 
+                id='edit_enterprises_submit'
+                type={"submit"}
+                onClick={updateItem}
+                value={`Cambiar imagen`}>
+              </input>
             </div>
           </div>
         </div>

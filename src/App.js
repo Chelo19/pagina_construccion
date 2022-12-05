@@ -23,6 +23,7 @@ import Footer from "./components/Footer";
 import EditCategories from "./pages/EditCategories";
 import EditCategory from "./pages/EditCategory";
 import EditEnterprises from "./pages/EditEnterprises";
+import AddCategory from "./pages/AddCategory";
 
 import { supabase } from "./supabase/client";
 
@@ -72,6 +73,7 @@ function App() {
         <Route path="/edit-categories/:id" element={<EditCategories/>} />
         <Route path="/edit-category/:id" element={<EditCategory/>} />
         <Route path="/edit-enterprises/:id" element={<EditEnterprises/>} />
+        <Route path="/add-category/:id" element={<AddCategory/>}/>
       </Routes>
       <br/>
       <br/>

@@ -30,8 +30,10 @@
 
 .edit_services_services_img{
     height: 60%;
+    background-color: #ebebeb;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    border-radius: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
 
 .edit_services_services_img img{
@@ -54,6 +56,7 @@
     flex-direction: column;
     justify-content: start;
     transition: 1s;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
 .edit_services_services_title{
