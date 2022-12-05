@@ -31,11 +31,10 @@ export default function Home(){
                 .eq("uuid", user.id);
                 setLocationName(data[0].location);
                 getLocationId();
+                setLoadingScreen(false);
             }
-            setLoadingScreen(false);
         }
         catch{
-
         }
     };
         
@@ -88,7 +87,6 @@ export default function Home(){
         .from('enterprises')
         .select();
         setEnterprises(data);
-        console.log(data);
         setLoadingScreen(false);
     }
     

@@ -2,26 +2,27 @@ import { useEffect, useState } from "react";
 import { supabase } from "../supabase/client";
 import { useNavigate } from "react-router-dom";
 import "../styles/Register.css";
+import LoadingScreen from '../components/LoadingScreen';
 
 function Register() {
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    getUserMethod();
-  });
-
-  const getUserMethod = async () => {
-    const {
-      data: { user },
-    } = await supabase.auth.getUser();
-    if (user) navigate("/");
-  };
 
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
   const [name, setName] = useState(null);
   const [location, setLocation] = useState(null);
   const [user, setUser] = useState(null);
+  const [loadingScreen, setLoadingScreen] = useState(true);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    getUserMethod();
+  }, [loadingScreen]);
+
+  const getUserMethod = async () => {
+    const { data: { user } } = await supabase.auth.getUser();
+    if (user) navigate("/");
+    setLoadingScreen(false);
+  };
 
   const hangleSignUp = async (e) => {
     e.preventDefault();
@@ -44,6 +45,7 @@ function Register() {
 
   return (
     <div>
+      {!loadingScreen ? 
       <div className="register_container">
         <div className="register_container_center">
           <div className="register_img_div">
@@ -108,6 +110,7 @@ function Register() {
           </div>
         </div>
       </div>
+      : <LoadingScreen/>}
     </div>
   );
 }

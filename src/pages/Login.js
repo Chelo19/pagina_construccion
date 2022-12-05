@@ -2,6 +2,7 @@ import {useEffect, useState} from 'react';
 import {supabase} from '../supabase/client';
 import {useNavigate} from 'react-router-dom';
 import '../styles/Login.css';
+import LoadingScreen from '../components/LoadingScreen';
 
 
 function Login(){
@@ -9,16 +10,18 @@ function Login(){
     const [email, setEmail] = useState(null);
     const [password, setPassword] = useState(null);
     const [user, setUser] = useState(null);
+    const [loadingScreen, setLoadingScreen] = useState(true);
 
     const navigate = useNavigate();
 
     useEffect(() => {
         getUserMethod();
-    });
+    }, [loadingScreen]);
 
     const getUserMethod = async () => {
         const { data: { user } } = await supabase.auth.getUser();
         if(user) navigate('/');
+        setLoadingScreen(false);
     }
 
     const hangleSignIn = async (e) => {
@@ -41,7 +44,8 @@ function Login(){
 
     return(
         <div>
-            <div className='login_container'>
+            {
+                !loadingScreen ? <div className='login_container'>
                 <div className='login_container_center'>
                     <div className='login_img_div'>
                         <img id='login_img' src={require('../img/construction_img2.jpg')}/>
@@ -82,6 +86,8 @@ function Login(){
                     </div>
                 </div>
             </div>
+            : <LoadingScreen/>}
+            
         </div>
     );
 }

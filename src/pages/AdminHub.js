@@ -4,19 +4,20 @@ import {useNavigate} from 'react-router-dom';
 import '../styles/AdminHub.css';
 import '../styles/Account.css';
 import { Link } from 'react-router-dom';
+import LoadingScreen from '../components/LoadingScreen';
 
 export default function AdminHub(){
     const navigate = useNavigate();
     
     const [locationId, setLocationId] = useState(1);
     const [locationName, setLocationName] = useState("Monterrey");
+    const [loadingScreen, setLoadingScreen] = useState(true);
 
     useEffect(() => {
         getUserMethod();
         getUserData();
         getLocationId();
-        console.log(locationId);
-    }, []);
+    }, [loadingScreen]);
 
     const getUserMethod = async () => {
         const { data: { user } } = await supabase.auth.getUser();
@@ -25,14 +26,15 @@ export default function AdminHub(){
             .from('account')
             .select()
             .eq('uuid', user.id);
-            console.log(data[0].role);
             if(data[0].role != 'administrador'){
-                navigate("/Login");
+                alert("No tienes los permisos para acceder a este lugar");
+                navigate("/");
             }
         }
         else{
-            navigate("/Login");
+            navigate("/");
         }
+        setLoadingScreen(false);
     }
 
     const getUserData = async () => {
@@ -47,7 +49,6 @@ export default function AdminHub(){
             .eq("uuid", user.id);
             
             setLocationName(data[0].location);
-            console.log(locationName);        //log
         }
         catch{
 
@@ -61,7 +62,6 @@ export default function AdminHub(){
             .select()
             .eq("name", locationName);
             setLocationId(data[0].id);    
-            console.log(locationId);        //log
         } catch{
 
         }
@@ -69,6 +69,7 @@ export default function AdminHub(){
 
     return(
         <div className="admin_background">
+            {!loadingScreen ? 
             <div className='selections'>
                 <Link to={`/edit-services/${locationId}`} id='edit_services' className='selections_item'>
                     <div className='selections_item_left'>
@@ -131,6 +132,7 @@ export default function AdminHub(){
                     </div>
                 </Link>
             </div>
+            : <LoadingScreen/>}
         </div>
     )
 }
