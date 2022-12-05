@@ -106,6 +106,7 @@ export default function Home(){
         .from("display_services")
         .select("service_id")
         .eq("location_id", locationId);
+        console.log(data);
         if(displayServices.length >= data.length){
         }
         else{
@@ -121,6 +122,7 @@ export default function Home(){
         const { data, error } = await supabase
         .from("services")
         .select("*");
+        console.log(data);
         if(services.length >= data.length){
         }
         else{
