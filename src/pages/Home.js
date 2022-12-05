@@ -23,6 +23,7 @@ export default function Home(){
     useEffect(() => {      
         insideUseEffect();
     }, [loadingScreen])    
+
     const insideUseEffect = () => {
         insertUuid();
         getUserData();
@@ -30,7 +31,6 @@ export default function Home(){
     
     const insertUuid = async () => {
         const { data: { user } } = await supabase.auth.getUser();
-
         if(user){
             const { data, error } = await supabase
             .from('account')
@@ -49,9 +49,7 @@ export default function Home(){
     
     const getUserData = async () => {
         try{
-            const {
-            data: { user },
-            } = await supabase.auth.getUser();
+            const { data: { user } } = await supabase.auth.getUser();
             if(user){
                 const { data, error } = await supabase
                 .from("account")
@@ -59,6 +57,9 @@ export default function Home(){
                 .eq("uuid", user.id);
                 locationName = data[0].location;
                 getLocationId();
+            }
+            else{
+                getEnterprises();
             }
         }
         catch{
