@@ -88,14 +88,17 @@
     height: 100%;
 }
 
-.edit_enterprises_enterprises_item span{
+.edit_enterprises_enterprises_item div{
     font-family: 'Poppins', sans-serif;
     width: 100px;
     height: 100px;
-    font-size: 90px;
+    font-size: 25px;
     background-color: #ebebeb;
     border-radius: 90px;
     color: #161825;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: absolute;
     text-align: center;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
@@ -119,7 +122,7 @@
 
 #edit_enterprises_submit{
     transition: 1s;
-    width: 15%;
+    width: 25%;
     height: 30px;
     border-radius: 10px;
     border: 2px solid rgba(0, 0, 0, 0.3);
@@ -130,7 +133,7 @@
 
 #edit_enterprises_submit:hover{
     transition: .5s;
-    width: 18%;
+    width: 30%;
     background-color: rgba(255, 126, 34, 1);
     color: #ebebeb;
 }

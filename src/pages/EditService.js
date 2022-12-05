@@ -84,6 +84,7 @@ export default function EditService() {
       cacheControl: '3600',
       upsert: false
     })
+    document.location.reload();
   }
 
   const removeBucket = async () => {

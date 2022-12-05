@@ -67,6 +67,7 @@ export default function EditEnterprises(){
         setLoadingScreen(false);
     }
 
+    
     const removeItem = async () => {
         if(selection != null){
             removeBucket();
@@ -76,13 +77,14 @@ export default function EditEnterprises(){
             alert("Por favor selecciona un logo");
         }
     }
-
+    
     const removeBucket = async () => {
         console.log("Eliminando de Bucket...");
         const { data, error } = await supabase
         .storage
         .from('enterprises-img')
-        .remove([`${locationId}` + '/' + selection.toString()]);
+        .remove([`${locationId}` + '/' + `${selection}`]);
+        document.location.reload();
     }
 
     const removeDb = async () => {
@@ -90,7 +92,7 @@ export default function EditEnterprises(){
         const { error } = await supabase
         .from('enterprises')
         .delete()
-        .eq('id', selection);
+        .eq('name', selection);
     }
 
     const uploadItem = async () => {
@@ -106,6 +108,7 @@ export default function EditEnterprises(){
             .from('enterprises-img')
             .upload(`${locationId}` + '/' + `${newName}`, newFile[0]);
             console.log("Sale de UploadBucket");
+            document.location.reload();
         }
         else{
             alert("Favor de llenar todos los espacios");
@@ -126,7 +129,6 @@ export default function EditEnterprises(){
             const { error } = await supabase
             .from('enterprises')
             .insert({ name: newName, img_url: data.publicUrl.toString(), location_id: locationId });
-            console.log(error);
         }
     }
 
@@ -149,9 +151,9 @@ export default function EditEnterprises(){
                         <div className='edit_enterprises_enterprises_gallery'>
                             {enterprises.map((enterprise) => {
                             return(
-                                <div className='edit_enterprises_enterprises_item' key={enterprise.id} onClick={(e) => setSelection(enterprise.id)}>
+                                <div className='edit_enterprises_enterprises_item' key={enterprise.name} onClick={(e) => setSelection(enterprise.name)}>
                                     <img src={enterprise.img_url}/>
-                                    <span>{enterprise.id}</span>
+                                    <div>{enterprise.name}</div>
                                 </div>
                             );
                         })}
@@ -162,12 +164,12 @@ export default function EditEnterprises(){
             </div>
             <div className='edit_enterprises_selection'>
                 <span>Eliminar Logo</span>
-                <span>Selecciona el logo a eliminar y dale click al botón "Eliminar logo con id"</span>
+                <span>Selecciona el logo a eliminar y dale click al botón "Eliminar logo con nombre"</span>
                 <input 
                     id='edit_enterprises_submit'
                     type={"submit"}
                     onClick={removeItem}
-                    value={"Eliminar logo con id: " + selection}>
+                    value={"Eliminar logo con nombre: " + selection}>
                 </input>
                 <span>Agregar Logo</span>
                 <span>Agrega una imagen y un nuevo nombre para el logo y da click al botón "Agregar logo"</span>

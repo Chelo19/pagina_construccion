@@ -140,7 +140,7 @@ export default function Header(){
                                 </Link>
                             </div>
                             <div className='bars_menu_item'>
-                                <Link to={'/categories/1'} style={{ color: 'inherit', textDecoration: 'inherit'}} onClick={changeIsBarMenu}>
+                                <Link to={'/client-service'} style={{ color: 'inherit', textDecoration: 'inherit'}} onClick={changeIsBarMenu}>
                                     <a>Servicio al cliente</a>
                                 </Link>
                             </div>
