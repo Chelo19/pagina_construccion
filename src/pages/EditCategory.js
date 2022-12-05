@@ -37,7 +37,7 @@ export default function EditCategory() {
       .from('categories')
       .update({ name: newName })
       .eq('id', id)
-      alert('Nombre y descripción agregados correctamente');
+      alert('Nombre agregado correctamente');
       document.location.reload();
       return;
     }

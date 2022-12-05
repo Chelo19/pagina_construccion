@@ -51,6 +51,12 @@
     color: #ebebeb;
 }
 
+#add_category_alert{
+    color: rgb(255, 119, 119);
+    padding: 15px;
+    border-radius: 35px;
+}
+
 @media(max-width: 500px){
 
     .add_category_container{

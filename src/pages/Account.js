@@ -10,6 +10,7 @@ export default function Account(){
     const [email, getEmail] = useState(null);
     const [location, getLocation] = useState(null);
     const [newLocation, getNewLocation] = useState(null);
+    var newLocationId;
 
     const [loadingScreen, setLoadingScreen] = useState(true);
 
@@ -17,7 +18,7 @@ export default function Account(){
 
     useEffect(() => {
         userData();
-    });
+    }, [loadingScreen]);
 
     const userData = async () => {
         getUserData();
@@ -37,12 +38,21 @@ export default function Account(){
     }
 
     const updateLocation = async () => {
+        getLocationId();
         console.log(newLocation);
         const { data: { user } } = await supabase.auth.getUser();
         const { data, error } = await supabase
         .from('account')
-        .update({location: newLocation})
+        .update({location: newLocation, location_id: newLocationId})
         .eq('uuid', user.id);
+    }
+
+    const getLocationId = async () => {
+        const { data, error } = await supabase
+        .from('location')
+        .select()
+        .eq('name', newLocation);
+        newLocationId = data[0].id;
     }
 
     return(

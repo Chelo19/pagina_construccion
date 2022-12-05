@@ -10,10 +10,12 @@ export default function AddCategory(){
     const { id } = useParams();
     const [newName, setNewName] = useState(null);
     const [newFile, setNewFile] = useState(null);
+    const [alert, setAlert] = useState(null);
     var categoryId;
     const newUrl = [];
 
     const createItem = async () => {
+        setAlert("Recuerda esperar la alerta de confirmación antes de abandonar esta página");
         if(newName != null && newFile != null){
             insertDb();
             getItem();
@@ -33,7 +35,7 @@ export default function AddCategory(){
         const { data, error } = await supabase
         .from('categories')
         .select()
-        .eq('name', newName);
+        .match({ location_id: id, name: newName });
         categoryId = data[0].id;
         uploadBucket();
     }
@@ -59,7 +61,6 @@ export default function AddCategory(){
         .from('categories')
         .update({ img_url: newUrl })
         .eq('name', newName);
-        alert("Categoría creada correctamente");
         document.location.reload();
     }
 
@@ -86,6 +87,7 @@ export default function AddCategory(){
                 value={"Crear nueva categoría"}
                 onClick={createItem}
                 />
+                <span id="add_category_alert">{alert}</span>
             </div>
         </div>
     )

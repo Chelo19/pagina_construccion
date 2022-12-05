@@ -10,13 +10,11 @@ export default function AdminHub(){
     const navigate = useNavigate();
     
     const [locationId, setLocationId] = useState(1);
-    const [locationName, setLocationName] = useState("Monterrey");
     const [loadingScreen, setLoadingScreen] = useState(true);
 
     useEffect(() => {
         getUserMethod();
         getUserData();
-        getLocationId();
     }, [loadingScreen]);
 
     const getUserMethod = async () => {
@@ -47,25 +45,13 @@ export default function AdminHub(){
             .from("account")
             .select()
             .eq("uuid", user.id);
-            
-            setLocationName(data[0].location);
+            console.log(data);
+            setLocationId(data[0].location_id);
         }
         catch{
 
         }
     };
-
-    const getLocationId = async () => {
-        try{
-            const { data, error} = await supabase
-            .from("location")
-            .select()
-            .eq("name", locationName);
-            setLocationId(data[0].id);    
-        } catch{
-
-        }
-    }
 
     return(
         <div className="admin_background">
