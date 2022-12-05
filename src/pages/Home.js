@@ -122,7 +122,6 @@ export default function Home(){
         const { data, error } = await supabase
         .from("services")
         .select("*");
-        console.log(data);
         if(services.length >= data.length){
         }
         else{
@@ -136,19 +135,23 @@ export default function Home(){
 
     const setDisplayServices = async () => {
         if(servicesForDisplay == null){
-            for(var i = 0 ; i < services.length ; i++){
-                for(var j = 0 ; j < displayServices.length ; j++){
-                    if(services[i].id == displayServices[j]){
-                        displayServicesSel.push(services[i]);
+            console.log("Entra");
+            for(var i = 0 ; i < displayServices.length ; i++){
+                for(var j = 0 ; j < services.length ; j++){
+                    if(displayServices[i] == services[j].id){
+                        console.log("Ingresa");
+                        console.log(services[j]);
+                        displayServicesSel.push(services[j]);
                     }
                 }
             }
+            console.log(displayServicesSel);
             setServicesForDisplay(displayServicesSel);
         }
         else{
 
         }
-        console.log(displayServicesSel);
+        console.log(servicesForDisplay);
     }
 
     return(
