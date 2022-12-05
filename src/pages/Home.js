@@ -12,56 +12,22 @@ import { Link } from 'react-router-dom';
 
 
 export default function Home(){
-    const [locationId, setLocationId] = useState(1);
-    const [locationName, setLocationName] = useState("Monterrey");
     const [loadingScreen, setLoadingScreen] = useState(true);
     const [enterprises, setEnterprises] = useState();
+    const [uLocationId, setULocationId] = useState(null);
     const navigate = useNavigate();
+    var locationName;
+    var locationId = 1;
     AuthRedirect();
-
-    const getUserData = async () => {
-        try{
-            const {
-            data: { user },
-            } = await supabase.auth.getUser();
-            if(user){
-                const { data, error } = await supabase
-                .from("account")
-                .select()
-                .eq("uuid", user.id);
-                setLocationName(data[0].location);
-                getLocationId();
-                setLoadingScreen(false);
-            }
-        }
-        catch{
-        }
-    };
-        
-    const getLocationId = async () => {
-        try{
-            const { data, error} = await supabase
-            .from("location")
-            .select()
-            .eq("name", locationName);
-            setLocationId(data[0].id);
-            console.log(data[0].id);
-            setLoadingScreen(false);
-        } catch{
-
-        }
-    }
-
+    
+    useEffect(() => {      
+        insideUseEffect();
+    }, [loadingScreen])    
     const insideUseEffect = () => {
         insertUuid();
         getUserData();
-        getEnterprises();
     }
-
-    useEffect(() => {      
-        insideUseEffect();
-    }, [loadingScreen])              
-
+    
     const insertUuid = async () => {
         const { data: { user } } = await supabase.auth.getUser();
 
@@ -79,18 +45,49 @@ export default function Home(){
                 .eq('email', user.email)
             }
         }
-        setLoadingScreen(false);
     }
+    
+    const getUserData = async () => {
+        try{
+            const {
+            data: { user },
+            } = await supabase.auth.getUser();
+            if(user){
+                const { data, error } = await supabase
+                .from("account")
+                .select()
+                .eq("uuid", user.id);
+                locationName = data[0].location;
+                getLocationId();
+            }
+        }
+        catch{
+
+        }
+    };
+
+    const getLocationId = async () => {
+        try{
+            const { data, error} = await supabase
+            .from("location")
+            .select()
+            .eq("name", locationName);
+            locationId = data[0].id;
+            getEnterprises();
+            setULocationId(locationId);
+        } catch{
+
+        }
+    };
 
     const getEnterprises = async () => {
         const { data, error } = await supabase
         .from('enterprises')
-        .select();
+        .select()
+        .eq( 'location_id' , locationId );
         setEnterprises(data);
         setLoadingScreen(false);
     }
-    
-    
 
     return(
         <div>
@@ -100,15 +97,15 @@ export default function Home(){
                     <span id='background_img_title'>DREC</span>
                     <span id='background_img_eslogan'><i>"La construcción que siempre debiste tener"</i></span>
                 </div>
-                
+                {console.log("LocID: " + uLocationId)}
                 <div className='our_projects_presentation'>
-                    <Link to={`/categories/${locationId}`} style={{ color: 'inherit', textDecoration: 'inherit'}} className='our_projects_presentation_text'>
+                    <Link to={`/categories/${uLocationId}`} style={{ color: 'inherit', textDecoration: 'inherit'}} className='our_projects_presentation_text'>
                         NUESTROS SERVICIOS
                     </Link>
                 </div>
                 <div className='our_projects'>
                     <div className='our_projects_container'>
-                        <Link to={`/categories/${locationId}`} className='our_projects_container_button'>
+                        <Link to={`/categories/${uLocationId}`} className='our_projects_container_button'>
                             <div className='our_projects_container_button_top'>
                                 <img src={require('../img/services/service_4.jpg')}/>
                             </div>
@@ -118,7 +115,7 @@ export default function Home(){
                                 </div>
                             </div>
                         </Link>
-                        <Link to={`/categories/${locationId}`} className='our_projects_container_button'>
+                        <Link to={`/categories/${uLocationId}`} className='our_projects_container_button'>
                             <div className='our_projects_container_button_top'>
                                 <img src={require('../img/services/service_2.jpg')}/>
                             </div>
@@ -128,7 +125,7 @@ export default function Home(){
                                 </div>
                             </div>
                         </Link>
-                        <Link to={`/categories/${locationId}`} className='our_projects_container_button'>
+                        <Link to={`/categories/${uLocationId}`} className='our_projects_container_button'>
                             <div className='our_projects_container_button_top'>
                                 <img src={require('../img/services/service_3.jpg')}/>
                             </div>

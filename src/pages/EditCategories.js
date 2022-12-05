@@ -44,7 +44,7 @@ export default function EditCategories(){
                                 <span>id localización: <b>{category.location_id}</b></span>
                             </div>
                             <div className="edit_services_services_id">
-                                <span>id servicio: <b>{category.id}</b></span>
+                                <span>id categoría: <b>{category.id}</b></span>
                             </div>
                         </div>
                     </Link>
