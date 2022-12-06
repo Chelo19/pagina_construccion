@@ -56,64 +56,94 @@ export default function AdminHub(){
     return(
         <div className="admin_background">
             {!loadingScreen ? 
-            <div className='selections'>
-                <Link to={`/edit-services/${locationId}`} id='edit_services' className='selections_item'>
-                    <div className='selections_item_left'>
-                        <Link to={`/edit-services/${locationId}`} id='package' className='selection_logo' style={{ color: 'inherit', textDecoration: 'inherit'}}>
-                            <img src={require('../img/package.png')} id='package'/>
+            <div className='admin_selections'>
+                <Link to={`/edit-services/${locationId}`} id='edit_services' className='admin_selections_item'>
+                    <div className='admin_selections_item_left'>
+                        <Link to={`/edit-services/${locationId}`} id='admin_package' className='admin_selection_logo' style={{ color: 'inherit', textDecoration: 'inherit'}}>
+                            <img src={require('../img/package.png')} id='admin_package'/>
                         </Link>
                     </div>
-                    <div className='selections_item_right'>
-                        <Link to={`/edit-services/${locationId}`} className='selections_item_title'>
+                    <div className='admin_selections_item_right'>
+                        <Link to={`/edit-services/${locationId}`} className='admin_selections_item_title'>
                             <span>Editar Servicios</span>
                         </Link>
-                        <Link to={`/edit-services/${locationId}`} className='selections_item_description'>
+                        <Link to={`/edit-services/${locationId}`} className='admin_selections_item_description'>
                             <span>Edita los datos de un servicio en específico</span>
                         </Link>
                     </div>
                 </Link>
-                <Link to={`/edit-categories/${locationId}`} id='edit_categories' className='selections_item'>
-                    <div className='selections_item_left'>
-                        <Link to={`/edit-categories/${locationId}`} id='package' className='selection_logo'>
-                            <img src={require('../img/package.png')} id='package'/>
+                <Link to={`/add-service-select-category/${locationId}`} id='admin_add_service' className='admin_selections_item'>
+                    <div className='admin_selections_item_left'>
+                        <Link to={`/add-service-select-category/${locationId}`} id='admin_package' className='admin_selection_logo'>
+                            <img src={require('../img/package.png')} id='admin_package'/>
                         </Link>
                     </div>
-                    <div className='selections_item_right'>
-                        <Link to={`/edit-categories/${locationId}`} className='selections_item_title'>
+                    <div className='admin_selections_item_right'>
+                        <Link to={`/add-service-select-category/${locationId}`} className='admin_selections_item_title'>
+                            <span>Agregar Servicio</span>
+                        </Link>
+                        <Link to={`/add-service-select-category/${locationId}`} className='admin_selections_item_description'>
+                            <span>Agrega un servicio</span>
+                        </Link>
+                    </div>
+                </Link>
+                <Link to={`/edit-categories/${locationId}`} id='admin_edit_categories' className='admin_selections_item'>
+                    <div className='admin_selections_item_left'>
+                        <Link to={`/edit-categories/${locationId}`} id='admin_package' className='admin_selection_logo'>
+                            <img src={require('../img/package.png')} id='admin_package'/>
+                        </Link>
+                    </div>
+                    <div className='admin_selections_item_right'>
+                        <Link to={`/edit-categories/${locationId}`} className='admin_selections_item_title'>
                             <span>Editar Categorías</span>
                         </Link>
-                        <Link to={`/edit-categories/${locationId}`} className='selections_item_description'>
+                        <Link to={`/edit-categories/${locationId}`} className='admin_selections_item_description'>
                             <span>Edita los datos de una categoría en específico</span>
                         </Link>
                     </div>
                 </Link>
-                <Link to={`/edit-enterprises/${locationId}`} id='edit_logos' className='selections_item'>
-                    <div className='selections_item_left'>
-                        <Link to={`/edit-enterprises/${locationId}`} id='package' className='selection_logo'>
-                            <img src={require('../img/package.png')} id='package'/>
+                <Link to={`/edit-enterprises/${locationId}`} id='admin_edit_logos' className='admin_selections_item'>
+                    <div className='admin_selections_item_left'>
+                        <Link to={`/edit-enterprises/${locationId}`} id='admin_package' className='admin_selection_logo'>
+                            <img src={require('../img/package.png')} id='admin_package'/>
                         </Link>
                     </div>
-                    <div className='selections_item_right'>
-                        <Link to={`/edit-enterprises/${locationId}`} className='selections_item_title'>
+                    <div className='admin_selections_item_right'>
+                        <Link to={`/edit-enterprises/${locationId}`} className='admin_selections_item_title'>
                             <span>Editar Logos</span>
                         </Link>
-                        <Link to={`/edit-enterprises/${locationId}`} className='selections_item_description'>
+                        <Link to={`/edit-enterprises/${locationId}`} className='admin_selections_item_description'>
                             <span>Edita los logos de la página principal</span>
                         </Link>
                     </div>
                 </Link>
-                <Link to={`/add-category/${locationId}`} id='add_category' className='selections_item'>
-                    <div className='selections_item_left'>
-                        <Link to={`/add-category/${locationId}`} id='package' className='selection_logo'>
-                            <img src={require('../img/package.png')} id='package'/>
+                <Link to={`/add-category/${locationId}`} id='admin_add_category' className='admin_selections_item'>
+                    <div className='admin_selections_item_left'>
+                        <Link to={`/add-category/${locationId}`} id='admin_package' className='admin_selection_logo'>
+                            <img src={require('../img/package.png')} id='admin_package'/>
                         </Link>
                     </div>
-                    <div className='selections_item_right'>
-                        <Link to={`/add-category/${locationId}`} className='selections_item_title'>
+                    <div className='admin_selections_item_right'>
+                        <Link to={`/add-category/${locationId}`} className='admin_selections_item_title'>
                             <span>Agregar Categoría</span>
                         </Link>
-                        <Link to={`/add-category/${locationId}`} className='selections_item_description'>
+                        <Link to={`/add-category/${locationId}`} className='admin_selections_item_description'>
                             <span>Agrega una categoría</span>
+                        </Link>
+                    </div>
+                </Link>
+                <Link to={`/add-service-home-select-category/${locationId}`} id='admin_add_service_home_display' className='admin_selections_item'>
+                    <div className='admin_selections_item_left'>
+                        <Link to={`/add-service-home-select-category/${locationId}`} id='admin_package' className='admin_selection_logo'>
+                            <img src={require('../img/package.png')} id='admin_package'/>
+                        </Link>
+                    </div>
+                    <div className='admin_selections_item_right'>
+                        <Link to={`/add-service-home-select-category/${locationId}`} className='admin_selections_item_title'>
+                            <span>Agregar Servicio a Home</span>
+                        </Link>
+                        <Link to={`/add-service-home-select-category/${locationId}`} className='admin_selections_item_description'>
+                            <span>Agrega un servicio a home</span>
                         </Link>
                     </div>
                 </Link>

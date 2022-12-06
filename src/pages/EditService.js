@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { supabase } from "../supabase/client";
 import { useParams } from "react-router-dom";
 import LoadingScreen from "../components/LoadingScreen";
-import "../styles/Service.css";
 import "../styles/EditService.css";
 import { Link } from "react-router-dom";
 
@@ -87,15 +86,6 @@ export default function EditService() {
     document.location.reload();
   }
 
-  const removeBucket = async () => {
-    console.log("Eliminando de Bucket...");
-    const { data, error } = await supabase
-    .storage
-    .from('services-img')
-    .remove([`${service.category_id}` + '/' + `${service.id}` + '-' + `${selection}`])
-    console.log(data);
-    console.log(error);
-  }
 
   const uploadBucket = async () => {
     if(newFile != null){
@@ -132,7 +122,28 @@ export default function EditService() {
   }
 
   const removeItem = async () => {
-    console.log(`${service.category_id}` + '/' + `${service.id}` + '-' + `${selection}`);
+    removeBucket();
+    removeDb();
+  }
+
+  const removeBucket = async () => {
+    console.log("Eliminando de Bucket...");
+    for(var i = 0 ; i < 5 ; i++){
+      const { data, error } = await supabase
+      .storage
+      .from('services-img')
+      .remove([`${service.category_id}` + '/' + `${service.id}` + `-${i}`])
+      console.log(data);
+      console.log(error);
+    }
+  }
+
+  const removeDb = async () => {
+    const { error } = await supabase
+    .from('services')
+    .delete()
+    .eq('id', id)
+    console.log(error);
   }
 
   return (
@@ -216,12 +227,21 @@ export default function EditService() {
                 />
               </div>
               <input 
-                id='edit_enterprises_submit'
+                id='edit_service_submit'
                 type={"submit"}
                 onClick={uploadItem}
                 value={`Cambiar imagen de: ${selection}`}>
               </input>
             </div>
+          </div>
+          <div className="edit_service_remove">
+            <span>Recuerda esperar alrededor de 15 segundos antes de abandonar esta página</span>
+            <input 
+              id='edit_service_remove_input'
+              type={"submit"}
+              onClick={removeItem}
+              value={`Eliminar: ${id}`}>
+            </input>
           </div>
         </div>
       ) : <LoadingScreen/>}

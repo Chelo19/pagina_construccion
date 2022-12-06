@@ -106,6 +106,10 @@
 
 @media(max-width:500px){
 
+    .edit_services_services_background{
+        margin-top: 90px;
+    }
+
     .edit_services_services_gallery{
         flex-direction: column;
     }

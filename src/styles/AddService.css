@@ -1,0 +1,91 @@
+.add_service_background{
+    width: 100%;
+    height: 110vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.add_service_container{
+    font-family: 'Poppins', sans-serif;
+    color: #ebebeb;
+    width: 100%;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    background-color: #161825;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    text-align: center;
+}
+
+.add_service_container span{
+    text-align: center;
+    font-size: 50px;
+}
+
+#add_service_text_input{
+    text-align: center;
+    width: 15%;
+    border-radius: 15px;
+    padding: 5px;
+    border: 2px solid rgba(0, 0, 0, 0.5);
+}
+
+#add_service_text_input_description{
+    text-align: center;
+    width: 50%;
+    border-radius: 15px;
+    padding: 5px;
+    border: 2px solid rgba(0, 0, 0, 0.5);
+}
+
+#add_service_file{
+    font-size: 20px;
+}
+
+#add_service_submit{
+    transition: 1s;
+    width: 25%;
+    height: 30px;
+    border-radius: 10px;
+    border: 2px solid rgba(0, 0, 0, 0.3);
+    color: #ebebeb;
+    background-color: rgba(255, 126, 34, 0.7);
+    font-size: 18px;
+}
+
+#add_service_submit:hover{
+    transition: .5s;
+    width: 30%;
+    background-color: rgba(255, 126, 34, 1);
+    color: #ebebeb;
+}
+
+#add_service_alert{
+    color: rgb(255, 119, 119);
+    padding: 15px;
+    border-radius: 35px;
+}
+
+@media(max-width: 500px){
+
+    .add_service_container{
+        height: 100%;
+    }
+
+    #add_service_text_input{
+        width: 60%;
+    }
+
+    #add_service_submit{
+        width: 60%;
+    }
+    
+    #add_service_submit:hover{
+        width: 65%;
+    }
+
+}

@@ -139,7 +139,7 @@ export default function EditCategory() {
                 />
               </div>
               <input 
-                id='edit_enterprises_submit'
+                id='edit_category_submit'
                 type={"submit"}
                 onClick={updateItem}
                 value={`Cambiar imagen`}>

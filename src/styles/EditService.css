@@ -227,11 +227,58 @@ bn{
     font-size: 20px;
 }
 
+.edit_service_remove{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    font-size: 50px;
+    gap: 20px;
+    color: rgba(255, 0, 0, .7);
+}
+
+#edit_service_submit{
+    transition: 1s;
+    width: 25%;
+    height: 30px;
+    border-radius: 10px;
+    border: 2px solid rgba(0, 0, 0, 0.3);
+    color: #ebebeb;
+    background-color: rgba(255, 126, 34, 0.7);
+    font-size: 18px;
+}
+
+#edit_service_submit:hover{
+    transition: .5s;
+    width: 30%;
+    background-color: rgba(255, 126, 34, 1);
+    color: #ebebeb;
+}
+
+#edit_service_remove_input{
+    transition: 1s;
+    width: 25%;
+    height: 30px;
+    border-radius: 10px;
+    border: 2px solid rgba(0, 0, 0, 0.3);
+    color: #ebebeb;
+    background-color: rgba(255, 0, 0, .7);
+    font-size: 18px;
+}
+
+#edit_service_remove_input:hover{
+    width: 35%;
+    background-color: rgba(255, 0, 0, 1);
+}
+
 @media(max-width: 500px){
 
     .edit_service_service_background{
-        margin-top: 100px;
+        margin-top: 90px;
         height: auto;
+        gap: 20px;
     }
     
     .edit_service_service_display{
@@ -240,6 +287,54 @@ bn{
 
     .edit_service_service_display_left{
         width: 100%;
+    }
+
+    .edit_service_service_display_mid{
+        width: 100%;
+    }
+
+    .edit_service_service_display_right{
+        width: 100%;
+    }
+
+    .edit_service_selection{
+        background-color: #161825;
+    }
+
+    .edit_service_selection_space{
+        gap: 15px;
+        margin: 20px;
+    }
+
+    .edit_service_selection_space span{
+        font-size: 30px;
+    }
+
+    #edit_service_new_file{
+        flex-direction: column;
+        justify-content: center;
+        gap: 0;
+    }
+
+    #edit_service_submit{
+        width: 80%;
+    }
+
+    #edit_service_submit:hover{
+        width: 90%;
+    }
+
+    .edit_service_remove{
+        font-size: 20px;
+        font-weight: 600;
+    }
+
+    #edit_service_remove_input{
+        width: 80%;
+    }
+
+    #edit_service_remove_input:hover{
+        width: 90%;
     }
 
 }
