@@ -70,3 +70,20 @@
 #add_service_to_home_return:hover{
     background-color: rgba(116, 116, 116, 1);
 }
+
+@media(max-width:500px){
+    .add_service_to_home_container{
+        width: 70%;
+        height: 40%;
+        font-size: 30px;
+    }
+
+    .add_service_to_home_submits input{
+        width: 35%;
+    }
+
+    .add_service_to_home_submits input:hover{
+        width: 40%;
+
+    }
+}
