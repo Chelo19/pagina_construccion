@@ -115,6 +115,8 @@ export default function Home(){
         .from('display_services')
         .select(`service_id, services ( id, name, img_url )`)
         .eq("location_id", locationId);
+        console.log(data);
+        console.log(error);
         if(displayServicesSel.length >= data.length){
             console.log("displayServicesSel esta lleno");
             console.log("Sale de fkDisp");
