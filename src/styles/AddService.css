@@ -72,6 +72,11 @@
 
 @media(max-width: 500px){
 
+    .add_service_background{
+        height: auto;
+        margin-top: 69px;
+    }
+
     .add_service_container{
         height: 100%;
     }
@@ -86,6 +91,10 @@
     
     #add_service_submit:hover{
         width: 65%;
+    }
+
+    .add_service_container span{
+        font-size: 20px;
     }
 
 }

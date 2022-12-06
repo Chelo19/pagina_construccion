@@ -54,6 +54,8 @@ export default function AddService(){
         .from('services')
         .select()
         .match({ category_id: id, name: newName });
+        console.log(data[0]);
+        console.log(data[0].id);
         serviceId = data[0].id;
         if(newFile0 != null && newFile1 != null && newFile2 != null && newFile3 != null && newFile4 != null){
             uploadBuckets();

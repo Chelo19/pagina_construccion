@@ -13,9 +13,10 @@ import { Link } from 'react-router-dom';
 
 export default function Home(){
     const [loadingScreen, setLoadingScreen] = useState(true);
-    const [enterprises, setEnterprises] = useState();
+    const [enterprises, setEnterprises] = useState(null);
     const [servicesForDisplay, setServicesForDisplay] = useState(null);
     const [uLocationId, setULocationId] = useState(1);
+    var confirmaciones = [false, false];
     const navigate = useNavigate();
     var locationName;
     var locationId = 1;
@@ -29,7 +30,6 @@ export default function Home(){
     const insideUseEffect = () => {
         insertUuid();
         getUserData();
-        fkDisplayServices();
     }
     
     const insertUuid = async () => {
@@ -63,6 +63,7 @@ export default function Home(){
             }
             else{
                 getEnterprises();
+                fkDisplayServices();
             }
         }
         catch{
@@ -77,39 +78,62 @@ export default function Home(){
             .select()
             .eq("name", locationName);
             locationId = data[0].id;
-            getEnterprises();
+            getDataBases();
             setULocationId(locationId);
         } catch{
 
         }
     };
 
+    const getDataBases = async () => {
+        getEnterprises();
+        fkDisplayServices();
+        if(confirmaciones[0] && confirmaciones[1]){
+            console.log("Sale de getDB");
+            setLoadingScreen(false);
+        }
+    }
+
     const getEnterprises = async () => {
         const { data, error } = await supabase
         .from('enterprises')
         .select()
         .eq( 'location_id' , locationId );
-        setEnterprises(data);
-        setLoadingScreen(false);
+        if(data != null){
+            setEnterprises(data);
+            console.log("Sale de getEnter");
+            confirmaciones[0] = true;
+        }
+        if(confirmaciones[0] && confirmaciones[1]){
+            console.log("Sale de getDB");
+            setLoadingScreen(false);
+        }
     }
 
     const fkDisplayServices = async () => {
         const { data, error } = await supabase
         .from('display_services')
-        .select(`service_id, services ( id, name, img_url )`);
-        if(displayServicesSel >= data.length){
+        .select(`service_id, services ( id, name, img_url )`)
+        .eq("location_id", locationId);
+        if(displayServicesSel.length >= data.length){
             console.log("displayServicesSel esta lleno");
+            console.log("Sale de fkDisp");
+            confirmaciones[1] = true;
+            setServicesForDisplay(displayServicesSel);
         }
         else{
             for(var i = 0 ; i < data.length ; i++){
                 displayServicesSel.push(data[i].services);
             }
         }
-        setServicesForDisplay(displayServicesSel);
+        if(confirmaciones[0] && confirmaciones[1]){
+            console.log("Sale de getDB");
+            setLoadingScreen(false);
+        }
     }
 
     return(
-        <div>
+        <div className='home_background'>
             {!loadingScreen
             ? <>
                 <div className='background_img'>

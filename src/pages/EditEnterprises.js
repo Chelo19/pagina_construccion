@@ -169,7 +169,7 @@ export default function EditEnterprises(){
                     id='edit_enterprises_submit'
                     type={"submit"}
                     onClick={removeItem}
-                    value={"Eliminar logo con nombre: " + selection}>
+                    value={"Eliminar: " + selection}>
                 </input>
                 <span>Agregar Logo</span>
                 <span>Agrega una imagen y un nuevo nombre para el logo y da click al botón "Agregar logo"</span>

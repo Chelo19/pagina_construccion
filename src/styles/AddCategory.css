@@ -59,6 +59,10 @@
 
 @media(max-width: 500px){
 
+    .add_category_background{
+        margin-top: 69px;
+    }
+
     .add_category_container{
         height: 100%;
     }

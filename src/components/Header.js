@@ -108,7 +108,7 @@ export default function Header(){
                         <div className='bars_menu_div'>
                             <div className='bars_menu_item'>
                                 <Link to={'/'} style={{ color: 'inherit', textDecoration: 'inherit'}} onClick={changeIsBarMenu}>
-                                    <a>Menu Principal</a>
+                                    <a>Menú principal</a>
                                 </Link>
                             </div>
                             {isLogged ? (

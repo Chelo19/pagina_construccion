@@ -58,7 +58,7 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <br />
+      <br/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />
@@ -85,10 +85,6 @@ function App() {
         <Route path="/add-service-home/:id" element={<AddServiceHome/>}/>
         <Route path="/add-service-to-home/:id" element={<AddServiceToHome/>}/>
       </Routes>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
       <Footer/>
     </div>
   );

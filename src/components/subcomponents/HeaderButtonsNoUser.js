@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import {supabase} from '../../supabase/client';
 import '../../styles/Header.css';
 import { useNavigate } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 export default function HeaderButtonsNoUser(){
     
@@ -39,15 +40,25 @@ export default function HeaderButtonsNoUser(){
         <div className='header_buttons'>
             <ul className='horizontal_menu_header'>
                 {role == 'administrador' &&
-                    <li><a Link to="/admin-hub/" onClick={() => navigate(`/admin-hub`)}>Administrador</a></li>   
+                <li><a><Link to={`/admin-hub/`} style={{ color: 'inherit', textDecoration: 'inherit'}}>
+                    Administrador
+                </Link></a></li>  
                 }
-                <li><a Link to="/" onClick={() => navigate(`/`)}>Home</a></li>
+                <li><a><Link to={`/`} style={{ color: 'inherit', textDecoration: 'inherit'}}>
+                    Inicio
+                </Link></a></li>
                 <li>
-                    <a Link to="/account/" onClick={() => navigate(`/account`)}>Cuenta</a>
+                    <a><Link to={`/`} style={{ color: 'inherit', textDecoration: 'inherit'}}>
+                        Opciones
+                    </Link></a>
                     <ul className='vertical_menu_header'>
-                        <li><a Link to="/my-services/" onClick={() => navigate(`/my-services`)}>Mis Servicios</a></li>
-                        <li><a Link to="/client-service/" onClick={() => navigate(`/client-service`)}>Servicio al Cliente</a></li>
-                        <li><a Link to="/" onClick={signOut}>Cerrar sesion</a></li>
+                        <li><Link to={`/`} style={{ color: 'inherit', textDecoration: 'inherit'}}>Menú principal</Link></li>
+                        <li><Link to={`/account/`} style={{ color: 'inherit', textDecoration: 'inherit'}}>Cuenta</Link></li>
+                        <li><Link to={`/my-services/`} style={{ color: 'inherit', textDecoration: 'inherit'}}>Mis Servicios</Link></li>
+                        <li><Link to={`/`} style={{ color: 'inherit', textDecoration: 'inherit'}}>Contacto</Link></li>
+                        <li><Link to={`/`} style={{ color: 'inherit', textDecoration: 'inherit'}}>Nosotros</Link></li>
+                        <li><Link to={`/client-service/`} style={{ color: 'inherit', textDecoration: 'inherit'}}>Servicio al Cliente</Link></li>
+                        <li><Link to={`/`} style={{ color: 'inherit', textDecoration: 'inherit'}} onClick={signOut}>Cerrar sesion</Link></li>
                     </ul>
                 </li>
             </ul>

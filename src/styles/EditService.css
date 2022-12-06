@@ -12,6 +12,7 @@ bn{
     height: 120vh;
     margin-top: 150px;
     gap: 50px;
+    padding-bottom: 60px;
 }
 
 .edit_service_service_display{
@@ -276,7 +277,9 @@ bn{
 @media(max-width: 500px){
 
     .edit_service_service_background{
-        margin-top: 90px;
+        margin-top: 69px;
+        padding-top: 20px;
+        padding-bottom: 20px;
         height: auto;
         gap: 20px;
     }

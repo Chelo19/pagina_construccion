@@ -201,8 +201,10 @@
 @media (max-width: 500px){
 
     .account_background{
-        height: 83vh;
-        margin-top: 90px;
+        margin-top: 69px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        height: 85vh;
     }
 
     .selections{
@@ -210,6 +212,8 @@
         flex-direction: column;
         padding: 0;
         height: 100%;
+        grid-gap: 0;
+        gap: 10px;
     }
 
     .selection_logo{
@@ -231,15 +235,18 @@
     }
 
     #my_services_grid{
-        height: 35%;
+        height: 20%;
+        width: auto;
     }
 
     #client_service_grid{
-        height: 35%;
+        height: 20%;
+        width: auto;
     }
 
     #account_grid{
         height: 60%;
+        width: auto;
     }
 
     .selections_item_right{

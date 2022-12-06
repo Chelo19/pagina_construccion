@@ -298,7 +298,8 @@
 @media(max-width:500px){
 
     .edit_category_background{
-        margin-top: 90px;
+        margin-top: 69px;
+        padding-top: 20px;
         height: auto;
         gap: 30px;
     }
