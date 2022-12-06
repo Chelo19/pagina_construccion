@@ -125,6 +125,8 @@ export default function Home(){
         }
         else{
             for(var i = 0 ; i < data.length ; i++){
+                console.log("entra al for");
+                console.log(displayServicesSel);
                 displayServicesSel.push(data[i].services);
             }
         }
