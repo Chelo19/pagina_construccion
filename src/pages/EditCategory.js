@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import LoadingScreen from "../components/LoadingScreen";
 import "../styles/Service.css";
 import "../styles/EditService.css";
+import "../styles/EditCategory.css";
 import { Link } from "react-router-dom";
 
 export default function EditCategory() {
@@ -92,17 +93,15 @@ export default function EditCategory() {
   return (
     <>
       {!isLoading ? (
-        <div className="edit_service_service_background">
-          <div className="edit_service_service_display">
-            <div className="edit_service_service_display_left">
-              <div className="edit_service_service_gallery">
-                <div id="edit_service_main_service_img" className="edit_service_service_img">
-                  <img src={category.img_url[0]}/>
-                </div>
+        <div className="edit_category_background">
+          <div className="edit_category_display">
+            <div className="edit_category_display_left">
+              <div id="edit_service_cat_img">
+                <img src={category.img_url[0]}/>
               </div>
             </div>
-            <div className="edit_service_service_display_mid">
-                <div className="edit_service_service_info">
+            <div className="edit_category_display_mid">
+                <div className="edit_category_info">
                     <span>
                         <bn>Id: </bn>{category.id}
                     </span>
@@ -117,9 +116,9 @@ export default function EditCategory() {
                     </span>
                 </div>
             </div>
-            <div className="edit_service_service_display_right">
-                <div className="edit_service_new_info">
-                    <span id="edit_service_new_info_title"><bn>Nuevos datos</bn></span>
+            <div className="edit_category_display_right">
+                <div className="edit_category_new_info">
+                    <span id="edit_category_new_info_title"><bn>Nuevos datos</bn></span>
                     <span><bn>Nuevo nombre:</bn><br/>{newName}</span>
                     <input type={'submit'}
                     value={"Sobreescribir datos"}
@@ -128,10 +127,10 @@ export default function EditCategory() {
                 </div>
             </div>
           </div>
-          <div className="edit_service_selection">
-            <div className="edit_service_selection_space">
+          <div className="edit_category_selection">
+            <div className="edit_category_selection_space">
               <span>Cambiar imagen de la categoría: {category.name}</span>
-              <div id='edit_service_new_file'>
+              <div id='edit_category_new_file'>
                 Nueva imagen:
                 <input
                   type={"file"}

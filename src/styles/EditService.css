@@ -230,33 +230,15 @@ bn{
 @media(max-width: 500px){
 
     .edit_service_service_background{
-        margin-top: 80px;
-    }
-
-    .edit_service_service_display{
-        flex-direction: column-reverse;
-        gap: 60px;
+        margin-top: 100px;
+        height: auto;
     }
     
-    .edit_service_service_display_left{
-        width: 100%;
-    }
-
-    .edit_service_service_display_right{
-        width: 100%;
-    }
-
-    .edit_service_service_gallery{
-        display: flex;
+    .edit_service_service_display{
         flex-direction: column;
-        gap: 30px;
     }
 
-    .edit_service_service_info h2{
-        padding-right: 15px;
-    }
-
-    .edit_service_service_info_cotizar{
+    .edit_service_service_display_left{
         width: 100%;
     }
 

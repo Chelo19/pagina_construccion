@@ -34,7 +34,7 @@ function Login(){
               });
             console.log(data);
             if (error) throw error;
-            alert("Succesfully logged in");
+            alert("Has iniciado sesión correctamenta");
             document.location.reload();
             navigate('/');
         } catch(e){

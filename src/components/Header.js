@@ -144,11 +144,13 @@ export default function Header(){
                                     <a>Servicio al cliente</a>
                                 </Link>
                             </div>
-                            <div className='bars_menu_item'>
-                                <Link to={'/'} style={{ color: 'inherit', textDecoration: 'inherit'}} onClick={signOut}>
-                                    <a>Cerrar Sesión</a>
-                                </Link>
-                            </div>
+                            {isLogged && (
+                                <div className='bars_menu_item'>
+                                    <Link to={'/'} style={{ color: 'inherit', textDecoration: 'inherit'}} onClick={signOut}>
+                                        <a>Cerrar Sesión</a>
+                                    </Link>
+                                </div>
+                            )}
                             {isAdmin && (
                                 <div className='bars_menu_item' onClick={changeIsBarMenu}>
                                     <Link to={'/admin-hub'} style={{ color: 'inherit', textDecoration: 'inherit'}} onClick={changeIsBarMenu}>

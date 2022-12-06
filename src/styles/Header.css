@@ -205,6 +205,8 @@ header{
         width: 100%;
         flex-direction: column;
         font-family: 'Poppins', sans-serif;
+        position: relative;
+        z-index: 1;
     }
 
     .header_responsive_background{
