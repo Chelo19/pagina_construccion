@@ -1,6 +1,13 @@
+.register_background{
+    height: 97vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .register_container{
     width: 100%;
-    height: 97vh;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -132,6 +139,11 @@
 }
 
 @media (max-width: 768px){
+    .register_background{
+        margin-top: 69px;
+        height: 90vh;
+        background-color: #161825;
+    }
 
     .register_container{
         background: url(../img/construction_img2.jpg);

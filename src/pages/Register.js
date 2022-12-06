@@ -44,7 +44,7 @@ function Register() {
   };
 
   return (
-    <div>
+    <div className="register_background">
       {!loadingScreen ? 
       <div className="register_container">
         <div className="register_container_center">

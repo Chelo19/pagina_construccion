@@ -43,7 +43,7 @@ function Login(){
     };
 
     return(
-        <div>
+        <div className='login_background'>
             {
                 !loadingScreen ? <div className='login_container'>
                 <div className='login_container_center'>

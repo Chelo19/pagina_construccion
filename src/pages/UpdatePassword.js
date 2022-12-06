@@ -55,7 +55,7 @@ function UpdatePassword(){
     }
 
     return(
-        <div>
+        <div className='login_background'>
             <div className='login_container'>
                 <div className='login_container_center'>
                     <div className='login_img_div'>
