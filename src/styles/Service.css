@@ -142,7 +142,10 @@
 @media(max-width: 500px){
 
     .service_background{
-        margin-top: 80px;
+        height: auto;
+        margin-top: 69px;
+        padding-top: 20px;
+        padding-bottom: 20px;
     }
 
     .service_display{
@@ -152,6 +155,7 @@
     
     .service_display_left{
         width: 100%;
+        height: 50%;
     }
 
     .edit_service_service_display_mid{
@@ -160,12 +164,17 @@
 
     .service_display_right{
         width: 100%;
+        height: 50%;
     }
 
     .service_gallery{
         display: flex;
         flex-direction: column;
         gap: 30px;
+    }
+
+    .service_img{
+        height: 250px;
     }
 
     .service_info h2{
