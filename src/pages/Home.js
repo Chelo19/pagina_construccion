@@ -129,6 +129,12 @@ export default function Home(){
                 console.log(displayServicesSel);
                 displayServicesSel.push(data[i].services);
             }
+            if(displayServicesSel.length >= data.length){
+                console.log("displayServicesSel esta lleno");
+                console.log("Sale de fkDisp");
+                confirmaciones[1] = true;
+                setServicesForDisplay(displayServicesSel);
+            }
         }
         if(confirmaciones[0] && confirmaciones[1]){
             console.log("Sale de getDB");
