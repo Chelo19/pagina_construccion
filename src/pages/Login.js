@@ -33,7 +33,10 @@ function Login(){
                 password,
               });
             console.log(data);
-            if (error) throw error;
+            if (error){
+                alert("Correo o contraseña no válido");
+                return;
+            } 
             alert("Has iniciado sesión correctamenta");
             document.location.reload();
             navigate('/');
