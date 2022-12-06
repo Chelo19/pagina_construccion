@@ -266,13 +266,15 @@ body{
     }
 
     .our_projects_container_button{
+        transition: .5s;
         height: 200px;
         width: 100%;
         margin: 0;
     }
 
     .our_projects_container_button:hover{
-        height: 25%;
+        transition: .5s;
+        height: 210px;
         width: 100%;
         margin: 0;
     }

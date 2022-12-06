@@ -160,6 +160,7 @@ export default function AddService(){
                 onChange={(e) => setNewDescription(e.target.value)}
                 />
                 <span>Imagen del nuevo servicio</span>
+                <span id="add_service_files_reminder">Recuerda que la relación de aspecto ideal para la imagen es de 4:3</span>
                 <span id="add_service_file">
                     Primera imagen:&nbsp;
                     <input

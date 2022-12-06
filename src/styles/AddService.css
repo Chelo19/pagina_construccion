@@ -46,6 +46,11 @@
     font-size: 20px;
 }
 
+#add_service_files_reminder{
+    color: #ff7e22d0;
+    font-size: 20px;
+}
+
 #add_service_submit{
     transition: 1s;
     width: 25%;
