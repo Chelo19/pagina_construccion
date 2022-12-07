@@ -70,7 +70,7 @@ export default function EditServices(){
                     </Link>
                   );
                 })
-                : <LoadingScreen/>}
+            : <LoadingScreen/>}
         </div>
       </div>
     )

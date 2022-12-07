@@ -28,7 +28,7 @@ export default function AddServiceSelectCategory(){
                 showCategories();
             }
         }
-        else{
+        else if(!user){
             window.alert("Inicia sesión como administrador para acceder");
             navigate("/login");
         }

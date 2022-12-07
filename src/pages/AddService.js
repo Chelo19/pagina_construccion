@@ -43,7 +43,7 @@ export default function AddService(){
                 setLoadingScreen(false);
             }
         }
-        else{
+        else if(!user){
             window.alert("Inicia sesión como administrador para acceder");
             navigate("/login");
         }

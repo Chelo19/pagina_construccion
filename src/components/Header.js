@@ -82,8 +82,12 @@ export default function Header(){
                     <div className='header_bottom'>
                         <div className='header_bottom_row'>
                             <div className='logo_header'>
-                                <a href='/'><img id='logoimg_header' src={require('../img/logodrecfullsize.png')}/></a>
+                            <Link to={`/`}>
+                                <img id='logoimg_header' src={require('../img/logodrecfullsize.png')}/>
+                            </Link>
+                            <Link to={`/`} style={{ color: 'inherit', textDecoration: 'inherit'}} >
                                 <a href='/' id='logo'>DREC</a>
+                            </Link>
                             </div>
                             <div className='header_buttons_container'>
                                 {HeaderButtons}
@@ -95,8 +99,12 @@ export default function Header(){
             <div className='header_responsive'>
                 <div className='header_responsive_background'/>
                 <div className='logo_header'>
-                    <a href='/'><img id='logoimg_header' src={require('../img/logodrecfullsize.png')}/></a>
-                    <a href='/' id='logo'>DREC</a>
+                    <Link to={`/`}>
+                        <img id='logoimg_header' src={require('../img/logodrecfullsize.png')}/>
+                    </Link>
+                    <Link to={`/`} style={{ color: 'inherit', textDecoration: 'inherit'}} >
+                        <a href='/' id='logo'>DREC</a>
+                    </Link>
                 </div>
                 <div className='bars_menu'>
                     <div className='bars_icon_container_background'>

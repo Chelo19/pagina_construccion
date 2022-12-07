@@ -241,6 +241,11 @@ header{
         color: #2b2d3a;
     }
 
+    #logo:hover{
+        font-size: 62px;
+        color: #2b2d3a;
+    }
+
     .bars_menu{
         align-self: flex-end;
         margin-top: -90px;

@@ -160,62 +160,63 @@ export default function EditEnterprises(){
 
     return(
         <div className='edit_enterprises_background'>
-            <div className='edit_enterprises_enterprises'>
-                {!loadingScreen
-                ?
-                <div className='edit_enterprises_enterprises_container'>
-                    <div className='edit_enterprises_enterprises_left'>
-                        <div className='edit_enterprises_enterprises_text'>
-                            Contamos con los mejores aliados para la realización de tu servicio
+            {!loadingScreen ? 
+            <>
+                <div className='edit_enterprises_enterprises'>
+                    <div className='edit_enterprises_enterprises_container'>
+                        <div className='edit_enterprises_enterprises_left'>
+                            <div className='edit_enterprises_enterprises_text'>
+                                Contamos con los mejores aliados para la realización de tu servicio
+                            </div>
+                        </div>
+                        <div className='edit_enterprises_enterprises_right'>
+                            <div className='edit_enterprises_enterprises_gallery'>
+                                {enterprises.map((enterprise) => {
+                                return(
+                                    <div className='edit_enterprises_enterprises_item' key={enterprise.name} onClick={(e) => setSelection(enterprise.name)}>
+                                        <img src={enterprise.img_url}/>
+                                        <div>{enterprise.name}</div>
+                                    </div>
+                                    );
+                                })}
+                            </div>
                         </div>
                     </div>
-                    <div className='edit_enterprises_enterprises_right'>
-                        <div className='edit_enterprises_enterprises_gallery'>
-                            {enterprises.map((enterprise) => {
-                            return(
-                                <div className='edit_enterprises_enterprises_item' key={enterprise.name} onClick={(e) => setSelection(enterprise.name)}>
-                                    <img src={enterprise.img_url}/>
-                                    <div>{enterprise.name}</div>
-                                </div>
-                            );
-                        })}
+                </div>
+                <div className='edit_enterprises_selection'>
+                    <span>Eliminar Logo</span>
+                    <span>Selecciona el logo a eliminar y dale click al botón "Eliminar logo con nombre"</span>
+                    <input 
+                        id='edit_enterprises_submit'
+                        type={"submit"}
+                        onClick={removeItem}
+                        value={"Eliminar: " + selection}>
+                    </input>
+                    <span>Agregar Logo</span>
+                    <span>Agrega una imagen y un nuevo nombre para el logo y da click al botón "Agregar logo"</span>
+                    <div id='edit_enterprises_new_file'>
+                        Nueva imagen:
+                        <input
+                            type={"file"}
+                            accept={".png, .jpg, .jpeg"}
+                            onChange={(e) => setNewFile(e.target.files)}
+                        />
                     </div>
-                </div>
-            </div>
-            : <LoadingScreen/>}
-            </div>
-            <div className='edit_enterprises_selection'>
-                <span>Eliminar Logo</span>
-                <span>Selecciona el logo a eliminar y dale click al botón "Eliminar logo con nombre"</span>
-                <input 
-                    id='edit_enterprises_submit'
-                    type={"submit"}
-                    onClick={removeItem}
-                    value={"Eliminar: " + selection}>
-                </input>
-                <span>Agregar Logo</span>
-                <span>Agrega una imagen y un nuevo nombre para el logo y da click al botón "Agregar logo"</span>
-                <div id='edit_enterprises_new_file'>
-                    Nueva imagen:
-                    <input
-                        type={"file"}
-                        accept={".png, .jpg, .jpeg"}
-                        onChange={(e) => setNewFile(e.target.files)}
+                    <input 
+                        type={"text"}
+                        onChange={(e) => setNewName(e.target.value)}
+                        placeholder={"Nuevo nombre"}
                     />
+                    <span>Nuevo Nombre: {newName}</span>
+                    <input 
+                        id='edit_enterprises_submit'
+                        type={"submit"}
+                        onClick={uploadItem}
+                        value={"Agregar logo"}>
+                    </input>
                 </div>
-                <input 
-                    type={"text"}
-                    onChange={(e) => setNewName(e.target.value)}
-                    placeholder={"Nuevo nombre"}
-                />
-                <span>Nuevo Nombre: {newName}</span>
-                <input 
-                    id='edit_enterprises_submit'
-                    type={"submit"}
-                    onClick={uploadItem}
-                    value={"Agregar logo"}>
-                </input>
-            </div>
+            </>
+            : <LoadingScreen/>}
         </div>
     )
 }
