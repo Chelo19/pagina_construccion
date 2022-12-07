@@ -19,12 +19,13 @@ export default function Service(props) {
 
   const prueba = async () => {
     setCorreoEnviado(`Gracias por tu interés en: ${serviceName}, un asociado se pondrá en contacto contigo en breve.`);
-    await delay(3000);
+    await delay(8000);
     document.location.reload();
   }
   
   const sendEmail = async (e) => {
     e.preventDefault();
+    console.log("User email: " + email);
     emailjs.send("service_rqa3brt","template_91a0omn",{
       email: email,
       serviceName: serviceName,
