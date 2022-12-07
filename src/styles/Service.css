@@ -110,14 +110,21 @@
     letter-spacing: 2px;
 }
 
+.service_info_cotizar form{
+    width: 80%;
+}
+
 .service_info_cotizar{
     display: flex;
     justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
     width: 80%;
     margin: 0;
 }
 
-.service_info_cotizar a{
+.service_info_cotizar input{
     text-decoration: none;
     text-align: center;
     width: 100%;
@@ -134,9 +141,14 @@
     transition: .5s;
 }
 
-.service_info_cotizar a:hover{
+.service_info_cotizar input:hover{
     background-color: rgba(255, 127, 34, .9);
     transition: .5s;
+}
+
+#email_sent{
+    text-align: center;
+    color: #ff7f22;
 }
 
 @media(max-width: 500px){

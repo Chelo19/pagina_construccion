@@ -3,33 +3,85 @@ import { supabase } from "../supabase/client";
 import "../styles/Service.css";
 import { useParams } from "react-router-dom";
 import LoadingScreen from "../components/LoadingScreen";
+import emailjs from 'emailjs-com';
 
 export default function Service(props) {
   const { id } = useParams();
   const [service, setService] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [loadingScreen, setLoadingScreen] = useState(true);
+  const [email, setEmail] = useState(null);
+  const [serviceId, setServiceId] = useState(null);
+  const [serviceName, setServiceName] = useState(null);
+  var locationId;
+  const [listaAdministradores, setListaAdministradores] = useState(null);
+  var administradores = [];
+  const [correoEnviado, setCorreoEnviado] = useState(null);
+
+  const prueba = async () => {
+    setCorreoEnviado(`Gracias por tu interés en: ${serviceName}, un asociado se pondrá en contacto contigo en breve.`);
+    await delay(3000);
+    document.location.reload();
+  }
+  
+  const sendEmail = async (e) => {
+    e.preventDefault();
+    emailjs.send("service_rqa3brt","template_91a0omn",{
+      email: email,
+      serviceName: serviceName,
+      serviceId: serviceId,
+      administradores: listaAdministradores}, 
+      'a9hJXSTK7xAdC26he');
+      setCorreoEnviado(`Gracias por tu interés en: ${serviceName}, un asociado se pondrá en contacto contigo en breve.`);
+      await delay(3000);
+      document.location.reload();
+  }
+
   const showService = async () => {
     const { data, error } = await supabase
       .from("services")
       .select("*")
       .eq("id", id);
-    console.log(data);
     setService(data[0]);
-    setIsLoading(false);
+    setServiceId(data[0].id);
+    setServiceName(data[0].name);
+    locationId = data[0].location_id;
   };
+
+  const getUserData = async () => {
+    const { data: { user } } = await supabase.auth.getUser();
+    setEmail(user.email);
+    const { data, error } = await supabase
+    .from('account')
+    .select()
+    .match({ role: "administrador", location_id: locationId });
+    if(administradores.length >= data.length){
+      console.log("administradores lleno");
+      setListaAdministradores(administradores);
+      setLoadingScreen(false);
+    }
+    else{
+      for(var i = 0 ; i < data.length ; i++){
+        administradores.push(data[i].email);
+      }
+    }
+  }
 
   useEffect(() => {
     showService();
-  }, [isLoading]);
+    getUserData();
+  }, [loadingScreen]);
+
+  const delay = ms => new Promise(
+    resolve => setTimeout(resolve, ms)
+  );
 
   return (
     <>
-      {!isLoading ? (
+      {!loadingScreen ? (
         <div className="service_background">
           <div className="service_display">
             <div className="service_display_left">
               <div className="service_gallery">
-                {console.log(service.img_url)}
                 <div id="main_service_img" className="service_img">
                   <img src={service.img_url[0]} />
                 </div>
@@ -54,7 +106,13 @@ export default function Service(props) {
                 <span>{service.description}</span>
                 <br />
                 <div className="service_info_cotizar">
-                  <a Link to="/service/" >Cotizar servicio con un socio</a>
+                  <form onSubmit={sendEmail}>
+                    <input
+                      type={'submit'}
+                      value={'Cotizar servicio con un socio'}
+                    />
+                  </form>
+                    <span id="email_sent">{correoEnviado}</span>
                 </div>
               </div>
             </div>
