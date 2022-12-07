@@ -59,6 +59,7 @@
     height: 30%;
     display: flex;
     align-items: center;
+    text-align: center;
     flex-direction: column;
     justify-content: start;
     transition: 1s;
@@ -81,7 +82,7 @@
 
 .services_title h1{
     width: 100%;
-    text-align: left;
+    text-align: center;
     padding-left: 10px;
     padding-right: 10px;
 }
@@ -120,11 +121,16 @@
 
     .services_item_content{
         justify-content: center;
+        align-items: center;
         gap: 10px;
     }
 
     .services_title{
         font-size: 12px;
+    }
+
+    .services_title h1{
+        text-align: center;
     }
 
     .services_description{
