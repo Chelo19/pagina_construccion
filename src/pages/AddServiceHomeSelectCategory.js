@@ -7,22 +7,46 @@ import { Link } from "react-router-dom";
 
 export default function AddServiceHomeSelectCategory(){
     let { id } = useParams();
+    const navigate = useNavigate();
     
     const [loadingScreen, setLoadingScreen] = useState(true);
     const [categories, setCategories] = useState();
 
+
+    const checkIfAdmin = async () => {
+        const { data: { user } } = await supabase.auth.getUser();
+        if(user){
+            const { data, error } = await supabase
+            .from('account')
+            .select()
+            .eq('uuid', user.id);
+            if(data[0].role != 'administrador'){
+                window.alert("No tienes los permisos para acceder a este lugar");
+                navigate("/");
+            }
+            if(data[0].role == 'administrador'){
+                showCategories();
+            }
+        }
+        else{
+            window.alert("Inicia sesión como administrador para acceder");
+            navigate("/login");
+        }
+    }
+
+
     const showCategories = async () => {
-    const { data, error } = await supabase
+        const { data, error } = await supabase
         .from("categories")
         .select("*")
         .eq("location_id", id);
-    setCategories(data);
-    console.log(data);
-    setLoadingScreen(false);
+        setCategories(data);
+        setLoadingScreen(false);
     };
 
+
     useEffect(() => {
-    showCategories();
+    checkIfAdmin();
     console.log(categories)
     }, [loadingScreen]);
 

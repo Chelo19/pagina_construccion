@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../supabase/client";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import LoadingScreen from "../components/LoadingScreen";
 import { Link } from "react-router-dom";
 import "../styles/AddCategory.css";
@@ -8,11 +8,38 @@ import "../styles/AddCategory.css";
 
 export default function AddCategory(){
     const { id } = useParams();
+    const navigate = useNavigate();
     const [newName, setNewName] = useState(null);
     const [newFile, setNewFile] = useState(null);
     const [alert, setAlert] = useState(null);
+    const [loadingScreen, setLoadingScreen] = useState(true);
     var categoryId;
     const newUrl = [];
+
+    const checkIfAdmin = async () => {
+        const { data: { user } } = await supabase.auth.getUser();
+        if(user){
+            const { data, error } = await supabase
+            .from('account')
+            .select()
+            .eq('uuid', user.id);
+            if(data[0].role != 'administrador'){
+                window.alert("No tienes los permisos para acceder a este lugar");
+                navigate("/");
+            }
+            if(data[0].role == 'administrador'){
+                setLoadingScreen(false);
+            }
+        }
+        else{
+            window.alert("Inicia sesión como administrador para acceder");
+            navigate("/login");
+        }
+    }
+
+    useEffect(() => {
+        checkIfAdmin();
+    }, [loadingScreen]);
 
     const createItem = async () => {
         setAlert("Recuerda esperar la alerta de confirmación antes de abandonar esta página");
@@ -21,7 +48,7 @@ export default function AddCategory(){
             getItem();
         }
         else{
-            alert("Favor de ingresar nombre e imagen");
+            window.alert("Favor de ingresar nombre e imagen");
         }
     }
     
@@ -67,6 +94,7 @@ export default function AddCategory(){
     
     return(
         <div className="add_category_background">
+            {!loadingScreen ?
             <div className="add_category_container">
                 <span>Nombre de la nueva categoría</span>
                 <input
@@ -89,6 +117,7 @@ export default function AddCategory(){
                 />
                 <span id="add_category_alert">{alert}</span>
             </div>
+            : <LoadingScreen/>}
         </div>
     )
 }

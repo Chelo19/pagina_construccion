@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../supabase/client";
 import "../styles/Service.css";
+import {useNavigate} from 'react-router-dom';
 import { useParams } from "react-router-dom";
 import LoadingScreen from "../components/LoadingScreen";
 import emailjs from 'emailjs-com';
@@ -16,25 +17,26 @@ export default function Service(props) {
   const [listaAdministradores, setListaAdministradores] = useState(null);
   var administradores = [];
   const [correoEnviado, setCorreoEnviado] = useState(null);
+  const navigate = useNavigate();
 
-  const prueba = async () => {
-    setCorreoEnviado(`Gracias por tu interés en: ${serviceName}, un asociado se pondrá en contacto contigo en breve.`);
-    await delay(8000);
-    document.location.reload();
-  }
-  
   const sendEmail = async (e) => {
     e.preventDefault();
-    console.log("User email: " + email);
-    emailjs.send("service_rqa3brt","template_91a0omn",{
+    const { data: { user } } = await supabase.auth.getUser();
+    console.log(user);
+    if(user){
+      console.log("User email: " + email);
+      emailjs.send("service_rqa3brt","template_91a0omn",{
       email: email,
       serviceName: serviceName,
       serviceId: serviceId,
       administradores: listaAdministradores}, 
       'a9hJXSTK7xAdC26he');
       setCorreoEnviado(`Gracias por tu interés en: ${serviceName}, un asociado se pondrá en contacto contigo en breve.`);
-      await delay(3000);
-      document.location.reload();
+    }
+    else{
+      alert("Por favor inicia sesión o crea una cuenta");
+      navigate("/login/");
+    }
   }
 
   const showService = async () => {
@@ -50,7 +52,9 @@ export default function Service(props) {
 
   const getUserData = async () => {
     const { data: { user } } = await supabase.auth.getUser();
-    setEmail(user.email);
+    if(user){
+      setEmail(user.email);
+    }
     const { data, error } = await supabase
     .from('account')
     .select()

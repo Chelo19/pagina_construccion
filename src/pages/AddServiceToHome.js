@@ -6,9 +6,31 @@ import LoadingScreen from "../components/LoadingScreen";
 
 export default function AddServiceToHome(){
     let { id } = useParams();
+    const navigate = useNavigate();
 
     const [loadingScreen, setLoadingScreen] = useState(true);
     const [locationId, setLocationId] = useState(null);
+
+    const checkIfAdmin = async () => {
+        const { data: { user } } = await supabase.auth.getUser();
+        if(user){
+            const { data, error } = await supabase
+            .from('account')
+            .select()
+            .eq('uuid', user.id);
+            if(data[0].role != 'administrador'){
+                window.alert("No tienes los permisos para acceder a este lugar");
+                navigate("/");
+            }
+            if(data[0].role == 'administrador'){
+                getDb();
+            }
+        }
+        else{
+            window.alert("Inicia sesión como administrador para acceder");
+            navigate("/login");
+        }
+    }
 
     const insertDb = async () => {
         const { error } = await supabase
@@ -28,7 +50,7 @@ export default function AddServiceToHome(){
       };
     
       useEffect(() => {
-        getDb();
+        checkIfAdmin();
       }, [loadingScreen]);
 
       const goBack = async () => {
@@ -37,25 +59,27 @@ export default function AddServiceToHome(){
 
     return(
         <div className="add_service_to_home_background">
-            <div className="add_service_to_home_container">
-                <div className="add_service_to_home_text">
-                    ¿Estás seguro que deseas agregar el servicio con <span>id: {id}</span> a la pantalla de inicio?
+            {!loadingScreen ?
+                <div className="add_service_to_home_container">
+                    <div className="add_service_to_home_text">
+                        ¿Estás seguro que deseas agregar el servicio con <span>id: {id}</span> a la pantalla de inicio?
+                    </div>
+                    <div className="add_service_to_home_submits">
+                        <input
+                            id="add_service_to_home_accept"
+                            type={'submit'}
+                            value={"Aceptar"}
+                            onClick={insertDb}
+                        />
+                        <input
+                            id="add_service_to_home_return"
+                            type={'submit'}
+                            value={"Regresar"}
+                            onClick={goBack}
+                        />
+                    </div>
                 </div>
-                <div className="add_service_to_home_submits">
-                    <input
-                        id="add_service_to_home_accept"
-                        type={'submit'}
-                        value={"Aceptar"}
-                        onClick={insertDb}
-                    />
-                    <input
-                        id="add_service_to_home_return"
-                        type={'submit'}
-                        value={"Regresar"}
-                        onClick={goBack}
-                    />
-                </div>
-            </div>
+            : <LoadingScreen/>}
         </div>
     )
 }

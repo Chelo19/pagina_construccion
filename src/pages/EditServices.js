@@ -7,11 +7,31 @@ import { Link } from 'react-router-dom';
 
 export default function EditServices(){
     let { id } = useParams();
+    const navigate = useNavigate();
 
     const [loadingScreen, setLoadingScreen] = useState(true);
     const [services, setServices] = useState();
 
-    const navigate = useNavigate();
+    const checkIfAdmin = async () => {
+        const { data: { user } } = await supabase.auth.getUser();
+        if(user){
+            const { data, error } = await supabase
+            .from('account')
+            .select()
+            .eq('uuid', user.id);
+            if(data[0].role != 'administrador'){
+                window.alert("No tienes los permisos para acceder a este lugar");
+                navigate("/");
+            }
+            if(data[0].role == 'administrador'){
+                showServices();
+            }
+        }
+        else{
+            window.alert("Inicia sesión como administrador para acceder");
+            navigate("/login");
+        }
+    }
 
     const showServices = async () => {
         const { data, error } = await supabase
@@ -22,7 +42,7 @@ export default function EditServices(){
     };
 
     useEffect(() => {
-        showServices();
+        checkIfAdmin();
         console.log(services);
     }, [loadingScreen]);
 

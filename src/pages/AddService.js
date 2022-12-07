@@ -4,9 +4,13 @@ import { supabase } from "../supabase/client";
 import "../styles/AddService.css";
 import LoadingScreen from "../components/LoadingScreen";
 import { Link } from "react-router-dom";
+import {AdminComprobation} from "../components/AdminComprobation";
 
 export default function AddService(){
     const { id } = useParams();
+    const navigate = useNavigate();
+
+    const [loadingScreen, setLoadingScreen] = useState(true);
     const [newName, setNewName] = useState(null);
     const [newDescription, setNewDescription] = useState(null);
     const [newFile0, setNewFile0] = useState(null);
@@ -19,6 +23,31 @@ export default function AddService(){
     const newUrl = [];
     var publicUrl;
     var locationId;
+
+    useEffect(() => {
+        checkIfAdmin();
+    }, [loadingScreen])
+
+    const checkIfAdmin = async () => {
+        const { data: { user } } = await supabase.auth.getUser();
+        if(user){
+            const { data, error } = await supabase
+            .from('account')
+            .select()
+            .eq('uuid', user.id);
+            if(data[0].role != 'administrador'){
+                window.alert("No tienes los permisos para acceder a este lugar");
+                navigate("/");
+            }
+            if(data[0].role == 'administrador'){
+                setLoadingScreen(false);
+            }
+        }
+        else{
+            window.alert("Inicia sesión como administrador para acceder");
+            navigate("/login");
+        }
+    }
 
     const createItem = async () => {
         setAlert("Recuerda esperar la alerta de confirmación antes de abandonar esta página");
@@ -144,7 +173,8 @@ export default function AddService(){
 
     return(
         <div className="add_service_background">
-            <div className="add_service_container">
+            {!loadingScreen ?
+                <div className="add_service_container">
                 <span>Nombre del nuevo servicio</span>
                 <input
                 id={'add_service_text_input'}
@@ -209,6 +239,7 @@ export default function AddService(){
                 />
                 <span>Recuerda esperar alrededor de 15 segundos antes de salir de esta página</span>
             </div>
+            : <LoadingScreen/>} 
         </div>
     )
 }

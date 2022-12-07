@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../supabase/client";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import LoadingScreen from "../components/LoadingScreen";
 import "../styles/EditService.css";
 import { Link } from "react-router-dom";
 
 export default function EditService() {
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const [service, setService] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -19,6 +20,27 @@ export default function EditService() {
 
   const newUrl = [];
 
+  const checkIfAdmin = async () => {
+    const { data: { user } } = await supabase.auth.getUser();
+    if(user){
+        const { data, error } = await supabase
+        .from('account')
+        .select()
+        .eq('uuid', user.id);
+        if(data[0].role != 'administrador'){
+          window.alert("No tienes los permisos para acceder a este lugar");
+          navigate("/");
+        }
+        if(data[0].role == 'administrador'){
+          showService();
+        }
+    }
+    else{
+        window.alert("Inicia sesión como administrador para acceder");
+        navigate("/login");
+    }
+  }
+
   const showService = async () => {
     const { data, error } = await supabase
       .from("services")
@@ -29,7 +51,7 @@ export default function EditService() {
   };
 
   useEffect(() => {
-    showService();
+    checkIfAdmin();
   }, [isLoading]);
 
   const submitNewData = async () => {

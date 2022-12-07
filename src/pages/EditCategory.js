@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../supabase/client";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import LoadingScreen from "../components/LoadingScreen";
 import "../styles/Service.css";
 import "../styles/EditService.css";
@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 
 export default function EditCategory() {
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const [category, setCategory] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -18,6 +19,27 @@ export default function EditCategory() {
   const [newFile, setNewFile] = useState(null);
   
   const newUrl = [];
+
+  const checkIfAdmin = async () => {
+    const { data: { user } } = await supabase.auth.getUser();
+    if(user){
+      const { data, error } = await supabase
+      .from('account')
+      .select()
+      .eq('uuid', user.id);
+      if(data[0].role != 'administrador'){
+        window.alert("No tienes los permisos para acceder a este lugar");
+        navigate("/");
+      }
+      if(data[0].role == 'administrador'){
+        showCategory();
+      }
+    }
+    else{
+      window.alert("Inicia sesión como administrador para acceder");
+      navigate("/login");
+    }
+  }
 
   const showCategory = async () => {
     const { data, error } = await supabase
@@ -29,7 +51,7 @@ export default function EditCategory() {
   };
 
   useEffect(() => {
-    showCategory();
+    checkIfAdmin();
   }, [isLoading]);
 
   const submitNewData = async () => {
