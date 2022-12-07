@@ -58,7 +58,7 @@ body{
 
 .our_projects_presentation_text{
     font-family: 'Poppins', sans-serif;
-    font-size: 60px;
+    font-size: 80px;
     color: #161825;
     text-decoration: none;
     transition: .5s;
@@ -66,7 +66,7 @@ body{
 
 .our_projects_presentation_text:hover{
     transition: .5s;
-    font-size: 65px;
+    font-size: 85px;
     color: #ff7f22;
 }
 
