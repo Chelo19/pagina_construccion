@@ -62,7 +62,9 @@ export default function Service(props) {
     else{
       for(var i = 0 ; i < data.length ; i++){
         administradores.push(data[i].email);
+        console.log(administradores);
       }
+      getUserData();
     }
   }
 
