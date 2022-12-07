@@ -327,11 +327,11 @@ body{
     }
 
     .our_projects_presentation_text{
-        font-size: 30px;
+        font-size: 60px;
     }
 
     .our_projects_presentation_text:hover{
-        font-size: 35px;
+        font-size: 65px;
     }
 
     .our_projects_container{
@@ -347,7 +347,7 @@ body{
     .our_projects_container_button{
         transition: .5s;
         height: 200px;
-        width: 100%;
+        width: 80%;
         margin: 0;
     }
 
