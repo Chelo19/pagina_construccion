@@ -47,7 +47,7 @@ header{
 .header_bottom{
     font-family: 'Poppins', sans-serif;
     background-color: rgba(235, 235, 235, 0.7);
-    width: 90%;
+    width: 100%;
     height: 70px;
     font-size: 20px;
     padding-bottom: -100px;
@@ -56,8 +56,6 @@ header{
     margin-right: auto;
     display: flex;
     align-items: center;
-    border-bottom-right-radius: 5px;
-    border-bottom-left-radius: 5px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     transition: .5s;
 }
@@ -102,7 +100,8 @@ header{
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
+    gap: 40%;
     margin-left: 20px;
     margin-right: 20px;
 }
@@ -239,7 +238,7 @@ header{
 
     #logo{
         font-size: 60px;
-        color: #3f3d3d;
+        color: #2b2d3a;
     }
 
     .bars_menu{
@@ -253,7 +252,7 @@ header{
     }
 
     .bars_icon_container_background{
-        background-color: #3f3d3d;
+        background-color: #161825;
         align-self: flex-end;
     }
 
@@ -275,7 +274,7 @@ header{
 
     .bars_menu_div{
         width: 100%;
-        background-color: #525252;
+        background-color: #2b2d3a;
         display: flex;
         align-items: center;
         flex-direction: column;

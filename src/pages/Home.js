@@ -147,12 +147,14 @@ export default function Home(){
             {!loadingScreen
             ? <>
                 <div className='background_img'>
-                    <span id='background_img_title'>DREC</span>
-                    <span id='background_img_eslogan'><i>"La construcción que siempre debiste tener"</i></span>
+                    <div className='background_img_container'>
+                        <span id='background_img_title'>DREC</span>
+                        <span id='background_img_eslogan'><i>"La construcción que siempre debiste tener"</i></span>
+                    </div>
                 </div>
                 <div className='our_projects_presentation'>
-                    <Link to={`/categories/${uLocationId}`} style={{ color: 'inherit', textDecoration: 'inherit'}} className='our_projects_presentation_text'>
-                        NUESTROS SERVICIOS
+                    <Link to={`/categories/${uLocationId}`} style={{textDecoration: 'inherit'}} className='our_projects_presentation_text'>
+                        SERVICIOS
                     </Link>
                 </div>
                 <div className='our_projects'>
@@ -175,6 +177,7 @@ export default function Home(){
                     </div>
                 </div>
                 <br/>
+                <br/>
                 <div className='enterprises'>
                     <div className='enterprises_container'>
                         <div className='enterprises_left'>
@@ -191,6 +194,42 @@ export default function Home(){
                                         </div>
                                     );
                                 })}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br/>
+                <br/>
+                <div className='our_features'>
+                    <div className='our_features_container'>
+                        <div className='our_features_item'>
+                            <div className='our_features_item_img'>
+                                <div className='our_features_item_img_bg'>
+                                    <img className='our_features_img' src={require('../img/calidad.png')}/>
+                                </div>
+                            </div>
+                            <div className='our_features_item_text'>
+                                <span>Contamos con la mejor calidad para ofrecerte los mejores servicios</span>
+                            </div>
+                        </div>
+                        <div className='our_features_item'>
+                            <div className='our_features_item_img'>
+                                <div className='our_features_item_img_bg'>
+                                    <img className='our_features_img' src={require('../img/cumplimiento.png')}/>
+                                </div>
+                            </div>
+                            <div className='our_features_item_text'>
+                                <span>Contamos con el mejor cumplimiento para ofrecerte los mejores servicios</span>
+                            </div>
+                        </div>
+                        <div className='our_features_item'>
+                            <div className='our_features_item_img'>
+                                <div className='our_features_item_img_bg'>
+                                    <img className='our_features_img' src={require('../img/comunicacion.png')}/>
+                                </div>
+                            </div>
+                            <div className='our_features_item_text'>
+                                <span>Contamos con la mejor comunicación para ofrecerte los mejores servicios</span>
                             </div>
                         </div>
                     </div>
