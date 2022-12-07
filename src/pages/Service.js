@@ -17,6 +17,7 @@ export default function Service(props) {
   const [listaAdministradores, setListaAdministradores] = useState(null);
   var administradores = [];
   const [correoEnviado, setCorreoEnviado] = useState(null);
+  const [isMailSent, setIsMailSent] = useState(false);
   const navigate = useNavigate();
 
   const sendEmail = async (e) => {
@@ -24,14 +25,17 @@ export default function Service(props) {
     const { data: { user } } = await supabase.auth.getUser();
     console.log(user);
     if(user){
-      console.log("User email: " + email);
-      emailjs.send("service_rqa3brt","template_91a0omn",{
-      email: email,
-      serviceName: serviceName,
-      serviceId: serviceId,
-      administradores: listaAdministradores}, 
-      'a9hJXSTK7xAdC26he');
-      setCorreoEnviado(`Gracias por tu interés en: ${serviceName}, un asociado se pondrá en contacto contigo en breve.`);
+      if(!isMailSent){
+        console.log("User email: " + email);
+        emailjs.send("service_rqa3brt","template_91a0omn",{
+        email: email,
+        serviceName: serviceName,
+        serviceId: serviceId,
+        administradores: listaAdministradores}, 
+        'a9hJXSTK7xAdC26he');
+        setCorreoEnviado(`Gracias por tu interés en: ${serviceName}, un asociado se pondrá en contacto contigo en breve.`);
+        setIsMailSent(true);
+      }
     }
     else{
       alert("Por favor inicia sesión o crea una cuenta");
