@@ -255,7 +255,7 @@ header{
     .bars_menu{
         align-self: flex-end;
         margin-top: -90px;
-        width: 50%;
+        width: 60%;
         display: flex;
         display: flex;
         flex-direction: column;
@@ -289,7 +289,7 @@ header{
         display: flex;
         align-items: center;
         flex-direction: column;
-        gap: 15px;
+        gap: 10px;
         justify-content: space-evenly;
         padding-top: 15px;
         padding-bottom: 15px;
@@ -303,9 +303,10 @@ header{
     .bars_menu_item{
         background-color: #ff7f22;
         padding: 10px;
+        font-size: 15px;
         width: 80%;
-        border-radius: 10px;
-        color: #3f3d3d;
+        border-radius: 5px;
+        color: rgba(235, 235, 235, 0.9);
         text-align: center;
     }
 

@@ -151,8 +151,14 @@ export default function Home(){
                         <span id='background_img_title'>DREC</span>
                         <span id='background_img_eslogan'><i>"La construcción que debes tener"</i></span>
                     </div>
+                        <Link to={`/categories/${uLocationId}`} style={{textDecoration: 'inherit'}} id='background_img_services'>
+                            <span>Servicios</span>
+                            <div id='background_img_services_img'>
+                                <img src={require('../img/flecha.png')}/>
+                            </div>
+                        </Link>
                 </div>
-                <div className='our_projects_presentation'>
+                <div className='our_projects_presentation' >
                     <Link to={`/categories/${uLocationId}`} style={{textDecoration: 'inherit'}} className='our_projects_presentation_text'>
                         SERVICIOS
                     </Link>
