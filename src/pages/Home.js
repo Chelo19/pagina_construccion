@@ -207,6 +207,9 @@ export default function Home(){
                 <br/>
                 <br/>
                 <div className='our_features'>
+                    <div className='our_features_title'>
+                        <span>Para tu proyecto</span>
+                    </div>
                     <div className='our_features_container'>
                         <div className='our_features_item'>
                             <div className='our_features_item_img'>
@@ -215,7 +218,7 @@ export default function Home(){
                                 </div>
                             </div>
                             <div className='our_features_item_text'>
-                                <span>Contamos con la mejor calidad para ofrecerte los mejores servicios</span>
+                                <span>La mejor calidad</span>
                             </div>
                         </div>
                         <div className='our_features_item'>
@@ -225,17 +228,27 @@ export default function Home(){
                                 </div>
                             </div>
                             <div className='our_features_item_text'>
-                                <span>Contamos con el mejor cumplimiento para ofrecerte los mejores servicios</span>
+                                <span>Supervision en todo el proyecto</span>
                             </div>
                         </div>
                         <div className='our_features_item'>
                             <div className='our_features_item_img'>
                                 <div className='our_features_item_img_bg'>
-                                    <img className='our_features_img' src={require('../img/comunicacion.png')}/>
+                                    <img className='our_features_img' src={require('../img/garantia.png')}/>
                                 </div>
                             </div>
                             <div className='our_features_item_text'>
-                                <span>Contamos con la mejor comunicación para ofrecerte los mejores servicios</span>
+                                <span>Garantía</span>
+                            </div>
+                        </div>
+                        <div className='our_features_item'>
+                            <div className='our_features_item_img'>
+                                <div className='our_features_item_img_bg'>
+                                    <img className='our_features_img' src={require('../img/contrato.png')}/>
+                                </div>
+                            </div>
+                            <div className='our_features_item_text'>
+                                <span>Financiamiento</span>
                             </div>
                         </div>
                     </div>

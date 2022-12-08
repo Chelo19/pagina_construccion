@@ -1,6 +1,7 @@
 header{
     width: 100%;
-    position: absolute;
+    position: fixed;
+    z-index: 1;
 }
 
 .header{
@@ -212,7 +213,7 @@ header{
         width: 100%;
         flex-direction: column;
         font-family: 'Poppins', sans-serif;
-        position: absolute;
+        position: fixed;
         z-index: 1;
     }
 
