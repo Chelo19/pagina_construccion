@@ -256,7 +256,7 @@ header{
     .bars_menu{
         align-self: flex-end;
         margin-top: -90px;
-        width: 60%;
+        width: 80%;
         display: flex;
         display: flex;
         flex-direction: column;
@@ -295,6 +295,7 @@ header{
         padding-top: 15px;
         padding-bottom: 15px;
         border-bottom-left-radius: 10px;
+        clip-path: circle(0% at top right);
     }
 
     .bars_menu_div a{

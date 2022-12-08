@@ -3,18 +3,31 @@ import LoadingScreen from "../components/LoadingScreen";
 import emailjs from 'emailjs-com';
 import { useEffect, useState } from "react";
 import { supabase } from "../supabase/client";
+import { useNavigate, useParams } from "react-router-dom";
 
 export default function ClientService(){
+    const navigate = useNavigate();
     const [isMailSent, setIsMailSent] = useState(false);
     const [email, setEmail] = useState(null);
     const [message, setMessage] = useState(null);
     const [confirmationAlert, setConfirmationAlert] = useState(null);
     const [loadingScreen, setLoadingScreen] = useState(true);
+    var confirmacionesUser = 0;
 
     const getUserData = async () => {
         const { data: { user } } = await supabase.auth.getUser();
-        setEmail(user.email);
-        setLoadingScreen(false);
+        if(user){
+            setEmail(user.email);
+            setLoadingScreen(false);
+        }
+        else if(!user){
+            confirmacionesUser++;
+            console.log(confirmacionesUser);
+            if(confirmacionesUser >= 2){
+                window.alert("Por favor inicia sesión");
+                navigate('/');
+            }
+        }
     }
 
     const sendEmail = async () => {
@@ -43,7 +56,7 @@ export default function ClientService(){
                             <span>Dinos en qué te podemos ayudar</span>
                             <textarea className='client_service_form_inputs'
                             onChange={(e) => setMessage(e.target.value)}
-                            rows={10}
+                            rows={18}
                             placeholder={"¿En qué podemos ayudarte?"}
                             />
                             <button id='client_service_submit'>Enviar</button>

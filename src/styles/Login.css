@@ -52,9 +52,14 @@
 .login_right .login_form{
     width: 60%;
     margin-left: -15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .login_right .login_form h2{
+    align-self: center;
+    width: 100%;
     color: rgba(0, 0, 0, 0.5);
     font-weight: 600;
     font-size: 2em;
@@ -111,22 +116,22 @@
     color: #ebebeb;
     background: transparent;
     border-radius: 30px;
-    background-color: rgba(255, 127, 34, 0.6);
+    background-color: rgba(255, 127, 34, .9);
     transition: .5s;
 }
 
 .login_right .login_form #sign_in_button a:hover{
-    background-color: rgba(255, 127, 34, .9);
+    background-color: rgba(255, 127, 34, 1);
     transition: .5s;
 }
 
 .login_right .login_form .login_input a{
     text-decoration: none;
-    color: rgba(255, 127, 34, 0.6);
+    color: rgba(255, 127, 34, 0.9);
 }
 
 .login_right .login_form .login_input a:hover{
-    color: rgba(255, 127, 34, 0.9);
+    color: rgba(255, 127, 34, 1);
 }
 
 @media (max-width: 768px){
