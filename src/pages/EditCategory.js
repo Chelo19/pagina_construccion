@@ -13,6 +13,8 @@ export default function EditCategory() {
 
   const [category, setCategory] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [alert, setAlert] = useState(null);
+  const [locationId, setLocationId] = useState(null);
 
   const [newName, setNewName] = useState(null);
 
@@ -29,6 +31,8 @@ export default function EditCategory() {
       .from('account')
       .select()
       .eq('uuid', user.id);
+      setLocationId(data[0].location_id);
+      console.log(data[0].location_id);
       if(data[0].role != 'administrador'){
         window.alert("No tienes los permisos para acceder a este lugar");
         navigate("/");
@@ -132,7 +136,8 @@ export default function EditCategory() {
     confirmacionesRemove[0] = true;
     if(confirmacionesRemove[0] && confirmacionesRemove[1]){
       window.alert("Categoría eliminada correctamente");
-      navigate(-1);
+      setAlert("Ya puedes abandonar esta página");
+      navigate(`/edit-categories/${locationId}`);
     }
   }
 
@@ -145,7 +150,8 @@ export default function EditCategory() {
     confirmacionesRemove[1] = true;
     if(confirmacionesRemove[0] && confirmacionesRemove[1]){
       window.alert("Categoría eliminada correctamente");
-      navigate(-1);
+      setAlert("Ya puedes abandonar esta página");
+      navigate(`/edit-categories/${locationId}`);
     }
   }
 
@@ -206,13 +212,14 @@ export default function EditCategory() {
             </div>
           </div>
           <div className="edit_service_remove">
-            <span>Recuerda esperar alrededor de 15 segundos antes de abandonar esta página</span>
+            <span>Recuerda esperar la alerta de confirmación antes de abandonar esta página</span>
             <input 
               id='edit_service_remove_input'
               type={"submit"}
               onClick={removeItem}
               value={`Eliminar: ${id}`}>
             </input>
+            <span>{alert}</span>
           </div>
         </div>
       ) : <LoadingScreen/>}
