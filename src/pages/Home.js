@@ -182,7 +182,7 @@ export default function Home(){
                     <div className='enterprises_container'>
                         <div className='enterprises_left'>
                             <div className='enterprises_text'>
-                                Contamos con los mejores aliados para la realización de tu servicio
+                                Los mejores aliados para tu proyecto
                             </div>
                         </div>
                         <div className='enterprises_right'>
