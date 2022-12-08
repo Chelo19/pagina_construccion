@@ -1,35 +1,61 @@
 import '../styles/ClientService.css';
+import LoadingScreen from "../components/LoadingScreen";
+import emailjs from 'emailjs-com';
+import { useEffect, useState } from "react";
+import { supabase } from "../supabase/client";
 
 export default function ClientService(){
+    const [isMailSent, setIsMailSent] = useState(false);
+    const [email, setEmail] = useState(null);
+    const [message, setMessage] = useState(null);
+    const [confirmationAlert, setConfirmationAlert] = useState(null);
+    const [loadingScreen, setLoadingScreen] = useState(true);
+
+    const getUserData = async () => {
+        const { data: { user } } = await supabase.auth.getUser();
+        setEmail(user.email);
+        setLoadingScreen(false);
+    }
+
+    const sendEmail = async () => {
+        if(message){
+            console.log(email);
+            console.log(message);
+            emailjs.send("service_rqa3brt","template_a3asdl2",{
+            email: email,
+            message: message},
+            'a9hJXSTK7xAdC26he');
+            setConfirmationAlert("Tu mensaje ha sido enviado correctamente");
+        }
+    }
+
+    useEffect(() => {
+        getUserData();
+      }, [loadingScreen]);
+
     return(
         <div className="client_service_background">
-            <div className='client_service'>
-                <div className='client_service_item' id='left_client_service'>
-                    <div className='client_service_item_title'>
-                        <img src={require('../img/serviciocliente.png')} id='client_service_logo'/>
-                        <a className='client_service_title'>
-                            Servicio al cliente
-                        </a>
+            {!loadingScreen ?
+                <div className='client_service_container'>
+                    <div className='client_service_form_container'>
+                        <form className='client_service_form' onSubmit={sendEmail}>
+                            <span>¿En qué podemos ayudarte?</span>
+                            <textarea className='client_service_form_inputs'
+                            onChange={(e) => setMessage(e.target.value)}
+                            rows={10}
+                            placeholder={"¿En qué podemos ayudarte?"}
+                            />
+                            <button id='client_service_submit'>Enviar</button>
+                        </form>
+                        <span>{confirmationAlert}</span>
                     </div>
-                    <div className='client_service_item_content'>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam pharetra diam felis, non scelerisque nulla posuere eu. Morbi rhoncus magna ac mi scelerisque, et congue massa tristique. In quis sodales erat. Vivamus commodo neque eu lacus congue condimentum. Pellentesque egestas ut lorem vel eleifend. In hendrerit aliquet ligula quis egestas. Maecenas nec nisl ac massa ultricies consequat. Nam finibus nulla orci, quis aliquam ligula facilisis quis.
+                    <div className='client_service_img_container'>
+                        <div id='client_service_img'>
+                            <img src={require('../img/comunicacion.png')}/>
+                        </div>
                     </div>
                 </div>
-                <div className='client_service_item' id='right_client_service'>
-                    <div className='client_service_item_title'>
-                        <img src={require('../img/serviciocliente.png')} id='client_service_logo'/>
-                        <a className='client_service_title'>
-                            Contactar a un socio
-                        </a>
-                    </div>
-                    <div className='client_service_item_content'>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In quis sodales erat. Vivamus commodo neque eu lacus congue condimentum. Pellentesque egestas ut lorem vel eleifend. In hendrerit aliquet ligula quis egestas. Maecenas nec nisl ac massa ultricies consequat. Nam finibus nulla orci, quis aliquam ligula facilisis quis.
-                    </div>
-                    <a href='/login' className='client_service_link'>
-                        Haz click aquí para contactar a un socio
-                    </a>
-                </div>
-            </div>
+            : <LoadingScreen/>}
         </div>
     )
 }

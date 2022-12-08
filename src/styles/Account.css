@@ -209,7 +209,7 @@
 
     .selections{
         display: flex;
-        flex-direction: column;
+        flex-direction: column-reverse;
         padding: 0;
         height: 100%;
         grid-gap: 0;
@@ -276,5 +276,12 @@
 
     .account_data_info{
         font-size: 12px;
+    }
+
+    .account_data_info_email{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
     }
 }

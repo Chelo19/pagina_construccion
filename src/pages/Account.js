@@ -99,7 +99,11 @@ export default function Account(){
                         </div>
                         <div className='account_data_info'>
                             <span>Nombre: {name}</span><br/>
-                            <span>Email: {email}</span><br/>
+                            <div className='account_data_info_email'>
+                                <span>Email:&nbsp;</span>
+                                <span>{email}</span>
+                            </div>
+                            <br/>
                             <span>Location: {location}</span><br/>
                             <span>Cambiar localización:</span><br/>
                             <div className='change_location_account'>

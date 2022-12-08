@@ -149,7 +149,7 @@ export default function Home(){
                 <div className='background_img'>
                     <div className='background_img_container'>
                         <span id='background_img_title'>DREC</span>
-                        <span id='background_img_eslogan'><i>"La construcción que siempre debiste tener"</i></span>
+                        <span id='background_img_eslogan'><i>"La construcción que debes tener"</i></span>
                     </div>
                 </div>
                 <div className='our_projects_presentation'>

@@ -190,6 +190,12 @@ header{
     text-decoration: none;
     color: #ebebeb;
     padding: 15px 15px 15px 20px;
+    text-transform: uppercase;
+}
+
+.bars_menu_div a{
+    font-weight: 600;
+    text-transform: uppercase;
 }
 
 .header_responsive{
@@ -300,6 +306,7 @@ header{
         width: 80%;
         border-radius: 10px;
         color: #3f3d3d;
+        text-align: center;
     }
 
 }
