@@ -17,6 +17,7 @@ export default function EditService() {
 
   const [selection, setSelection] = useState(null);
   const [newFile, setNewFile] = useState(null);
+  var confirmacionesRemove = [false, false];
 
   const newUrl = [];
 
@@ -158,6 +159,11 @@ export default function EditService() {
       console.log(data);
       console.log(error);
     }
+    confirmacionesRemove[0] = true;
+    if(confirmacionesRemove[0] && confirmacionesRemove[1]){
+      window.alert("Categoría eliminada correctamente");
+      navigate(`/admin-hub/`);
+    }
   }
 
   const removeDb = async () => {
@@ -166,6 +172,11 @@ export default function EditService() {
     .delete()
     .eq('id', id)
     console.log(error);
+    confirmacionesRemove[1] = true;
+    if(confirmacionesRemove[0] && confirmacionesRemove[1]){
+      window.alert("Categoría eliminada correctamente");
+      navigate(`/admin-hub/`);
+    }
   }
 
   return (

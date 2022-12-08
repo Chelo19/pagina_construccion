@@ -64,7 +64,7 @@
 }
 
 .client_service_form textarea::placeholder{
-    color: #252730;
+    color: rgba(37, 39, 48, 0.5);
 }
 
 .client_service_form textarea:hover{

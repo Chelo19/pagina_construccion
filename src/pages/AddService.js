@@ -18,7 +18,7 @@ export default function AddService(){
     const [newFile2, setNewFile2] = useState(null);
     const [newFile3, setNewFile3] = useState(null);
     const [newFile4, setNewFile4] = useState(null);
-    const [alert, setAlert] = useState(null);
+    const [correctAlert, setCorrectAlert] = useState(null);
     var serviceId;
     const newUrl = [];
     var publicUrl;
@@ -50,11 +50,11 @@ export default function AddService(){
     }
 
     const createItem = async () => {
-        setAlert("Recuerda esperar la alerta de confirmación antes de abandonar esta página");
         if(newName != null && newFile0 != null && newFile1 != null && newFile2 != null && newFile3 != null && newFile4 != null){
+            setCorrectAlert('Espera un momento en lo que se crea el servicio');
             getCategoryLocationId();
             insertDb();
-            getItem();
+            comprobation();
         }
         else{
             window.alert("Favor de ingresar todos los campos");
@@ -78,11 +78,25 @@ export default function AddService(){
         }
     }
 
+    const comprobation = async () => {
+        const { data, error } = await supabase
+        .from('services')
+        .select('*')
+        .match({ category_id: id, name: newName, description: newDescription });
+        if(data.length >= 2){
+            window.alert("Ya existe un servicio igual");
+        }
+        else{
+            getItem();
+        }
+    }
+
     const getItem = async () => {
         const { data, error } = await supabase
         .from('services')
         .select()
-        .match({ category_id: id, name: newName });
+        .match({ category_id: id, name: newName, description: newDescription });
+        if(data[0])
         console.log(data[0]);
         console.log(data[0].id);
         serviceId = data[0].id;
@@ -159,7 +173,7 @@ export default function AddService(){
             .from('services')
             .update({ img_url: newUrl, location_id: locationId })
             .eq('id', serviceId);
-            window.alert("Servicio agregado correcatmente");
+            window.alert("Servicio agregado correctamente");
             document.location.reload();
         }
         else{
@@ -177,69 +191,78 @@ export default function AddService(){
         <div className="add_service_background">
             {!loadingScreen ?
                 <div className="add_service_container">
-                <span>Nombre del nuevo servicio</span>
-                <input
-                id={'add_service_text_input'}
-                type={'text'}
-                placeholder={'Nombre del nuevo servicio'}
-                onChange={(e) => setNewName(e.target.value)}
-                />
-                <span>Descripción del nuevo servicio</span>
-                <input
-                id={'add_service_text_input_description'}
-                type={'text'}
-                placeholder={'Descripción del nuevo servicio'}
-                onChange={(e) => setNewDescription(e.target.value)}
-                />
-                <span>Imagen del nuevo servicio</span>
-                <span id="add_service_files_reminder">Recuerda que la relación de aspecto ideal para la imagen es de 4:3</span>
-                <span id="add_service_file">
-                    Primera imagen:&nbsp;
-                    <input
-                    type={"file"}
-                    accept={".png, .jpg, .jpeg"}
-                    onChange={(e) => setNewFile0(e.target.files)}
-                    />
-                </span>
-                <span id="add_service_file">
-                    Segunda imagen:&nbsp;
-                    <input
-                    type={"file"}
-                    accept={".png, .jpg, .jpeg"}
-                    onChange={(e) => setNewFile1(e.target.files)}
-                    />
-                </span>
-                <span id="add_service_file">
-                    Tercera imagen:&nbsp;
-                    <input
-                    type={"file"}
-                    accept={".png, .jpg, .jpeg"}
-                    onChange={(e) => setNewFile2(e.target.files)}
-                    />
-                </span>
-                <span id="add_service_file">
-                    Cuarta imagen:&nbsp;
-                    <input
-                    type={"file"}
-                    accept={".png, .jpg, .jpeg"}
-                    onChange={(e) => setNewFile3(e.target.files)}
-                    />
-                </span>
-                <span id="add_service_file">
-                    Quinta imagen:&nbsp;
-                    <input
-                    type={"file"}
-                    accept={".png, .jpg, .jpeg"}
-                    onChange={(e) => setNewFile4(e.target.files)}
-                    />
-                </span>
-                <input
-                    id={'add_service_submit'}
-                    type={'submit'}
-                    value={"Crear nuevo servicio"}
-                    onClick={createItem}
-                />
-                <span>Recuerda esperar hasta el mensaje correcto antes de salir de esta página</span>
+                    <div className="add_service_texts">
+                        <span className="add_service_instructions">Nombre</span>
+                        <input
+                        id={'add_service_text_input'}
+                        type={'text'}
+                        placeholder={'Nombre del nuevo servicio'}
+                        onChange={(e) => setNewName(e.target.value)}
+                        />
+                        <span className="add_service_instructions">Descripción</span>
+                        <textarea
+                        className="add_service_textarea"
+                        rows={20}
+                        placeholder={'Descripción del nuevo servicio'}
+                        onChange={(e) => setNewDescription(e.target.value)}
+                        />
+                    </div>
+                    <div className="add_service_imgs">
+                        <div className="add_service_imgs_container">
+                            <span id="add_service_reminder">La relación de aspecto ideal para la imagen es de 4:3</span>
+                            <div className="add_service_img_inputs">
+                                <div className="add_service_imgs_containers">
+                                    Primera imagen:&nbsp;
+                                    <input
+                                    type={"file"}
+                                    accept={".png, .jpg, .jpeg"}
+                                    onChange={(e) => setNewFile0(e.target.files)}
+                                    />
+                                </div>
+                                <div className="add_service_imgs_containers">
+                                    Segunda imagen:&nbsp;
+                                    <input
+                                    type={"file"}
+                                    accept={".png, .jpg, .jpeg"}
+                                    onChange={(e) => setNewFile1(e.target.files)}
+                                    />
+                                </div>
+                                <div className="add_service_imgs_containers">
+                                    Tercera imagen:&nbsp;
+                                    <input
+                                    type={"file"}
+                                    accept={".png, .jpg, .jpeg"}
+                                    onChange={(e) => setNewFile2(e.target.files)}
+                                    />
+                                </div>
+                                <div className="add_service_imgs_containers">
+                                    Cuarta imagen:&nbsp;
+                                    <input
+                                    type={"file"}
+                                    accept={".png, .jpg, .jpeg"}
+                                    onChange={(e) => setNewFile3(e.target.files)}
+                                    />
+                                </div>
+                                <div className="add_service_imgs_containers">
+                                    Quinta imagen:&nbsp;
+                                    <input
+                                    type={"file"}
+                                    accept={".png, .jpg, .jpeg"}
+                                    onChange={(e) => setNewFile4(e.target.files)}
+                                    />
+                                </div>
+                            </div>
+                            <input
+                                id="add_service_submit"
+                                type={'submit'}
+                                value={"Crear nuevo servicio"}
+                                onClick={createItem}
+                            />
+                            <span id="add_service_reminder">Recuerda esperar hasta el mensaje correcto antes de salir de esta página</span>
+                            <span id="add_service_reminder">{correctAlert}</span>
+                        </div>
+                    </div>
+                
             </div>
             : <LoadingScreen/>} 
         </div>
