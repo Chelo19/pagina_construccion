@@ -26,6 +26,7 @@ export default function ClientService(){
             message: message},
             'a9hJXSTK7xAdC26he');
             setConfirmationAlert("Tu mensaje ha sido enviado correctamente");
+            window.alert("Tu mensaje ha sido enviado correctamente");
         }
     }
 
