@@ -39,7 +39,7 @@ export default function ClientService(){
                 <div className='client_service_container'>
                     <div className='client_service_form_container'>
                         <form className='client_service_form' onSubmit={sendEmail}>
-                            <span>¿En qué podemos ayudarte?</span>
+                            <span>Dinos en qué te podemos ayudar</span>
                             <textarea className='client_service_form_inputs'
                             onChange={(e) => setMessage(e.target.value)}
                             rows={10}
