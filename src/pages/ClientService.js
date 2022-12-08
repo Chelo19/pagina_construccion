@@ -47,8 +47,8 @@ export default function ClientService(){
                             placeholder={"¿En qué podemos ayudarte?"}
                             />
                             <button id='client_service_submit'>Enviar</button>
+                            <span>{confirmationAlert}</span>
                         </form>
-                        <span>{confirmationAlert}</span>
                     </div>
                     <div className='client_service_img_container'>
                         <div id='client_service_img'>
