@@ -17,6 +17,8 @@ export default function EditCategory() {
   const [newName, setNewName] = useState(null);
 
   const [newFile, setNewFile] = useState(null);
+
+  var confirmacionesRemove = [false, false];
   
   const newUrl = [];
 
@@ -112,6 +114,41 @@ export default function EditCategory() {
     .eq('id', id);
   }
 
+  const removeItem = async () => {
+    removeBucket();
+    removeDb();
+  }
+
+  const removeBucket = async () => {
+    console.log("Eliminando de Bucket...");
+    for(var i = 0 ; i < 5 ; i++){
+      const { data, error } = await supabase
+      .storage
+      .from('categories-img')
+      .remove([`${id}`]);
+      console.log(data);
+      console.log(error);
+    }
+    confirmacionesRemove[0] = true;
+    if(confirmacionesRemove[0] && confirmacionesRemove[1]){
+      window.alert("Categoría eliminada correctamente");
+      navigate(-1);
+    }
+  }
+
+  const removeDb = async () => {
+    const { error } = await supabase
+    .from('categories')
+    .delete()
+    .eq('id', id)
+    console.log(error);
+    confirmacionesRemove[1] = true;
+    if(confirmacionesRemove[0] && confirmacionesRemove[1]){
+      window.alert("Categoría eliminada correctamente");
+      navigate(-1);
+    }
+  }
+
   return (
     <>
       {!isLoading ? (
@@ -167,6 +204,15 @@ export default function EditCategory() {
                 value={`Cambiar imagen`}>
               </input>
             </div>
+          </div>
+          <div className="edit_service_remove">
+            <span>Recuerda esperar alrededor de 15 segundos antes de abandonar esta página</span>
+            <input 
+              id='edit_service_remove_input'
+              type={"submit"}
+              onClick={removeItem}
+              value={`Eliminar: ${id}`}>
+            </input>
           </div>
         </div>
       ) : <LoadingScreen/>}

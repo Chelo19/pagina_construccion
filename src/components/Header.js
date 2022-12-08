@@ -132,11 +132,11 @@ export default function Header(){
                                 </Link>
                             </div>
                             }
-                            <div className='bars_menu_item'>
+                            {/*<div className='bars_menu_item'>
                                 <Link to={'/categories/1'} style={{ color: 'inherit', textDecoration: 'inherit'}} onClick={changeIsBarMenu}>
                                     <a>Mis servicios</a>
                                 </Link>
-                            </div>
+                            </div>*/}
                             <div className='bars_menu_item'>
                                 <Link to={'/'} style={{ color: 'inherit', textDecoration: 'inherit'}} onClick={changeIsBarMenu}>
                                     <a>Contacto</a>
@@ -147,11 +147,11 @@ export default function Header(){
                                     <a>Nosotros</a>
                                 </Link>
                             </div>
-                            <div className='bars_menu_item'>
+                            {/*<div className='bars_menu_item'>
                                 <Link to={'/client-service'} style={{ color: 'inherit', textDecoration: 'inherit'}} onClick={changeIsBarMenu}>
                                     <a>Servicio al cliente</a>
                                 </Link>
-                            </div>
+                            </div>*/}
                             {isLogged && (
                                 <div className='bars_menu_item'>
                                     <Link to={'/'} style={{ color: 'inherit', textDecoration: 'inherit'}} onClick={signOut}>

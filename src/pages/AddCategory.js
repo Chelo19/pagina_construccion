@@ -88,6 +88,7 @@ export default function AddCategory(){
         .from('categories')
         .update({ img_url: newUrl })
         .eq('name', newName);
+        window.alert("Categoría agregada correctamente");
         document.location.reload();
     }
 

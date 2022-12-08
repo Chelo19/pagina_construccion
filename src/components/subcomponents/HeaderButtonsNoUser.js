@@ -54,10 +54,10 @@ export default function HeaderButtonsNoUser(){
                     <ul className='vertical_menu_header'>
                         <li><Link to={`/`} style={{ color: 'inherit', textDecoration: 'inherit'}}>Menú principal</Link></li>
                         <li><Link to={`/account/`} style={{ color: 'inherit', textDecoration: 'inherit'}}>Cuenta</Link></li>
-                        <li><Link to={`/my-services/`} style={{ color: 'inherit', textDecoration: 'inherit'}}>Mis Servicios</Link></li>
+                        {/*<li><Link to={`/my-services/`} style={{ color: 'inherit', textDecoration: 'inherit'}}>Mis Servicios</Link></li>*/}
                         <li><Link to={`/`} style={{ color: 'inherit', textDecoration: 'inherit'}}>Contacto</Link></li>
                         <li><Link to={`/`} style={{ color: 'inherit', textDecoration: 'inherit'}}>Nosotros</Link></li>
-                        <li><Link to={`/client-service/`} style={{ color: 'inherit', textDecoration: 'inherit'}}>Servicio al Cliente</Link></li>
+                        {/*<li><Link to={`/client-service/`} style={{ color: 'inherit', textDecoration: 'inherit'}}>Servicio al Cliente</Link></li>*/}
                         <li><Link to={`/`} style={{ color: 'inherit', textDecoration: 'inherit'}} onClick={signOut}>Cerrar sesion</Link></li>
                     </ul>
                 </li>

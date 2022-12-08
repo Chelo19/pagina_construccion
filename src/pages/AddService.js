@@ -57,7 +57,7 @@ export default function AddService(){
             getItem();
         }
         else{
-            console.log("Favor de ingresar todos los campos");
+            window.alert("Favor de ingresar todos los campos");
         }
     }
     
@@ -159,6 +159,8 @@ export default function AddService(){
             .from('services')
             .update({ img_url: newUrl, location_id: locationId })
             .eq('id', serviceId);
+            window.alert("Servicio agregado correcatmente");
+            document.location.reload();
         }
         else{
             console.log("Aun no se llena");
@@ -237,7 +239,7 @@ export default function AddService(){
                     value={"Crear nuevo servicio"}
                     onClick={createItem}
                 />
-                <span>Recuerda esperar alrededor de 15 segundos antes de salir de esta página</span>
+                <span>Recuerda esperar hasta el mensaje correcto antes de salir de esta página</span>
             </div>
             : <LoadingScreen/>} 
         </div>
