@@ -88,7 +88,8 @@ function App() {
         <Route path="/add-service-home-select-category/:id" element={<AddServiceHomeSelectCategory/>}/>
         <Route path="/add-service-home/:id" element={<AddServiceHome/>}/>
         <Route path="/add-service-to-home/:id" element={<AddServiceToHome/>}/>
-        <Route path="/confirmed-email/" element={<ConfirmedEmail/>}/>
+        <Route path="/confirmed-email" element={<ConfirmedEmail/>}/>
+        <Route path="/confirmed-emai#" element={<UpdatePassword />} />
       </Routes>
       <Footer/>
     </div>
