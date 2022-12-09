@@ -26,17 +26,16 @@ function Register() {
 
   const hangleSignUp = async (e) => {
     e.preventDefault();
-
     try {
       const { data, error } = await supabase.auth.signUp({email, password}, {emailRedirectTo: 'http://grupodrec.com/#/confirmed-email'});
       if (error) throw error;
-      alert("¡Revisa tu email para confirmar tu cuenta!");
+      navigate('/');
 
       const { errorInsert } = await supabase
         .from("account")
         .insert({ email: email, name: name, location: location });
     } catch (e) {
-      alert(e.message);
+      window.alert(e.message);
     }
   };
 
