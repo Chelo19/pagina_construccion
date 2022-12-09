@@ -22,12 +22,12 @@ function RecoverPassword(){
     useEffect(() => {
         supabase.auth.onAuthStateChange(async (event, session) => {
           if (event == "PASSWORD_RECOVERY") {
-            const newPassword = prompt("What would you like your new password to be?");
+            const newPassword = prompt("¿Qué contraseña quieres tener?");
             const { data, error } = await supabase.auth
               .updateUser({ password: newPassword })
      
-            if (data) alert("Password updated successfully!")
-            if (error) alert("There was an error updating your password.")
+            if (data) alert("Contraseña cambiada correctamente")
+            if (error) alert("Algo no salió bien")
           }
         })
     }, [])
@@ -39,7 +39,7 @@ function RecoverPassword(){
             const { data, error } = await supabase.auth.resetPasswordForEmail(email, {
                 redirectTo: 'https://grupodrec.com/#/update-password',
             });
-            if(!error) alert("Correcto");
+            if(!error) window.alert("¡Revisa tu email!");
             else if(error) alert(error.message);
         } catch(error){
             console.log(error);

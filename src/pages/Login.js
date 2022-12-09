@@ -37,7 +37,7 @@ function Login(){
                 alert("Correo o contraseña no válido");
                 return;
             } 
-            alert("Has iniciado sesión correctamenta");
+            alert("Has iniciado sesión correctamente");
             document.location.reload();
             navigate('/');
         } catch(e){
