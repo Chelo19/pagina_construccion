@@ -1,6 +1,11 @@
 function NotFound(){
     return(
-        <div>NotFound</div>
+        <div className='loading_screen'>
+            <div className='loading_screen_container'>
+                <img src={require('../img/logodrecfullsize.png')}/>
+                <span>Página no encontrada</span>
+            </div>
+        </div>
     )
 }
 

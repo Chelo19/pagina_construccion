@@ -1,0 +1,64 @@
+.confirmed_email_background{
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.confirmed_email_container{
+    width: 30%;
+    height: 60%;
+    background-color: #ebebeb;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.confirmed_email_display{
+    width: 80%;
+    height: 80%;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 16px;
+    gap: 20px;
+    color: #161825;
+}
+
+#confirmed_email_logo{
+    width: 110px;
+    height: 100px;
+}
+
+#confirmed_email_title{
+    font-size: 50px;
+}
+
+.confirmed_email_button{
+    font-family: 'Poppins', sans-serif;
+    text-decoration: none;
+    text-align: center;
+    align-items: center;
+    width: 50%;
+    padding: 10px 20px;
+    outline: none;
+    font-weight: 400;
+    font-size: 16px;
+    letter-spacing: 1px;
+    color: #ebebeb;
+    background: transparent;
+    border-radius: 30px;
+    background-color: rgba(255, 127, 34, 0.9);
+    transition: .5s;
+}
+
+.confirmed_email_button:hover{
+    background-color: rgba(255, 127, 34, 1);
+    transition: .5s;
+}
