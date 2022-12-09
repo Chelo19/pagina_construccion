@@ -31,7 +31,7 @@ function Register() {
       const { data, error } = await supabase.auth.signUp({
         email,
         password,
-      }, {redirectTo: 'http://localhost:3000/#/confirmed-email'});
+      }, {emailRedirectTo: 'http://localhost:3000/#/confirmed-email'});
       if (error) throw error;
       alert("¡Revisa tu email para confirmar tu cuenta!");
 
