@@ -18,7 +18,7 @@ export default function Header(){
     const controlNavbar = async () => {
         if(isBarMenu){
             setIsBarMenu(false);
-            setBars_menu_style({ clipPath: "circle(0% at top right)", transition: "clip-path 1s", top: "-500px" });
+            setBars_menu_style({ transition: "3s", top: "-500px" });
         }
         else{
             return;
@@ -48,11 +48,11 @@ export default function Header(){
         window.addEventListener('scroll', controlNavbar);
         if(isBarMenu){
             setIsBarMenu(false);
-            setBars_menu_style({ clipPath: "circle(0% at top right)", transition: "clip-path 1s", top: "-500px" });
+            setBars_menu_style({ transition: "3s", top: "-500px" });
         }
         if(!isBarMenu){
             setIsBarMenu(true);
-            setBars_menu_style({ clipPath: "circle(150% at top right)", transition: "clip-path .5s", top: "inherit" })
+            setBars_menu_style({ clipPath: "circle(150% at top right)", transition: "clip-path 1s", top: "0px" })
         }
     }
 
