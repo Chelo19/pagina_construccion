@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+import {useEffect, useState, useRef} from 'react';
 import {supabase} from '../supabase/client';
 import UserArea from '../components/UserArea';
 import RemoveFromDB from '../components/RemoveFromDB';
@@ -21,6 +21,7 @@ export default function Home(){
     var locationName;
     var locationId = 1;
     var displayServicesSel = [];
+    const projects = useRef(null);
     AuthRedirect();
     
     useEffect(() => {      
@@ -142,6 +143,10 @@ export default function Home(){
         }
     }
 
+    const executeScroll = () => {
+        projects.current.scrollIntoView()   
+    }
+
     return(
         <div className='home_background'>
             {!loadingScreen
@@ -151,14 +156,14 @@ export default function Home(){
                         <span id='background_img_title'>DREC</span>
                         <span id='background_img_eslogan'><i>"La construcción que debes tener"</i></span>
                     </div>
-                        <Link to={`/categories/${uLocationId}`} style={{textDecoration: 'inherit'}} id='background_img_services'>
+                        <Link style={{textDecoration: 'inherit'}} onClick={executeScroll} id='background_img_services'>
                             <span>Servicios</span>
                             <div id='background_img_services_img'>
                                 <img src={require('../img/flecha.png')}/>
                             </div>
                         </Link>
                 </div>
-                <div className='our_projects_presentation' >
+                <div className='our_projects_presentation' ref={projects}>
                     <Link to={`/categories/${uLocationId}`} style={{textDecoration: 'inherit'}} className='our_projects_presentation_text'>
                         SERVICIOS
                     </Link>
@@ -181,6 +186,12 @@ export default function Home(){
                         })}
                         
                     </div>
+                    <Link to={`/categories/${uLocationId}`} style={{textDecoration: 'inherit'}} class='our_projects_button'>
+                            <span>Ver más</span>
+                            <div class='our_projects_button_img'>
+                                <img src={require('../img/flecha.png')}/>
+                            </div>
+                        </Link>
                 </div>
                 <br/>
                 <br/>

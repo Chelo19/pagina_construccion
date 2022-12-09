@@ -1,3 +1,7 @@
+html{
+    scroll-behavior: smooth;
+}
+
 .home{
     text-align: center;
 }
@@ -75,8 +79,12 @@ body{
 }
 
 .our_projects{
-    height: 700px;
+    height: auto;
     display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding-top: 20px;
+    padding-bottom: 20px;
     align-items: center;
     background-color: #161825;
     box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
@@ -150,6 +158,37 @@ body{
     align-items: center;
     justify-content: center;
     transition: 1s;
+}
+
+.our_projects_button{
+    opacity: .8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    background-color: #ff7f22;
+    color: #ebebeb;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    border-radius: 5px;
+    font-size: 20px;
+    padding: 15px;
+    opacity: 1;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.our_projects_button_img{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+}
+
+.our_projects_button_img img{
+    filter: invert(1);
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
 }
 
 .enterprises{
@@ -333,15 +372,29 @@ body{
         display: flex;
         justify-content: center;
         align-items: center;
-        gap: 10px;
+        gap: 0;
         background-color: #ff7f22;
         color: #ebebeb;
         font-family: 'Poppins', sans-serif;
         font-weight: 600;
-        border-radius: 30px;
+        border-radius: 10px;
         font-size: 20px;
         padding: 15px;
+        opacity: 1;
         box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+        animation: services_button 1s infinite;
+    }
+
+    @keyframes services_button {
+        0%{
+            transform: scale(.9);
+        }
+        50%{
+            transform: scale(1.05);
+        }
+        100%{
+            transform: scale(.9);
+        }
     }
 
     #background_img_services_img{
@@ -354,14 +407,11 @@ body{
     #background_img_services_img img{
         filter: invert(1);
         object-fit: contain;
+        transform: rotate(90deg);
         width: 100%;
         height: 100%;
     }
 
-    #background_img_services{
-        opacity: 1;
-    }
-    
     #construcciones{
         width: 50px;
         height: 50px;
@@ -411,7 +461,7 @@ body{
     .our_projects_container_button:hover{
         transition: .5s;
         height: 210px;
-        width: 100%;
+        width: 85%;
         margin: 0;
     }
 
@@ -436,6 +486,37 @@ body{
 
     .our_projects_container_button_bottom_text:hover{
         font-size: 15px;
+    }
+
+    .our_projects_button{
+        opacity: .8;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        background-color: #ff7f22;
+        color: #ebebeb;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 600;
+        border-radius: 10px;
+        font-size: 20px;
+        padding: 15px;
+        opacity: 1;
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    }
+    
+    .our_projects_button_img{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 30px;
+    }
+
+    .our_projects_button_img img{
+        filter: invert(1);
+        object-fit: contain;
+        width: 100%;
+        height: 100%;
     }
 
     .enterprises{

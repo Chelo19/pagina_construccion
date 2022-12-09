@@ -27,7 +27,7 @@ function Register() {
   const hangleSignUp = async (e) => {
     e.preventDefault();
     try {
-      const { data, error } = await supabase.auth.signUp({email, password}, {emailRedirectTo: 'http://grupodrec.com/#/confirmed-email'});
+      const { data, error } = await supabase.auth.signUp({email, password});
       if (error) throw error;
       navigate('/');
 
