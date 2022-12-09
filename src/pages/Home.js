@@ -41,7 +41,7 @@ export default function Home(){
             .eq('email', user.email);
             
             if(data[0].uuid == null){
-                console.log("Anadiendo UUID");
+                console.log("Añadiendo UUID");
                 const { error } = await supabase
                 .from('account')
                 .update({uuid: user.id})

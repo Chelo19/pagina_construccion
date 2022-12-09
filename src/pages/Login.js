@@ -34,12 +34,11 @@ function Login(){
               });
             console.log(data);
             if (error){
-                alert("Correo o contraseña no válido");
+                window.alert("Correo o contraseña no válido");
                 return;
             }
-            alert("Has iniciado sesión correctamente");
-            document.location.reload();
             navigate('/');
+            document.location.reload();
         } catch(e){
             alert(e.message);
         }
