@@ -194,6 +194,10 @@ header{
     text-transform: uppercase;
 }
 
+.bars_menu_div{
+    display: none;
+}
+
 .bars_menu_div a{
     font-weight: 600;
     text-transform: uppercase;
@@ -204,6 +208,10 @@ header{
 }
 
 @media screen and (max-width: 768px){
+    header{
+        height: 90px;
+    }
+
     .header_default{
         display: none;
     }
@@ -211,19 +219,17 @@ header{
     .header_responsive{
         display: flex;
         width: 100%;
-        flex-direction: column;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
         font-family: 'Poppins', sans-serif;
         position: fixed;
         z-index: 1;
-    }
-
-    .header_responsive_background{
         height: 90px;
         background-color: #ff7f22;
     }
 
     .logo_header{
-        margin-top: -90px;
         margin-left: 10px;
         height: 90px;
         font-size: 10px;
@@ -255,9 +261,7 @@ header{
 
     .bars_menu{
         align-self: flex-end;
-        margin-top: -90px;
         width: 80%;
-        display: flex;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -265,7 +269,6 @@ header{
 
     .bars_icon_container_background{
         background-color: #161825;
-        align-self: flex-end;
     }
 
     .bars_icon_container{
@@ -285,7 +288,9 @@ header{
     }
 
     .bars_menu_div{
-        width: 100%;
+        margin-top: 90px;
+        width: 80%;
+        margin-left: auto;
         background-color: #2b2d3a;
         display: flex;
         align-items: center;
@@ -296,6 +301,7 @@ header{
         padding-bottom: 15px;
         border-bottom-left-radius: 10px;
         clip-path: circle(0% at top right);
+        position: relative;
     }
 
     .bars_menu_div a{

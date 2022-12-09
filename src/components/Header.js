@@ -18,7 +18,7 @@ export default function Header(){
     const controlNavbar = async () => {
         if(isBarMenu){
             setIsBarMenu(false);
-            setBars_menu_style({ clipPath: "circle(0% at top right)", transition: "clip-path 1s"});
+            setBars_menu_style({ clipPath: "circle(0% at top right)", transition: "clip-path 1s", top: "-500px" });
         }
         else{
             return;
@@ -48,11 +48,11 @@ export default function Header(){
         window.addEventListener('scroll', controlNavbar);
         if(isBarMenu){
             setIsBarMenu(false);
-            setBars_menu_style({ clipPath: "circle(150% at top right)", transition: "clip-path .5s"});
+            setBars_menu_style({ clipPath: "circle(0% at top right)", transition: "clip-path 1s", top: "-500px" });
         }
         if(!isBarMenu){
             setIsBarMenu(true);
-            setBars_menu_style({ clipPath: "circle(0% at top right)", transition: "clip-path 1s"})
+            setBars_menu_style({ clipPath: "circle(150% at top right)", transition: "clip-path .5s", top: "inherit" })
         }
     }
 
@@ -112,7 +112,6 @@ export default function Header(){
                 </div>
             </div>
             <div className='header_responsive'>
-                <div className='header_responsive_background'/>
                 <div className='logo_header'>
                     <Link to={`/`}>
                         <img id='logoimg_header' src={require('../img/logodrecfullsize.png')}/>
@@ -121,68 +120,66 @@ export default function Header(){
                         <a href='/' id='logo'>DREC</a>
                     </Link>
                 </div>
-                <div className='bars_menu'>
-                    <div className='bars_icon_container_background'>
-                        <div className='bars_icon_container'>
-                            <img id='bars_icon' onClick={changeIsBarMenu} src={require('../img/menudesplegable.png')}></img>
-                        </div>
-                    </div>
-                    <div className='bars_menu_div' style={bars_menu_style}>
-                        <div className='bars_menu_item'>
-                            <Link to={'/'} style={{ color: 'inherit', textDecoration: 'inherit'}} onClick={changeIsBarMenu}>
-                                <a>Menú principal</a>
-                            </Link>
-                        </div>
-                        {isLogged ? (
-                            <div className='bars_menu_item'>
-                                <Link to={'/account'} style={{ color: 'inherit', textDecoration: 'inherit'}} onClick={changeIsBarMenu}>
-                                    <a>Cuenta</a>
-                                </Link>
-                            </div>
-                        ):
-                        <div className='bars_menu_item'>
-                            <Link to={'/login'} style={{ color: 'inherit', textDecoration: 'inherit'}} onClick={changeIsBarMenu}>
-                                <a>Inicia sesion</a>
-                            </Link>
-                        </div>
-                        }
-                        {/*<div className='bars_menu_item'>
-                            <Link to={'/categories/1'} style={{ color: 'inherit', textDecoration: 'inherit'}} onClick={changeIsBarMenu}>
-                                <a>Mis servicios</a>
-                            </Link>
-                        </div>*/}
-                        <div className='bars_menu_item'>
-                            <Link to={'/'} style={{ color: 'inherit', textDecoration: 'inherit'}} onClick={changeIsBarMenu}>
-                                <a>Contacto</a>
-                            </Link>
-                        </div>
-                        <div className='bars_menu_item'>
-                            <Link to={'/categories/1'} style={{ color: 'inherit', textDecoration: 'inherit'}} onClick={changeIsBarMenu}>
-                                <a>Nosotros</a>
-                            </Link>
-                        </div>
-                        <div className='bars_menu_item'>
-                            <Link to={'/client-service'} style={{ color: 'inherit', textDecoration: 'inherit'}} onClick={changeIsBarMenu}>
-                                <a>Servicio al cliente</a>
-                            </Link>
-                        </div>
-                        {isLogged && (
-                            <div className='bars_menu_item'>
-                                <Link to={'/'} style={{ color: 'inherit', textDecoration: 'inherit'}} onClick={signOut}>
-                                    <a>Cerrar Sesión</a>
-                                </Link>
-                            </div>
-                        )}
-                        {isAdmin && (
-                            <div className='bars_menu_item' onClick={changeIsBarMenu}>
-                                <Link to={'/admin-hub'} style={{ color: 'inherit', textDecoration: 'inherit'}} onClick={changeIsBarMenu}>
-                                    <a>Administrador</a>
-                                </Link>
-                            </div>
-                        )}
+                <div className='bars_icon_container_background'>
+                    <div className='bars_icon_container'>
+                        <img id='bars_icon' onClick={changeIsBarMenu} src={require('../img/menudesplegable.png')}></img>
                     </div>
                 </div>
             </div>
+            <div className='bars_menu_div' style={bars_menu_style}>
+                    <div className='bars_menu_item'>
+                        <Link to={'/'} style={{ color: 'inherit', textDecoration: 'inherit'}} onClick={changeIsBarMenu}>
+                            <a>Menú principal</a>
+                        </Link>
+                    </div>
+                    {isLogged ? (
+                        <div className='bars_menu_item'>
+                            <Link to={'/account'} style={{ color: 'inherit', textDecoration: 'inherit'}} onClick={changeIsBarMenu}>
+                                <a>Cuenta</a>
+                            </Link>
+                        </div>
+                    ):
+                    <div className='bars_menu_item'>
+                        <Link to={'/login'} style={{ color: 'inherit', textDecoration: 'inherit'}} onClick={changeIsBarMenu}>
+                            <a>Inicia sesion</a>
+                        </Link>
+                    </div>
+                    }
+                    {/*<div className='bars_menu_item'>
+                        <Link to={'/categories/1'} style={{ color: 'inherit', textDecoration: 'inherit'}} onClick={changeIsBarMenu}>
+                            <a>Mis servicios</a>
+                        </Link>
+                    </div>*/}
+                    <div className='bars_menu_item'>
+                        <Link to={'/'} style={{ color: 'inherit', textDecoration: 'inherit'}} onClick={changeIsBarMenu}>
+                            <a>Contacto</a>
+                        </Link>
+                    </div>
+                    <div className='bars_menu_item'>
+                        <Link to={'/categories/1'} style={{ color: 'inherit', textDecoration: 'inherit'}} onClick={changeIsBarMenu}>
+                            <a>Nosotros</a>
+                        </Link>
+                    </div>
+                    <div className='bars_menu_item'>
+                        <Link to={'/client-service'} style={{ color: 'inherit', textDecoration: 'inherit'}} onClick={changeIsBarMenu}>
+                            <a>Servicio al cliente</a>
+                        </Link>
+                    </div>
+                    {isLogged && (
+                        <div className='bars_menu_item'>
+                            <Link to={'/'} style={{ color: 'inherit', textDecoration: 'inherit'}} onClick={signOut}>
+                                <a>Cerrar Sesión</a>
+                            </Link>
+                        </div>
+                    )}
+                    {isAdmin && (
+                        <div className='bars_menu_item' onClick={changeIsBarMenu}>
+                            <Link to={'/admin-hub'} style={{ color: 'inherit', textDecoration: 'inherit'}} onClick={changeIsBarMenu}>
+                                <a>Administrador</a>
+                            </Link>
+                        </div>
+                    )}
+                </div>
         </header>
     );
 }
