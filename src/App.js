@@ -74,7 +74,6 @@ function App() {
         <Route path="/my-services" element={<MyServices />} />
         <Route path="/client-service" element={<ClientService />} />
         <Route path="/update-password" element={<UpdatePassword />} />
-        <Route path="/update-password#" element={<UpdatePassword />} />
         <Route path="/recover-password" element={<RecoverPassword />} />
         <Route path="/admin-hub" element={<AdminHub />} />
         <Route path="/edit-services/:id" element={<EditServices />} />
@@ -89,7 +88,6 @@ function App() {
         <Route path="/add-service-home/:id" element={<AddServiceHome/>}/>
         <Route path="/add-service-to-home/:id" element={<AddServiceToHome/>}/>
         <Route path="/confirmed-email" element={<ConfirmedEmail/>}/>
-        <Route path="/confirmed-emai#" element={<UpdatePassword />} />
       </Routes>
       <Footer/>
     </div>

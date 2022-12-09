@@ -28,7 +28,7 @@ function Register() {
     e.preventDefault();
 
     try {
-      const { data, error } = await supabase.auth.signUp({email, password}, {emailRedirectTo: 'https://grupodrec.com/#/confirmed-email/'});
+      const { data, error } = await supabase.auth.signUp({email, password}, {emailRedirectTo: 'http://grupodrec.com/#/confirmed-email'});
       if (error) throw error;
       alert("¡Revisa tu email para confirmar tu cuenta!");
 

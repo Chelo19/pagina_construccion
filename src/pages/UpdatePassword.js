@@ -2,12 +2,14 @@ import {useEffect, useState} from 'react';
 import {supabase} from '../supabase/client';
 import {useNavigate} from 'react-router-dom';
 import '../styles/Login.css';
+import LoadingScreen from "../components/LoadingScreen";
 
 
 function UpdatePassword(){
 
     const [newPassword, setNewPassword] = useState(null);
     const [hash, setHash] = useState(null);
+    const [loadingScreen, setLoadingScreen] = useState(true);
 
     const navigate = useNavigate();
 
@@ -17,32 +19,21 @@ function UpdatePassword(){
 
     const getUserMethod = async () => {
         const { data: { user } } = await supabase.auth.getUser();
+        console.log(user);
+        supabase.auth.onAuthStateChange(async (event, session) => {
+            console.log(event);
+            if (event == "PASSWORD_RECOVERY") {
+                console.log("Entra");
+              const newPassword = prompt("¿Qué contraseña quieres tener?");
+              const { data, error } = await supabase.auth
+                .updateUser({ password: newPassword })
+       
+              if (data) alert("Contraseña cambiada correctamente")
+              if (error) alert("Algo no salió bien")
+            }
+          })
         if(!user) navigate('/');
-    }
-    
-    useEffect(() => {
-        setHash(window.location.hash);
-    }, [])
-
-    const changePasswordWithToken = async (e) => {
-        e.preventDefault();
-        
-        try{
-            if(!hash){
-                return alert("No token");    
-            }
-            else if(hash){
-                const hashArr = hash.substring(1).split('&').map((param) => param.split('='));
-                console.log(hashArr);
-            }
-        } catch(error){
-            console.log(error);
-        }
-        const { data, error } = await supabase.auth
-        .updateUser({ password: newPassword });
-
-        if (data) alert("Cambio de contraseña correcto");
-        if (error) alert("Ocurrió un error al cambiar tu contraseña");
+        setLoadingScreen(false);
     }
 
     const changePassword = async (e) => {
@@ -56,6 +47,7 @@ function UpdatePassword(){
 
     return(
         <div className='login_background'>
+            {!loadingScreen ?
             <div className='login_container'>
                 <div className='login_container_center'>
                     <div className='login_img_div'>
@@ -83,6 +75,7 @@ function UpdatePassword(){
                     </div>
                 </div>
             </div>
+            : <LoadingScreen/>}
         </div>
     );
 }
