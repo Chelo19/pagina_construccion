@@ -37,7 +37,7 @@ function RecoverPassword(){
         try{
             console.log(email);
             const { data, error } = await supabase.auth.resetPasswordForEmail(email, {
-                redirectTo: 'http://grupodrec.com/#/update-password',
+                redirectTo: '/update-password/',
             });
             if(!error) window.alert("¡Revisa tu email!");
             else if(error) alert(error.message);
