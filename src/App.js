@@ -74,6 +74,7 @@ function App() {
         <Route path="/my-services" element={<MyServices />} />
         <Route path="/client-service" element={<ClientService />} />
         <Route path="/update-password" element={<UpdatePassword />} />
+        <Route path="/update-password#" element={<UpdatePassword />} />
         <Route path="/recover-password" element={<RecoverPassword />} />
         <Route path="/admin-hub" element={<AdminHub />} />
         <Route path="/edit-services/:id" element={<EditServices />} />
