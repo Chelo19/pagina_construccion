@@ -104,7 +104,7 @@ export default function Account(){
                                 <span>{email}</span>
                             </div>
                             <br/>
-                            <span>Location: {location}</span><br/>
+                            <span>Localización: {location}</span><br/>
                             <span>Cambiar localización:</span><br/>
                             <div className='change_location_account'>
                                 <form onSubmit={updateLocation()}>
