@@ -149,17 +149,17 @@
 
 @media (max-width: 768px){
     .register_background{
-        margin-top: 69px;
+        margin-top: 65px;
         height: 90vh;
     }
 
     .register_container{
-        background: url(../img/construction_img2.jpg);
-        background-position: center;
-        background-repeat: no-repeat;
+        margin-top: 20px;
     }
     
     .register_container_center{
+        width: 100%;
+        height: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -180,6 +180,7 @@
 
     .register_right .register_form{
         width: 100%;
+        height: 90%;
         padding: 40px;
         border-radius: 8px;
         background-color: #ebebeb;

@@ -22,15 +22,19 @@
 
 @media(max-width:500px){
 
+    .loading_screen{
+        margin-top: 65px;
+    }
+
     .loading_screen_container{
-        width: 100%;
+        width: 90%;
         height: 80%;
         margin-bottom: 150px;
     }
 
     .loading_screen_container img{
-        width: 240px;
-        height: 30%;
+        width: 80%;
+        height: auto;
     }
 
 }
