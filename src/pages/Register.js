@@ -53,7 +53,7 @@ function Register() {
 
   return (
     <div className="register_background">
-      {loadingScreen ? 
+      {!loadingScreen ? 
       <div className="register_container">
         <div className="register_container_center">
           <div className="register_img_div">
