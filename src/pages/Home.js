@@ -141,15 +141,17 @@ export default function Home(){
             ? <>
                 <div className='background_img'>
                     <div className='background_img_container'>
-                        <span id='background_img_title'>DREC</span>
-                        <span id='background_img_eslogan'><i>"La construcción que debes tener"</i></span>
-                    </div>
+                        <div className='background_img_separator'>
+                            <span id='background_img_title'>DREC</span>
+                            <span id='background_img_eslogan'><i>"La construcción que debes tener"</i></span>
+                        </div>
                         <Link style={{textDecoration: 'inherit'}} onClick={executeScroll} id='background_img_services'>
                             <span>Servicios</span>
                             <div id='background_img_services_img'>
                                 <img src={require('../img/flecha.png')}/>
                             </div>
                         </Link>
+                    </div>
                 </div>
                 <div className='our_projects_presentation' ref={projects}>
                     <Link to={`/categories/${locationId}`} style={{textDecoration: 'inherit'}} className='our_projects_presentation_text'>
@@ -179,7 +181,7 @@ export default function Home(){
                             <div class='our_projects_button_img'>
                                 <img src={require('../img/flecha.png')}/>
                             </div>
-                        </Link>
+                    </Link>
                 </div>
                 <br/>
                 <br/>

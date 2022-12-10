@@ -39,7 +39,7 @@ function Register() {
       }
     }
     else{
-      setRegisterAlert("Llena todos los campos, por favor");
+      setRegisterAlert("Favor de llenar todos los campos");
     }
   };
 

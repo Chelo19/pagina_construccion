@@ -180,7 +180,7 @@ export default function EditEnterprises(){
                 </div>
                 <div className='edit_enterprises_selection'>
                     <span className="edit_enterprises_instructions_title">Eliminar Logo</span>
-                    <span className="edit_enterprises_instructions">Selecciona el logo a eliminar y haz click al botón "Eliminar logo con nombre"</span>
+                    <span className="edit_enterprises_instructions">Selecciona el logo a eliminar y haz click al botón "Eliminar"</span>
                     <input 
                         id='edit_enterprises_submit'
                         type={"submit"}

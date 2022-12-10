@@ -3,26 +3,23 @@ import { useNavigate } from 'react-router-dom';
 import {supabase} from '../supabase/client';
 import '../styles/Account.css';
 import LoadingScreen from "../components/LoadingScreen";
+import { Link } from 'react-router-dom';
 
 export default function Account(){
 
-    const [name, getName] = useState(null);
-    const [email, getEmail] = useState(null);
-    const [location, getLocation] = useState(null);
-    const [newLocation, getNewLocation] = useState(null);
-    var newLocationId;
-
+    const [name, setName] = useState(null);
+    const [email, setEmail] = useState(null);
+    const [newLocationId, setNewLocationId] = useState(null);
+    const [locationName, setLocationName] = useState(null);
+    var locationId = null;
+    
     const [loadingScreen, setLoadingScreen] = useState(true);
 
     const navigate = useNavigate(); 
 
     useEffect(() => {
-        userData();
-    }, [loadingScreen]);
-
-    const userData = async () => {
         getUserData();
-    }
+    }, [loadingScreen]);
 
     const getUserData = async () => {
         const { data: { user } } = await supabase.auth.getUser();
@@ -31,35 +28,41 @@ export default function Account(){
         .from('account')
         .select()
         .eq('uuid', user.id);
-        getName(data[0].name);
-        getEmail(data[0].email);
-        getLocation(data[0].location);
+        setName(data[0].name);
+        setEmail(data[0].email);
+        locationId = data[0].location_id;
+        getLocationName();
         setLoadingScreen(false);
     }
 
     const updateLocation = async () => {
-        getLocationId();
-        console.log(newLocation);
-        const { data: { user } } = await supabase.auth.getUser();
-        const { data, error } = await supabase
-        .from('account')
-        .update({location: newLocation, location_id: newLocationId})
-        .eq('uuid', user.id);
+        if(newLocationId == 0 || newLocationId == null){
+            window.alert("Por favor selecciona una localización válida");
+            return;
+        }
+        else{
+            const { data: { user } } = await supabase.auth.getUser();
+            const { data, error } = await supabase
+            .from('account')
+            .update({ location_id: newLocationId })
+            .eq('uuid', user.id);
+            document.location.reload();
+        }
     }
 
-    const getLocationId = async () => {
+    const getLocationName = async () => {
         const { data, error } = await supabase
         .from('location')
         .select()
-        .eq('name', newLocation);
-        newLocationId = data[0].id;
+        .eq('id', locationId);
+        setLocationName(data[0].name);
     }
 
     return(
         <div className='account_background'>
             {!loadingScreen ? (
             <div className='selections'>
-                <a Link to="/my-services/" onClick={() => navigate(`/my-services`)} className='selections_item' id='my_services_grid'>
+                <Link to={"/my-services/"} onClick={() => navigate(`/my-services`)} className='selections_item' id='my_services_grid'>
                     <div className='selections_item_left'>
                         <a Link to="/my-services/" onClick={() => navigate(`/my-services`)} className='selection_logo'>
                             <img src={require('../img/package.png')} id='package'/>
@@ -73,8 +76,8 @@ export default function Account(){
                             <span>Revisa el estado del servicio que hayas contratado</span>
                         </a>
                     </div>
-                </a>
-                <a Link to="/client-service/" onClick={() => navigate(`/client-service`)} className='selections_item' id='client_service_grid'>
+                </Link>
+                <Link to={"/client-service/"} onClick={() => navigate(`/client-service`)} className='selections_item' id='client_service_grid'>
                     <div className='selections_item_left'>
                         <a Link to="/client-service/" onClick={() => navigate(`/client-service`)} className='selection_logo'>
                             <img src={require('../img/serviciocliente.png')} id='package'/>
@@ -88,7 +91,7 @@ export default function Account(){
                             <span>Contacta con un socio para resolver dudas que tengas</span>
                         </a>
                     </div>
-                </a>
+                </Link>
                 <a className='selections_item' id='account_grid'>
                     <div className='account_data'>
                         <a className='selection_logo'>
@@ -104,19 +107,23 @@ export default function Account(){
                                 <span>{email}</span>
                             </div>
                             <br/>
-                            <span>Localización: {location}</span><br/>
+                            <span>Localización: {locationName}</span><br/>
                             <span>Cambiar localización:</span><br/>
-                            <div className='change_location_account'>
-                                <form onSubmit={updateLocation()}>
-                                    <select onChange={(e) => getNewLocation(e.target.value)}>
-                                        <option value={"Monterrey"}>Localización</option>
-                                        <option value={"Monterrey"}>Monterrey</option>
-                                        <option value={"Sabinas"}>Sabinas</option>
-                                        <option value={"Nuevo Laredo"}>Nuevo Laredo</option>
+                            <div className='change_location_account_container'>
+                                <form onSubmit={updateLocation} className="change_location_account_form">
+                                    <select onChange={(e) => setNewLocationId(e.target.value)} className="change_location_account_form_select">
+                                        <option value={"0"}>Localización</option>
+                                        <option value={"1"}>Monterrey</option>
+                                        <option value={"2"}>Sabinas</option>
+                                        <option value={"3"}>Nuevo Laredo</option>
                                     </select>
+                                    <input
+                                    type={'submit'}
+                                    value={"Cambiar"}
+                                    />
                                 </form>
                             </div><br/>
-                            <a Link to="/update-password/" onClick={() => navigate(`/update-password`)} id='link'>Haz click aquí si deseas cambiar tu contraseña</a>
+                            <Link to={"/update-password/"} onClick={() => navigate(`/update-password`)} id='account_link'>Haz click aquí si deseas cambiar tu contraseña</Link>
                         </div>
                     </div>
                 </a>

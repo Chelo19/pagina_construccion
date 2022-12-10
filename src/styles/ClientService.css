@@ -122,18 +122,13 @@
     .client_service_background{
         height: auto;
         margin-top: 69px;
-        background: url(../img/construction_img2.jpg);
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-attachment: fixed;
+        padding-top: 30px;
+        padding-bottom: 30px;
     }
     
     .client_service_container{
         width: 80%;
         flex-direction: column;
-        padding-top: 30px;
-        padding-bottom: 30px;
     }
     
     .client_service_form_container{
