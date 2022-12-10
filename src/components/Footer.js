@@ -24,7 +24,7 @@ export default function Footer(){
                         <div className='right_content'>
                             <span className='footer_titles'>Redes sociales y contacto</span>
                             <li>
-                                <a target="_blank" href={'/'} style={{ color: 'inherit', textDecoration: 'inherit'}}>
+                                <a target="_blank" href={'https://www.facebook.com/GrupoDREC?mibextid=ZbWKwL'} style={{ color: 'inherit', textDecoration: 'inherit'}}>
                                     <div className='logo_footer_div'>
                                         <img className='logo_footer' src={require('../img/fbicon.png')}></img>
                                     </div>
