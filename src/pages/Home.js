@@ -15,11 +15,10 @@ export default function Home(){
     const [loadingScreen, setLoadingScreen] = useState(true);
     const [enterprises, setEnterprises] = useState(null);
     const [servicesForDisplay, setServicesForDisplay] = useState(null);
-    const [uLocationId, setULocationId] = useState(1);
+    const [locationId, setLocationId] = useState(1);
     var confirmaciones = [false, false];
     const navigate = useNavigate();
     var locationName;
-    var locationId = 1;
     var displayServicesSel = [];
     const projects = useRef(null);
     AuthRedirect();
@@ -59,8 +58,9 @@ export default function Home(){
                 .from("account")
                 .select()
                 .eq("uuid", user.id);
-                locationName = data[0].location;
-                getLocationId();
+                setLocationId(data[0].location_id);
+                getEnterprises();
+                fkDisplayServices();
             }
             else{
                 getEnterprises();
@@ -68,20 +68,6 @@ export default function Home(){
             }
         }
         catch{
-
-        }
-    };
-
-    const getLocationId = async () => {
-        try{
-            const { data, error} = await supabase
-            .from("location")
-            .select()
-            .eq("name", locationName);
-            locationId = data[0].id;
-            getDataBases();
-            setULocationId(locationId);
-        } catch{
 
         }
     };
@@ -164,7 +150,7 @@ export default function Home(){
                         </Link>
                 </div>
                 <div className='our_projects_presentation' ref={projects}>
-                    <Link to={`/categories/${uLocationId}`} style={{textDecoration: 'inherit'}} className='our_projects_presentation_text'>
+                    <Link to={`/categories/${locationId}`} style={{textDecoration: 'inherit'}} className='our_projects_presentation_text'>
                         SERVICIOS
                     </Link>
                 </div>
@@ -186,7 +172,7 @@ export default function Home(){
                         })}
                         
                     </div>
-                    <Link to={`/categories/${uLocationId}`} style={{textDecoration: 'inherit'}} class='our_projects_button'>
+                    <Link to={`/categories/${locationId}`} style={{textDecoration: 'inherit'}} class='our_projects_button'>
                             <span>Ver más</span>
                             <div class='our_projects_button_img'>
                                 <img src={require('../img/flecha.png')}/>

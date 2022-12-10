@@ -10,7 +10,7 @@ function Register() {
   const [password, setPassword] = useState(null);
   const [name, setName] = useState(null);
   const [phone, setPhone] = useState(null);
-  const [location, setLocation] = useState(null);
+  const [locationId, setLocationId] = useState(null);
   const [user, setUser] = useState(null);
   const [loadingScreen, setLoadingScreen] = useState(true);
   const [registerAlert, setRegisterAlert] = useState(null);
@@ -28,27 +28,33 @@ function Register() {
 
   const hangleSignUp = async (e) => {
     e.preventDefault();
-    if(email && password && name && phone && location){
+    if(email && password && name && phone && locationId){
       try {
         const { data, error } = await supabase.auth.signUp({email, password});
         if (error) throw error;
-        navigate('/');
   
-        const { errorInsert } = await supabase
-        .from("account")
-        .insert({ email: email, name: name, location: location, phone: phone });
-        setRegisterAlert("Te has registrado exitosamente")
+        insertDb();
       } catch (e) {
         window.alert(e.message);
       }
     }
     else{
-      setRegisterAlert("Llena todos los campos, por favor")
+      setRegisterAlert("Llena todos los campos, por favor");
     }
   };
 
-  const formValidation = () => {
-
+  const insertDb = async () => {
+    console.log("Entra a insertDB");
+    console.log(email);
+    console.log(name);
+    console.log(locationId);
+    console.log(phone);
+    const { error } = await supabase
+    .from("account")
+    .insert({ email: email, name: name, location_id: locationId, phone: phone });
+    setRegisterAlert("Te has registrado exitosamente");
+    console.log(error);
+    navigate('/');
   }
 
   return (
@@ -105,12 +111,12 @@ function Register() {
                 <span>Localización</span>
                 <select
                   name="location"
-                  onChange={(e) => setLocation(e.target.value)}
+                  onChange={(e) => setLocationId(e.target.value)}
                 >
-                  <option value={"Monterrey"}>Localización</option>
-                  <option value={"Monterrey"}>Monterrey</option>
-                  <option value={"Sabinas"}>Sabinas</option>
-                  <option value={"Nuevo Laredo"}>Nuevo Laredo</option>
+                  <option value={"1"}>Localización</option>
+                  <option value={"1"}>Monterrey</option>
+                  <option value={"2"}>Sabinas</option>
+                  <option value={"3"}>Nuevo Laredo</option>
                 </select>
               </div>
               <div id="register_button">
