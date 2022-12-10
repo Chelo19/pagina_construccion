@@ -142,6 +142,11 @@
     color: rgba(255, 127, 34, 1);
 }
 
+.register_alert{
+    text-align: center;
+    color: rgba(255, 127, 34, 1);
+}
+
 @media (max-width: 768px){
     .register_background{
         margin-top: 69px;

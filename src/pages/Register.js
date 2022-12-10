@@ -9,9 +9,11 @@ function Register() {
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
   const [name, setName] = useState(null);
+  const [phone, setPhone] = useState(null);
   const [location, setLocation] = useState(null);
   const [user, setUser] = useState(null);
   const [loadingScreen, setLoadingScreen] = useState(true);
+  const [registerAlert, setRegisterAlert] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -26,18 +28,28 @@ function Register() {
 
   const hangleSignUp = async (e) => {
     e.preventDefault();
-    try {
-      const { data, error } = await supabase.auth.signUp({email, password});
-      if (error) throw error;
-      navigate('/');
-
-      const { errorInsert } = await supabase
+    if(email && password && name && phone && location){
+      try {
+        const { data, error } = await supabase.auth.signUp({email, password});
+        if (error) throw error;
+        navigate('/');
+  
+        const { errorInsert } = await supabase
         .from("account")
-        .insert({ email: email, name: name, location: location });
-    } catch (e) {
-      window.alert(e.message);
+        .insert({ email: email, name: name, location: location, phone: phone });
+        setRegisterAlert("Te has registrado exitosamente")
+      } catch (e) {
+        window.alert(e.message);
+      }
+    }
+    else{
+      setRegisterAlert("Llena todos los campos, por favor")
     }
   };
+
+  const formValidation = () => {
+
+  }
 
   return (
     <div className="register_background">
@@ -81,6 +93,15 @@ function Register() {
                 />
               </div>
               <div className="register_input">
+                <span>Teléfono</span>
+                <input
+                  type="tel"
+                  name="phone"
+                  placeholder="999-999-999"
+                  onChange={(e) => setPhone(e.target.value)}
+                />
+              </div>
+              <div className="register_input">
                 <span>Localización</span>
                 <select
                   name="location"
@@ -101,6 +122,9 @@ function Register() {
               <div className="register_input">
                 ¿Ya tienes una cuenta?&nbsp;
                 <a Link to="/login/" onClick={() => navigate(`/login`)}>Haz click aquí</a>
+              </div>
+              <div className="register_alert">
+                <span>{registerAlert}</span>
               </div>
             </div>
           </div>

@@ -182,11 +182,13 @@
     }
 
     .edit_enterprises_enterprises{
+        width: 90%;
         height: auto;
     }
 
     .edit_enterprises_enterprises_container{
         flex-direction: column;
+        border-radius: 20px;
     }
 
     .edit_enterprises_enterprises_left{
@@ -203,7 +205,6 @@
 
     .edit_enterprises_enterprises_right{
         width: 100%;
-        border-radius: 0;
     }
 
     .edit_enterprises_enterprises_item{
@@ -225,6 +226,10 @@
     #edit_enterprises_new_file{
         flex-direction: column;
         gap: 5px;
+    }
+
+    #edit_enterprises_text_input{
+        width: 80%;
     }
 
     #edit_enterprises_submit{
