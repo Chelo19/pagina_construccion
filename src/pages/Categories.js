@@ -16,7 +16,8 @@ export default function Categories() {
     const { data, error } = await supabase
       .from("categories")
       .select("*")
-      .eq("location_id", id);
+      .eq("location_id", id)
+      .not('img_url', 'is', null);
     setCategories(data);
     console.log(data);
     setLoadingScreen(false);
