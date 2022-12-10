@@ -47,7 +47,7 @@ export default function Home(){
                 .update({uuid: user.id})
                 .eq('email', user.email)
                 console.log(error);
-                return;
+                document.location.reload();
             }
         }
     }
