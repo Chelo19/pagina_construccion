@@ -48,7 +48,7 @@ export default function AddCategory(){
             getItem();
         }
         else{
-            window.alert("Favor de ingresar nombre e imagen");
+            window.alert("Favor de ingresar todos los campos");
         }
     }
     
@@ -97,26 +97,33 @@ export default function AddCategory(){
         <div className="add_category_background">
             {!loadingScreen ?
             <div className="add_category_container">
-                <span>Nombre de la nueva categoría</span>
-                <input
-                id={'add_category_text_input'}
-                type={'text'}
-                placeholder={'Nombre de la nueva categoría'}
-                onChange={(e) => setNewName(e.target.value)}
-                />
-                <span>Imagen de la nueva categoría</span>
-                <input
-                  type={"file"}
-                  accept={".png, .jpg, .jpeg"}
-                  onChange={(e) => setNewFile(e.target.files)}
-                />
-                <input
-                id={'add_category_submit'}
-                type={'submit'}
-                value={"Crear nueva categoría"}
-                onClick={createItem}
-                />
-                <span id="add_category_alert">{alert}</span>
+                <div className="add_category_form">
+                    <div className="add_category_form_container">
+                        <span className="add_category_instructions">Nombre</span>
+                        <input
+                        id={'add_category_text_input'}
+                        type={'text'}
+                        placeholder={'Nombre de la nueva categoría'}
+                        onChange={(e) => setNewName(e.target.value)}
+                        />
+                    </div>
+                    <div className="add_category_form_container">
+                        <span className="add_category_instructions">Imagen</span>
+                        <input
+                        type={"file"}
+                        accept={".png, .jpg, .jpeg"}
+                        onChange={(e) => setNewFile(e.target.files)}
+                        />
+                    </div>
+                    <input
+                    id={'add_category_submit'}
+                    type={'submit'}
+                    value={"Crear nueva categoría"}
+                    onClick={createItem}
+                    />
+                    <span id="add_category_alert">Recuerda esperar hasta el mensaje correcto antes de salir de esta página</span>
+                    <span id="add_category_alert">{alert}</span>
+                </div>
             </div>
             : <LoadingScreen/>}
         </div>

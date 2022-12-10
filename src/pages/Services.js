@@ -16,7 +16,9 @@ export default function Services() {
     const { data, error } = await supabase
       .from("services")
       .select("*")
-      .eq("category_id", id);
+      .eq("category_id", id)
+      .not('img_url', 'is', null);
+      console.log(data);
     setServices(data);
     setLoadingScreen(false);
   };
@@ -29,7 +31,6 @@ export default function Services() {
   return (
     <div className="services_background">
       <div className="services_gallery">
-
         {!loadingScreen
           ? services.map((service) => {
             return (

@@ -3,7 +3,7 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    margin-top: 150px;
+    margin-top: 120px;
     padding-bottom: 60px;
 }
 
@@ -105,7 +105,7 @@
 @media(max-width: 500px){
 
     .services_background{
-        margin-top: 120px;
+        margin-top: 90px;
     }
 
     .services_gallery{
