@@ -17,6 +17,7 @@ export default function Header(){
 
     const controlNavbar = async () => {
         if(isBarMenu){
+            console.log("entra a isbarmenu");
             setIsBarMenu(false);
             setBars_menu_style({ transition: "3s", top: "-500px" });
         }
@@ -27,6 +28,7 @@ export default function Header(){
 
     useEffect(() => {
         getUserMethod();
+        window.addEventListener('scroll', controlNavbar);
     });
     
     const getUserMethod = async () => {
@@ -45,7 +47,6 @@ export default function Header(){
     }
 
     const changeIsBarMenu = () => {
-        window.addEventListener('scroll', controlNavbar);
         if(isBarMenu){
             setIsBarMenu(false);
             setBars_menu_style({ transition: "3s", top: "-500px" });
