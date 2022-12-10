@@ -164,11 +164,6 @@ export default function EditEnterprises(){
             <>
                 <div className='edit_enterprises_enterprises'>
                     <div className='edit_enterprises_enterprises_container'>
-                        <div className='edit_enterprises_enterprises_left'>
-                            <div className='edit_enterprises_enterprises_text'>
-                                Contamos con los mejores aliados para la realización de tu servicio
-                            </div>
-                        </div>
                         <div className='edit_enterprises_enterprises_right'>
                             <div className='edit_enterprises_enterprises_gallery'>
                                 {enterprises.map((enterprise) => {
@@ -184,18 +179,18 @@ export default function EditEnterprises(){
                     </div>
                 </div>
                 <div className='edit_enterprises_selection'>
-                    <span>Eliminar Logo</span>
-                    <span>Selecciona el logo a eliminar y dale click al botón "Eliminar logo con nombre"</span>
+                    <span className="edit_enterprises_instructions_title">Eliminar Logo</span>
+                    <span className="edit_enterprises_instructions">Selecciona el logo a eliminar y haz click al botón "Eliminar logo con nombre"</span>
                     <input 
                         id='edit_enterprises_submit'
                         type={"submit"}
                         onClick={removeItem}
                         value={"Eliminar: " + selection}>
                     </input>
-                    <span>Agregar Logo</span>
-                    <span>Agrega una imagen y un nuevo nombre para el logo y da click al botón "Agregar logo"</span>
-                    <div id='edit_enterprises_new_file'>
-                        Nueva imagen:
+                    <span className="edit_enterprises_instructions_title">Agregar Logo</span>
+                    <span className="edit_enterprises_instructions">Agrega una imagen y un nuevo nombre para el logo y haz click al botón "Agregar logo"</span>
+                    <div className='edit_enterprises_instructions'>
+                        Nueva imagen: &nbsp;
                         <input
                             type={"file"}
                             accept={".png, .jpg, .jpeg"}
@@ -203,6 +198,7 @@ export default function EditEnterprises(){
                         />
                     </div>
                     <input 
+                        id={'edit_enterprises_text_input'}
                         type={"text"}
                         onChange={(e) => setNewName(e.target.value)}
                         placeholder={"Nuevo nombre"}
