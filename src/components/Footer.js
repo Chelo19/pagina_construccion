@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom';
 
 export default function Footer(){
 
+    const [superAdminPhone, setSuperAdminPhone] = useState(+528672207801);
+
 
 
     return(
@@ -22,36 +24,36 @@ export default function Footer(){
                         <div className='right_content'>
                             <span className='footer_titles'>Redes sociales y contacto</span>
                             <li>
-                                <Link to={'/'} style={{ color: 'inherit', textDecoration: 'inherit'}}>
+                                <a target="_blank" href={'/'} style={{ color: 'inherit', textDecoration: 'inherit'}}>
                                     <div className='logo_footer_div'>
                                         <img className='logo_footer' src={require('../img/fbicon.png')}></img>
                                     </div>
                                     <span className='right_links'>Facebook</span>
-                                </Link>
+                                </a>
                             </li>
                             <li>
-                                <Link to={'/'} style={{ color: 'inherit', textDecoration: 'inherit'}}>
+                                <a target="_blank" href={'https://www.instagram.com/drec_constructor/'} style={{ color: 'inherit', textDecoration: 'inherit'}}>
                                     <div className='logo_footer_div'>
                                         <img className='logo_footer' src={require('../img/igicon.png')}></img>
                                     </div>
                                     <span className='right_links'>Instagram</span>
-                                </Link>
+                                </a>
                             </li>
                             <li>
-                                <Link to={'/'} style={{ color: 'inherit', textDecoration: 'inherit'}}>
+                                <a target="_blank" href={`https://wa.me/${superAdminPhone}`} style={{ color: 'inherit', textDecoration: 'inherit'}}>
                                 <div className='logo_footer_div'>
                                         <img className='logo_footer' src={require('../img/whatsicon.png')}></img>
                                     </div>
                                     <span className='right_links'>Whatsapp</span>
-                                </Link>
+                                </a>
                             </li>
                             <li>
-                                <Link to={'/'} style={{ color: 'inherit', textDecoration: 'inherit'}}>
+                                <a target="_blank" href={'/'} style={{ color: 'inherit', textDecoration: 'inherit'}}>
                                     <div className='logo_footer_div'>
                                         <img className='logo_footer' src={require('../img/mailicon.png')}></img>
                                     </div>
                                     <span className='right_links'>Correo</span>
-                                </Link>
+                                </a>
                             </li>
                         </div>
                     </ul>
