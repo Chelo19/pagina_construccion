@@ -210,12 +210,10 @@ header{
 @media screen and (max-width: 768px){
     header{
         height: 90px;
-        width: 100%;
     }
 
     .header_default{
         display: none;
-        width: 100%;
     }
 
     .header_responsive{

@@ -447,7 +447,10 @@ body{
         gap: 20px;
         align-items: center;
         justify-content: start;
-        padding: 15px;
+        padding-left: 0;
+        padding-right: 0;
+        padding-top: 15px;
+        padding-bottom: 15px;
         height: auto;
     }
 
