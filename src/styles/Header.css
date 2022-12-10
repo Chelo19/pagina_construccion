@@ -308,6 +308,17 @@ header{
         text-decoration: none;
     }
 
+    #bars_menu_item_menu{
+        letter-spacing: 2px;
+        font-weight: 600;
+        padding: 10px;
+        font-size: 25px;
+        width: 80%;
+        border-radius: 5px;
+        color: rgba(235, 235, 235, 0.9);
+        text-align: center;
+    }
+
     .bars_menu_item{
         background-color: #ff7f22;
         padding: 10px;
