@@ -11,6 +11,7 @@ export default function EditCategories(){
 
     const [loadingScreen, setLoadingScreen] = useState(true);
     const [categories, setCategories] = useState();
+    var locationId;
 
     const checkIfAdmin = async () => {
         const { data: { user } } = await supabase.auth.getUser();
@@ -19,6 +20,7 @@ export default function EditCategories(){
             .from('account')
             .select()
             .eq('uuid', user.id);
+            locationId = data[0].location_id;
             if(data[0].role != 'administrador'){
                 window.alert("No tienes los permisos para acceder a este lugar");
                 navigate("/");
@@ -36,7 +38,8 @@ export default function EditCategories(){
     const showCategories = async () => {
         const { data, error } = await supabase
         .from("categories")
-        .select("*");
+        .select("*")
+        .eq("location_id", locationId);
         setCategories(data);
         setLoadingScreen(false);
     };

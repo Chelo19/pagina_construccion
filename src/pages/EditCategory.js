@@ -66,15 +66,24 @@ export default function EditCategory() {
       .from('categories')
       .update({ name: newName })
       .eq('id', id)
-      alert('Nombre agregado correctamente');
+      window.alert('Nombre agregado correctamente');
       document.location.reload();
+      return;
+    }
+    else{
+      window.alert("Ingresa los campos a cambiar");
       return;
     }
   }
 
   const updateItem = async () => {
-    updateDb();
-    updateBucket();
+    if(newFile){
+      updateDb();
+      updateBucket();
+    }
+    else if(!newFile){
+      window.alert("Favor de ingresar una imagen");
+    }
   }
 
   const updateBucket = async () => {
@@ -97,7 +106,7 @@ export default function EditCategory() {
       document.location.reload();
     }
     else{
-      alert("Favor de ingresar una imagen");
+      window.alert("Favor de ingresar una imagen");
     }
   }
 
@@ -212,14 +221,17 @@ export default function EditCategory() {
             </div>
           </div>
           <div className="edit_service_remove">
-            <span>Recuerda esperar la alerta de confirmación antes de abandonar esta página</span>
-            <input 
-              id='edit_service_remove_input'
-              type={"submit"}
-              onClick={removeItem}
-              value={`Eliminar: ${id}`}>
-            </input>
-            <span>{alert}</span>
+            <span>--- Zona de peligro ---</span>
+            <div className="edit_service_remove_options">
+              <span>Eliminar servicio</span>
+              <input 
+                id='edit_service_remove_input'
+                type={"submit"}
+                onClick={removeItem}
+                value={`Eliminar: ${category.name}`}>
+              </input>
+              <span>{alert}</span>
+            </div>
           </div>
         </div>
       ) : <LoadingScreen/>}

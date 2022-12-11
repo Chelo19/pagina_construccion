@@ -36,7 +36,8 @@ export default function EditServices(){
     const showServices = async () => {
         const { data, error } = await supabase
         .from("services")
-        .select("*");
+        .select("*")
+        .eq("category_id", id);
         setServices(data);
         setLoadingScreen(false);
     };
@@ -59,9 +60,6 @@ export default function EditServices(){
                         <div className="edit_services_services_item_content">
                             <div className="edit_services_services_title">
                                 <h1>{service.name}</h1>
-                            </div>
-                            <div className="edit_services_services_id">
-                                <span>id categoría: <b>{service.category_id}</b></span>
                             </div>
                             <div className="edit_services_services_id">
                                 <span>id servicio: <b>{service.id}</b></span>

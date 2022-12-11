@@ -17,6 +17,7 @@ import ClientService from "./pages/ClientService";
 import UpdatePassword from "./pages/UpdatePassword";
 import RecoverPassword from "./pages/RecoverPassword";
 import AdminHub from "./pages/AdminHub";
+import EditServicesSelectCategory from "./pages/EditServicesSelectCategory";
 import EditServices from "./pages/EditServices";
 import EditService from "./pages/EditService";
 import Footer from "./components/Footer";
@@ -76,6 +77,7 @@ function App() {
         <Route path="/update-password" element={<UpdatePassword />} />
         <Route path="/recover-password" element={<RecoverPassword />} />
         <Route path="/admin-hub" element={<AdminHub />} />
+        <Route path="/edit-services-select-category/:id" element={<EditServicesSelectCategory />} />
         <Route path="/edit-services/:id" element={<EditServices />} />
         <Route path="/edit-service/:id" element={<EditService />} />
         <Route path="/edit-categories/:id" element={<EditCategories/>} />

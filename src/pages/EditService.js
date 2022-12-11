@@ -11,6 +11,7 @@ export default function EditService() {
 
   const [service, setService] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [alert, setAlert] = useState(null);
 
   const [newName, setNewName] = useState(null);
   const [newDescription, setNewDescription] = useState(null);
@@ -61,19 +62,23 @@ export default function EditService() {
       .from('services')
       .update({ name: newName, description: newDescription })
       .eq('id', id)
-      alert('Nombre y descripción agregados correctamente');
+      window.alert('Nombre y descripción agregados correctamente');
       document.location.reload();
+      return;
+    }
+    else if(!newName && !newDescription){
+      window.alert("Ingresa los campos a cambiar");
       return;
     }
     if(newDescription == null){
       sumbitOnlyName();
-      alert('Nombre agregado correctamente');
+      window.alert('Nombre agregado correctamente');
       document.location.reload();
       return;
     }
     if(newName == null){
       sumbitOnlyDescription();
-      alert('Descripción agregada correctamente');
+      window.alert('Descripción agregada correctamente');
       document.location.reload();
       return;
     }
@@ -94,8 +99,13 @@ export default function EditService() {
   }
 
   const uploadItem = async () => {
-    updateBucket();
-    updateDb();
+    if(newFile){
+      updateBucket();
+      updateDb();
+    }
+    else if(!newFile){
+      window.alert("Favor de ingresar una imagen");
+    }
   }
 
   const updateBucket = async () => {
@@ -175,6 +185,7 @@ export default function EditService() {
     confirmacionesRemove[1] = true;
     if(confirmacionesRemove[0] && confirmacionesRemove[1]){
       window.alert("Categoría eliminada correctamente");
+      setAlert("Ya puedes abandonar esta página");
       navigate(`/admin-hub/`);
     }
   }
@@ -263,18 +274,22 @@ export default function EditService() {
                 id='edit_service_submit'
                 type={"submit"}
                 onClick={uploadItem}
-                value={`Cambiar imagen de: ${selection}`}>
+                value={`Cambiar imagen: ${selection}`}>
               </input>
             </div>
           </div>
           <div className="edit_service_remove">
-            <span>Recuerda esperar alrededor de 15 segundos antes de abandonar esta página</span>
-            <input 
-              id='edit_service_remove_input'
-              type={"submit"}
-              onClick={removeItem}
-              value={`Eliminar: ${id}`}>
-            </input>
+            <span>--- Zona de peligro ---</span>
+            <div className="edit_service_remove_options">
+              <span>Eliminar servicio</span>
+              <input 
+                id='edit_service_remove_input'
+                type={"submit"}
+                onClick={removeItem}
+                value={`Eliminar: ${service.name}`}>
+              </input>
+              <span>{alert}</span>
+            </div>
           </div>
         </div>
       ) : <LoadingScreen/>}

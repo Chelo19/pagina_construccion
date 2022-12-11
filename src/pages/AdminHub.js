@@ -57,17 +57,17 @@ export default function AdminHub(){
         <div className="admin_background">
             {!loadingScreen ? 
             <div className='admin_selections'>
-                <Link to={`/edit-services/${locationId}`} id='edit_services' className='admin_selections_item'>
+                <Link to={`/edit-services-select-category/${locationId}`} id='edit_services' className='admin_selections_item'>
                     <div className='admin_selections_item_left'>
-                        <Link to={`/edit-services/${locationId}`} id='admin_package' className='admin_selection_logo' style={{ color: 'inherit', textDecoration: 'inherit'}}>
+                        <Link to={`/edit-services-select-category/${locationId}`} id='admin_package' className='admin_selection_logo' style={{ color: 'inherit', textDecoration: 'inherit'}}>
                             <img src={require('../img/package.png')} id='admin_package'/>
                         </Link>
                     </div>
                     <div className='admin_selections_item_right'>
-                        <Link to={`/edit-services/${locationId}`} className='admin_selections_item_title'>
+                        <Link to={`/edit-services-select-category/${locationId}`} className='admin_selections_item_title'>
                             <span>Editar Servicios</span>
                         </Link>
-                        <Link to={`/edit-services/${locationId}`} className='admin_selections_item_description'>
+                        <Link to={`/edit-services-select-category/${locationId}`} className='admin_selections_item_description'>
                             <span>Edita los datos de un servicio en específico</span>
                         </Link>
                     </div>
