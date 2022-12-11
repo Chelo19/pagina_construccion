@@ -1,4 +1,4 @@
-.add_service_home_background{
+.remove_service_home_background{
     width: 100%;
     min-height: 60vh;
     margin-top: 80px;
@@ -9,20 +9,20 @@
     padding-bottom: 20px;
 }
 
-.add_service_home_gallery{
+.remove_service_home_gallery{
     width: 90%;
     background-color: #161825;
     border-radius: 10px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
-.add_service_home_container{
+.remove_service_home_container{
     display: flex;
     flex-direction: column;
     padding: 20px;
 }
 
-.add_service_home_item_names{
+.remove_service_home_item_names{
     font-family: 'Poppins', sans-serif;
     width: 100%;
     height: 60px;
@@ -35,7 +35,7 @@
     color: #ebebeb;
 }
 
-.add_service_home_item{
+.remove_service_home_item{
     font-family: 'Poppins', sans-serif;
     width: 100%;
     height: 60px;
@@ -45,21 +45,21 @@
     display: grid;
 }
 
-.add_service_home_item_container{
+.remove_service_home_item_container{
     display: grid;
     grid-template-columns: 20% 30% 50%;
     place-items: center;
 }
 
-.add_service_home_item:hover{
+.remove_service_home_item:hover{
     color: #ff7f22;
 }
 
-.add_service_home_container span{
+.remove_service_home_container span{
     font-size: 20px;
 }
 
-.add_service_to_home_background{
+.remove_service_to_home_background{
     position: fixed;
     width: 100%;
     height: 120vh;
@@ -71,7 +71,7 @@
     background-color: rgba(0, 0, 0, 0.4);
 }
 
-.add_service_to_home_container{
+.remove_service_to_home_container{
     width: 30%;
     height: 60%;
     font-size: 50px;
@@ -87,15 +87,15 @@
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
 
-.add_service_to_home_text{
+.remove_service_to_home_text{
     width: 80%;
 }
 
-.add_service_to_home_text span{
+.remove_service_to_home_text span{
     color: #ff7e22;
 }
 
-.add_service_to_home_submits{
+.remove_service_to_home_submits{
     display: flex;
     gap: 20px;
     width: 100%;
@@ -103,7 +103,7 @@
     align-items: center;
 }
 
-.add_service_to_home_submits input{
+.remove_service_to_home_submits input{
     transition: 1s;
     width: 30%;
     border-radius: 10px;
@@ -113,12 +113,12 @@
     color: #ebebeb;
 }
 
-.add_service_to_home_submits input:hover{
+.remove_service_to_home_submits input:hover{
     transition: .5s;
     width: 35%;
 }
 
-#add_service_to_home_accept{
+#remove_service_to_home_accept{
     font-family: 'Poppins', sans-serif;
     font-weight: 600;
     font-size: 20px;
@@ -130,12 +130,12 @@
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
-#add_service_to_home_accept:hover{
+#remove_service_to_home_accept:hover{
     color: #ebebeb;
     background-color: #ff7f22;
 }
 
-#add_service_to_home_return{
+#remove_service_to_home_return{
     font-family: 'Poppins', sans-serif;
     font-weight: 600;
     font-size: 20px;
@@ -147,17 +147,17 @@
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
-#add_service_to_home_return:hover{
+#remove_service_to_home_return:hover{
     color: #ebebeb;
     background-color: #ff7f22;
 }
 
-#add_service_to_home_confirmation_alert{
+#remove_service_to_home_confirmation_alert{
     font-size: 20px;
     color: #ff7f22;
 }
 
-.add_service_no_items_alert{
+.remove_service_no_items_alert{
     font-family: 'Poppins', sans-serif;
     width: 100%;
     height: 60px;
@@ -172,36 +172,36 @@
 
 @media(max-width: 500px){
 
-    .add_service_home_background{
+    .remove_service_home_background{
         margin-top: 65px;
     }
 
-    .add_service_home_gallery{
+    .remove_service_home_gallery{
         width: 95%;
         height: 95%;
     }
 
-    .add_service_home_container{
+    .remove_service_home_container{
         padding: 5px;
     }
     
-    .add_service_home_item_names{
+    .remove_service_home_item_names{
         grid-template-columns: 5% 50% 45%;
     }
 
-    .add_service_home_item_names span{
+    .remove_service_home_item_names span{
         font-size: 9px;
     }
 
-    .add_service_home_item_container{
+    .remove_service_home_item_container{
         grid-template-columns: 5% 50% 45%;
     }
 
-    .add_service_home_item span{
+    .remove_service_home_item span{
         font-size: 9px;
     }
 
-    .add_service_to_home_container{
+    .remove_service_to_home_container{
         padding-top: 20px;
         padding-bottom: 20px;
         width: 70%;
@@ -210,24 +210,24 @@
         font-size: 30px;
     }
 
-    .add_service_to_home_submits{
+    .remove_service_to_home_submits{
         flex-direction: column;
         gap: 10px;
     }
 
-    .add_service_to_home_submits input{
+    .remove_service_to_home_submits input{
         width: 50%;
     }
 
-    #add_service_to_home_accept{
+    #remove_service_to_home_accept{
         width: 50%;
     }
 
-    #add_service_to_home_return{
+    #remove_service_to_home_return{
         width: 50%;
     }
 
-    .add_service_no_items_alert{
+    .remove_service_no_items_alert{
         font-size: 20px;
     }
 

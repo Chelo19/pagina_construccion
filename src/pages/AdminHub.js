@@ -102,21 +102,6 @@ export default function AdminHub(){
                         </Link>
                     </div>
                 </Link>
-                <Link to={`/edit-enterprises/${locationId}`} id='admin_edit_logos' className='admin_selections_item'>
-                    <div className='admin_selections_item_left'>
-                        <Link to={`/edit-enterprises/${locationId}`} id='admin_package' className='admin_selection_logo'>
-                            <img src={require('../img/package.png')} id='admin_package'/>
-                        </Link>
-                    </div>
-                    <div className='admin_selections_item_right'>
-                        <Link to={`/edit-enterprises/${locationId}`} className='admin_selections_item_title'>
-                            <span>Editar Logos</span>
-                        </Link>
-                        <Link to={`/edit-enterprises/${locationId}`} className='admin_selections_item_description'>
-                            <span>Edita los logos de la página principal</span>
-                        </Link>
-                    </div>
-                </Link>
                 <Link to={`/add-category/${locationId}`} id='admin_add_category' className='admin_selections_item'>
                     <div className='admin_selections_item_left'>
                         <Link to={`/add-category/${locationId}`} id='admin_package' className='admin_selection_logo'>
@@ -144,6 +129,36 @@ export default function AdminHub(){
                         </Link>
                         <Link to={`/add-service-home-select-category/${locationId}`} className='admin_selections_item_description'>
                             <span>Agrega un servicio a home</span>
+                        </Link>
+                    </div>
+                </Link>
+                <Link to={`/remove-service-home/${locationId}`} id='admin_add_service_home_display' className='admin_selections_item'>
+                    <div className='admin_selections_item_left'>
+                        <Link to={`/remove-service-home/${locationId}`} id='admin_package' className='admin_selection_logo'>
+                            <img src={require('../img/package.png')} id='admin_package'/>
+                        </Link>
+                    </div>
+                    <div className='admin_selections_item_right'>
+                        <Link to={`/remove-service-home/${locationId}`} className='admin_selections_item_title'>
+                            <span>Quitar Servicio de Home</span>
+                        </Link>
+                        <Link to={`/remove-service-home/${locationId}`} className='admin_selections_item_description'>
+                            <span>Quita un servicio de home</span>
+                        </Link>
+                    </div>
+                </Link>
+                <Link to={`/edit-enterprises/${locationId}`} id='admin_edit_logos' className='admin_selections_item'>
+                    <div className='admin_selections_item_left'>
+                        <Link to={`/edit-enterprises/${locationId}`} id='admin_package' className='admin_selection_logo'>
+                            <img src={require('../img/package.png')} id='admin_package'/>
+                        </Link>
+                    </div>
+                    <div className='admin_selections_item_right'>
+                        <Link to={`/edit-enterprises/${locationId}`} className='admin_selections_item_title'>
+                            <span>Editar Logos</span>
+                        </Link>
+                        <Link to={`/edit-enterprises/${locationId}`} className='admin_selections_item_description'>
+                            <span>Edita los logos de la página principal</span>
                         </Link>
                     </div>
                 </Link>

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { supabase } from "../supabase/client";
-import "../styles/Categories.css";
+import "../styles/EditServicesSelectCategory.css";
 import LoadingScreen from "../components/LoadingScreen";
 import { Link } from "react-router-dom";
 
@@ -11,6 +11,7 @@ export default function EditServicesSelectCategory(){
     
     const [loadingScreen, setLoadingScreen] = useState(true);
     const [categories, setCategories] = useState();
+    const [noItems, setNoItems] = useState(false);
 
 
     const checkIfAdmin = async () => {
@@ -34,12 +35,14 @@ export default function EditServicesSelectCategory(){
         }
     }
 
-
     const showCategories = async () => {
         const { data, error } = await supabase
         .from("categories")
         .select("*")
         .eq("location_id", id);
+        if(data.length == 0){
+            setNoItems(true);
+        }
         setCategories(data);
         setLoadingScreen(false);
     };
@@ -51,24 +54,34 @@ export default function EditServicesSelectCategory(){
     }, [loadingScreen]);
 
     return(
-        <div className="background_categories">
-            <div className="categories_gallery">
-            {!loadingScreen 
-                ? categories.map((category) => {
-                return(
-                    <Link to={`/edit-services/${category.id}`} key={category.id} className='category_item'>
-                        <div className="category_img">
-                            <img src={category.img_url[0]}/>
-                        </div>
-                        <div className="category_item_content">
-                            <div className="category_item_title">
-                            <h1>{category.name}</h1>
-                            </div>
-                        </div>
-                    </Link>
-                )})
-                : <LoadingScreen/>}
-            </div>
+        <div className="edit_service_select_category_background">
+        {!loadingScreen ? 
+          <div className="edit_service_select_category_gallery">
+              <div className="edit_service_select_category_container">
+                {noItems ?
+                  <div className="edit_service_select_category_no_items_alert">No se encontraron resultados</div>
+                : <>
+                  <div className="edit_service_select_category_item_names">
+                      <span>Id</span>
+                      <span>Creado el</span>
+                      <span>Nombre</span>
+                  </div>
+                  {categories.map((category) => {
+                    return (
+                        <Link to={`/edit-services/${category.id}`} key={category.id} className='edit_service_select_category_item'>
+                          <div className='edit_service_select_category_item_container'>
+                            <span>{category.id}</span>
+                            <span>{category.created_at}</span>
+                            <span>{category.name}</span>
+                          </div>
+                        </Link>
+                      );
+                  })}
+                </>
+                }
+              </div>
+          </div>
+          : <LoadingScreen/>}
         </div>
     )
 

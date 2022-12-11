@@ -11,6 +11,7 @@ export default function EditServices(){
 
     const [loadingScreen, setLoadingScreen] = useState(true);
     const [services, setServices] = useState();
+    const [noItems, setNoItems] = useState(false);
 
     const checkIfAdmin = async () => {
         const { data: { user } } = await supabase.auth.getUser();
@@ -48,28 +49,34 @@ export default function EditServices(){
     }, [loadingScreen]);
 
     return(
-    <div className="edit_services_services_background">
-        <div className="edit_services_services_gallery">
-            {!loadingScreen
-              ? services.map((service) => {
-                return (
-                    <Link to={`/edit-service/${service.id}`} style={{ color: 'inherit', textDecoration: 'inherit'}} className="edit_services_services_item">
-                        <div className="edit_services_services_img">
-                            <img src={service.img_url[0]}/>
-                        </div>
-                        <div className="edit_services_services_item_content">
-                            <div className="edit_services_services_title">
-                                <h1>{service.name}</h1>
-                            </div>
-                            <div className="edit_services_services_id">
-                                <span>id servicio: <b>{service.id}</b></span>
-                            </div>
-                        </div>
-                    </Link>
-                  );
-                })
-            : <LoadingScreen/>}
+        <div className="edit_services_background">
+        {!loadingScreen ? 
+          <div className="edit_services_gallery">
+              <div className="edit_services_container">
+                {noItems ?
+                  <div className="edit_services_no_items_alert">No se encontraron resultados</div>
+                : <>
+                  <div className="edit_services_item_names">
+                      <span>Id</span>
+                      <span>Creado el</span>
+                      <span>Nombre</span>
+                  </div>
+                  {services.map((service) => {
+                    return (
+                        <Link to={`/edit-service/${service.id}`} key={service.id} className='edit_services_item'>
+                          <div className='edit_services_item_container'>
+                            <span>{service.id}</span>
+                            <span>{service.created_at}</span>
+                            <span>{service.name}</span>
+                          </div>
+                        </Link>
+                      );
+                  })}
+                </>
+                }
+              </div>
+          </div>
+          : <LoadingScreen/>}
         </div>
-      </div>
     )
 }
