@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import {supabase} from '../supabase/client';
 import LoadingScreen from '../components/LoadingScreen';
 import { useNavigate, useParams } from "react-router-dom";
-import '../styles/EditServices.css';
+import '../styles/EditCategories.css';
 import { Link } from 'react-router-dom';
 
 export default function EditCategories(){
@@ -11,6 +11,7 @@ export default function EditCategories(){
 
     const [loadingScreen, setLoadingScreen] = useState(true);
     const [categories, setCategories] = useState();
+    const [noItems, setNoItems] = useState(false);
     var locationId;
 
     const checkIfAdmin = async () => {
@@ -50,31 +51,34 @@ export default function EditCategories(){
     }, [loadingScreen]);
 
     return(
-    <div className="edit_services_services_background">
-        <div className="edit_services_services_gallery">
-            {!loadingScreen
-              ? categories.map((category) => {
-                return (
-                    <Link to={`/edit-category/${category.id}`} style={{ color: 'inherit', textDecoration: 'inherit'}} className="edit_services_services_item">
-                        <div className="edit_services_services_img">
-                            <img src={category.img_url[0]}/>
-                        </div>
-                        <div className="edit_services_services_item_content">
-                            <div className="edit_services_services_title">
-                                <h1>{category.name}</h1>
-                            </div>
-                            <div className="edit_services_services_id">
-                                <span>id localización: <b>{category.location_id}</b></span>
-                            </div>
-                            <div className="edit_services_services_id">
-                                <span>id categoría: <b>{category.id}</b></span>
-                            </div>
-                        </div>
-                    </Link>
-                  );
-                })
-                : <LoadingScreen/>}
+        <div className="edit_categories_background">
+        {!loadingScreen ? 
+          <div className="edit_categories_gallery">
+              <div className="edit_categories_container">
+                {noItems ?
+                  <div className="edit_categories_no_items_alert">No se encontraron resultados</div>
+                : <>
+                  <div className="edit_categories_item_names">
+                      <span>Id</span>
+                      <span>Creado el</span>
+                      <span>Nombre</span>
+                  </div>
+                  {categories.map((category) => {
+                    return (
+                        <Link to={`/edit-category/${category.id}`} key={category.id} className='edit_categories_item'>
+                          <div className='edit_categories_item_container'>
+                            <span>{category.id}</span>
+                            <span>{category.created_at}</span>
+                            <span>{category.name}</span>
+                          </div>
+                        </Link>
+                      );
+                  })}
+                </>
+                }
+              </div>
+          </div>
+          : <LoadingScreen/>}
         </div>
-      </div>
     )
 }
