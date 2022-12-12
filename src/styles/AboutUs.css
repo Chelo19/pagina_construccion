@@ -57,6 +57,8 @@
 }
 
 .about_us_section{
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: 1px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -72,4 +74,49 @@
 .about_us_title{
     font-size: 70px;
     font-weight: 600;
+}
+
+@media(max-width: 500px){
+
+    .about_us_background{
+        padding-top: 20px;
+        padding-bottom: 20px;
+        margin-top: 70px;
+        height: auto;
+    }
+
+    .about_us_background_img{
+        padding: 0;
+        display: none;
+    }
+
+    .about_us_container_img{
+        display: none;
+        height: 300px;
+        margin: 0;
+    }
+    
+    .background_display{
+        width: 80%;
+        position: static;
+        flex-direction: column;
+    }
+
+    .about_us_container{
+        width: 90%;
+        height: auto;
+        justify-content: center;
+        padding: 30px;
+    }
+
+    .about_us_section{
+        margin: 0;
+        width: 90%;
+        gap: 10px;
+    }
+
+    .about_us_title{
+        font-size: 60px;
+    }
+
 }
