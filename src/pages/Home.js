@@ -161,7 +161,7 @@ export default function Home(){
                     <div className="categories_cards_container_home">
                         {servicesForDisplay.map((displayService) => {
                             return(
-                            <Link to={`/services/${displayService.id}`} className="categories_card" key={displayService.id}>
+                            <Link to={`/service/${displayService.id}`} className="categories_card" key={displayService.id}>
                                 <img src={displayService.img_url[0]}/>
                                 <div className="categories_card__head_home">
                                 <span>{displayService.name}</span>
