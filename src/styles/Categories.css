@@ -174,15 +174,22 @@
     }
 
     .categories_card__head{
-        min-width: 0;
-        width: 75%;
-        transition: 1s;
         transform: none;
-        background-color: #161825;
-        color: #ebebeb;
+        white-space: pre-wrap;
+        min-width: 0;
+        transition: 1s;
+        width: 75%;
+        height: auto;
+        padding: 0.5em;
         border-bottom-left-radius: 10px;
         border-top-right-radius: 10px;
-        font-size: 20px;
+        position: absolute;
+        text-align: center;
+        font-size: 25px;
+        color: #ebebeb;
+        background-color: #161825;
+        bottom: 0;
+        left: 0;
     }
 
     .categories_card__head_home{
