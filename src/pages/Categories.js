@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { supabase } from "../supabase/client";
 import "../styles/Categories.css";
 import LoadingScreen from "../components/LoadingScreen";
+import { Link } from "react-router-dom";
 
 export default function Categories() {
   let { id } = useParams();
@@ -31,27 +32,20 @@ export default function Categories() {
   
   return (
     <div className="background_categories">
-      <div className="categories_gallery">
-      {!loadingScreen 
-        ? categories.map((category) => {
-          return(
-            <a Link to="/services/" className="category_item" key={category.id} onClick={() => navigate(`/services/${category.id}`)}>
-              <div className="category_img">
+      {!loadingScreen ?
+        <div className="categories_cards_container">
+          {categories.map((category) => {
+            return(
+              <Link to={`/services/${category.id}`} className="categories_card" key={category.id}>
                 <img src={category.img_url[0]}/>
-              </div>
-              <div className="category_item_content">
-                <div className="category_item_title">
-                  <h1>{category.name}</h1>
+                <div className="categories_card__head">
+                  <span>{category.name}</span>
                 </div>
-              </div>
-
-            </a>
-          )
-
-        })
-      
-        : <LoadingScreen/>}
-      </div>
+              </Link>
+            )
+          })}
+        </div>
+      : <LoadingScreen/>}
     </div>
   );
 }

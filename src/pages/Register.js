@@ -11,9 +11,9 @@ function Register() {
   const [name, setName] = useState(null);
   const [phone, setPhone] = useState(null);
   const [locationId, setLocationId] = useState(null);
-  const [user, setUser] = useState(null);
   const [loadingScreen, setLoadingScreen] = useState(true);
   const [registerAlert, setRegisterAlert] = useState(null);
+  const [locations, setLocations] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -23,8 +23,17 @@ function Register() {
   const getUserMethod = async () => {
     const { data: { user } } = await supabase.auth.getUser();
     if (user) navigate("/");
-    setLoadingScreen(false);
+    getLocations();
   };
+  
+  const getLocations = async () => {
+    const { data, error } = await supabase
+    .from('location')
+    .select();
+    console.log(data);
+    setLocations(data);
+    setLoadingScreen(false);
+  }
 
   const hangleSignUp = async (e) => {
     e.preventDefault();
@@ -39,6 +48,10 @@ function Register() {
       }
     }
     else{
+      if(locationId == 0 || locationId == null){
+        setRegisterAlert("Por favor selecciona una localización válida");
+        return;
+      }
       setRegisterAlert("Favor de llenar todos los campos");
     }
   };
@@ -56,6 +69,7 @@ function Register() {
     console.log(error);
     navigate('/');
   }
+
 
   return (
     <div className="register_background">
@@ -113,10 +127,12 @@ function Register() {
                   name="location"
                   onChange={(e) => setLocationId(e.target.value)}
                 >
-                  <option value={"1"}>Localización</option>
-                  <option value={"1"}>Monterrey</option>
-                  <option value={"2"}>Sabinas</option>
-                  <option value={"3"}>Nuevo Laredo</option>
+                  <option value={0}>Cambiar Localización</option>
+                  {locations.map((location) => {
+                    return(
+                      <option value={location.id}>{location.name}</option>
+                    )
+                  })}
                 </select>
               </div>
               <div id="register_button">

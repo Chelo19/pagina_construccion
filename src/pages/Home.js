@@ -3,7 +3,6 @@ import {supabase} from '../supabase/client';
 import UserArea from '../components/UserArea';
 import RemoveFromDB from '../components/RemoveFromDB';
 import AddToDB from '../components/AddToDB';
-import FetchDB from '../components/FetchDB';
 import { useNavigate, useParams } from "react-router-dom";
 import '../styles/Home.css';
 import { AuthRedirect } from '../hooks/authUser';

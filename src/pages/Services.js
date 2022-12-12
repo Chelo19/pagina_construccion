@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { supabase } from "../supabase/client";
 import "../styles/Services.css";
 import LoadingScreen from "../components/LoadingScreen";
+import { Link } from "react-router-dom";
 
 export default function Services() {
   let { id } = useParams();
@@ -30,29 +31,23 @@ export default function Services() {
 
   return (
     <div className="services_background">
-      <div className="services_gallery">
-        {!loadingScreen
-          ? services.map((service) => {
-            return (
-              <a Link to="/service/" className="services_item" key={service.id} onClick={() => navigate(`/service/${service.id}`)}>
-                <div className="services_img">
-                  <img src={service.img_url[0]}/>
+      {!loadingScreen ?
+      <div className="services_container">
+        <span className="services_title">Nuestros servicios</span>
+        <div className="services_gallery">
+          {services.map((service) => {
+            return(
+              <Link to={`/service/${service.id}`} className="services_item" key={service.id}>
+                <img src={service.img_url[0]}/>
+                <div className="services_item_title">
+                  <span>{service.name}</span>
                 </div>
-                <div className="services_item_content">
-                  <div className="services_title">
-                    <h1>{service.name}</h1>
-                  </div>
-                  <div className="services_description">
-                    <span>{service.description}</span>
-                  </div>
-                </div>
-              </a>
-              );
-            })
-            
-            : <LoadingScreen/>}
+              </Link>
+            );
+          })}
+        </div>
       </div>
+      : <LoadingScreen/>}
     </div>
-    
   );
 }
