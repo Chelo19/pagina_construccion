@@ -120,9 +120,9 @@ body{
     height: auto;
     display: flex;
     flex-direction: column;
-    gap: 5px;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    gap: 40px;
+    padding-top: 40px;
+    padding-bottom: 40px;
     align-items: center;
     background-color: #161825;
     box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
@@ -199,6 +199,7 @@ body{
 }
 
 .our_projects_button{
+    width: 30%;
     opacity: .8;
     display: flex;
     justify-content: center;
@@ -446,8 +447,8 @@ body{
     .our_projects{
         width: 100%;
         height: auto;
-        padding-top: 20px;
-        padding-bottom: 20px;
+        padding-top: 40px;
+        padding-bottom: 40px;
     }
 
     .our_projects_presentation{
@@ -518,6 +519,7 @@ body{
     }
 
     .our_projects_button{
+        width: 50%;
         opacity: .8;
         display: flex;
         justify-content: center;

@@ -158,22 +158,17 @@ export default function Home(){
                     </Link>
                 </div>
                 <div className='our_projects'>
-                    <div className='our_projects_container'>
+                    <div className="categories_cards_container_home">
                         {servicesForDisplay.map((displayService) => {
                             return(
-                                <Link to={`/service/${displayService.id}`} className='our_projects_container_button' key={displayService.id}>
-                                    <div className='our_projects_container_button_top'>
-                                        <img src={displayService.img_url[0]}/>
-                                    </div>
-                                    <div className='our_projects_container_button_bottom'>
-                                        <div className='our_projects_container_button_bottom_text'>
-                                            {displayService.name}
-                                        </div>
-                                    </div>
-                                </Link>
-                            );
+                            <Link to={`/services/${displayService.id}`} className="categories_card" key={displayService.id}>
+                                <img src={displayService.img_url[0]}/>
+                                <div className="categories_card__head_home">
+                                <span>{displayService.name}</span>
+                                </div>
+                            </Link>
+                            )
                         })}
-                        
                     </div>
                     <Link to={`/categories/${locationId}`} style={{textDecoration: 'inherit'}} class='our_projects_button'>
                             <span>Ver más</span>

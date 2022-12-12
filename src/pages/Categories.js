@@ -33,6 +33,8 @@ export default function Categories() {
   return (
     <div className="background_categories">
       {!loadingScreen ?
+      <div className="categories_container">
+        <span className="categories_title">Las categorías de nuestros servicios</span>
         <div className="categories_cards_container">
           {categories.map((category) => {
             return(
@@ -45,6 +47,7 @@ export default function Categories() {
             )
           })}
         </div>
+      </div>
       : <LoadingScreen/>}
     </div>
   );
