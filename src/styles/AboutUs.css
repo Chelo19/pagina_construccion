@@ -1,0 +1,75 @@
+.about_us_background{
+    height: 97vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.background_display{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+}
+
+.about_us_background_img{
+    width: 100%;
+    height: 100%;
+    background: url(../img/construction_img.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10%;
+    gap: 20px;
+    opacity: .8;
+}
+
+.about_us_container_img{
+    width: auto;
+    height: 70%;
+    margin-left: -300px;
+}
+
+.about_us_container_img img{
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+}
+
+.about_us_container{
+    width: 50%;
+    height: 70%;
+    background-color: #ebebeb;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    color: #161825;
+}
+
+.about_us_section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    width: 50%;
+    height: 80%;
+    margin-left: 15%;
+    font-size: 20px;
+    text-align: center;
+}
+
+.about_us_title{
+    font-size: 70px;
+    font-weight: 600;
+}

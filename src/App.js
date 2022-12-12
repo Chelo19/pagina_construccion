@@ -31,6 +31,8 @@ import AddServiceHomeSelectCategory from "./pages/AddServiceHomeSelectCategory";
 import AddServiceHome from "./pages/AddServiceHome";
 import RemoveServiceHome from "./pages/RemoveServiceHome";
 import ConfirmedEmail from "./pages/ConfirmedEmail";
+import AboutUs from "./pages/AboutUs";
+import Contact from "./pages/Contact";
 
 import { supabase } from "./supabase/client";
 
@@ -90,6 +92,8 @@ function App() {
         <Route path="/add-service-home/:id" element={<AddServiceHome/>}/>
         <Route path="/remove-service-home/:id" element={<RemoveServiceHome/>}/>
         <Route path="/confirmed-email" element={<ConfirmedEmail/>}/>
+        <Route path="/about-us" element={<AboutUs/>}/>
+        <Route path="/contact" element={<Contact/>}/>
       </Routes>
       <Footer/>
     </div>

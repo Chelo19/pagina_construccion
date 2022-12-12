@@ -55,8 +55,8 @@ export default function HeaderButtonsNoUser(){
                         <li><Link to={`/`} style={{ color: 'inherit', textDecoration: 'inherit'}}>Menú principal</Link></li>
                         <li><Link to={`/account/`} style={{ color: 'inherit', textDecoration: 'inherit'}}>Cuenta</Link></li>
                         {/*<li><Link to={`/my-services/`} style={{ color: 'inherit', textDecoration: 'inherit'}}>Mis Servicios</Link></li>*/}
-                        <li><Link to={`/`} style={{ color: 'inherit', textDecoration: 'inherit'}}>Contacto</Link></li>
-                        <li><Link to={`/`} style={{ color: 'inherit', textDecoration: 'inherit'}}>Nosotros</Link></li>
+                        <li><Link to={`/contact`} style={{ color: 'inherit', textDecoration: 'inherit'}}>Contacto</Link></li>
+                        <li><Link to={`/about-us  `} style={{ color: 'inherit', textDecoration: 'inherit'}}>Nosotros</Link></li>
                         <li><Link to={`/client-service/`} style={{ color: 'inherit', textDecoration: 'inherit'}}>Servicio al Cliente</Link></li>
                         <li><Link to={`/`} style={{ color: 'inherit', textDecoration: 'inherit'}} onClick={signOut}>Cerrar sesion</Link></li>
                     </ul>
