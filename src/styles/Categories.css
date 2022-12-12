@@ -216,14 +216,23 @@
     }
 
     .categories_card:hover .categories_card__head{
-        top: calc(100% - 43px);
-        transition: 1s;
         transform: none;
+        white-space: pre-wrap;
+        min-width: 0;
+        transition: 1s;
         width: 75%;
         height: auto;
-        font-size: 20px;
-        background-color: #ff7e22;
+        padding: 0.5em;
+        border-bottom-left-radius: 10px;
+        border-top-right-radius: 10px;
+        position: absolute;
+        text-align: center;
+        font-size: 25px;
         color: #ebebeb;
+        background-color: #ff7e22;
+        bottom: 0;
+        left: 0;
+        top: auto;
     }
 
     .categories_card img{
