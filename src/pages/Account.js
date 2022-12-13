@@ -11,6 +11,15 @@ export default function Account(){
     const [email, setEmail] = useState(null);
     const [newLocationId, setNewLocationId] = useState(null);
     const [locationName, setLocationName] = useState(null);
+    const [isChangingLocation, setIsChangingLocation] = useState(false);
+    const [countries, setCountries] = useState(null);
+    const [newCountry, setNewCountry] = useState(null);
+    const [states, setStates] = useState(null);
+    const [newState, setNewState] = useState(null);
+    const [newLocation, setNewLocation] = useState(null);
+    const [renderStates, setRenderStates] = useState(false);
+    const [renderInput, setRenderInput] = useState(false);
+    const [renderSubmit, setRenderSubmit] = useState(false);
     var locationId = null;
     
     const [loadingScreen, setLoadingScreen] = useState(true);
@@ -19,6 +28,7 @@ export default function Account(){
 
     useEffect(() => {
         getUserData();
+        getCountryData();
     }, [loadingScreen]);
 
     const getUserData = async () => {
@@ -58,6 +68,44 @@ export default function Account(){
         setLocationName(data[0].name);
     }
 
+    const getCountryData = async () => {
+        let data = require('../assets/country-states-data.json');
+        setCountries(data);
+    }
+
+    const getStatesData = async () => {
+        console.log(newCountry);
+        console.log("Entra getStatesData");
+        let data = require('../assets/country-states-data.json');
+        setStates(data[newCountry].states);
+    }
+
+    const changeLocation = async () => {
+        window.alert('Cambio de localización');
+    }
+    
+    useEffect(() => {
+        if(newCountry){
+            getStatesData();
+            setRenderStates(true);
+        }
+        else{
+            setRenderStates(false);
+        }
+        if(newState){
+            setRenderInput(true);
+        }
+        else{
+            setRenderInput(false);
+        }
+        if(newLocation){
+            setRenderSubmit(true);
+        }
+        else{
+            setRenderSubmit(false);
+        }
+    })
+
     return(
         <div className='account_background'>
             {!loadingScreen ? (
@@ -93,39 +141,82 @@ export default function Account(){
                     </div>
                 </Link>
                 <a className='selections_item' id='account_grid'>
-                    <div className='account_data'>
-                        <a className='selection_logo'>
-                            <img src={require('../img/cuenta.png')} id='package'/>
-                        </a>
-                        <div className='account_data_title'>
-                            <span>¡Hola {name}!</span>
-                        </div>
-                        <div className='account_data_info'>
-                            <span>Nombre: {name}</span><br/>
-                            <div className='account_data_info_email'>
-                                <span>Email:&nbsp;</span>
-                                <span>{email}</span>
+                    {isChangingLocation ?
+                        <div className='account_is_changing_location'>
+                            <Link id='account_is_changing_location_close_tab' onClick={(e) => {setIsChangingLocation(false); 
+                                setStates([]); setNewCountry(null); setNewState(null); setNewLocation(null)}}>
+                                <img src={require('../img/closetab.png')}/>
+                            </Link>
+                            <div className='account_is_changing_location_item'>
+                                <span>País</span>
+                                <select onChange={(e) => {setNewCountry(e.target.value); setStates([])}} className="account_is_changing_location_select">
+                                {countries.map((country) => {
+                                    return(
+                                        <option key={country.country_id} value={country.country_id}>{country.country_name}</option>
+                                    )
+                                })}
+                                </select>
                             </div>
-                            <br/>
-                            <span>Localización: {locationName}</span><br/>
-                            <span>Cambiar localización:</span><br/>
-                            <div className='change_location_account_container'>
-                                <form onSubmit={updateLocation} className="change_location_account_form">
-                                    <select onChange={(e) => setNewLocationId(e.target.value)} className="change_location_account_form_select">
-                                        <option value={"0"}>Localización</option>
-                                        <option value={"1"}>Monterrey</option>
-                                        <option value={"2"}>Sabinas</option>
-                                        <option value={"3"}>Nuevo Laredo</option>
+                            {renderStates &&
+                                <div className='account_is_changing_location_item'>
+                                    <span>Estado</span>
+                                    <select onChange={(e) => {setNewState(e.target.value); setNewLocation(null)}} className="account_is_changing_location_select">
+                                    {states.map((state) => {
+                                        return(
+                                            <option value={state.state_id}>{state.state_name}</option>
+                                        )
+                                    })}
                                     </select>
-                                    <input
-                                    type={'submit'}
-                                    value={"Cambiar"}
+                                </div>
+                            }
+                            {renderInput &&
+                                <div className='account_is_changing_location_item'>
+                                    <span>Localidad</span>
+                                    <input id="account_is_changing_location_text_input"
+                                    type={'text'}
+                                    placeholder={"Localización"}
+                                    onChange={(e) => setNewLocation(e.target.value)}
                                     />
-                                </form>
-                            </div><br/>
-                            <Link to={"/update-password/"} onClick={() => navigate(`/update-password`)} id='account_link'>Haz click aquí si deseas cambiar tu contraseña</Link>
+                                </div>
+                            }
+                            {renderSubmit &&
+                                <input id="account_is_changing_location_text_submit"
+                                type={'submit'}
+                                value={'Cambiar Localización'}
+                                onClick={changeLocation}
+                                />
+                            }
                         </div>
-                    </div>
+                    : 
+                        <div className='account_data'>
+                            <a className='selection_logo'>
+                                <img src={require('../img/cuenta.png')} id='package'/>
+                            </a>
+                            <div className='account_data_title'>
+                                <span>¡Hola {name}!</span>
+                            </div>
+                            <div className='account_data_info'>
+                                <span>Nombre: {name}</span>
+                                <div className='account_data_info_email'>
+                                    <span>Email:&nbsp;</span>
+                                    <span>{email}</span>
+                                </div>
+                                <span>Localización: {locationName}</span>
+                                <input 
+                                    className='change_location_account_form_input'
+                                    type={'submit'}
+                                    value={"Cambiar Localización"}
+                                    onClick={(e) => setIsChangingLocation(true)}
+                                />
+                                <input
+                                    onClick={(e) => navigate("/update-password/")}
+                                    className='change_location_account_form_input'
+                                    type={'submit'}
+                                    value={"Cambiar Contraseña"}
+                                />
+                            </div>
+                        </div>
+                    }
                 </a>
             </div>
             ) : <LoadingScreen/>}

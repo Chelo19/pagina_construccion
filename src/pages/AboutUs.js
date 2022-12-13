@@ -8,11 +8,17 @@ export default function AboutUs(){
         let url = 'https://ipinfo.io/json?token=f4a64dfc914585';
         let response = await fetch(url);
         let data = await response.json();
+        //console.log(data);
+    }
+
+    const getJsonData = async () => {
+        let data = require('../assets/country-states-data.json');
         console.log(data);
     }
 
     useEffect(() => {
         fetchGeoLocation();
+        getJsonData();
     }, [])
 
 
