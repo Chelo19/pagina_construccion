@@ -24,6 +24,7 @@ export default function Home(){
     
     useEffect(() => {      
         insideUseEffect();
+        fetchGeoLocation();
     }, [loadingScreen])    
 
     const insideUseEffect = () => {
@@ -44,8 +45,7 @@ export default function Home(){
                 const { error } = await supabase
                 .from('account')
                 .update({uuid: user.id})
-                .eq('email', user.email)
-                console.log(error);
+                .eq('email', user.email);
                 document.location.reload();
             }
         }
@@ -89,11 +89,9 @@ export default function Home(){
         .eq( 'location_id' , locationId );
         if(data != null){
             setEnterprises(data);
-            console.log("Sale de getEnter");
             confirmaciones[0] = true;
         }
         if(confirmaciones[0] && confirmaciones[1]){
-            console.log("Sale de getDB");
             setLoadingScreen(false);
         }
     }
@@ -103,8 +101,6 @@ export default function Home(){
         .from('display_services')
         .select(`service_id, services ( id, name, img_url )`)
         .eq("location_id", locationId);
-        console.log(data);
-        console.log(error);
         if(displayServicesSel.length >= data.length){
             console.log("displayServicesSel esta lleno");
             console.log("Sale de fkDisp");
@@ -113,25 +109,27 @@ export default function Home(){
         }
         else{
             for(var i = 0 ; i < data.length ; i++){
-                console.log("entra al for");
-                console.log(displayServicesSel);
                 displayServicesSel.push(data[i].services);
             }
             if(displayServicesSel.length >= data.length){
-                console.log("displayServicesSel esta lleno");
-                console.log("Sale de fkDisp");
                 confirmaciones[1] = true;
                 setServicesForDisplay(displayServicesSel);
             }
         }
         if(confirmaciones[0] && confirmaciones[1]){
-            console.log("Sale de getDB");
             setLoadingScreen(false);
         }
     }
 
     const executeScroll = () => {
         projects.current.scrollIntoView()   
+    }
+
+    const fetchGeoLocation = async () => {
+        let url = 'https://ipinfo.io/json?token=f4a64dfc914585';
+        let response = await fetch(url);
+        let data = await response.json();
+        console.log(data);
     }
 
     return(
