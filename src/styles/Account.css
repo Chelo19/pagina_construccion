@@ -302,11 +302,11 @@
     padding: 10px;
     outline: none;
     font-weight: 400;
-    border: 1px solid rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 127, 34, 0.9);
     font-size: 16px;
     letter-spacing: 1px;
-    color: rgba(0, 0, 0, 0.5);
-    background: transparent;
+    color: #ebebeb;
+    background-color: rgba(255, 127, 34, 0.9);
     border-radius: 10px;
 }
 
@@ -408,5 +408,24 @@
 
     #account_link{
         text-align: center;
+    }
+
+    .change_location_account_form_input{
+        width: 100%;
+    }
+
+    .account_is_changing_location{
+        gap: 15px;
+        align-items: center;
+    }
+
+    #account_is_changing_location_close_tab{
+        align-self: flex-end;
+        margin-right: 10%;
+        width: 20px;
+        height: 20px;
+        top: 0;
+        right: 0;
+        position: static;
     }
 }
