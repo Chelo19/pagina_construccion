@@ -23,8 +23,12 @@ export default function MyServices(){
 
     return(
         <div className='my_services_background'>
-            <div className='services'>
-                <div className='services_list'>
+            <div className='my_services_container'>
+                <div className='my_services_container_left'>
+
+                </div>
+                <div className='my_services_container_right'>
+
                 </div>
             </div>
         </div>

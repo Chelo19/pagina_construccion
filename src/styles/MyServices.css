@@ -1,7 +1,25 @@
 .my_services_background{
-    height: 97vh;
-    background-color: #ebebeb;
+    height: 95vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+.my_services_container{
+    background-color: rgba(119, 51, 51, 0.5);
+    width: 100%;
+    height: 85%;
+    display: grid;
+    grid-template-columns: 2fr 8fr;
+    gap: 30px;
+}
+
+.my_services_container_left{
+    background-color: aquamarine;
+}
+
+.my_services_container_right{
+    background-color: brown;
 }
