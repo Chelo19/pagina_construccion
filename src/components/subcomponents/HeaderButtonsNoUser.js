@@ -39,7 +39,7 @@ export default function HeaderButtonsNoUser(){
     return(
         <div className='header_buttons'>
             <ul className='horizontal_menu_header'>
-                {role == 'administrador' &&
+                {role == 'administrador' || role == 'gerente' &&
                 <li><a><Link to={`/admin-hub/`} style={{ color: 'inherit', textDecoration: 'inherit'}}>
                     Administrador
                 </Link></a></li>  

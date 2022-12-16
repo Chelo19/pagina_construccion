@@ -1,0 +1,107 @@
+.manager_hub_background{
+    background-color: #ebebeb;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 90px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.manager_selections{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding: 20px;
+    background-color: #ebebeb;
+    width: 70%;
+    height: 70%;
+    border-radius: 10px;
+}
+
+
+.manager_selections_item{
+    background-color: rgba(255, 255, 255, 0.9);
+    width: 45%;
+    height: 200px;
+    border-radius: 10px;
+    border: 2px solid rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: .5s;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.manager_selections_item:hover{
+    transition: .5s;
+}
+
+.manager_selections_item:hover .selection_logo{
+    background-color: #ff7f22;
+}
+
+.manager_selections_item:hover .selections_item_title{
+    font-size: 37px;
+    color: #ff7f22;
+}
+
+.manager_selections_item_left{
+    width: 30%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.manager_selections_item_right{
+    width: 60%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: center;
+    gap: 10px;
+}
+
+.manager_selection_logo{
+    background-color: rgba(255, 127, 34, 0.9);
+    padding: 30px;
+    border-radius: 100px;
+    transition: .5s;
+}
+
+.manager_selection_logo img{
+    filter: invert(1);
+}
+
+#manager_package{
+    width: 90px;
+    height: 90px;
+}
+
+.manager_selections_item_title{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 35px;
+    padding: 5px;
+    color: black;
+    text-decoration: none;
+    transition: .5s;
+}
+
+.manager_selections_item_title:hover{
+    font-size: 37px;
+    color: #ff7f22;
+}
+
+.manager_selections_item_description{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 15px;
+    padding: 5px;
+    color: black;
+    text-decoration: none;
+    transition: .5s;
+}

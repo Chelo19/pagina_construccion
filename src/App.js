@@ -33,6 +33,8 @@ import RemoveServiceHome from "./pages/RemoveServiceHome";
 import ConfirmedEmail from "./pages/ConfirmedEmail";
 import AboutUs from "./pages/AboutUs";
 import Contact from "./pages/Contact";
+import ManagerHub from "./pages/ManagerHub";
+import EditUsers from "./pages/EditUsers";
 
 import { supabase } from "./supabase/client";
 
@@ -94,6 +96,8 @@ function App() {
         <Route path="/confirmed-email" element={<ConfirmedEmail/>}/>
         <Route path="/about-us" element={<AboutUs/>}/>
         <Route path="/contact" element={<Contact/>}/>
+        <Route path="/manager-hub" element={<ManagerHub/>}/>
+        <Route path="/edit-users/:id" element={<EditUsers/>}/>
       </Routes>
       <Footer/>
     </div>

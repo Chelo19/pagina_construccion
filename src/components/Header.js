@@ -40,7 +40,7 @@ export default function Header(){
             .from('account')
             .select()
             .eq('uuid', user.id);
-            if(data[0].role == 'administrador'){
+            if(data[0].role == 'administrador' || data[0].role == 'gerente'){
                 setIsAdmin(true);
             }
         }
