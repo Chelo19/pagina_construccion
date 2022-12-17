@@ -22,19 +22,19 @@ export default function AddServiceHome(){
     const checkIfAdmin = async () => {
       const { data: { user } } = await supabase.auth.getUser();
       if(user){
-          const { data, error } = await supabase
-          .from('account')
-          .select()
-          .eq('uuid', user.id);
-          setLocationId(data[0].location_id);
-          locationIdD = data[0].location_id;
-          if(data[0].role != 'administrador'){
-              window.alert("No tienes los permisos para acceder a este lugar");
-              navigate("/");
-          }
-          if(data[0].role == 'administrador'){
-            getDisplayServices();
-          }
+        const { data, error } = await supabase
+        .from('account')
+        .select()
+        .eq('uuid', user.id);
+        setLocationId(data[0].location_id);
+        locationIdD = data[0].location_id;
+        if(data[0].role == 'administrador' || data[0].role == 'gerente'){
+          getDisplayServices();
+        }
+        else{
+          window.alert("No tienes los permisos para acceder a este lugar");
+          navigate("/");
+        }
       }
       else{
           window.alert("Inicia sesión como administrador para acceder");

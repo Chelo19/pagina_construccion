@@ -35,12 +35,12 @@ export default function AddService(){
             .from('account')
             .select()
             .eq('uuid', user.id);
-            if(data[0].role != 'administrador'){
+            if(data[0].role == 'administrador' || data[0].role == 'gerente'){
+                setLoadingScreen(false);
+            }
+            else{
                 window.alert("No tienes los permisos para acceder a este lugar");
                 navigate("/");
-            }
-            if(data[0].role == 'administrador'){
-                setLoadingScreen(false);
             }
         }
         else if(!user){

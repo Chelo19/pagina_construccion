@@ -33,12 +33,12 @@ export default function EditCategory() {
       .eq('uuid', user.id);
       setLocationId(data[0].location_id);
       console.log(data[0].location_id);
-      if(data[0].role != 'administrador'){
+      if(data[0].role == 'administrador' || data[0].role == 'gerente'){
+        showCategory();
+      }
+      else{
         window.alert("No tienes los permisos para acceder a este lugar");
         navigate("/");
-      }
-      if(data[0].role == 'administrador'){
-        showCategory();
       }
     }
     else{

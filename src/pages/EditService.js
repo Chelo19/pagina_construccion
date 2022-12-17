@@ -25,21 +25,21 @@ export default function EditService() {
   const checkIfAdmin = async () => {
     const { data: { user } } = await supabase.auth.getUser();
     if(user){
-        const { data, error } = await supabase
-        .from('account')
-        .select()
-        .eq('uuid', user.id);
-        if(data[0].role != 'administrador'){
+      const { data, error } = await supabase
+      .from('account')
+      .select()
+      .eq('uuid', user.id);
+      if(data[0].role == 'administrador' || data[0].role == 'gerente'){
+        showService();
+      }
+      else{
           window.alert("No tienes los permisos para acceder a este lugar");
           navigate("/");
-        }
-        if(data[0].role == 'administrador'){
-          showService();
-        }
+      }
     }
     else{
-        window.alert("Inicia sesión como administrador para acceder");
-        navigate("/login");
+      window.alert("Inicia sesión como administrador para acceder");
+      navigate("/login");
     }
   }
 
