@@ -249,6 +249,14 @@
 
     .create_posts_background{
         margin-top: 65px;
+        min-height: 100vh;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        gap: 20px;
+    }
+
+    .create_posts_title{
+        font-size: 40px;
     }
 
     .create_posts_gallery{
@@ -278,6 +286,64 @@
 
     .create_posts_no_items_alert{
         font-size: 20px;
+    }
+
+    .create_posts_popup_background{
+        background-color: #ebebeb;
+        height: 100%;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+
+    .create_posts_popup_container{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+        box-shadow: none;
+    }
+
+    .create_posts_popup_form{
+        padding-top: 10px;
+        padding-bottom: 10px;
+        width: 90%;
+        height: 50%;
+    }
+
+    .create_posts_popup_form_inputs{
+        width: 85%;
+    }
+
+    .create_posts_popup_right{
+        padding-top: 10px;
+        padding-bottom: 10px;
+        width: 90%;
+        height: 50%;
+    }
+
+    .create_posts_popup_user{
+        width: 90%;
+    }
+
+    #create_posts_popup_user_title{
+        font-size: 20px;
+        margin-left: 20%;
+        margin-bottom: 0;
+    }
+
+    .create_posts_popup_user span{
+        font-size: 12px;
+    }
+
+    .create_posts_popup_buttons_container{
+        width: 90%;
+    }
+
+    .create_posts_popup_buttons{
+        width: 60%;
     }
 
 }

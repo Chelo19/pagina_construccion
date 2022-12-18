@@ -115,6 +115,10 @@
 
 @media(max-width:500px){
 
+    .footer_background{
+        height: auto;
+    }
+
     .footer_horizontal{
         flex-direction: column;
     }
