@@ -48,7 +48,7 @@ export default function AdminHub(){
             .select()
             .eq("uuid", user.id);
             console.log(data);
-            setLocationId(data[0].location_id);
+            setLocationId(data[0].admin_location_id);
         }
         catch{
 
@@ -164,18 +164,18 @@ export default function AdminHub(){
                         </Link>
                     </div>
                 </Link>
-                <Link to={`/edit-enterprises/${locationId}`} id='admin_edit_logos' className='admin_selections_item'>
+                <Link to={`/create-posts/${locationId}`} id='admin_edit_logos' className='admin_selections_item'>
                     <div className='admin_selections_item_left'>
-                        <Link to={`/edit-enterprises/${locationId}`} id='admin_package' className='admin_selection_logo'>
+                        <Link to={`/create-posts/${locationId}`} id='admin_package' className='admin_selection_logo'>
                             <img src={require('../img/package.png')} id='admin_package'/>
                         </Link>
                     </div>
                     <div className='admin_selections_item_right'>
-                        <Link to={`/edit-enterprises/${locationId}`} className='admin_selections_item_title'>
-                            <span>Editar Logos</span>
+                        <Link to={`/create-posts/${locationId}`} className='admin_selections_item_title'>
+                            <span>Crear Posts</span>
                         </Link>
-                        <Link to={`/edit-enterprises/${locationId}`} className='admin_selections_item_description'>
-                            <span>Edita los logos de la página principal</span>
+                        <Link to={`/create-posts/${locationId}`} className='admin_selections_item_description'>
+                            <span>Crea Posts</span>
                         </Link>
                     </div>
                 </Link>

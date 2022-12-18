@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 export default function HeaderButtonsNoUser(){
     
     const [role, getRole] = useState('cliente');
+    const [adminPermissions, setAdminPermissions] = useState(false);
     const navigate = useNavigate();
     
     useEffect(() => {
@@ -20,6 +21,9 @@ export default function HeaderButtonsNoUser(){
         .select()
         .eq('uuid', user.id);
         getRole(data[0].role);
+        if(role == 'administrador' || role == 'gerente'){
+            setAdminPermissions(true);
+        }
     }
 
     const signOut = async (e) => {
@@ -39,7 +43,7 @@ export default function HeaderButtonsNoUser(){
     return(
         <div className='header_buttons'>
             <ul className='horizontal_menu_header'>
-                {role == 'administrador' || role == 'gerente' &&
+                {adminPermissions &&
                 <li><a><Link to={`/admin-hub/`} style={{ color: 'inherit', textDecoration: 'inherit'}}>
                     Administrador
                 </Link></a></li>  
