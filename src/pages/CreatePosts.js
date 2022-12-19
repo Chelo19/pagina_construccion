@@ -102,6 +102,7 @@ export default function CreatePosts(){
         .from('my_services')
         .update({ img_url: newUrls })
         .eq('id', postId);
+        document.location.reload();
     }
 
     return(

@@ -36,6 +36,8 @@ import Contact from "./pages/Contact";
 import ManagerHub from "./pages/ManagerHub";
 import EditUsers from "./pages/EditUsers";
 import CreatePosts from "./pages/CreatePosts";
+import EditPostsSelectUser from "./pages/EditPostsSelectUser";
+import EditPosts from "./pages/EditPosts";
 
 import { supabase } from "./supabase/client";
 
@@ -95,6 +97,8 @@ function App() {
         <Route path="/add-service-home/:id" element={<AddServiceHome/>}/>
         <Route path="/remove-service-home/:id" element={<RemoveServiceHome/>}/>
         <Route path="/create-posts/:id" element={<CreatePosts/>}/>
+        <Route path="/edit-posts-select-user/:id" element={<EditPostsSelectUser/>}/>
+        <Route path="/edit-posts/:id" element={<EditPosts/>}/>
         <Route path="/confirmed-email" element={<ConfirmedEmail/>}/>
         <Route path="/about-us" element={<AboutUs/>}/>
         <Route path="/contact" element={<Contact/>}/>

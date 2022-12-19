@@ -57,10 +57,6 @@ export default function MyServices(){
         setContainerStyle(null);
     }
 
-    useEffect(() => {
-        console.log(noItems);
-    })
-
     return(
         <div className='my_services_background'>
             {!loadingScreen ?

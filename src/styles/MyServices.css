@@ -56,7 +56,13 @@
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
+.my_services_service:hover .my_services_title{
+    transition: .5s;
+    color: #ff7f22;
+}
+
 .my_services_title{
+    transition: .5s;
     width: 90%;
     height: 25%;
     display: flex;
@@ -156,7 +162,7 @@
 
 .my_services_in_service_img_individual_img img{
     border-radius: 10px;
-    object-fit: contain;
+    object-fit: cover;
     width: 100%;
     height: 100%;
 }

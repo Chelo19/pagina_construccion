@@ -179,6 +179,21 @@ export default function AdminHub(){
                         </Link>
                     </div>
                 </Link>
+                <Link to={`/edit-posts-select-user/${locationId}`} id='admin_edit_logos' className='admin_selections_item'>
+                    <div className='admin_selections_item_left'>
+                        <Link to={`/edit-posts-select-user/${locationId}`} id='admin_package' className='admin_selection_logo'>
+                            <img src={require('../img/package.png')} id='admin_package'/>
+                        </Link>
+                    </div>
+                    <div className='admin_selections_item_right'>
+                        <Link to={`/edit-posts-select-user/${locationId}`} className='admin_selections_item_title'>
+                            <span>Edita Posts</span>
+                        </Link>
+                        <Link to={`/edit-posts-select-user/${locationId}`} className='admin_selections_item_description'>
+                            <span>Edita un Post</span>
+                        </Link>
+                    </div>
+                </Link>
             </div>
             : <LoadingScreen/>}
         </div>
