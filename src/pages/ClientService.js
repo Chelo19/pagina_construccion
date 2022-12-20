@@ -12,7 +12,6 @@ export default function ClientService(){
     useEffect(() => {
         if(reload == "0"){
             navigate('/client-service/1');
-            window.location.reload();
         }
     },[]);
 
