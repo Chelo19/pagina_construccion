@@ -34,7 +34,7 @@ export default function Home(){
     useEffect(() => {
         supabase.auth.onAuthStateChange(async (event, session) => {
           if (event == "PASSWORD_RECOVERY") {
-            navigate('/#/update-password/');
+            navigate('/update-password/');
           }
         })
     }, [])
