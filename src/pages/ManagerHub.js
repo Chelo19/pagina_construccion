@@ -56,21 +56,6 @@ export default function ManagerHub(){
                         </Link>
                     </div>
                 </Link>
-                <Link to={`/edit-services-select-category/${locationId}`} className='manager_selections_item'>
-                    <div className='manager_selections_item_left'>
-                        <Link to={`/edit-services-select-category/${locationId}`} id='manager_package' className='manager_selection_logo' style={{ color: 'inherit', textDecoration: 'inherit'}}>
-                            <img src={require('../img/package.png')} id='manager_package'/>
-                        </Link>
-                    </div>
-                    <div className='manager_selections_item_right'>
-                        <Link to={`/edit-services-select-category/${locationId}`} className='manager_selections_item_title'>
-                            <span>Editar Servicios</span>
-                        </Link>
-                        <Link to={`/edit-services-select-category/${locationId}`} className='manager_selections_item_description'>
-                            <span>Edita los datos de un servicio en específico</span>
-                        </Link>
-                    </div>
-                </Link>
             </div>
             : <LoadingScreen/>}
         </div>

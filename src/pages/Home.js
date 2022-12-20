@@ -21,6 +21,15 @@ export default function Home(){
     var displayServicesSel = [];
     const projects = useRef(null);
     AuthRedirect();
+
+    const { reload } = useParams();
+
+    useEffect(() => {
+        if(reload == "0"){
+            navigate('/1');
+            window.location.reload();
+        }
+    },[]);
     
     useEffect(() => {      
         insideUseEffect();
@@ -144,9 +153,9 @@ export default function Home(){
                         </div>
                         <Link style={{textDecoration: 'inherit'}} onClick={executeScroll} id='background_img_services'>
                             <span>Servicios</span>
-                            <div id='background_img_services_img'>
+                            {/* <div id='background_img_services_img'>
                                 <img src={require('../img/flecha.png')}/>
-                            </div>
+                            </div> */}
                         </Link>
                     </div>
                 </div>

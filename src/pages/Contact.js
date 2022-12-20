@@ -16,6 +16,15 @@ export default function Contact(){
     const [loadingScreen, setLoadingScreen] = useState(true);
     var confirmacionesUser = 0;
 
+    const { reload } = useParams();
+
+    useEffect(() => {
+        if(reload == "0"){
+            navigate('/contact/1');
+            window.location.reload();
+        }
+    },[]);
+
     const getUserData = async () => {
         const { data: { user } } = await supabase.auth.getUser();
         if(user){
@@ -26,7 +35,6 @@ export default function Contact(){
             confirmacionesUser++;
             console.log(confirmacionesUser);
             if(confirmacionesUser >= 2){
-                window.alert("Por favor inicia sesión");
                 navigate('/');
             }
         }

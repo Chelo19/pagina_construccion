@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react';
 import {supabase} from '../supabase/client';
-import {useNavigate} from 'react-router-dom';
+import {useNavigate, useParams} from 'react-router-dom';
 import '../styles/AdminHub.css';
 import '../styles/Account.css';
 import { Link } from 'react-router-dom';
@@ -11,6 +11,15 @@ export default function AdminHub(){
     
     const [locationId, setLocationId] = useState(1);
     const [loadingScreen, setLoadingScreen] = useState(true);
+
+    const { reload } = useParams();
+
+    useEffect(() => {
+        if(reload == "0"){
+            navigate('/admin-hub/1');
+            window.location.reload();
+        }
+    },[]);
 
     useEffect(() => {
         getUserMethod();

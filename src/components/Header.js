@@ -98,11 +98,11 @@ export default function Header(){
                     <div className='header_bottom'>
                         <div className='header_bottom_row'>
                             <div className='logo_header'>
-                            <Link to={`/`}>
+                            <Link to={`/0`}>
                                 <img id='logoimg_header' src={require('../img/logodrecfullsize.png')}/>
                             </Link>
-                            <Link to={`/`} style={{ color: 'inherit', textDecoration: 'inherit'}} >
-                                <a href='/' id='logo'>DREC</a>
+                            <Link to={`/0`} style={{ color: 'inherit', textDecoration: 'inherit'}} >
+                                <a href='/0' id='logo'>DREC</a>
                             </Link>
                             </div>
                             <div className='header_buttons_container'>
@@ -114,11 +114,11 @@ export default function Header(){
             </div>
             <div className='header_responsive'>
                 <div className='logo_header'>
-                    <Link to={`/`}>
+                    <Link to={`/0`}>
                         <img id='logoimg_header' src={require('../img/logodrecfullsize.png')}/>
                     </Link>
-                    <Link to={`/`} style={{ color: 'inherit', textDecoration: 'inherit'}} >
-                        <a href='/' id='logo'>DREC</a>
+                    <Link to={`/0`} style={{ color: 'inherit', textDecoration: 'inherit'}} >
+                        <a href='/0' id='logo'>DREC</a>
                     </Link>
                 </div>
                 <div className='bars_icon_container_background'>
@@ -132,7 +132,7 @@ export default function Header(){
                         Menú principal
                     </div>
                     <div className='bars_menu_item'>
-                        <Link to={'/'} style={{ color: 'inherit', textDecoration: 'inherit'}} onClick={changeIsBarMenu}>
+                        <Link to={'/0'} style={{ color: 'inherit', textDecoration: 'inherit'}} onClick={changeIsBarMenu}>
                             <a>Home</a>
                         </Link>
                     </div>
@@ -171,14 +171,14 @@ export default function Header(){
                     </div>
                     {isLogged && (
                         <div className='bars_menu_item'>
-                            <Link to={'/'} style={{ color: 'inherit', textDecoration: 'inherit'}} onClick={signOut}>
+                            <Link to={'/0'} style={{ color: 'inherit', textDecoration: 'inherit'}} onClick={signOut}>
                                 <a>Cerrar Sesión</a>
                             </Link>
                         </div>
                     )}
                     {isAdmin && (
                         <div className='bars_menu_item' onClick={changeIsBarMenu}>
-                            <Link to={'/admin-hub'} style={{ color: 'inherit', textDecoration: 'inherit'}} onClick={changeIsBarMenu}>
+                            <Link to={'/admin-hub/0'} style={{ color: 'inherit', textDecoration: 'inherit'}} onClick={changeIsBarMenu}>
                                 <a>Administrador</a>
                             </Link>
                         </div>

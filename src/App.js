@@ -1,7 +1,8 @@
 import "../src/styles/App.css";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import { UserProvider } from "./context/UserContext";
+import { createBrowserHistory } from "history";
 
 import Register from "./pages/Register";
 import Login from "./pages/Login";
@@ -41,6 +42,7 @@ import EditPosts from "./pages/EditPosts";
 
 import { supabase } from "./supabase/client";
 
+
 function App() {
   const navigate = useNavigate();
 
@@ -64,12 +66,16 @@ function App() {
     navigate("/");
   };
 
+  const refreshPage  = () => {
+    navigate(0);
+  }
+
   return (
     <div className="App">
       <Header />
       <br/>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/:reload" element={<Home />} />
         <Route path="/home" element={<Home />} />
         <Route path="/#menu_div" element={<Home />} />
         <Route path="/register" element={<Register />} />
@@ -80,10 +86,10 @@ function App() {
         <Route path="/services/:id" element={<Services />} />
         <Route path="/service/:id" element={<Service />} />
         <Route path="/my-services" element={<MyServices />} />
-        <Route path="/client-service" element={<ClientService />} />
+        <Route path="/client-service/:reload" element={<ClientService />} />
         <Route path="/update-password" element={<UpdatePassword />} />
         <Route path="/recover-password" element={<RecoverPassword />} />
-        <Route path="/admin-hub" element={<AdminHub />} />
+        <Route path="/admin-hub/:reload" element={<AdminHub />} />
         <Route path="/edit-services-select-category/:id" element={<EditServicesSelectCategory />} />
         <Route path="/edit-services/:id" element={<EditServices />} />
         <Route path="/edit-service/:id" element={<EditService />} />
@@ -101,7 +107,7 @@ function App() {
         <Route path="/edit-posts/:id" element={<EditPosts/>}/>
         <Route path="/confirmed-email" element={<ConfirmedEmail/>}/>
         <Route path="/about-us" element={<AboutUs/>}/>
-        <Route path="/contact" element={<Contact/>}/>
+        <Route path="/contact/:reload" element={<Contact/>}/>
         <Route path="/manager-hub" element={<ManagerHub/>}/>
         <Route path="/edit-users/:id" element={<EditUsers/>}/>
       </Routes>
