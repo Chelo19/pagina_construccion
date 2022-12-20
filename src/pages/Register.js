@@ -39,6 +39,7 @@ function Register() {
   var newCountryId;
   var newStateId;
   var locationsArray = [];
+  var userUuid;
 
   const [loadingScreen, setLoadingScreen] = useState(true);
   const navigate = useNavigate();
@@ -83,6 +84,10 @@ function Register() {
     if(email && password && name && phone && newLocationIdInsert){
       console.log("registrarse");
       const { data, error } = await supabase.auth.signUp({email, password});
+      userUuid = data.user.id;
+      if(error){
+        window.alert(error);
+      }
       if(!error){
         insertAccount();
       }
@@ -92,7 +97,8 @@ function Register() {
 const insertAccount = async () => {
   const { error } = await supabase
   .from('account')
-  .insert({ name: name, phone: phone, email: email, location_id: newLocationIdInsert });
+  .insert({ name: name, phone: phone, email: email, location_id: newLocationIdInsert, uuid: userUuid });
+  console.log(error);
   if(!error){
     console.log("Registrado exitosamente");
     navigate('/');
@@ -155,29 +161,28 @@ const getLocations = async () => {
 }
 
 const changeLocation = async () => {
-    window.alert('Cambio de localización');
-    checkCountry();
-    updateLocation();
+  checkCountry();
+  updateLocation();
 }
 
 const checkCountry = async () => {
-    newCountryName = countries[newCountry].country_name;
-    const { data, error } = await supabase
-    .from('countries')
-    .select()
-    .eq('name', newCountryName);
-    if(data.length == 0){
-        console.log("No existe pais");
-        const { error } = await supabase
-        .from('countries')
-        .insert({ name: newCountryName });
-        console.log(error);
-        checkCountry();
-    }
-    else{
-        newCountryId = data[0].id;
-        checkState();
-    }
+  newCountryName = countries[newCountry].country_name;
+  const { data, error } = await supabase
+  .from('countries')
+  .select()
+  .eq('name', newCountryName);
+  if(data.length == 0){
+      console.log("No existe pais");
+      const { error } = await supabase
+      .from('countries')
+      .insert({ name: newCountryName });
+      console.log(error);
+      checkCountry();
+  }
+  else{
+      newCountryId = data[0].id;
+      checkState();
+  }
 }
 
 const checkState = async () => {
