@@ -32,7 +32,7 @@ function UpdatePassword(){
               if (error) alert("Algo no salió bien")
             }
           })
-        if(!user) navigate('/');
+        // if(!user) navigate('/');
         setLoadingScreen(false);
     }
 
