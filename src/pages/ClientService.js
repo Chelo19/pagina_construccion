@@ -11,10 +11,11 @@ export default function ClientService(){
 
     useEffect(() => {
         if(reload == "0"){
+            console.log("Entra");
             navigate('/client-service/1');
-            // window.location.reload();
+            window.location.reload();
         }
-    },[])
+    },[]);
 
 
     const navigate = useNavigate();
