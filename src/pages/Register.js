@@ -388,6 +388,10 @@ useEffect(() => {
                   <a id="register_button" onClick={changeLocation}>Registrarse</a>
                 </div>
               }
+              <div className='register_input'>
+                ¿Quieres volver al inicio de sesión?&nbsp;
+                <Link to={"/login/"}>Haz click aquí</Link>
+              </div>
               <div className="register_alert">
                 <span>{registerAlert}</span>
               </div>
