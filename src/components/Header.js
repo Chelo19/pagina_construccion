@@ -155,7 +155,7 @@ export default function Header(){
                         </Link>
                     </div>*/}
                     <div className='bars_menu_item'>
-                        <Link to={'/contact'} style={{ color: 'inherit', textDecoration: 'inherit'}} onClick={changeIsBarMenu}>
+                        <Link to={'/contact/0'} style={{ color: 'inherit', textDecoration: 'inherit'}} onClick={changeIsBarMenu}>
                             <a>Contacto</a>
                         </Link>
                     </div>
@@ -165,7 +165,7 @@ export default function Header(){
                         </Link>
                     </div>
                     <div className='bars_menu_item'>
-                        <Link to={'/client-service'} style={{ color: 'inherit', textDecoration: 'inherit'}} onClick={changeIsBarMenu}>
+                        <Link to={'/client-service/0'} style={{ color: 'inherit', textDecoration: 'inherit'}} onClick={changeIsBarMenu}>
                             <a>Servicio al cliente</a>
                         </Link>
                     </div>
