@@ -8,17 +8,17 @@ import { useNavigate, useParams } from "react-router-dom";
 export default function ClientService(){
 
     const { reload } = useParams();
+    const navigate = useNavigate();
 
     useEffect(() => {
         if(reload == "0"){
             console.log("Entra");
             navigate('/client-service/1');
-            // window.location.reload();
+            window.location.reload();
         }
     },[]);
 
 
-    const navigate = useNavigate();
     const [isMailSent, setIsMailSent] = useState(false);
     const [email, setEmail] = useState(null);
     const [message, setMessage] = useState(null);

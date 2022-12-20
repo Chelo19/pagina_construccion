@@ -75,8 +75,10 @@ function App() {
       <Header />
       <br/>
       <Routes>
+        <Route path="/" element={<Home />} />
         <Route path="/:reload" element={<Home />} />
         <Route path="/home" element={<Home />} />
+        <Route path="/home/:reload" element={<Home />} />
         <Route path="/#menu_div" element={<Home />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
