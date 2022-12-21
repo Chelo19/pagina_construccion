@@ -91,6 +91,12 @@ function Register() {
         insertAccount();
       }
     }
+    else{
+      setRegisterAlert("Creando cuenta...");
+      if(!email || !password || !name || !phone){
+        setRegisterAlert("Faltan campos por llenar");
+      }
+    }
 }
 
 const insertAccount = async () => {
