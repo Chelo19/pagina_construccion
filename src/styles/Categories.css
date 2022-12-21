@@ -126,6 +126,23 @@
     transition: all 1s ease-in-out;
 }
 
+.categories_no_items_alert{
+    transform: skew(0deg);
+    margin-top: -200px;
+    font-family: 'Poppins', sans-serif;
+    color: #ff7e22;
+    font-style: normal;
+    font-size: 50px;
+    text-align: center;
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
 
 @media(max-width: 500px){
 

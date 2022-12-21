@@ -13,7 +13,9 @@ import { Link } from 'react-router-dom';
 export default function Home(){
     const [loadingScreen, setLoadingScreen] = useState(true);
     const [enterprises, setEnterprises] = useState(null);
+    const [noEnterprises, setNoEnterprises] = useState(false);
     const [servicesForDisplay, setServicesForDisplay] = useState(null);
+    const [noServicesForDisplay, setNoServicesForDisplay] = useState(false);
     const [locationId, setLocationId] = useState(1);
     var confirmaciones = [false, false];
     const navigate = useNavigate();
@@ -48,6 +50,10 @@ export default function Home(){
         insertUuid();
         getUserData();
     }
+
+    useEffect(() => {
+        console.log(servicesForDisplay);
+    })
     
     const insertUuid = async () => {
         const { data: { user } } = await supabase.auth.getUser();
@@ -104,6 +110,9 @@ export default function Home(){
         .from('enterprises')
         .select()
         .eq( 'location_id' , locationId );
+        if(data.length == 0){
+            setNoEnterprises(true);
+        }
         if(data != null){
             setEnterprises(data);
             confirmaciones[0] = true;
@@ -118,9 +127,10 @@ export default function Home(){
         .from('display_services')
         .select(`service_id, services ( id, name, img_url )`)
         .eq("location_id", locationId);
+        if(data.length == 0){
+            setNoServicesForDisplay(true);
+        }
         if(displayServicesSel.length >= data.length){
-            console.log("displayServicesSel esta lleno");
-            console.log("Sale de fkDisp");
             confirmaciones[1] = true;
             setServicesForDisplay(displayServicesSel);
         }
@@ -173,24 +183,32 @@ export default function Home(){
                     </Link>
                 </div>
                 <div className='our_projects'>
-                    <div className="categories_cards_container_home">
-                        {servicesForDisplay.map((displayService) => {
-                            return(
-                            <Link to={`/service/${displayService.id}`} className="categories_card" key={displayService.id}>
-                                <img src={displayService.img_url[0]}/>
-                                <div className="categories_card__head_home">
-                                <span>{displayService.name}</span>
-                                </div>
-                            </Link>
-                            )
-                        })}
-                    </div>
-                    <Link to={`/categories/${locationId}`} style={{textDecoration: 'inherit'}} class='our_projects_button'>
-                            <span>Ver más</span>
-                            <div class='our_projects_button_img'>
-                                <img src={require('../img/flecha.png')}/>
+                    {!noServicesForDisplay ?
+                        <>
+                            <div className="categories_cards_container_home">
+                            {servicesForDisplay.map((displayService) => {
+                                return(
+                                <Link to={`/service/${displayService.id}`} className="categories_card" key={displayService.id}>
+                                    <img src={displayService.img_url[0]}/>
+                                    <div className="categories_card__head_home">
+                                    <span>{displayService.name}</span>
+                                    </div>
+                                </Link>
+                                )
+                            })}
                             </div>
-                    </Link>
+                            <Link to={`/categories/${locationId}`} style={{textDecoration: 'inherit'}} class='our_projects_button'>
+                                    <span>Ver más</span>
+                                    <div class='our_projects_button_img'>
+                                        <img src={require('../img/flecha.png')}/>
+                                    </div>
+                            </Link>
+                        </>
+                    : <div className='home_no_items_alert'>
+                            <span>Aún no tenemos servicios disponibles en tu área.</span>
+                            <span>¡Estamos trabajando para llegar hasta ti!</span>
+                        </div>}
+                    
                 </div>
                 <br/>
                 <br/>
@@ -203,13 +221,20 @@ export default function Home(){
                         </div>
                         <div className='enterprises_right'>
                             <div className='enterprises_gallery'>
-                                {enterprises.map((enterprise) => {
-                                    return(
-                                        <div className='enterprises_item' key={enterprise.id}>
-                                            <img src={enterprise.img_url}/>
-                                        </div>
-                                    );
-                                })}
+                                {!noEnterprises ?
+                                <>
+                                    {enterprises.map((enterprise) => {
+                                        return(
+                                            <div className='enterprises_item' key={enterprise.id}>
+                                                <img src={enterprise.img_url}/>
+                                            </div>
+                                        );
+                                    })}
+                                </>
+                                : <div className='home_no_items_alert'>
+                                    <span>Aún no tenemos aliados en tu área.</span>
+                                    <span>¡Estamos trabajando para llegar hasta ti!</span>
+                                </div>}
                             </div>
                         </div>
                     </div>

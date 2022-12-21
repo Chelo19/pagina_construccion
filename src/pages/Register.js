@@ -84,17 +84,20 @@ function Register() {
       const { data, error } = await supabase.auth.signUp({email, password});
       if(error){
         setRegisterAlert("Correo electrónico previamente registrado");
+        window.alert("Correo electrónico previamente registrado");
       }
       if(!error){
         userUuid = data.user.id;
         setRegisterAlert("Creando cuenta...");
+        window.alert("Creando cuenta...");
         insertAccount();
       }
     }
     else{
       setRegisterAlert("Creando cuenta...");
-      if(!email || !password || !name || !phone){
+        if(!email || !password || !name || !phone){
         setRegisterAlert("Faltan campos por llenar");
+        window.alert("Faltan campos por llenar");
       }
     }
 }

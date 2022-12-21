@@ -380,6 +380,20 @@ body{
     color: #ebebeb;
 }
 
+.home_no_items_alert{
+    font-family: 'Poppins', sans-serif;
+    color: #ebebeb;
+    font-size: 50px;
+    text-align: center;
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
 @media(max-width: 500px){
 
     .background_img{
@@ -629,6 +643,10 @@ body{
     .our_features_item_text{
         height: 80%;
         font-size: 35px;
+    }
+
+    .home_no_items_alert{
+        font-size: 20px;
     }
 
 }

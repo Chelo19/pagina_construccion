@@ -10,6 +10,7 @@ function UpdatePassword(){
     const [newPassword, setNewPassword] = useState(null);
     const [hash, setHash] = useState(null);
     const [loadingScreen, setLoadingScreen] = useState(true);
+    const [updatePasswordAlert, setUpdatePasswordAlert] = useState(null);
 
     const navigate = useNavigate();
 
@@ -28,8 +29,10 @@ function UpdatePassword(){
               const { data, error } = await supabase.auth
                 .updateUser({ password: newPassword })
        
-              if (data) alert("Contraseña cambiada correctamente")
-              if (error) alert("Algo no salió bien")
+              if (data){
+                window.alert("Contraseña cambiada correctamente");
+              }
+              if (error) window.alert("Algo no salió bien");
             }
           })
         // if(!user) navigate('/');
@@ -37,11 +40,16 @@ function UpdatePassword(){
     }
 
     const changePassword = async (e) => {
+        setUpdatePasswordAlert("Cambiando Contraseña...");
         e.preventDefault();
         const { data, error } = await supabase.auth
         .updateUser({ password: newPassword });
 
-        if (data) alert("Cambio de contraseña correcto");
+        if (data){
+            window.alert("¡Contraseña cambiada correctamente!");
+            setUpdatePasswordAlert("¡Contraseña cambiada correctamente!");
+            navigate('/account');
+        } 
         if (error) alert("Ocurrió un error al cambiar tu contraseña");
     }
 
@@ -70,6 +78,9 @@ function UpdatePassword(){
                             </div><br/>
                             <div className='login_input'>
                                 <a href="javascript:history.back()">Regresar</a>
+                            </div>
+                            <div className="register_alert">
+                                <span>{updatePasswordAlert}</span>
                             </div>
                         </div>
                     </div>
