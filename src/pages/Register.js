@@ -79,16 +79,14 @@ function Register() {
   // };
 
   const updateLocation = async () => {
-    console.log("Log: " + email + password + name + phone + newLocationIdInsert);
-    console.log(newLocationIdInsert);
     if(email && password && name && phone && newLocationIdInsert){
       console.log("registrarse");
       const { data, error } = await supabase.auth.signUp({email, password});
-      userUuid = data.user.id;
       if(error){
-        window.alert("Ha ocurrido un error inesperado");
+        window.alert("Correo electrónico previamente registrado");
       }
       if(!error){
+        userUuid = data.user.id;
         insertAccount();
       }
     }
@@ -210,7 +208,6 @@ const checkLocation = async () => {
     for(var i = 0 ; i < locations.length ; i++){
         if(isAnotherLocation){
             if(locations[i].name == newLocationAnother){
-                console.log("Ya existe uno igual");
                 newLocationIdInsert = locations[i].id;
                 updateLocation();
                 return;
@@ -218,15 +215,12 @@ const checkLocation = async () => {
         }
         else{
             if(locations[i].name == newLocation){
-                console.log("Ya existe uno igual no anotherloc");
-                console.log(locations[i].id);
                 newLocationIdInsert = locations[i].id;
                 updateLocation();
                 return;
             }
         }
     }
-    console.log("PASA POR AQUI");
     const { data, error } = await supabase
     .from('states')
     .select('id')
