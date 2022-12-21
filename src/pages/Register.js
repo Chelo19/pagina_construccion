@@ -84,7 +84,6 @@ function Register() {
       const { data, error } = await supabase.auth.signUp({email, password});
       if(error){
         setRegisterAlert("Correo electrónico previamente registrado");
-        window.alert("Correo electrónico previamente registrado");
       }
       if(!error){
         userUuid = data.user.id;
@@ -106,7 +105,6 @@ const insertAccount = async () => {
   }
   if(error){
     setRegisterAlert("Ha ocurrido un error inesperado");
-    window.alert("Ha ocurrido un error inesperado");
   }
 }
 
