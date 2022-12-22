@@ -71,7 +71,7 @@ export default function AdminHub(){
                 <Link to={`/edit-services-select-category/${locationId}`} id='edit_services' className='admin_selections_item'>
                     <div className='admin_selections_item_left'>
                         <Link to={`/edit-services-select-category/${locationId}`} id='admin_package' className='admin_selection_logo' style={{ color: 'inherit', textDecoration: 'inherit'}}>
-                            <img src={require('../img/package.png')} id='admin_package'/>
+                            <img src={require('../img/myservices.png')} id='admin_package'/>
                         </Link>
                     </div>
                     <div className='admin_selections_item_right'>
@@ -86,7 +86,7 @@ export default function AdminHub(){
                 <Link to={`/add-service-select-category/${locationId}`} id='admin_add_service' className='admin_selections_item'>
                     <div className='admin_selections_item_left'>
                         <Link to={`/add-service-select-category/${locationId}`} id='admin_package' className='admin_selection_logo'>
-                            <img src={require('../img/package.png')} id='admin_package'/>
+                            <img src={require('../img/myservices.png')} id='admin_package'/>
                         </Link>
                     </div>
                     <div className='admin_selections_item_right'>
@@ -101,7 +101,7 @@ export default function AdminHub(){
                 <Link to={`/edit-categories/${locationId}`} id='admin_edit_categories' className='admin_selections_item'>
                     <div className='admin_selections_item_left'>
                         <Link to={`/edit-categories/${locationId}`} id='admin_package' className='admin_selection_logo'>
-                            <img src={require('../img/package.png')} id='admin_package'/>
+                            <img src={require('../img/myservices.png')} id='admin_package'/>
                         </Link>
                     </div>
                     <div className='admin_selections_item_right'>
@@ -116,7 +116,7 @@ export default function AdminHub(){
                 <Link to={`/add-category/${locationId}`} id='admin_add_category' className='admin_selections_item'>
                     <div className='admin_selections_item_left'>
                         <Link to={`/add-category/${locationId}`} id='admin_package' className='admin_selection_logo'>
-                            <img src={require('../img/package.png')} id='admin_package'/>
+                            <img src={require('../img/myservices.png')} id='admin_package'/>
                         </Link>
                     </div>
                     <div className='admin_selections_item_right'>
@@ -131,7 +131,7 @@ export default function AdminHub(){
                 <Link to={`/add-service-home-select-category/${locationId}`} id='admin_add_service_home_display' className='admin_selections_item'>
                     <div className='admin_selections_item_left'>
                         <Link to={`/add-service-home-select-category/${locationId}`} id='admin_package' className='admin_selection_logo'>
-                            <img src={require('../img/package.png')} id='admin_package'/>
+                            <img src={require('../img/myservices.png')} id='admin_package'/>
                         </Link>
                     </div>
                     <div className='admin_selections_item_right'>
@@ -146,7 +146,7 @@ export default function AdminHub(){
                 <Link to={`/remove-service-home/${locationId}`} id='admin_add_service_home_display' className='admin_selections_item'>
                     <div className='admin_selections_item_left'>
                         <Link to={`/remove-service-home/${locationId}`} id='admin_package' className='admin_selection_logo'>
-                            <img src={require('../img/package.png')} id='admin_package'/>
+                            <img src={require('../img/myservices.png')} id='admin_package'/>
                         </Link>
                     </div>
                     <div className='admin_selections_item_right'>
@@ -161,7 +161,7 @@ export default function AdminHub(){
                 <Link to={`/edit-enterprises/${locationId}`} id='admin_edit_logos' className='admin_selections_item'>
                     <div className='admin_selections_item_left'>
                         <Link to={`/edit-enterprises/${locationId}`} id='admin_package' className='admin_selection_logo'>
-                            <img src={require('../img/package.png')} id='admin_package'/>
+                            <img src={require('../img/myservices.png')} id='admin_package'/>
                         </Link>
                     </div>
                     <div className='admin_selections_item_right'>
@@ -176,7 +176,7 @@ export default function AdminHub(){
                 <Link to={`/create-posts/${locationId}`} id='admin_edit_logos' className='admin_selections_item'>
                     <div className='admin_selections_item_left'>
                         <Link to={`/create-posts/${locationId}`} id='admin_package' className='admin_selection_logo'>
-                            <img src={require('../img/package.png')} id='admin_package'/>
+                            <img src={require('../img/myservices.png')} id='admin_package'/>
                         </Link>
                     </div>
                     <div className='admin_selections_item_right'>
@@ -191,7 +191,7 @@ export default function AdminHub(){
                 <Link to={`/edit-posts-select-user/${locationId}`} id='admin_edit_logos' className='admin_selections_item'>
                     <div className='admin_selections_item_left'>
                         <Link to={`/edit-posts-select-user/${locationId}`} id='admin_package' className='admin_selection_logo'>
-                            <img src={require('../img/package.png')} id='admin_package'/>
+                            <img src={require('../img/myservices.png')} id='admin_package'/>
                         </Link>
                     </div>
                     <div className='admin_selections_item_right'>

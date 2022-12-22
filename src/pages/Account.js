@@ -257,7 +257,7 @@ export default function Account(){
                 <Link to={"/my-services/"} onClick={() => navigate(`/my-services`)} className='selections_item' id='my_services_grid'>
                     <div className='selections_item_left'>
                         <a Link to="/my-services/" onClick={() => navigate(`/my-services`)} className='selection_logo'>
-                            <img src={require('../img/package.png')} id='package'/>
+                            <img src={require('../img/myservices.png')} id='package'/>
                         </a>
                     </div>
                     <div className='selections_item_right'>
@@ -272,7 +272,7 @@ export default function Account(){
                 <Link to={"/client-service/"} onClick={() => navigate(`/client-service`)} className='selections_item' id='client_service_grid'>
                     <div className='selections_item_left'>
                         <a Link to="/client-service/" onClick={() => navigate(`/client-service`)} className='selection_logo'>
-                            <img src={require('../img/serviciocliente.png')} id='package'/>
+                            <img src={require('../img/serviciocliente2.png')} id='package'/>
                         </a>
                     </div>
                     <div className='selections_item_right'>
@@ -348,7 +348,7 @@ export default function Account(){
                     : 
                         <div className='account_data'>
                             <a className='selection_logo'>
-                                <img src={require('../img/cuenta.png')} id='package'/>
+                                <img src={require('../img/cuenta2.png')} id='package'/>
                             </a>
                             <div className='account_data_title'>
                                 <span>¡Hola {name}!</span>

@@ -35,7 +35,7 @@ export default function AboutUs(){
                     </div>
                 </div>
                 <div className='about_us_container_img'>
-                    <img src={require('../img/blueprint.png')}/>
+                    <img src={require('../img/myservices.png')}/>
                 </div>
             </div>
         </div>

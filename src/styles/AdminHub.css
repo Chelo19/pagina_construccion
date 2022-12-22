@@ -74,7 +74,7 @@
 }
 
 .admin_selection_logo img{
-    filter: invert(1);
+    /* filter: invert(1); */
 }
 
 #admin_package{

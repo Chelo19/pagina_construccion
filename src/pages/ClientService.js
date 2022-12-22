@@ -76,7 +76,7 @@ export default function ClientService(){
                     </div>
                     <div className='client_service_img_container'>
                         <div id='client_service_img'>
-                            <img src={require('../img/comunicacion.png')}/>
+                            <img src={require('../img/serviciocliente2.png')}/>
                         </div>
                     </div>
                 </div>
