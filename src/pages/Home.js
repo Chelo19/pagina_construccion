@@ -17,11 +17,15 @@ export default function Home(){
     const [servicesForDisplay, setServicesForDisplay] = useState(null);
     const [noServicesForDisplay, setNoServicesForDisplay] = useState(false);
     const [locationId, setLocationId] = useState(1);
+    var userLocationId;
     var confirmaciones = [false, false];
     const navigate = useNavigate();
     var locationName;
     var displayServicesSel = [];
     const projects = useRef(null);
+    var comprobation = false;
+    var maxDS = 0;
+    var bestLocation;
     AuthRedirect();
 
     const { reload } = useParams();
@@ -49,11 +53,8 @@ export default function Home(){
     const insideUseEffect = () => {
         insertUuid();
         getUserData();
+        getServicesHome();
     }
-
-    useEffect(() => {
-        console.log(servicesForDisplay);
-    })
     
     const insertUuid = async () => {
         const { data: { user } } = await supabase.auth.getUser();
@@ -83,6 +84,7 @@ export default function Home(){
                 .select()
                 .eq("uuid", user.id);
                 setLocationId(data[0].location_id);
+                userLocationId = data[0].location_id;
                 getEnterprises();
                 fkDisplayServices();
             }
@@ -111,7 +113,7 @@ export default function Home(){
         .select()
         .eq( 'location_id' , locationId );
         if(data.length == 0){
-            setNoEnterprises(true);
+            getServicesHome();
         }
         if(data != null){
             setEnterprises(data);
@@ -128,7 +130,7 @@ export default function Home(){
         .select(`service_id, services ( id, name, img_url )`)
         .eq("location_id", locationId);
         if(data.length == 0){
-            setNoServicesForDisplay(true);
+            getServicesHome();
         }
         if(displayServicesSel.length >= data.length){
             confirmaciones[1] = true;
@@ -148,6 +150,76 @@ export default function Home(){
         }
     }
 
+    const getServicesHome = async () => {
+        if(locationId != 1){
+            getLocationState();
+        }
+    }
+
+    const getLocationState = async () => {
+        const { data, error } = await supabase
+        .from('location')
+        .select(`states(id)`)
+        .eq("id", locationId);
+        if(data){
+          getLocationsInState(data[0].states.id);
+          bestLocation = data[0].states.id;
+        }
+        else{
+            setNoServicesForDisplay(true);
+        }
+    };
+
+    const getLocationsInState = async (stateId) => {
+        const { data, error } = await supabase
+        .from('location')
+        .select('id')
+        .match({ state_id: stateId });
+        if(data){
+            if(!comprobation){
+                comprobation = true;
+                getDisplayServicesFromLocation(data);
+                getEnterprisesFromLocation(data);
+            }
+        }
+        else{
+            setNoServicesForDisplay(true);
+        }
+    };
+
+    const getEnterprisesFromLocation = async (locations) => {
+        let tempArray = [];
+        for(var i = 0 ; i < locations.length ; i++){
+            const { data, error } = await supabase
+            .from('enterprises')
+            .select()
+            .eq( "location_id", locations[i].id );
+            if(data.length > 0){
+                tempArray.push(data);
+            }
+        }
+        setEnterprises(tempArray[0]);
+    }
+
+    const getDisplayServicesFromLocation = async (locations) => {
+        for(var i = 0 ; i < locations.length ; i++){
+            const { data, error } = await supabase
+            .from('display_services')
+            .select(`service_id, services ( id, name, img_url )`)
+            .eq( "location_id", locations[i].id );
+            if(data.length > 0){
+                if(data.length > maxDS){
+                    maxDS = data;
+                }
+            }
+        }
+        let tempArray = [];
+        for(var i = 0 ; i < maxDS.length ; i++){
+            tempArray.push(maxDS[i].services);
+        }
+        setServicesForDisplay(tempArray);
+    }
+
     const executeScroll = () => {
         projects.current.scrollIntoView()   
     }
@@ -156,7 +228,6 @@ export default function Home(){
         let url = 'https://ipinfo.io/json?token=f4a64dfc914585';
         let response = await fetch(url);
         let data = await response.json();
-        console.log(data);
     }
 
     return(
@@ -178,7 +249,7 @@ export default function Home(){
                     </div>
                 </div>
                 <div className='our_projects_presentation' ref={projects}>
-                    <Link to={`/categories/${locationId}`} style={{textDecoration: 'inherit'}} className='our_projects_presentation_text'>
+                    <Link to={`/categories/0/${locationId}`} style={{textDecoration: 'inherit'}} className='our_projects_presentation_text'>
                         SERVICIOS
                     </Link>
                 </div>
@@ -197,9 +268,9 @@ export default function Home(){
                                 )
                             })}
                             </div>
-                            <Link to={`/categories/${locationId}`} style={{textDecoration: 'inherit'}} class='our_projects_button'>
+                            <Link to={`/categories/0/${locationId}`} style={{textDecoration: 'inherit'}} class='our_projects_button'>
                                     <span>Ver más</span>
-                                    <div class='our_projects_button_img'>
+                                    <div className='our_projects_button_img'>
                                         <img src={require('../img/flecha.png')}/>
                                     </div>
                             </Link>

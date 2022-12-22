@@ -85,6 +85,7 @@ function App() {
         <Route path="*" element={<NotFound />} />
         <Route path="/account" element={<Account />} />
         <Route path="/categories/:id" element={<Categories />} />
+        <Route path="/categories/:reload/:id" element={<Categories />} />
         <Route path="/services/:id" element={<Services />} />
         <Route path="/service/:id" element={<Service />} />
         <Route path="/my-services" element={<MyServices />} />
