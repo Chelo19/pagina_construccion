@@ -75,7 +75,7 @@
 }
 
 .manager_selection_logo img{
-    filter: invert(1);
+    /* filter: invert(1); */
 }
 
 #manager_package{

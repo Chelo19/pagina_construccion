@@ -148,10 +148,12 @@
 
     .about_us_container:hover .about_us_section{
         transition: 1s;
+        font-size: 20px;
     }
 
     .about_us_container:hover .about_us_title{
         transition: 1s;
+        font-size: 60px;
     }
     
     #about_us_first{

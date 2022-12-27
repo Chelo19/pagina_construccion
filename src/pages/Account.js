@@ -123,7 +123,7 @@ export default function Account(){
     }
 
     const changeLocation = async () => {
-        window.alert('Cambio de localización');
+        window.alert('Cambiando localización...');
         checkCountry();
         updateLocation();
     }

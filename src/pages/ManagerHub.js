@@ -44,7 +44,7 @@ export default function ManagerHub(){
                 <Link to={`/edit-users/${locationId}`} className='manager_selections_item'>
                     <div className='manager_selections_item_left'>
                         <Link to={`/edit-users/${locationId}`} id='manager_package' className='manager_selection_logo' style={{ color: 'inherit', textDecoration: 'inherit'}}>
-                            <img src={require('../img/package.png')} id='manager_package'/>
+                            <img src={require('../img/myservices.png')} id='manager_package'/>
                         </Link>
                     </div>
                     <div className='manager_selections_item_right'>

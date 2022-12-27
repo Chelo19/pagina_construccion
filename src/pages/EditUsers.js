@@ -50,6 +50,7 @@ export default function EditUsers(){
         const { data, error } = await supabase
         .from('account')
         .select()
+        .order('id', { ascending: true })
         .match({ location_id: id });
         if(data.length == 0){
             setNoItems(true);

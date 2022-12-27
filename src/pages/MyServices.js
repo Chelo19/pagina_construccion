@@ -32,6 +32,7 @@ export default function MyServices(){
         .eq('user_uuid', user.id);
         if(data.length > 0){
             setServices(data);
+            console.log(data);
         }
         else{
             setNoItems(true);
@@ -76,6 +77,11 @@ export default function MyServices(){
                                             <span>
                                                 {service.name}
                                             </span>
+                                            <span id='my_services_date'>
+                                                {service.created_at[8]+service.created_at[9]}
+                                                {service.created_at[4]+service.created_at[5]+service.created_at[6]+service.created_at[7]}
+                                                {service.created_at[2]+service.created_at[3]}
+                                            </span>
                                         </div>
                                         <div className='my_services_img'>
                                             <img src={service.img_url[0]}/>
@@ -95,6 +101,12 @@ export default function MyServices(){
                                             <img src={require('../img/flecha.png')}/>
                                         </Link>
                                         <div className='my_services_in_service_description'>
+                                            <span>
+                                                Fecha:&nbsp;
+                                                {selectedService[0].created_at[8]+selectedService[0].created_at[9]}
+                                                {selectedService[0].created_at[4]+selectedService[0].created_at[5]+selectedService[0].created_at[6]+selectedService[0].created_at[7]}
+                                                {selectedService[0].created_at[2]+selectedService[0].created_at[3]}
+                                            </span>
                                             <span>
                                                 {selectedService[0].description}
                                             </span>

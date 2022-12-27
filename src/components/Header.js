@@ -81,19 +81,23 @@ export default function Header(){
             <div className='header_default'>
                 <div className='header'>
                     <div className='header_top'>
-                        <div className='header_top_info'>
-                            <div className='header_top_info_row'>
-                                <div id='phone'>
-                                    Cel: 8679999999
-                                </div>
-                                <div id='social'>
-                                    Redes sociales
-                                </div>
-                                <div id='contact'>
-                                    contacto@gmail.com
-                                </div>
-                            </div>
+                        <span>
+                            Cel: 8679999999
+                        </span>
+                        <div id='social_media_header'>
+                            <a target="_blank" className='logo_header_div' href={'https://www.facebook.com/GrupoDREC?mibextid=ZbWKwL'} style={{ color: 'inherit', textDecoration: 'inherit'}}>
+                                <img src={require('../img/fbicon.png')}></img>
+                            </a>
+                            <a target="_blank" className='logo_header_div' href={'https://www.instagram.com/drec_constructor/'} style={{ color: 'inherit', textDecoration: 'inherit'}}>
+                                <img src={require('../img/igicon.png')}></img>
+                            </a>
+                            <a target="_blank" className='logo_header_div' href={`/`} style={{ color: 'inherit', textDecoration: 'inherit'}}>
+                                <img src={require('../img/mailicon.png')}></img>
+                            </a>
                         </div>
+                        <span>
+                            contacto@gmail.com
+                        </span>
                     </div>
                     <div className='header_bottom'>
                         <div className='header_bottom_row'>
