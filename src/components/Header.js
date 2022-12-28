@@ -11,6 +11,7 @@ export default function Header(){
     const [isBarMenu, setIsBarMenu] = useState(false);
     const [isLogged, setIsLogged] = useState(false);
     const [isAdmin, setIsAdmin] = useState(false);
+    const [isManager, setIsManager] = useState(false);
     const [bars_menu_style, setBars_menu_style] = useState(null);
     var HeaderButtons;
 
@@ -42,6 +43,9 @@ export default function Header(){
             .eq('uuid', user.id);
             if(data[0].role == 'administrador' || data[0].role == 'gerente'){
                 setIsAdmin(true);
+            }
+            if(data[0].role == 'gerente'){
+                setIsManager(true);
             }
         }
     }
@@ -81,9 +85,9 @@ export default function Header(){
             <div className='header_default'>
                 <div className='header'>
                     <div className='header_top'>
-                        <span>
+                        {/* <span>
                             Cel: 8679999999
-                        </span>
+                        </span> */}
                         <div id='social_media_header'>
                             <a target="_blank" className='logo_header_div' href={'https://www.facebook.com/GrupoDREC?mibextid=ZbWKwL'} style={{ color: 'inherit', textDecoration: 'inherit'}}>
                                 <img src={require('../img/fbicon.png')}></img>
@@ -91,13 +95,13 @@ export default function Header(){
                             <a target="_blank" className='logo_header_div' href={'https://www.instagram.com/drec_constructor/'} style={{ color: 'inherit', textDecoration: 'inherit'}}>
                                 <img src={require('../img/igicon.png')}></img>
                             </a>
-                            <a target="_blank" className='logo_header_div' href={`/`} style={{ color: 'inherit', textDecoration: 'inherit'}}>
+                            {/* <a target="_blank" className='logo_header_div' href={`/`} style={{ color: 'inherit', textDecoration: 'inherit'}}>
                                 <img src={require('../img/mailicon.png')}></img>
-                            </a>
+                            </a> */}
                         </div>
-                        <span>
+                        {/* <span>
                             contacto@gmail.com
-                        </span>
+                        </span> */}
                     </div>
                     <div className='header_bottom'>
                         <div className='header_bottom_row'>
@@ -184,6 +188,13 @@ export default function Header(){
                         <div className='bars_menu_item' onClick={changeIsBarMenu}>
                             <Link to={'/admin-hub/0'} style={{ color: 'inherit', textDecoration: 'inherit'}} onClick={changeIsBarMenu}>
                                 <a>Administrador</a>
+                            </Link>
+                        </div>
+                    )}
+                    {isManager && (
+                        <div className='bars_menu_item' onClick={changeIsBarMenu}>
+                            <Link to={'/manager-hub/0'} style={{ color: 'inherit', textDecoration: 'inherit'}} onClick={changeIsBarMenu}>
+                                <a>Gerente</a>
                             </Link>
                         </div>
                     )}

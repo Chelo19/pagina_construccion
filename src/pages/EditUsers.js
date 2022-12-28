@@ -20,6 +20,7 @@ export default function EditUsers(){
     const [newPhone, setNewPhone] = useState(null);
     const [newRole, setNewRole] = useState(null);
     const [newLocationId, setNewLocationId] = useState(null);
+    const [availableLocations, setAvailableLocations] = useState(null);
 
     useEffect(() => {
         checkIfAdmin();
@@ -34,6 +35,7 @@ export default function EditUsers(){
             .eq('uuid', user.id);
             if(data[0].role == 'gerente'){
                 getUsers();
+                getStateId(data[0].admin_location_id);
             }
             else{
                 window.alert("No tienes los permisos para acceder a este lugar");
@@ -51,6 +53,7 @@ export default function EditUsers(){
         .from('account')
         .select()
         .order('id', { ascending: true })
+        .not('role', 'in', '(gerente)')
         .match({ location_id: id });
         if(data.length == 0){
             setNoItems(true);
@@ -130,13 +133,30 @@ export default function EditUsers(){
         document.location.reload();
     }
 
+    const getStateId = async (adminLocation) => {
+        const { data, error } = await supabase
+        .from('location')
+        .select(`state_id`)
+        .eq('id', adminLocation);
+        getLocations(data[0].state_id);
+    }
+
+    const getLocations = async (adminState) => {
+        const { data, error } = await supabase
+        .from('location')
+        .select()
+        .match({ state_id: adminState });
+        setAvailableLocations(data);
+        console.log(data);
+    }
+
     return(
         <div className="edit_users_select_category_background">
         {!loadingScreen ? 
           <div className="edit_users_select_category_gallery">
               <div className="edit_users_select_category_container">
                 {noItems ?
-                  <div className="edit_users_select_category_no_items_alert">No se encontraron resultados</div>
+                  <div className="edit_users_no_items_alert">No se encontraron resultados</div>
                 : 
                 <>
                   <div className="edit_users_select_category_item_names">
@@ -214,11 +234,13 @@ export default function EditUsers(){
                                     onChange={(e) => {setNewRole(e.target.value); setNewName(''); setNewPhone(''); setNewLocationId('')}}
                                     value={newRole}
                                     />
-                                    <input
-                                    type={'number'}
-                                    onChange={(e) => {setNewLocationId(e.target.value); setNewName(''); setNewPhone(''); setNewRole('')}}
-                                    value={newLocationId}
-                                    />
+                                    <select onChange={(e) => {setNewLocationId(e.target.value); setNewName(''); setNewPhone(''); setNewRole('')}}>
+                                    {availableLocations.map((location) => {
+                                        return(
+                                            <option key={location.id} value={location.id}>{location.name}</option>
+                                        )
+                                    })}
+                                    </select>
                                 </div>
                             </div>
                         </div>

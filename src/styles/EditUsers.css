@@ -49,6 +49,7 @@
     display: grid;
     grid-template-columns: 15% 35% 25% 15% 10%;
     place-items: center;
+    text-align: center;
 }
 
 .edit_users_select_category_item:hover{
@@ -258,6 +259,19 @@
 #edit_users_delete_button_return:hover{
     background-color: #252630;
     color: #ebebeb;
+}
+
+.edit_users_no_items_alert{
+    font-family: 'Poppins', sans-serif;
+    width: 100%;
+    height: 60px;
+    text-align: center;
+    font-size: 30px;
+    text-decoration: none;
+    color: #ebebeb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 @media(max-width: 500px){

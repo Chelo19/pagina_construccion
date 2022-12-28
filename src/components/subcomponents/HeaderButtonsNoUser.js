@@ -10,6 +10,7 @@ export default function HeaderButtonsNoUser(){
     
     const [role, getRole] = useState('cliente');
     const [adminPermissions, setAdminPermissions] = useState(false);
+    const [managerPermissions, setManagerPermissions] = useState(false);
     const navigate = useNavigate();
     // const history = createBrowserHistory();
 
@@ -40,6 +41,9 @@ export default function HeaderButtonsNoUser(){
         if(role == 'administrador' || role == 'gerente'){
             setAdminPermissions(true);
         }
+        if(role == 'gerente'){
+            setManagerPermissions(true);
+        }
     }
 
     const signOut = async (e) => {
@@ -58,6 +62,11 @@ export default function HeaderButtonsNoUser(){
     return(
         <div className='header_buttons'>
             <ul className='horizontal_menu_header'>
+                {managerPermissions &&
+                <li><a><Link to={`/manager-hub/0`} style={{ color: 'inherit', textDecoration: 'inherit'}}>
+                    Gerente
+                </Link></a></li>  
+                }
                 {adminPermissions &&
                 <li><a><Link to={`/admin-hub/0`} style={{ color: 'inherit', textDecoration: 'inherit'}}>
                     Administrador

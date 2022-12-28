@@ -1,0 +1,483 @@
+.edit_contact_users_select_category_background{
+    width: 100%;
+    min-height: 60vh;
+    margin-top: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.edit_contact_users_select_category_gallery{
+    width: 90%;
+    background-color: #161825;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.edit_contact_users_select_category_container{
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.edit_contact_users_select_category_item_names{
+    font-family: 'Poppins', sans-serif;
+    width: 100%;
+    height: 60px;
+    border-top: 2px solid rgba(255, 255, 255, 0.6);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+    display: grid;
+    grid-template-columns: 10% 30% 20% 20% 20%;
+    text-decoration: none;
+    place-items: center;
+    color: #ebebeb;
+}
+
+.edit_contact_users_select_category_item{
+    font-family: 'Poppins', sans-serif;
+    width: 100%;
+    height: 60px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    color: #ebebeb;
+    display: grid;
+}
+
+.edit_contact_users_select_category_item_container{
+    display: grid;
+    grid-template-columns: 10% 30% 20% 20% 20%;
+    place-items: center;
+    text-align: center;
+}
+
+.edit_contact_users_select_category_item:hover{
+    color: #ff7f22;
+}
+
+.edit_contact_users_select_category_container span{
+    font-size: 20px;
+}
+
+.edit_contact_users_popup_background{
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.35);
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.edit_contact_users_popup_container{
+    width: 80%;
+    height: 60%;
+    background-color: #ebebeb;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 20px;
+}
+
+.edit_contact_users_popup_container_data{
+    width: 45%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+}
+
+.edit_contact_users_popup_container_change_data{
+    width: 45%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.edit_contact_users_popup_item{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.edit_contact_users_popup_titles{
+    font-family: 'Poppins', sans-serif;
+    color: #161825;
+    font-size: 30px;
+    font-weight: bold;
+    width: 100%;
+}
+
+.edit_contact_users_popup_data_display{
+    font-family: 'Poppins', sans-serif;
+    display: grid;
+    width: 100%;
+    grid-template-columns: 40% 60%;
+}
+
+.edit_contact_users_popup_data_not_data{
+    width: 100%;
+    color: #161825;
+    font-size: 20px;
+    display: grid;
+    gap: 10px;
+}
+
+.edit_contact_users_popup_data_actual_data{
+    width: 100%;
+    color: #ff7f22;
+    font-size: 20px;
+    display: grid;
+    gap: 10px;
+}
+
+.edit_contact_users_popup_data_actual_data input{
+    border-radius: 5px;
+    padding: 3px 5px 3px 5px;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.edit_contact_users_popup_data_actual_data input:hover{
+    border: 1px solid rgba(0, 0, 0, 0.6);
+}
+
+.edit_contact_users_popup_change_data_buttons{
+    align-self: flex-end;
+    font-family: 'Poppins', sans-serif;
+    width: 100%;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.edit_contact_users_popup_change_data_buttons a{
+    padding: 10px;
+    font-size: 20px;
+    text-align: center;
+    text-decoration: none;
+    width: 50%;
+    border-radius: 10px;
+}
+
+.edit_contact_users_popup_change_data_buttons span{
+    color: rgba(255, 0, 0, .5);
+    font-size: 30px;
+    text-align: center;
+}
+
+#edit_contact_users_update_button{
+    border: 2px solid #ff7f22;
+    color: #ebebeb;
+    background-color: #ff7f22;
+}
+
+#edit_contact_users_update_button:hover{
+    background-color: #f76d0b;
+}
+
+#edit_contact_users_cancel_button{
+    background-color: #161825;
+    border: 2px solid #161825;
+    color: #ebebeb;
+}
+
+#edit_contact_users_cancel_button:hover{
+    background-color: #252630;
+}
+
+#edit_contact_users_delete_button{
+    border: 2px solid rgba(255, 0, 0, .5);
+    color: rgba(255, 0, 0, .5);
+}
+
+#edit_contact_users_delete_button:hover{
+    background-color: rgba(255, 0, 0, .7);
+    color: #ebebeb;
+}
+
+.edit_contact_users_delete_user_background{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    background-color: #ebebeb;
+    border: 2px solid rgba(255, 0, 0, .5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.edit_contact_users_delete_user_container{
+    text-align: center;
+    width: 95%;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+.edit_contact_users_delete_user_buttons_container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.edit_contact_users_delete_user_buttons_container a{
+    width: 30%;
+}
+
+#edit_contact_users_delete_button_delete{
+    border: 2px solid rgba(255, 0, 0, .5);
+    color: rgba(255, 0, 0, .5);
+}
+
+#edit_contact_users_delete_button_delete:hover{
+    background-color: rgba(255, 0, 0, .7);
+    color: #ebebeb;
+}
+
+#edit_contact_users_delete_button_return{
+    border: 2px solid #161825;
+    background-color: #161825;
+    color: #ebebeb;
+}
+
+#edit_contact_users_delete_button_return:hover{
+    background-color: #252630;
+    color: #ebebeb;
+}
+
+.edit_contact_users_no_items_alert{
+    font-family: 'Poppins', sans-serif;
+    width: 100%;
+    height: 60px;
+    text-align: center;
+    font-size: 30px;
+    text-decoration: none;
+    color: #ebebeb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.edit_contact_users_alert_background{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.edit_contact_users_alert_container{
+    width: 50%;
+    height: 40%;
+    font-size: 50px;
+    color: #161825;
+    text-align: center;
+    gap: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #ebebeb;
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+.edit_contact_users_alert_text{
+    width: 80%;
+}
+
+.edit_contact_users_alert_text span{
+    color: #ff7e22;
+}
+
+.edit_contact_users_alert_submits{
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.edit_contact_users_alert_submits input{
+    transition: 1s;
+    width: 30%;
+    border-radius: 10px;
+    padding: 10px;
+    border: 2px solid rgba(0, 0, 0, 0.3);
+    font-size: 18px;
+    color: #ebebeb;
+}
+
+.edit_contact_users_alert_submits input:hover{
+    transition: .5s;
+    width: 35%;
+}
+
+#edit_contact_users_alert_accept{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    padding: 10px;
+    width: 30%;
+    border-radius: 10px;
+    border: 0;
+    color: #252730;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+#edit_contact_users_alert_accept:hover{
+    color: #ebebeb;
+    background-color: #ff7f22;
+}
+
+#edit_contact_users_alert_return{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    padding: 10px;
+    width: 30%;
+    border-radius: 10px;
+    border: 0;
+    color: #252730;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+#edit_contact_users_alert_return:hover{
+    color: #ebebeb;
+    background-color: #ff7f22;
+}
+
+#edit_contact_users_alert_confirmation_alert{
+    font-size: 20px;
+    color: #ff7f22;
+}
+
+@media(max-width: 500px){
+
+    .edit_contact_users_select_category_background{
+        margin-top: 65px;
+    }
+
+    .edit_contact_users_select_category_gallery{
+        width: 95%;
+        height: 95%;
+    }
+
+    .edit_contact_users_select_category_container{
+        padding: 5px;
+    }
+    
+    .edit_contact_users_select_category_item_names{
+        grid-template-columns: 10% 35% 20% 15% 20%;
+    }
+
+    .edit_contact_users_select_category_item_names span{
+        font-size: 9px;
+    }
+
+    .edit_contact_users_select_category_item_container{
+        grid-template-columns: 10% 35% 20% 15% 20%;
+    }
+
+    .edit_contact_users_select_category_item span{
+        font-size: 9px;
+    }
+
+    .edit_contact_users_popup_background{
+        height: auto;
+        background-color: transparent;
+    }
+
+    .edit_contact_users_popup_container{
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .edit_contact_users_popup_container_data{
+        width: 100%;
+        gap: 20px;
+    }
+
+    .edit_contact_users_popup_item{
+        gap: 10px;
+    }
+
+    .edit_contact_users_popup_titles{
+        font-size: 15px;
+    }
+
+    .edit_contact_users_popup_data_not_data{
+        font-size: 12px;
+    }
+
+    .edit_contact_users_popup_data_actual_data{
+        font-size: 12px;
+    }
+
+    .edit_contact_users_popup_container_change_data{
+        width: 100%;
+    }
+
+    .edit_contact_users_popup_change_data_buttons{
+        gap: 5px;
+    }
+
+    .edit_contact_users_popup_change_data_buttons a{
+        width: 70%;
+        padding: 5px;
+    }
+
+    .edit_contact_users_popup_change_data_buttons span{
+        font-size: 20px;
+    }
+
+    .edit_contact_users_alert_container{
+        padding-top: 20px;
+        padding-bottom: 20px;
+        width: 80%;
+        height: 30%;
+        gap: 20px;
+        font-size: 30px;
+    }
+
+    .edit_contact_users_alert_text{
+        font-size: 15px;
+    }
+
+    .edit_contact_users_alert_submits{
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .edit_contact_users_alert_submits input{
+        width: 50%;
+    }
+
+    #edit_contact_users_alert_accept{
+        width: 50%;
+    }
+
+    #edit_contact_users_alert_return{
+        width: 50%;
+    }
+
+}
