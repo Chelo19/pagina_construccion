@@ -40,6 +40,7 @@ import CreatePosts from "./pages/CreatePosts";
 import EditPostsSelectUser from "./pages/EditPostsSelectUser";
 import EditPosts from "./pages/EditPosts";
 import EditContactUsers from "./pages/EditContactUsers";
+import AddContactUsers from "./pages/AddContactUsers";
 
 import { supabase } from "./supabase/client";
 
@@ -116,6 +117,7 @@ function App() {
         <Route path="/manager-hub/:reload" element={<ManagerHub/>}/>
         <Route path="/edit-users/:id" element={<EditUsers/>}/>
         <Route path="/edit-contact-users/:id" element={<EditContactUsers/>}/>
+        <Route path="/add-contact-users/:id" element={<AddContactUsers/>}/>
       </Routes>
       <Footer/>
     </div>

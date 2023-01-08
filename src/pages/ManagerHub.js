@@ -79,6 +79,21 @@ export default function ManagerHub(){
                         </Link>
                     </div>
                 </Link>
+                <Link to={`/edit-contact-users/${locationId}`} className='manager_selections_item'>
+                    <div className='manager_selections_item_left'>
+                        <Link to={`/edit-contact-users/${locationId}`} id='manager_package' className='manager_selection_logo' style={{ color: 'inherit', textDecoration: 'inherit'}}>
+                            <img src={require('../img/myservices.png')} id='manager_package'/>
+                        </Link>
+                    </div>
+                    <div className='manager_selections_item_right'>
+                        <Link to={`/add-contact-users/${locationId}`} className='manager_selections_item_title'>
+                            <span>Agregar Usuarios de contacto</span>
+                        </Link>
+                        <Link to={`/add-contact-users/${locationId}`} className='manager_selections_item_description'>
+                            <span>Agregar Usuarios de contacto</span>
+                        </Link>
+                    </div>
+                </Link>
             </div>
             : <LoadingScreen/>}
         </div>
