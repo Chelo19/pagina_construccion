@@ -131,6 +131,7 @@ export default function EditUsers(){
         .delete()
         .eq('uuid', localUserSelection.uuid);
         document.location.reload();
+        if(error) console.log(error);
     }
 
     const getStateId = async (adminLocation) => {

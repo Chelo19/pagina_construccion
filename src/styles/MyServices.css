@@ -28,7 +28,7 @@
 
 .my_services_container_right{
     padding: 20px 20px 20px 20px;
-    background-color: #161825;
+    /* background-color: #161825; */
     border-radius: 20px;
     display: flex;
 }
@@ -251,12 +251,13 @@
     .my_services_container_right{
         border-bottom-left-radius: 10px;
         border-bottom-right-radius: 10px;
-        padding: 20px;
+        padding: 0px;
     }
 
     .my_services_services_container{
         display: flex;
         flex-direction: column;
+        padding: 5px;
     }
 
     .my_services_in_service_return_button{

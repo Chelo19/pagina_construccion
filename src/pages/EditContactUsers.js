@@ -77,6 +77,7 @@ export default function EditContactUsers(){
             contactUsers[i].state_name = data[0].name;
             x.push(contactUsers[i]);
         }
+        console.log(x);
         setContactUsersDisplay(x);
         setLoadingScreen(false);
     }
