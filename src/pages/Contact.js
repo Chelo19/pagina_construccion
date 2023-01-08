@@ -14,6 +14,8 @@ export default function Contact(){
     const [message, setMessage] = useState(null);
     const [confirmationAlert, setConfirmationAlert] = useState(null);
     const [loadingScreen, setLoadingScreen] = useState(true);
+    const [contactEmail, setContactEmail] = useState(null);
+    const [additionalMessage, setAdditionalMessage] = useState(null);
     var confirmacionesUser = 0;
 
     const { reload } = useParams();
@@ -28,6 +30,7 @@ export default function Contact(){
     const getUserData = async () => {
         const { data: { user } } = await supabase.auth.getUser();
         if(user){
+            getContactEmail();
             setEmail(user.email);
             setLoadingScreen(false);
         }
@@ -40,11 +43,40 @@ export default function Contact(){
         }
     }
 
+    const getContactEmail = async () => {
+        const { data: { user } } = await supabase.auth.getUser();
+        const { data, error } = await supabase
+        .from('account')
+        .select('location_id (state_id (id))')
+        .eq('uuid', user.id);
+        fetchContactUsers(data[0].location_id.state_id.id);
+    }
+
+    const fetchContactUsers = async (stateId) => {
+        const { data, error } = await supabase
+        .from('account')
+        .select()
+        .eq('contact_state_id', stateId);
+        if(data.length > 0){
+            setContactEmail(data[0].email);
+        }
+        else if(data.length <= 0){
+            const { data, error } = await supabase
+            .from('account')
+            .select()
+            .not('contact_state_id', 'is', null);
+            setContactEmail(data[0].email);
+            setAdditionalMessage(`Este usuario es del estado con id: ${stateId}`);
+        }
+    }
+
     const sendEmail = async () => {
         if(message){
             console.log(email);
             console.log(message);
             emailjs.send("service_rqa3brt","template_a3asdl2",{
+            additionalMessage: additionalMessage,
+            contactEmail: contactEmail,
             email: email,
             message: message},
             'a9hJXSTK7xAdC26he');
