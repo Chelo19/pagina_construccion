@@ -72,10 +72,10 @@ export default function ManagerHub(){
                     </div>
                     <div className='manager_selections_item_right'>
                         <Link to={`/edit-contact-users/${locationId}`} className='manager_selections_item_title'>
-                            <span>Editar los Usuarios de contacto</span>
+                            <span>Eliminar Usuarios de contacto</span>
                         </Link>
                         <Link to={`/edit-contact-users/${locationId}`} className='manager_selections_item_description'>
-                            <span>Edita los Usuarios de contacto</span>
+                            <span>Eliminar Usuarios de contacto</span>
                         </Link>
                     </div>
                 </Link>

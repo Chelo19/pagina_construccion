@@ -55,6 +55,7 @@
     text-decoration: none;
     place-items: center;
     color: #ebebeb;
+    text-align: center;
 }
 
 .create_posts_item:hover{
