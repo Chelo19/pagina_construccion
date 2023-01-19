@@ -1,206 +1,108 @@
 .register_background{
-    height: 97vh;
+    height: 100vh;
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    justify-content: end;
+    font-family: 'Poppins', sans-serif;
+}
+
+.register_background_container{
+    height: calc(100% - 90px);
+    display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 .register_container{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.register_container_center{
-    margin-top: 50px;
-    width: 65%;
-    height: 80%;
-    border-radius: 8px;
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-    display: flex;
-}
-
-.register_img_div{
-    height: 100%;
-    width: 50%;
-    border-top-left-radius: 8px;
-    border-bottom-left-radius: 8px;
-}
-
-#register_img{
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-    border-top-left-radius: 8px;
-    border-bottom-left-radius: 8px;
-}
-
-.register_right{
-    font-family: 'Poppins', sans-serif;
-    width: 50%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.register_right .register_form{
-    width: 60%;
-    margin-left: -15px;
+    width: 80%;
+    height: 90%;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     gap: 10px;
 }
 
-.register_right .register_form h2{
-    align-self: center;
+.register_logo{
+    width: 160px;
+    height: 160px;
+}
+
+.register_logo img{
     width: 100%;
-    color: rgba(0, 0, 0, 0.5);
-    font-weight: 600;
-    font-size: 2em;
-    text-transform: uppercase;
-    margin-bottom: 20px;
-    border-bottom: 4px solid #ff7f22;
-    display: inline-block;
-    letter-spacing: 1px;
+    height: 100%;
+    object-fit: contain;
 }
 
-.register_right .register_form .register_input span{
-    font-size: 16px;
-    margin-bottom: 5px;
-    display: inline-block;
-    color: rgba(0, 0, 0, 0.5);
-    font-weight: 300;
-    letter-spacing: 1px;
-}
-
-.register_right .register_form .register_input input{
-    width: 100%;
-    padding: 5px 20px;
-    outline: none;
-    font-weight: 400;
-    border: 1px solid rgba(0, 0, 0, 0.5);
-    font-size: 16px;
-    letter-spacing: 1px;
-    color: rgba(0, 0, 0, 0.5);
-    background: transparent;
-    border-radius: 30px;
-}
-
-.register_right .register_form .register_input select{
-    width: 100%;
-    padding: 5px 20px;
-    outline: none;
-    font-weight: 400;
-    border: 1px solid rgba(0, 0, 0, 0.5);
-    font-size: 16px;
-    letter-spacing: 1px;
-    color: rgba(0, 0, 0, 0.5);
-    background: transparent;
-    border-radius: 30px;
-}
-
-#register_button{
+.register_title{
     width: 100%;
     display: flex;
     justify-content: center;
-    align-content: center;
+    align-items: center;
+    font-size: 50px;
+    padding-bottom: 5px;
+    border-bottom: 5px solid #ff7f22;
+    color: rgba(0, 0, 0, 0.8);
 }
 
-.register_right .register_form #register_button a{
-    text-decoration: none;
-    text-align: center;
+.register_form{
     width: 100%;
-    padding: 10px 20px;
-    outline: none;
-    font-weight: 400;
-    font-size: 16px;
-    letter-spacing: 1px;
-    color: #ebebeb;
-    background: transparent;
-    border-radius: 30px;
-    background-color: rgba(255, 127, 34, 0.9);
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.register_input{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    font-size: 15px;
+}
+
+.register_input input{
+    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    padding: 5px;
+}
+
+#register_submit{
+    width: 60%;
     transition: .5s;
-}
-
-.register_right .register_form #register_button a:hover{
-    background-color: rgba(255, 127, 34, 1);
-    transition: .5s;
-}
-
-.register_right .register_form .register_input a{
-    text-decoration: none;
-    color: rgba(255, 127, 34, 0.9);
-}
-
-.register_right .register_form .register_input a:hover{
-    color: rgba(255, 127, 34, 1);
-}
-
-.register_alert{
+    font-size: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    color: #ff7f22;
     text-align: center;
-    color: rgba(255, 127, 34, 1);
-}
-
-.register_right .register_form .register_input{
-}
-
-.register_right .register_form .register_input a{
     text-decoration: none;
-    color: rgba(255, 127, 34, 0.9);
+    margin: 10px 0 10px 0;
 }
 
-.register_right .register_form .register_input a:hover{
-    color: rgba(255, 127, 34, 1);
+#register_submit:hover{
+    transition: .5s;
+    background-color: #ff7f22;
+    color: #ebebeb;
 }
 
-@media (max-width: 768px){
-    .register_background{
-    }
-    
-    .register_container_center{
-        width: 100%;
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+.register_prompt{
+    transition: 1s;
+    z-index: 2;
+    position: fixed;
+    background-color: #ff7f22;
+    border-radius: 5px;
+    width: 90%;
+    height: 50px;
+    font-size: 20px;
+    color: #ebebeb;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    top: calc(100% - 100px);
+}
 
-
-    .register_img_div{
-        display: none;
-    }
-
-    .register_right{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        height: 100%;
-    }
-
-    .register_right .register_form{
-        width: 100%;
-        height: 90%;
-        padding: 40px;
-        border-radius: 8px;
-        background-color: #ebebeb;
-    }
-
-    .register_right .register_form .register_input input{
-        width: 80%;
-    }
-
-    .register_right .register_form h3{
-        text-align: center;
-        margin: 30px 0 10px;
-        font-weight: 500;
-    }    
-
-    .register_input{
-        margin: 0;
-    }
+.register_options a{
+    color: #ff7f22;
+    text-decoration: none;
 }
