@@ -49,24 +49,24 @@ export default function Header(){
                     <Link to={'/'} className="nav_logo">DREC</Link>
                 </div>
                 <div className={`nav_items ${isOpen && "open"}`}>
-                    <Link to={'/'} className='nav_item_listed'><span>Inicio</span></Link>
-                    <Link to={'/account'} className='nav_item_listed'><span>Perfil</span></Link>
-                    <Link to={'/contact/0'} className='nav_item_listed'><span>Contacto</span></Link>
-                    <Link to={'/about-us'} className='nav_item_listed'><span>Nosotros</span></Link>
-                    <Link to={'/'} className='nav_item_listed'><span>Aliado</span></Link>
+                    <Link to={'/'} className='nav_item_listed' onClick={ () => setIsOpen(!isOpen)}><span>Inicio</span></Link>
+                    <Link to={'/account'} className='nav_item_listed' onClick={ () => setIsOpen(!isOpen)}><span>Perfil</span></Link>
+                    <Link to={'/contact/0'} className='nav_item_listed' onClick={ () => setIsOpen(!isOpen)}><span>Contacto</span></Link>
+                    <Link to={'/about-us'} className='nav_item_listed' onClick={ () => setIsOpen(!isOpen)}><span>Nosotros</span></Link>
+                    <Link to={'/'} className='nav_item_listed' onClick={ () => setIsOpen(!isOpen)}><span>Aliado</span></Link>
                     {isAdmin &&
                         <>
-                            <Link to={'/admin-hub/0'} className='nav_item_listed'><span>Admin Hub</span></Link>
+                            <Link to={'/admin-hub/0'} className='nav_item_listed' onClick={ () => setIsOpen(!isOpen)}><span>Admin Hub</span></Link>
                         </>}
                     {isManager &&
                         <>
-                            <Link to={'/manager-hub/0'} className='nav_item_listed'><span>Manager Hub</span></Link>
+                            <Link to={'/manager-hub/0'} className='nav_item_listed' onClick={ () => setIsOpen(!isOpen)}><span>Manager Hub</span></Link>
                         </>}
                     {isLogged ?
                         <Link to={'/0'} className='nav_item_listed' onClick={signOut}><span>Cerrar Sesión</span></Link>
                     : <>
-                        <Link to={'/login'} className='nav_item_listed'><span>Iniciar Sesión</span></Link>
-                        <Link to={'/register'} className='nav_item_listed'><span>Registrarse</span></Link>
+                        <Link to={'/login'} className='nav_item_listed' onClick={ () => setIsOpen(!isOpen)}><span>Iniciar Sesión</span></Link>
+                        <Link to={'/register'} className='nav_item_listed' onClick={ () => setIsOpen(!isOpen)}><span>Registrarse</span></Link>
                     </>}
                 </div>
                 <div className={`nav_toggle ${isOpen && "open"}`} onClick={ () => setIsOpen(!isOpen)} >
