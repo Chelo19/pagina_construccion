@@ -3,9 +3,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 90px;
-    padding-top: 20px;
-    padding-bottom: 20px;
+}
+
+.admin_selections_container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
 }
 
 .admin_selections{
@@ -174,19 +179,24 @@
 
 @media (max-width: 500px){
     .admin_background{
-        margin-top: 69px;
-        padding-top: 20px;
-        padding-bottom: 20px;
+    }
+
+    .admin_selections_container{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 50px;
     }
 
     .admin_selections{
+        width: 90%;
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
         align-items: center;
-        height: 100%;
-        width: 90%;
-        padding: 0;
+        padding: 20px 0 20px 0;
+
     }
     
     .admin_selections_item{

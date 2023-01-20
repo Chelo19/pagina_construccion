@@ -4,6 +4,7 @@ import { Routes, Route, useNavigate } from "react-router-dom";
 import { UserProvider } from "./context/UserContext";
 import { createBrowserHistory } from "history";
 
+import Header2 from "./components/Header2";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
@@ -74,8 +75,8 @@ function App() {
 
   return (
     <div className="App">
-      <Header />
-      <br/>
+      {/* <Header /> */}
+      <Header2/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/:reload" element={<Home />} />

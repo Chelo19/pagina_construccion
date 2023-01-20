@@ -1,95 +1,108 @@
 import {useEffect, useState} from 'react';
 import {supabase} from '../supabase/client';
 import {useNavigate} from 'react-router-dom';
-import '../styles/Login.css';
+import '../styles/RegLog.css';
 import LoadingScreen from '../components/LoadingScreen';
+import { Link } from "react-router-dom";
 
 
 function Login(){
-
+    const navigate = useNavigate();
+    
     const [email, setEmail] = useState(null);
     const [password, setPassword] = useState(null);
-    const [user, setUser] = useState(null);
-    const [loadingScreen, setLoadingScreen] = useState(true);
 
-    const navigate = useNavigate();
+    const [prompt, setPrompt] = useState(null);
+    const [promptStyle, setPromptStyle] = useState(null);
 
     useEffect(() => {
         getUserMethod();
-    }, [loadingScreen]);
+    }, [])
 
     const getUserMethod = async () => {
         const { data: { user } } = await supabase.auth.getUser();
         if(user) navigate('/');
-        setLoadingScreen(false);
     }
 
-    const hangleSignIn = async (e) => {
-        e.preventDefault();
-        try{
-            console.log(email + " " + password);
+    const signIn = async () => {
+        if(email && password){
             const { data, error } = await supabase.auth.signInWithPassword({
-                email,
-                password,
-              });
-            console.log(data);
-            if (error){
-                window.alert("Correo o contraseña no válido");
-                return;
+                email: email,
+                password: password,
+            })
+            if(error){
+                setPromptStyle({backgroundColor: '#161825'});
+                setPrompt('Correo o contraseña incorrectos');
+                await timeout(2000);
+                setPrompt(null);
             }
-            navigate('/');
-            document.location.reload();
-        } catch(e){
-            alert(e.message);
+            else{
+                setPromptStyle({backgroundColor: '#77DD77'});
+                setPrompt('Inicio de sesión exitoso');
+                await timeout(2000);
+                setPrompt(null);
+                document.location.reload();
+            }
         }
-    };
+        else{
+            setPromptStyle({backgroundColor: '#161825'});
+            setPrompt('Faltan campos por llenar');
+            await timeout(2000);
+            setPrompt(null);
+        }
+    }
+
+    function timeout(number) {
+        return new Promise( res => setTimeout(res, number) );
+    }
 
     return(
-        <div className='login_background'>
-            {
-                !loadingScreen ? <div className='login_container'>
-                <div className='login_container_center'>
-                    <div className='login_img_div'>
-                        <img id='login_img' src={require('../img/construction_img2.jpg')}/>
+        <div className="reg_log_background">
+            <div className="reg_log_background_container">
+                <div className="reg_log_container">
+                    <div className="reg_log_logo">
+                        <img src={require('../img/logodrecfullsize.png')}/>
                     </div>
-                    <div className='login_right'>
-                        <div className='login_form'>
-                            <h2>Iniciar Sesión</h2>
-                            <div className='login_input'>
-                                <span>Email</span>
-                                <input 
-                                    type = "email" 
-                                    name = "email" 
-                                    placeholder = "tuemail@gmail.com"
-                                    onChange={(e) => setEmail(e.target.value)}
-                                />
-                            </div>
-                            <div className='login_input'>
-                                <span>Contraseña</span>
-                                <input 
-                                    type = "password" 
-                                    name = "password" 
-                                    placeholder = "contraseña"
-                                    onChange={(e) => setPassword(e.target.value)}
-                                />
-                            </div>
-                            <div id='sign_in_button'>
-                                <a href='#' onClick={hangleSignIn}>Iniciar sesión</a>
-                            </div><br/>
-                            <div className='login_input'>
-                                ¿No tienes una cuenta?&nbsp;
-                                <a Link to="/register/" onClick={() => navigate(`/register`)}>Haz click aquí</a>
-                            </div>
-                            <div className='login_input'>
-                                ¿Olvidaste tu contraseña?&nbsp;
-                                <a Link to="/recover-password/" onClick={() => navigate(`/recover-password`)}>Recuperar cuenta</a>
-                            </div>
+                    <div className="reg_log_title">
+                        <span>
+                            Iniciar Sesión
+                        </span>
+                    </div>
+                    <div className="reg_log_form">
+                        <div className="reg_log_input">
+                            <span>
+                                Correo
+                            </span>
+                            <input
+                                type={'email'}
+                                placeholder={'tuemail@gmail.com'}
+                                onChange={(e) => setEmail(e.target.value)}
+                            />
+                        </div>
+                        <div className="reg_log_input">
+                            <span>
+                                Contraseña
+                            </span>
+                            <input
+                                type={'password'}
+                                placeholder={'Contraseña'}
+                                onChange={(e) => setPassword(e.target.value)}
+                            />
                         </div>
                     </div>
+                    <Link id="reg_log_submit" onClick={signIn}>
+                        Iniciar Sesión
+                    </Link>
+                    <div className='reg_log_options'>
+                        ¿Aún no tienes un perfil?&nbsp;
+                        <Link to={"/register/"}>Haz click aquí</Link>
+                    </div>
                 </div>
-            </div>
-            : <LoadingScreen/>}
-            
+                {prompt &&
+                    <div className="reg_log_prompt" style={promptStyle}>
+                    {prompt}
+                </div>}
+            </div>  
         </div>
     );
 }

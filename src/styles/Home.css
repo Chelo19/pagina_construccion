@@ -397,7 +397,6 @@ body{
 @media(max-width: 500px){
 
     .background_img{
-        margin-top: 60px;
         height: 90vh;
         padding: 20px;
         background-color: #161825;
