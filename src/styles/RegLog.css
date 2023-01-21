@@ -85,13 +85,14 @@
 }
 
 .reg_log_prompt{
+    width: calc(100% - 30px);
+    height: 50px;
+    bottom: calc(0% + 10px);
     transition: 1s;
     z-index: 2;
     position: fixed;
     background-color: #ff7f22;
     border-radius: 5px;
-    width: 90%;
-    height: 50px;
     font-size: 20px;
     color: #ebebeb;
     text-align: center;
@@ -99,7 +100,6 @@
     justify-content: center;
     align-items: center;
     padding: 5px;
-    top: calc(100% - 100px);
 }
 
 .reg_log_options a{

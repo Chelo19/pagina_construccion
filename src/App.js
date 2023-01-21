@@ -42,6 +42,9 @@ import EditPostsSelectUser from "./pages/EditPostsSelectUser";
 import EditPosts from "./pages/EditPosts";
 import EditContactUsers from "./pages/EditContactUsers";
 import AddContactUsers from "./pages/AddContactUsers";
+import Profiles from "./pages/Profiles";
+import UserProfile from "./pages/UserProfile";
+import Cotizaciones from "./pages/Cotizaciones";
 
 import { supabase } from "./supabase/client";
 
@@ -119,6 +122,9 @@ function App() {
         <Route path="/edit-users/:id" element={<EditUsers/>}/>
         <Route path="/edit-contact-users/:id" element={<EditContactUsers/>}/>
         <Route path="/add-contact-users/:id" element={<AddContactUsers/>}/>
+        <Route path="/profiles" element={<Profiles/>}/>
+        <Route path="/user-profile" element={<UserProfile/>}/>
+        <Route path="/cotizaciones" element={<Cotizaciones/>}/>
       </Routes>
       <Footer/>
     </div>

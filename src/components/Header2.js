@@ -1,9 +1,13 @@
 import {useEffect, useState} from 'react';
 import {supabase} from '../supabase/client';
+import {useNavigate} from 'react-router-dom';
 import '../styles/Header2.css';
-import { Link } from 'react-router-dom';
+import LoadingScreen from '../components/LoadingScreen';
+import { Link } from "react-router-dom";
+
 
 export default function Header(){
+    const navigate = useNavigate();
 
     const [isOpen, setIsOpen] = useState(false);
     const [isLogged, setIsLogged] = useState(false);
@@ -56,6 +60,7 @@ export default function Header(){
                     <Link to={'/'} className='nav_item_listed' onClick={ () => setIsOpen(!isOpen)}><span>Aliado</span></Link>
                     {isAdmin &&
                         <>
+                            <Link to={'/profiles'} className='nav_item_listed' onClick={ () => setIsOpen(!isOpen)}><span>Perfiles</span></Link>
                             <Link to={'/admin-hub/0'} className='nav_item_listed' onClick={ () => setIsOpen(!isOpen)}><span>Admin Hub</span></Link>
                         </>}
                     {isManager &&
