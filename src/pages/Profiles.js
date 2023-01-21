@@ -13,36 +13,45 @@ export default function Profiles(){
             <div className='profiles_container'>
                 <div className='profiles_gallery'>
                     <Link to={'/user-profile'} className='profiles_item'>
-                        <div className='profiles_item_img'>
-                            <img src={require('../img/cuenta2.png')}/>
+                        <div className='profiles_item_container'>
+                            <div className='profiles_item_img'>
+                                <img src={require('../img/usuario.png')}/>
+                            </div>
+                            <span className='profiles_item_title'>
+                                Usuario
+                            </span>
                         </div>
-                        <span>
-                            Usuario
-                        </span>
+                    </Link>
+                    <Link to={'/ally-profile'} className='profiles_item'>
+                        <div className='profiles_item_container'>
+                            <div className='profiles_item_img'>
+                                <img src={require('../img/aliados.png')}/>
+                            </div>
+                            <span className='profiles_item_title'>
+                                Aliado
+                            </span>
+                        </div>
                     </Link>
                     <Link to={'/'} className='profiles_item'>
-                        <div className='profiles_item_img'>
-                            <img src={require('../img/myservices.png')}/>
+                        <div className='profiles_item_container'>
+                            <div className='profiles_item_img'>
+                                <img src={require('../img/plataforma.png')}/>
+                            </div>
+                            <span className='profiles_item_title'>
+                                Plataforma
+                            </span>
                         </div>
-                        <span>
-                            Aliado
-                        </span>
                     </Link>
                     <Link to={'/'} className='profiles_item'>
-                        <div className='profiles_item_img'>
-                            <img src={require('../img/logoblanco.png')}/>
+                        <div className='profiles_item_container'>
+                            <div className='profiles_item_img'>
+                                <img src={require('../img/solicitudes.png')}/>
+                            </div>
+                            <span className='profiles_item_title'>
+                                Solicitudes
+                            </span>
+                        
                         </div>
-                        <span>
-                            Plataforma
-                        </span>
-                    </Link>
-                    <Link to={'/'} className='profiles_item'>
-                        <div className='profiles_item_img'>
-                            <img src={require('../img/serviciocliente2.png')}/>
-                        </div>
-                        <span>
-                            Solicitudes
-                        </span>
                     </Link>
                 </div>
             </div>

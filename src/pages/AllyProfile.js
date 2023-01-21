@@ -5,7 +5,7 @@ import '../styles/Profiles.css';
 import LoadingScreen from '../components/LoadingScreen';
 import { Link } from "react-router-dom";
 
-export default function UserProfile(){
+export default function AllyProfile(){
     const navigate = useNavigate();
 
     return(
@@ -28,7 +28,7 @@ export default function UserProfile(){
                                 <img src={require('../img/aliados.png')}/>
                             </div>
                             <span className='profiles_item_title'>
-                                Información de Usuarios
+                                Información de Aliado
                             </span>
                         </div>
                     </Link>

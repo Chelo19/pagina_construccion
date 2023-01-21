@@ -12,21 +12,27 @@ export default function Cotizaciones(){
         <div className='cotizaciones_background'>
             <div className='cotizaciones_container'>
                 <div className='cotizaciones_item'>
-                    <span id='cotizaciones_item_user'>
-                        Marcelo De Leon
-                    </span>
-                    <span id='cotizaciones_item_id'>
-                        id: 55
-                    </span>
-                    <span id='cotizaciones_item_action'>
-                        Quiere cotizar
-                    </span>
-                    <span id='cotizaciones_item_service'>
-                        Servicio "Construccion"
-                    </span>
-                    <span id='cotizaciones_item_category'>
-                        Categoria "Remodelacion"
-                    </span>
+                    <div className='cotizaciones_item_container'>
+                        <span id='cotizaciones_item_user'>
+                            <Link to={'/profile/1'}>
+                                Marcelo Amado De Leon Gomez
+                            </Link>
+                        </span>
+                        <span id='cotizaciones_item_id'>
+                            <Link to={'/profile/1'}>
+                                id: 55
+                            </Link>
+                        </span>
+                        <span id='cotizaciones_item_action'>
+                            Quiere cotizar
+                        </span>
+                        <span id='cotizaciones_item_service'>
+                            Servicio "Construccion" y servicios de todo tipo aeriahrea rmiaernm  ranieraior ieurharijeji
+                        </span>
+                        <span id='cotizaciones_item_category'>
+                            Categoria "Remodelacion" y servicios de todo tipo
+                        </span>
+                    </div>
                     <div className='cotizaciones_item_buttons'>
                         <div className='cotizaciones_item_button'>
                             <img src={require('../img/usuario_header2.png')}/>
@@ -75,7 +81,7 @@ export default function Cotizaciones(){
                         Servicio "Construccion"
                     </span>
                     <span id='cotizaciones_item_category'>
-                        Categoria "Remodelacion"
+                        Categoria "Remodelacion" y servicios de todo tipo
                     </span>
                     <div className='cotizaciones_item_buttons'>
                         <div className='cotizaciones_item_button'>

@@ -44,7 +44,9 @@ import EditContactUsers from "./pages/EditContactUsers";
 import AddContactUsers from "./pages/AddContactUsers";
 import Profiles from "./pages/Profiles";
 import UserProfile from "./pages/UserProfile";
+import AllyProfile from "./pages/AllyProfile";
 import Cotizaciones from "./pages/Cotizaciones";
+import Profile from "./pages/Profile";
 
 import { supabase } from "./supabase/client";
 
@@ -124,7 +126,9 @@ function App() {
         <Route path="/add-contact-users/:id" element={<AddContactUsers/>}/>
         <Route path="/profiles" element={<Profiles/>}/>
         <Route path="/user-profile" element={<UserProfile/>}/>
+        <Route path="/ally-profile" element={<AllyProfile/>}/>
         <Route path="/cotizaciones" element={<Cotizaciones/>}/>
+        <Route path="/profile/:id" element={<Profile/>}/>
       </Routes>
       <Footer/>
     </div>

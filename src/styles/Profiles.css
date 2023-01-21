@@ -26,11 +26,9 @@
     border-radius: 5px;
     box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
     background-color: #ebebeb;
-    display: grid;
-    grid-template-rows: 50% 40%;
-    padding: 15px;
-    justify-items: center;
-    align-content: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-decoration: none;
     color: black;
 }
@@ -41,14 +39,22 @@
     background-color: white;
 }
 
-.profiles_item span{
-    font-size: 25px;
-    font-weight: bold;
-    text-align: center;
-    display: flex;
+.profiles_item_container{
+    width: calc(100% - 30px);
+    height: calc(100% - 30px);
+    display: grid;
+    grid-template-rows: 50% 20%;
+    gap: 15px;
     justify-content: center;
-    align-items: center;
-    overflow: hidden;
+    align-content: center;
+}
+
+.profiles_item_title{
+    font-size: 20px;
+    font-weight: bold;
+    text-overflow: ellipsis;
+    overflow: scroll;
+    text-align: center;
 }
 
 .profiles_item_img{
@@ -58,5 +64,4 @@
     width: 100%;
     height: 100%;
     object-fit: contain;
-    filter: invert(1);
 }
