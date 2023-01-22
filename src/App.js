@@ -51,6 +51,7 @@ import Profile from "./pages/Profile";
 import SentCotizaciones from "./pages/SentCotizaciones";
 import Requests from "./pages/Requests";
 import WebPage from "./pages/WebPage";
+import ProfileList from "./pages/ProfileList";
 
 import { supabase } from "./supabase/client";
 
@@ -137,6 +138,7 @@ function App() {
         <Route path="/sent-cotizaciones" element={<SentCotizaciones/>}/>
         <Route path="/requests" element={<Requests/>}/>
         <Route path="/webpage" element={<WebPage/>}/>
+        <Route path="/profile-list" element={<ProfileList/>}/>
       </Routes>
       <Footer/>
     </div>

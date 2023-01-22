@@ -1,0 +1,86 @@
+.profile_list_background{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+}
+
+.profile_list_container{
+    margin-top: 50px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 0 20px 0; 
+}
+
+.profile_list_search{
+    width: calc(100% - 40px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile_list_search input{
+    width: 100%;
+    height: 20px;
+    font-size: 20px;
+    transition: .5s;
+    border: 2px solid rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+    padding: 10px;
+    color: rgba(0, 0, 0, 0.8);
+    letter-spacing: 1px;
+}
+
+.profile_list_search input::placeholder{
+    color: rgba(0, 0, 0, 0.2);
+}
+
+.profile_list_results{
+    width: calc(100% - 40px);
+    font-size: 20px;    
+    transition: .5s;
+    border: 2px solid rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0 20px 0;
+}
+
+.profile_list_results_container{
+    width: calc(100% - 40px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: left;
+    gap: 5px;
+    letter-spacing: 1px;
+}
+
+.profile_list_results_item{
+    width: 100%;
+    font-size: 20px;
+    color: rgba(0, 0, 0, 0.5);
+    display: grid;
+    grid-template-columns: 20% 75%;
+    gap: 10px;
+}
+
+.profile_list_results_item:hover{
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.profile_list_results_item span{
+    overflow: scroll;
+}

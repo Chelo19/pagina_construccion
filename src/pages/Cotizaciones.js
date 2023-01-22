@@ -30,7 +30,7 @@ export default function Cotizaciones(){
                             Servicio "Construccion"
                         </span>
                         <span id='cotizaciones_item_category'>
-                            Categoria "Remodelacion" y servicios de todo tipo
+                            Categoria "Remodelacion"
                         </span>
                     </div>
                     <div className='cotizaciones_item_buttons'>
