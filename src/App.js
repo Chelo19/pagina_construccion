@@ -46,7 +46,11 @@ import Profiles from "./pages/Profiles";
 import UserProfile from "./pages/UserProfile";
 import AllyProfile from "./pages/AllyProfile";
 import Cotizaciones from "./pages/Cotizaciones";
+import UserCotizaciones from "./pages/UserCotizaciones";
 import Profile from "./pages/Profile";
+import SentCotizaciones from "./pages/SentCotizaciones";
+import Requests from "./pages/Requests";
+import WebPage from "./pages/WebPage";
 
 import { supabase } from "./supabase/client";
 
@@ -128,7 +132,11 @@ function App() {
         <Route path="/user-profile" element={<UserProfile/>}/>
         <Route path="/ally-profile" element={<AllyProfile/>}/>
         <Route path="/cotizaciones" element={<Cotizaciones/>}/>
+        <Route path="/user-cotizaciones" element={<UserCotizaciones/>}/>
         <Route path="/profile/:id" element={<Profile/>}/>
+        <Route path="/sent-cotizaciones" element={<SentCotizaciones/>}/>
+        <Route path="/requests" element={<Requests/>}/>
+        <Route path="/webpage" element={<WebPage/>}/>
       </Routes>
       <Footer/>
     </div>

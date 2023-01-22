@@ -5,30 +5,40 @@ import '../styles/Profiles.css';
 import LoadingScreen from '../components/LoadingScreen';
 import { Link } from "react-router-dom";
 
-export default function UserProfile(){
+export default function UserCotizaciones(){
     const navigate = useNavigate();
 
     return(
         <div className='profiles_background'>
             <div className='profiles_container'>
                 <div className='profiles_gallery'>
-                    <Link to={'/user-cotizaciones'} className='profiles_item'>
+                    <Link to={'/sent-cotizaciones'} className='profiles_item'>
                         <div className='profiles_item_container'>
                             <div className='profiles_item_img'>
-                                <img src={require('../img/cotizaciones.png')}/>
+                                <img src={require('../img/enviadas.png')}/>
                             </div>
                             <span className='profiles_item_title'>
-                                Cotizaciones
+                                Enviadas
                             </span>
                         </div>
                     </Link>
-                    <Link to={'/'} className='profiles_item'>
+                    <Link to={'/user-profile'} className='profiles_item'>
                         <div className='profiles_item_container'>
                             <div className='profiles_item_img'>
-                                <img src={require('../img/aliados.png')}/>
+                                <img src={require('../img/pendientes.png')}/>
                             </div>
                             <span className='profiles_item_title'>
-                                Información de Usuarios
+                                Pendientes
+                            </span>
+                        </div>
+                    </Link>
+                    <Link to={'/user-profile'} className='profiles_item'>
+                        <div className='profiles_item_container'>
+                            <div className='profiles_item_img'>
+                                <img src={require('../img/calificar.png')}/>
+                            </div>
+                            <span className='profiles_item_title'>
+                                Calificar
                             </span>
                         </div>
                     </Link>

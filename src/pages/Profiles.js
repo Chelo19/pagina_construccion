@@ -25,14 +25,14 @@ export default function Profiles(){
                     <Link to={'/ally-profile'} className='profiles_item'>
                         <div className='profiles_item_container'>
                             <div className='profiles_item_img'>
-                                <img src={require('../img/aliados.png')}/>
+                                <img src={require('../img/servicios.png')}/>
                             </div>
                             <span className='profiles_item_title'>
                                 Aliado
                             </span>
                         </div>
                     </Link>
-                    <Link to={'/'} className='profiles_item'>
+                    <Link to={'/webpage'} className='profiles_item'>
                         <div className='profiles_item_container'>
                             <div className='profiles_item_img'>
                                 <img src={require('../img/plataforma.png')}/>
@@ -42,7 +42,7 @@ export default function Profiles(){
                             </span>
                         </div>
                     </Link>
-                    <Link to={'/'} className='profiles_item'>
+                    <Link to={'/requests'} className='profiles_item'>
                         <div className='profiles_item_container'>
                             <div className='profiles_item_img'>
                                 <img src={require('../img/solicitudes.png')}/>
@@ -50,7 +50,6 @@ export default function Profiles(){
                             <span className='profiles_item_title'>
                                 Solicitudes
                             </span>
-                        
                         </div>
                     </Link>
                 </div>

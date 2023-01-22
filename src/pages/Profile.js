@@ -8,6 +8,9 @@ import { Link } from "react-router-dom";
 export default function Profile(){
     const navigate = useNavigate();
 
+    const [isAlly, setIsAlly] = useState(true);
+    const [isAdmin, setIsAdmin] = useState(true);
+
     return(
         <div className='profile_background'>
             <div className='profile_container'>
@@ -22,35 +25,47 @@ export default function Profile(){
                         <span>sofiachavez@hotmail.com</span>
                         <span>8181818181</span>
                         <span>Monterrey, N.L., Mexico</span>
-                        <span id='profile_link'><Link to={'/'}>Mis cotizaciones</Link></span>
-                        <span id='profile_link'><Link to={'/'}>Mis proyectos</Link></span>
+                        {isAlly ?
+                            <>
+                                <span id='profile_link'><Link to={'/'}>Servicios y categorias</Link></span>
+                                <span id='profile_link'><Link to={'/'}>Cotizaciones</Link></span>
+                                <span id='profile_link'><Link to={'/'}>Proyectos</Link></span>
+                            </>
+                        : 
+                        <>
+                            <span id='profile_link'><Link to={'/'}>Mis cotizaciones</Link></span>
+                            <span id='profile_link'><Link to={'/'}>Mis proyectos</Link></span>
+                        </>
+                        }
                     </div>
-                    <div className='profile_buttons'>
-                        <div className='profile_button'>
-                            <div className='profile_button_img'>
-                                <img src={require('../img/bloquear.png')}/>
+                    {isAdmin &&
+                        <div className='profile_buttons'>
+                            <div className='profile_button'>
+                                <div className='profile_button_img'>
+                                    <img src={require('../img/bloquear.png')}/>
+                                </div>
+                                <div className='profile_button_text'>
+                                    <span>Bloquear usuario</span>
+                                </div>
                             </div>
-                            <div className='profile_button_text'>
-                                <span>Bloquear usuario</span>
+                            <div className='profile_button'>
+                                <div className='profile_button_img'>
+                                    <img src={require('../img/editar.png')}/>
+                                </div>
+                                <div className='profile_button_text'>
+                                    <span>Editar usuario</span>
+                                </div>
+                            </div>
+                            <div className='profile_button'>
+                                <div className='profile_button_img'>
+                                    <img src={require('../img/eliminar.png')}/>
+                                </div>
+                                <div className='profile_button_text'>
+                                    <span>Eliminar usuario</span>
+                                </div>
                             </div>
                         </div>
-                        <div className='profile_button'>
-                            <div className='profile_button_img'>
-                                <img src={require('../img/editar.png')}/>
-                            </div>
-                            <div className='profile_button_text'>
-                                <span>Editar usuario</span>
-                            </div>
-                        </div>
-                        <div className='profile_button'>
-                            <div className='profile_button_img'>
-                                <img src={require('../img/eliminar.png')}/>
-                            </div>
-                            <div className='profile_button_text'>
-                                <span>Eliminar usuario</span>
-                            </div>
-                        </div>
-                    </div>
+                    }
                     <span id='profile_link'><Link to={'/'}>Quiero ser aliado</Link></span>
                 </div>
             </div>

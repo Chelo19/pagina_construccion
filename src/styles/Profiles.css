@@ -43,7 +43,7 @@
     width: calc(100% - 30px);
     height: calc(100% - 30px);
     display: grid;
-    grid-template-rows: 50% 20%;
+    grid-template-rows: 50% 30%;
     gap: 15px;
     justify-content: center;
     align-content: center;
@@ -55,6 +55,8 @@
     text-overflow: ellipsis;
     overflow: scroll;
     text-align: center;
+    display: grid;
+    place-items: center;
 }
 
 .profiles_item_img{
