@@ -9,15 +9,21 @@ import LoadingScreen2 from '../components/LoadingScreen2';
 export default function SelectAllies(){
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(true);
+    const [isCotizacion, setIsCotizacion] = useState(false);
 
     const [searchInput, setSearchInput] = useState('');
     const [profiles, setProfiles] = useState([]);
     const [noItems, setNoItems] = useState(false);
-    const [checkedValues, setValue] = useState([]);
+    const [selections, setSelections] = useState([]);
+
+    const [prompt, setPrompt] = useState(null);
+    const [promptStyle, setPromptStyle] = useState(null);
+
+    const [files, setFiles] = useState(null);
     
     useEffect(() => {
         getAllyProfiles();
-    }, [])
+    }, [isLoading])
 
     const getAllyProfiles = async () => {
         const { data, error } = await supabase
@@ -25,6 +31,9 @@ export default function SelectAllies(){
         .select()
         .order('id', { ascending: true })
         .match({ role: 'aliado' });
+        if(data.length == selections.length + profiles.length){
+            return;
+        }
         if(data){
             setProfiles(data);
             setIsLoading(false);
@@ -39,19 +48,32 @@ export default function SelectAllies(){
     });
 
     const acceptSelection = () => {
-        console.log(checkedValues);
+        setIsCotizacion(true);
     }
 
     const handleChange = (e) => {
-        const {value, checked} = e.target;
-        if(checked){
-            setValue(pre => [...pre,value]);
-        }
-        else{
-            setValue(pre => {
-                return [...pre.filter(skill => skill!==value)]
-            })
-        }
+        let temp = selections;
+        temp.push(e);
+        setSelections(temp);
+        var index = profiles.indexOf(e);
+        profiles.splice(index, 1);
+    }
+
+    const sendCotizacion = async () => {
+        console.log(files);
+        setPromptStyle({backgroundColor: '#77DD77'});
+        setPrompt('Cotizacion enviada');
+        await timeout(2000);
+        setPrompt(null);
+    }
+
+    function timeout(number) {
+        return new Promise( res => setTimeout(res, number) );
+    }
+
+    const debug = () => {
+        console.log(selections);
+        console.log(profiles);
     }
 
     return(
@@ -59,43 +81,100 @@ export default function SelectAllies(){
             {!isLoading ? 
                 <div className='profile_list_background'>
                     <div className='profile_list_container'>
-                        <div className='profile_list_search'>
-                            <input
-                            type="text"
-                            placeholder="Buscar por nombre o id"
-                            onChange={(e) => setSearchInput(e.target.value)}
-                            value={searchInput} />
-                        </div>
-                        <div className='profile_list_results'>
+                        {!isCotizacion ? 
+                        <>
+                            <div className='profile_list_search'>
+                                <input
+                                type="text"
+                                placeholder="Buscar por nombre o id"
+                                onChange={(e) => setSearchInput(e.target.value)}
+                                value={searchInput} />
+                            </div>
+                            <div className='profile_list_results'>
+                                <div className='profile_list_results_container'>
+                                    <div className='profile_list_results_item_static'>
+                                        <span>id</span>
+                                        <span>Nombre</span>
+                                    </div>
+                                    {profileFiltered.map((profile) => {
+                                        return(
+                                            <div key={profile.id} className='select_allies_results_item'>
+                                                <span>{profile.id}</span>
+                                                <span>{profile.name}</span>
+                                                <input type={'radio'} value={profile.id} onChange={(e) => handleChange(profile)}></input>
+                                            </div>
+                                        )
+                                    })}
+                                </div>
+                            </div>
+                            <div className='select_allies_selection_container'>
+                                <div className='profile_list_results_container'>
+                                    <span>Seleccionados:</span>
+                                    <div className='profile_list_results_item_static'>
+                                        <span>id</span>
+                                        <span>Nombre</span>
+                                    </div>
+                                {selections.map((selection) => {
+                                    return(
+                                        <div key={selection.id} className='select_allies_results_item'>
+                                            <span>{selection.id}</span>
+                                            <span>{selection.name}</span>
+                                            <input type={'radio'} value={selection.id}></input>
+                                        </div>
+                                    )
+                                })}
+                                </div>
+                            </div>
+                            <div className='select_allies_selection_accept' onClick={acceptSelection}>
+                                <span>Aceptar seleccion</span>
+                            </div>
+                            <div className='select_allies_selection_accept' onClick={debug}>
+                                <span>Debug</span>
+                            </div>
+                        </>
+                    : 
+                    <>
+                        <div className='select_allies_selection_container'>
                             <div className='profile_list_results_container'>
+                                <span>Seleccionados:</span>
                                 <div className='profile_list_results_item_static'>
                                     <span>id</span>
                                     <span>Nombre</span>
                                 </div>
-                                {profileFiltered.map((profile) => {
-                                    return(
-                                        <div key={profile.id} className='select_allies_results_item'>
-                                            <span>{profile.id}</span>
-                                            <span>{profile.name}</span>
-                                            <input type={'checkbox'} value={profile.id} onChange={handleChange}></input>
-                                        </div>
-                                    )
-                                })}
-                            </div>
-                        </div>
-                        <div className='select_allies_selection_container'>
-                            <span>Seleccionados:</span>
-                            {checkedValues.map((value) => {
+                            {selections.map((selection) => {
                                 return(
-                                    <div key={value}>
-                                        id: {value}
+                                    <div key={selection.id} className='select_allies_results_item'>
+                                        <span>{selection.id}</span>
+                                        <span>{selection.name}</span>
                                     </div>
                                 )
                             })}
+                            </div>
                         </div>
-                        <div className='select_allies_selection_accept' onClick={acceptSelection}>
-                            <span>Aceptar seleccion</span>
+                        <div className='select_allies_cotizacion'>
+                            <div className='select_allies_cotizacion_container'>
+                                <span>Titulo</span>
+                                <input type={'text'} placeholder={"Link de drive"}/>
+                                <input id='fileUpload' type='file' multiple
+                                    accept='pdf, png'
+                                    onChange={(e) => setFiles(e.target.files)}
+                                />
+                                <div className='select_allies_buttons'>
+                                    <a id='select_allies_send' onClick={sendCotizacion}>
+                                        <span>Enviar cotizacion</span>
+                                    </a>
+                                    <a id='select_allies_cancel' onClick={() => setIsCotizacion(false)}>
+                                        <span>Cancelar</span>
+                                    </a>
+                                </div>
+                                {prompt &&
+                                <div className="reg_log_prompt" style={promptStyle}>
+                                {prompt}
+                                </div>}
+                            </div>
                         </div>
+                    </>
+                        }
                     </div>
                 </div>
             : <LoadingScreen2></LoadingScreen2>
