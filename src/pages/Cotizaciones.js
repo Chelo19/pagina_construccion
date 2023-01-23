@@ -34,9 +34,9 @@ export default function Cotizaciones(){
                         </span>
                     </div>
                     <div className='cotizaciones_item_buttons'>
-                        <div className='cotizaciones_item_button'>
+                        <Link to={'/select-allies'} className='cotizaciones_item_button'>
                             <img src={require('../img/usuario_header2.png')}/>
-                        </div>
+                        </Link>
                         <div className='cotizaciones_item_button'>
                             +
                         </div>

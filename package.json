@@ -6,6 +6,8 @@
   "dependencies": {
     "-": "^0.0.1",
     "@emailjs/browser": "^3.10.0",
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
     "@mui/material": "^5.11.5",
     "@supabase/supabase-js": "^2.0.4",
     "@testing-library/jest-dom": "^5.16.5",

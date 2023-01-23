@@ -98,3 +98,64 @@
 .profile_list_results_item_static span{
     overflow: scroll;
 }
+
+.select_allies_results_item{
+    width: 100%;
+    font-size: 20px;
+    color: rgba(0, 119, 182, 0.5);
+    display: grid;
+    grid-template-columns: 20% 60% 10%;
+    gap: 10px;
+    text-decoration: none;
+}
+
+.select_allies_results_item:hover{
+    color: rgba(0, 119, 182, 0.8);
+}
+
+.select_allies_results_item span{
+    overflow: scroll;
+}
+
+.select_allies_results_item input{
+    width: 15px;
+    height: 15px;
+}
+
+.select_allies_selection_container{
+    width: calc(100% - 40px);
+    font-size: 20px;    
+    transition: .5s;
+    border: 2px solid rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0 20px 0;
+    flex-direction: column;
+    gap: 5px;
+    letter-spacing: 1px;
+}
+
+.select_allies_selection_accept{
+    width: calc(100% - 40px);
+    font-size: 20px;    
+    transition: .5s;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0 20px 0;
+    color: rgba(0, 0, 0, 0.8);
+    letter-spacing: 1px;
+    font-size: 25px;
+    color: #ff7f22;
+}
+
+.select_allies_selection_accept:hover{
+    transition: .5s;
+    color: white;
+    background-color: #ff7f22;
+}
+

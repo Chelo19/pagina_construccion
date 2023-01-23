@@ -6,38 +6,18 @@ import LoadingScreen from '../components/LoadingScreen';
 import { Link } from "react-router-dom";
 import LoadingScreen2 from '../components/LoadingScreen2';
 
-export default function ProfileList(){
+export default function SelectAllies(){
     const navigate = useNavigate();
-    const { type } = useParams();
     const [isLoading, setIsLoading] = useState(true);
 
     const [searchInput, setSearchInput] = useState('');
     const [profiles, setProfiles] = useState([]);
     const [noItems, setNoItems] = useState(false);
-
+    const [checkedValues, setValue] = useState([]);
+    
     useEffect(() => {
-        if(type == 'clientes'){
-            getProfiles();
-        }
-        else if(type == 'aliados'){
-            getAllyProfiles();
-        }
+        getAllyProfiles();
     }, [])
-
-    const getProfiles = async () => {
-        const { data, error } = await supabase
-        .from('account')
-        .select()
-        .order('id', { ascending: true })
-        .match({ role: 'cliente' });
-        if(data){
-            setProfiles(data);
-            setIsLoading(false);
-        }
-        if(data.length == 0){
-            setNoItems(true);
-        }
-    }
 
     const getAllyProfiles = async () => {
         const { data, error } = await supabase
@@ -57,6 +37,22 @@ export default function ProfileList(){
     const profileFiltered = profiles.filter((profile) => {
         return profile.name.match(searchInput) || profile.id == parseInt(searchInput) || profile.email.match(searchInput)
     });
+
+    const acceptSelection = () => {
+        console.log(checkedValues);
+    }
+
+    const handleChange = (e) => {
+        const {value, checked} = e.target;
+        if(checked){
+            setValue(pre => [...pre,value]);
+        }
+        else{
+            setValue(pre => {
+                return [...pre.filter(skill => skill!==value)]
+            })
+        }
+    }
 
     return(
         <>
@@ -78,13 +74,27 @@ export default function ProfileList(){
                                 </div>
                                 {profileFiltered.map((profile) => {
                                     return(
-                                        <Link to={`/profile/${profile.id}`} key={profile.id} className='profile_list_results_item'>
+                                        <div key={profile.id} className='select_allies_results_item'>
                                             <span>{profile.id}</span>
                                             <span>{profile.name}</span>
-                                        </Link>
+                                            <input type={'checkbox'} value={profile.id} onChange={handleChange}></input>
+                                        </div>
                                     )
                                 })}
                             </div>
+                        </div>
+                        <div className='select_allies_selection_container'>
+                            <span>Seleccionados:</span>
+                            {checkedValues.map((value) => {
+                                return(
+                                    <div key={value}>
+                                        id: {value}
+                                    </div>
+                                )
+                            })}
+                        </div>
+                        <div className='select_allies_selection_accept' onClick={acceptSelection}>
+                            <span>Aceptar seleccion</span>
                         </div>
                     </div>
                 </div>

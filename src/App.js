@@ -52,6 +52,7 @@ import SentCotizaciones from "./pages/SentCotizaciones";
 import Requests from "./pages/Requests";
 import WebPage from "./pages/WebPage";
 import ProfileList from "./pages/ProfileList";
+import SelectAllies from "./pages/SelectAllies";
 
 import { supabase } from "./supabase/client";
 
@@ -138,7 +139,8 @@ function App() {
         <Route path="/sent-cotizaciones" element={<SentCotizaciones/>}/>
         <Route path="/requests" element={<Requests/>}/>
         <Route path="/webpage" element={<WebPage/>}/>
-        <Route path="/profile-list" element={<ProfileList/>}/>
+        <Route path="/profile-list/:type" element={<ProfileList/>}/>
+        <Route path="/select-allies" element={<SelectAllies/>}/>
       </Routes>
       <Footer/>
     </div>
