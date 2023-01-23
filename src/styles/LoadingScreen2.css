@@ -1,0 +1,27 @@
+.loading_screen2_background{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+}
+
+.loading_screen2_container{
+    height: calc(100% - 50px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loading_screen2_spinner{
+    margin-bottom: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    font-size: 50px;
+    letter-spacing: 1px;
+    color: rgba(0, 0, 0, 0.3);
+}

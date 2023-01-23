@@ -14,12 +14,12 @@ export default function Cotizaciones(){
             <div className='cotizaciones_item'>
                     <div className='cotizaciones_item_container'>
                         <span id='cotizaciones_item_user'>
-                            <Link to={'/profile/1'}>
+                            <Link to={'/profile/314'}>
                                 Marcelo Amado De Leon Gomez
                             </Link>
                         </span>
                         <span id='cotizaciones_item_id'>
-                            <Link to={'/profile/1'}>
+                            <Link to={'/profile/314'}>
                                 id: 55
                             </Link>
                         </span>
@@ -45,12 +45,12 @@ export default function Cotizaciones(){
                 <div className='cotizaciones_item'>
                     <div className='cotizaciones_item_container'>
                         <span id='cotizaciones_item_user'>
-                            <Link to={'/profile/1'}>
+                            <Link to={'/profile/314'}>
                                 Marcelo Amado De Leon Gomez
                             </Link>
                         </span>
                         <span id='cotizaciones_item_id'>
-                            <Link to={'/profile/1'}>
+                            <Link to={'/profile/314'}>
                                 id: 55
                             </Link>
                         </span>
@@ -76,12 +76,12 @@ export default function Cotizaciones(){
                 <div className='cotizaciones_item'>
                     <div className='cotizaciones_item_container'>
                         <span id='cotizaciones_item_user'>
-                            <Link to={'/profile/1'}>
+                            <Link to={'/profile/314'}>
                                 Marcelo Amado De Leon Gomez
                             </Link>
                         </span>
                         <span id='cotizaciones_item_id'>
-                            <Link to={'/profile/1'}>
+                            <Link to={'/profile/314'}>
                                 id: 55
                             </Link>
                         </span>

@@ -113,3 +113,11 @@
     color: #ff7f22;
     overflow: hidden;
 }
+
+.profile_no_items{
+    font-size: 40px;
+    text-align: center;
+    letter-spacing: 1px;
+    color: rgba(0, 0, 0, 0.5);
+    margin-bottom: 150px;
+}

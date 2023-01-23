@@ -28,14 +28,11 @@ export default function Header(){
             .eq('uuid', user.id);
             if(data[0].role == 'administrador' || data[0].role == 'gerente'){
                 setIsAdmin(true);
-                console.log("Es admin");
             }
             if(data[0].role == 'gerente'){
                 setIsManager(true);
-                console.log("Es Manager");
             }
         }
-        console.log(user);
     }
 
     const signOut = async () => {
