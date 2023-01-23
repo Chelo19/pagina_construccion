@@ -1,17 +1,23 @@
 .profile_background{
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: end;
+    justify-content: start;
     font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
 }
 
 .profile_container{
-    height: calc(100% - 50px);
+    margin-top: 50px;
     width: 100%;
+    height: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 20px;
+    padding: 20px 0 20px 0; 
 }
 
 .profile_display{
@@ -51,6 +57,7 @@
     text-align: center;
     font-size: 30px;
     border-bottom: 3px solid #ff7f22;
+    /* overflow: hidden; */
 }
 
 #profile_link{

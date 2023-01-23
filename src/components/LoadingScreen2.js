@@ -8,7 +8,7 @@ export default function LoadingScreen2(){
                 <div className='loading_screen2_spinner'>
                     <GridLoader color="#ff7f22"
                         size={50}/>
-                    <span>Cargando...</span>
+                    {/* <span>Cargando...</span> */}
                 </div>
             </div>
         </div>

@@ -42,7 +42,6 @@ export default function Profile(){
                         <div className='profile_display'>
                             {!noItems ?
                                 <>
-                                {console.log("entra")}
                                     <span id='profile_title'>Perfil de usuario</span>
                                     <div className='profile_img'>
                                         <img src={require('../img/aliados.png')}/>

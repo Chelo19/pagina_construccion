@@ -22,7 +22,7 @@ export default function UserProfile(){
                             </span>
                         </div>
                     </Link>
-                    <Link to={'/'} className='profiles_item'>
+                    <Link to={'/profile-list'} className='profiles_item'>
                         <div className='profiles_item_container'>
                             <div className='profiles_item_img'>
                                 <img src={require('../img/aliados.png')}/>
