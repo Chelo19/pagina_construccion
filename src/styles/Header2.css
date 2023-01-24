@@ -76,7 +76,7 @@
     display: none;
 }
 
-@media (max-width: 768px) {
+/* @media (max-width: 768px) { */
 
     .nav_items{
         position: absolute;
@@ -128,4 +128,4 @@
         transform: rotate(-45deg) translate(-5px, 1px);
     }
 
-}
+/* } */

@@ -320,12 +320,16 @@
 @media (max-width: 500px){
 
     .account_background{
-        padding-top: 30px;
-        padding-bottom: 30px;
-        height: auto;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-family: 'Poppins', sans-serif;
     }
 
     .selections{
+        margin-top: 50px;
         display: flex;
         flex-direction: column-reverse;
         padding: 0;

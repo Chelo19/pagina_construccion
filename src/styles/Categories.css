@@ -1,10 +1,10 @@
 .background_categories{
-    display: flex;
-    justify-content: center;
-    align-items: center;
     width: 100%;
-    margin-top: 120px;
-    padding-bottom: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
 }
 
 .categories_container{
@@ -147,13 +147,12 @@
 @media(max-width: 500px){
 
     .background_categories{
-        margin-top: 69px;
         padding-top: 20px;
         padding-bottom: 20px;
     }
 
     .categories_container{
-        width: 90%;
+        margin-top: 50px;
         gap: 10px;
     }
 

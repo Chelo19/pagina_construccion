@@ -269,17 +269,17 @@ export default function Account(){
                         </a>
                     </div>
                 </Link>
-                <Link to={"/client-service/"} onClick={() => navigate(`/client-service`)} className='selections_item' id='client_service_grid'>
+                <Link to={"/contact/"} onClick={() => navigate(`/contact`)} className='selections_item' id='client_service_grid'>
                     <div className='selections_item_left'>
-                        <a Link to="/client-service/" onClick={() => navigate(`/client-service`)} className='selection_logo'>
+                        <a Link to="/contact/" onClick={() => navigate(`/contact`)} className='selection_logo'>
                             <img src={require('../img/serviciocliente2.png')} id='package'/>
                         </a>
                     </div>
                     <div className='selections_item_right'>
-                        <a Link to="/client-service/" onClick={() => navigate(`/client-service`)} className='selections_item_title'>
+                        <a Link to="/contact/" onClick={() => navigate(`/contact`)} className='selections_item_title'>
                             <span>Servicio al cliente</span>
                         </a>
-                        <a Link to="/client-service/" onClick={() => navigate(`/client-service`)} className='selections_item_description'>
+                        <a Link to="/contact/" onClick={() => navigate(`/contact`)} className='selections_item_description'>
                             <span>Contacta con un socio para resolver dudas que tengas</span>
                         </a>
                     </div>
