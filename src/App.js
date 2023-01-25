@@ -140,7 +140,7 @@ function App() {
         <Route path="/requests" element={<Requests/>}/>
         <Route path="/webpage" element={<WebPage/>}/>
         <Route path="/profile-list/:type" element={<ProfileList/>}/>
-        <Route path="/select-allies" element={<SelectAllies/>}/>
+        <Route path="/select-allies/:cotid" element={<SelectAllies/>}/>
       </Routes>
       <Footer/>
     </div>

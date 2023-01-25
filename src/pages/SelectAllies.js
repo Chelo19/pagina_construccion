@@ -67,13 +67,16 @@ export default function SelectAllies(){
         setPrompt(null);
     }
 
-    function timeout(number) {
-        return new Promise( res => setTimeout(res, number) );
+    const deselectSelection = (e) => {
+        let temp = profiles;
+        temp.push(e);
+        setProfiles(temp);
+        var index = selections.indexOf(e);
+        selections.splice(index, 1);
     }
 
-    const debug = () => {
-        console.log(selections);
-        console.log(profiles);
+    function timeout(number) {
+        return new Promise( res => setTimeout(res, number) );
     }
 
     return(
@@ -119,7 +122,7 @@ export default function SelectAllies(){
                                         <div key={selection.id} className='select_allies_results_item'>
                                             <span>{selection.id}</span>
                                             <span>{selection.name}</span>
-                                            <input type={'radio'} value={selection.id}></input>
+                                            <input type={'radio'} value={selection.id} onChange={(e) => deselectSelection(selection)}></input>
                                         </div>
                                     )
                                 })}
@@ -127,9 +130,6 @@ export default function SelectAllies(){
                             </div>
                             <div className='select_allies_selection_accept' onClick={acceptSelection}>
                                 <span>Aceptar seleccion</span>
-                            </div>
-                            <div className='select_allies_selection_accept' onClick={debug}>
-                                <span>Debug</span>
                             </div>
                         </>
                     : 
