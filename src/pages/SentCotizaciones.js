@@ -2,73 +2,164 @@ import {useEffect, useState} from 'react';
 import {supabase} from '../supabase/client';
 import {useNavigate} from 'react-router-dom';
 import '../styles/Cotizaciones.css';
-import LoadingScreen from '../components/LoadingScreen';
 import { Link } from "react-router-dom";
+import LoadingScreen2 from '../components/LoadingScreen2';
+import _ from "lodash";
+
 
 export default function SentCotizaciones(){
     const navigate = useNavigate();
+    const [isLoading, setIsLoading] = useState(true);
+
+    const [noItems, setNoItems] = useState(false);
+    const [isPopUp, setIsPopUp] = useState(false);
+    const [isPopUpReject, setIsPopUpReject] = useState(false);
+    const [prompt, setPrompt] = useState(null);
+    const [promptStyle, setPromptStyle] = useState(null);
+    const [dateStyle, setDateStyle] = useState({color: '#0077b6'});
+
+    const [cotizaciones, setCotizaciones] = useState(null);
+    const [selectedOption, setSelectedOption] = useState(null);
+    const [selectedCotizacion ,setSelectedCotizacion] = useState(null);
+
+
+    useEffect(() => {
+        getSentCotizaciones();
+    }, []);
+
+    const getSentCotizaciones = async () => {
+        const { data, error } = await supabase
+        .from('cotizaciones')
+        .select(`*, service_id(*)`)
+        .order('id', { ascending: true });
+        setCotizaciones(data);
+        if(data.length > 0){
+            setIsLoading(false);
+        }
+        else{
+            setNoItems(true);
+        }
+    }
+
+    const acceptCotizacion = async () => {
+        console.log('Seleccion final: '  + selectedOption);
+        console.log('Para la cotizacion: '  + selectedCotizacion);
+        // acepta la cotizacion
+        setPromptStyle({backgroundColor: '#77DD77'});
+        setPrompt('Cotizacion Aceptada');
+        await timeout(2000);
+        setPrompt(null);
+    }
+
+    const endCotizacion = async () => {
+        // finaliza la cotizacion
+        setPromptStyle({backgroundColor: '#161825'});
+        setPrompt('Cotizacion Finalizada');
+        await timeout(2000);
+        setPrompt(null);
+    }
+
+    const selectOption = async (cotizacionId, i) => {
+        setIsPopUp(true);
+        setSelectedCotizacion(cotizacionId);
+        setSelectedOption(i);
+    }
+
+    function timeout(number) {
+        return new Promise( res => setTimeout(res, number) );
+    }
 
     return(
-        <div className='cotizaciones_background'>
-            <div className='cotizaciones_container'>
-                <div className='cotizaciones_item'>
-                    <div className='sent_cotizaciones_item_container'>
-                        <span id='cotizaciones_title'>
-                            Levantamiento de muro
-                        </span>
-                        <a href=''>
-                            <span id='cotizaciones_drive'>
-                                Link drive
-                            </span>
-                        </a>
-                        <span id='cotizaciones_instructions'>
-                            Selecciona la cotización que se adecúe a tus necesidades
-                        </span>
-                        <div className='sent_cotizaciones_item_buttons'>
-                            <div className='sent_cotizaciones_item_button'>
-                                A
+        <>
+            {!isLoading?
+                <div className='cotizaciones_background'>
+                    <div className='cotizaciones_container'>
+                        {!noItems ?
+                        <>
+                            {cotizaciones.map((cotizacion) => {
+                                return(
+                                    <div className='cotizaciones_item' key={cotizacion.id}>
+                                        <div className='sent_cotizaciones_item_container'>
+                                            <span id='cotizaciones_title'>
+                                                {cotizacion.service_id.name}
+                                            </span>
+                                            <a href={`${cotizacion.link_drive}`}>
+                                                <span id='cotizaciones_drive'>
+                                                    Link drive
+                                                </span>
+                                            </a>
+                                            <span id='cotizaciones_instructions'>
+                                                Selecciona la cotización que se adecúe a tus necesidades
+                                            </span>
+                                            <div className='sent_cotizaciones_item_buttons'>
+                                                {_.times(cotizacion.options_length, (i) => (
+                                                    <a className='sent_cotizaciones_item_button' onClick={(e) => selectOption(cotizacion.id, i + 1)} key={i}>
+                                                        {i + 1}
+                                                    </a>
+                                                ))}
+                                            </div>
+                                            <a className='sent_cotizaciones_item_end_cotizacion' onClick={(e) => setIsPopUpReject(true)}>
+                                                <span>Finalizar cotizacion</span>
+                                            </a>
+                                            <span id='sent_cotizaciones_item_end_date' style={dateStyle}>Fecha límite: 20/10/23</span>
+                                        </div>
+                                    </div>
+                                )})}
+                        </> 
+                        :
+                        <div className='cotizaciones_no_items'>
+                            <div className='cotizaciones_no_items_container'>
+                                <div className='cotizaciones_no_items_container_text'>
+                                    <span>Aún no tienes cotizaciones</span>
+                                    <span>Explora nuestros servicios <Link to={'/categories/1'} id='cotizaciones_no_items_container_link'>aquí</Link></span>
+                                </div>
                             </div>
-                            <div className='sent_cotizaciones_item_button'>
-                                B
-                            </div>
-                            <div className='sent_cotizaciones_item_button'>
-                                C
+                        </div>}
+                    </div>
+                    {isPopUp &&
+                        <div className='popup'>
+                            <div className='popup_container'>
+                                <div className='popup_item_container'>
+                                    <div className='popup_text'>
+                                        <span>¿Estás seguro de que deseas aceptar la cotización {selectedOption}?</span>
+                                    </div>
+                                    <div className='popup_buttons'>
+                                        <div className='popup_button' onClick={acceptCotizacion}>
+                                            <img src={require('../img/aceptar.png')}/>  
+                                        </div>
+                                        <div className='popup_button' onClick={(e) => {setIsPopUp(false); setSelectedCotizacion(null); setSelectedOption(null)}}>
+                                            <img src={require('../img/rechazar.png')}/>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <a className='sent_cotizaciones_item_end_cotizacion'>
-                            <span>Finalizar cotizacion</span>
-                        </a>
-                        <span id='sent_cotizaciones_item_end_date'>Fecha límite: 20/10/23</span>
-                    </div>
-                </div>
-                <div className='cotizaciones_item'>
-                    <div className='sent_cotizaciones_item_container'>
-                        <span id='cotizaciones_title'>
-                            Ampliacion de sala
-                        </span>
-                        <a href=''>
-                            <span id='cotizaciones_drive'>
-                                Link drive
-                            </span>
-                        </a>
-                        <span id='cotizaciones_instructions'>
-                            Selecciona la cotización que se adecúe a tus necesidades
-                        </span>
-                        <div className='sent_cotizaciones_item_buttons'>
-                            <div className='sent_cotizaciones_item_button'>
-                                A
-                            </div>
-                            <div className='sent_cotizaciones_item_button'>
-                                B
+                    }
+                    {isPopUpReject &&
+                        <div className='popup'>
+                            <div className='popup_container'>
+                                <div className='popup_item_container'>
+                                    <div className='popup_text'>
+                                        <span>¿Estás seguro de que quieres finalizar la cotización?</span>
+                                    </div>
+                                    <div className='popup_buttons'>
+                                        <div className='popup_button' onClick={endCotizacion}>
+                                            <img src={require('../img/aceptar.png')}/>  
+                                        </div>
+                                        <div className='popup_button' onClick={(e) => setIsPopUpReject(false)}>
+                                            <img src={require('../img/rechazar.png')}/>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <a className='sent_cotizaciones_item_end_cotizacion'>
-                            <span>Finalizar cotizacion</span>
-                        </a>
-                        <span id='sent_cotizaciones_item_end_date'>Fecha límite: 20/10/23</span>
-                    </div>
+                    }
+                    {prompt &&
+                        <div className="reg_log_prompt" style={promptStyle}>
+                            {prompt}
+                        </div>}
                 </div>
-            </div>
-        </div>
+            :<LoadingScreen2></LoadingScreen2>}
+        </>
     );
 }

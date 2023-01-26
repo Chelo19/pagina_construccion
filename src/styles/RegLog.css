@@ -89,7 +89,6 @@
     height: 50px;
     bottom: calc(0% + 10px);
     transition: 1s;
-    z-index: 2;
     position: fixed;
     background-color: #ff7f22;
     border-radius: 5px;
@@ -100,6 +99,7 @@
     justify-content: center;
     align-items: center;
     padding: 5px;
+    z-index: 3;             /*PARA POPUP ES ZINDEX 2, PARA HEADER ES 5, PARA FOOTER ES 1 Y PARA PROMPT ES 3*/
 }
 
 .reg_log_options a{
