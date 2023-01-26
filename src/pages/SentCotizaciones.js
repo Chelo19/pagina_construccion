@@ -35,6 +35,10 @@ export default function SentCotizaciones(){
                                 C
                             </div>
                         </div>
+                        <a className='sent_cotizaciones_item_end_cotizacion'>
+                            <span>Finalizar cotizacion</span>
+                        </a>
+                        <span id='sent_cotizaciones_item_end_date'>Fecha límite: 20/10/23</span>
                     </div>
                 </div>
                 <div className='cotizaciones_item'>
@@ -58,6 +62,10 @@ export default function SentCotizaciones(){
                                 B
                             </div>
                         </div>
+                        <a className='sent_cotizaciones_item_end_cotizacion'>
+                            <span>Finalizar cotizacion</span>
+                        </a>
+                        <span id='sent_cotizaciones_item_end_date'>Fecha límite: 20/10/23</span>
                     </div>
                 </div>
             </div>

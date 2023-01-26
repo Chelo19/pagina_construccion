@@ -136,11 +136,11 @@
 
 .sent_cotizaciones_item_container{
     width: 90%;
-    height: 70%;
     text-overflow: ellipsis;
     overflow: scroll;
     display: grid;
     place-items: center;
+    gap: 10px;
 }
 
 .sent_cotizaciones_item_container a{
@@ -148,7 +148,6 @@
 }
 
 .sent_cotizaciones_item_buttons{
-    height: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -173,4 +172,30 @@
     transition: 1s;
     border: 2px solid #ff7f22;
     background-color: white;
+}
+
+.sent_cotizaciones_item_end_cotizacion{
+    transition: 1s;
+    width: 60%;
+    place-self: center;
+    border: 2px solid rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    padding: 5px 5px 5px 5px;
+}
+
+.sent_cotizaciones_item_end_cotizacion span{
+    font-size: 15px;
+}
+
+.sent_cotizaciones_item_end_cotizacion:hover{
+    transition: .5s;
+    border: 2px solid #ff7f22;
+    background-color: white;
+}
+
+#sent_cotizaciones_item_end_date{
+    width: 100%;
+    text-align: left;
+    font-size: 12px;
+    place-self: center;
 }

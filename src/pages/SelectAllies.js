@@ -26,20 +26,22 @@ export default function SelectAllies(){
     }, [isLoading])
 
     const getAllyProfiles = async () => {
-        const { data, error } = await supabase
-        .from('account')
-        .select()
-        .order('id', { ascending: true })
-        .match({ role: 'aliado' });
-        if(data.length == selections.length + profiles.length){
-            return;
-        }
-        if(data){
-            setProfiles(data);
-            setIsLoading(false);
-        }
-        if(data.length == 0){
-            setNoItems(true);
+        if(profiles.length < 1){
+            const { data, error } = await supabase
+            .from('account')
+            .select()
+            .order('id', { ascending: true })
+            .match({ role: 'aliado' });
+            if(data.length == selections.length + profiles.length){
+                return;
+            }
+            if(data){
+                setProfiles(data);
+                setIsLoading(false);
+            }
+            if(data.length == 0){
+                setNoItems(true);
+            }
         }
     }
 
@@ -51,7 +53,14 @@ export default function SelectAllies(){
         setIsCotizacion(true);
     }
 
-    const handleChange = (e) => {
+    const handleChange = async (e) => {
+        if(selections.length == 4){
+            setPromptStyle({backgroundColor: '#161825'});
+            setPrompt('Solo puedes seleccionar 4 aliados');
+            await timeout(2000);
+            setPrompt(null);
+            return;
+        }
         let temp = selections;
         temp.push(e);
         setSelections(temp);
@@ -167,14 +176,14 @@ export default function SelectAllies(){
                                         <span>Cancelar</span>
                                     </a>
                                 </div>
-                                {prompt &&
-                                <div className="reg_log_prompt" style={promptStyle}>
-                                {prompt}
-                                </div>}
                             </div>
                         </div>
                     </>
                         }
+                        {prompt &&
+                        <div className="reg_log_prompt" style={promptStyle}>
+                        {prompt}
+                        </div>}
                     </div>
                 </div>
             : <LoadingScreen2></LoadingScreen2>
