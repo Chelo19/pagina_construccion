@@ -24,35 +24,74 @@ export default function SentCotizaciones(){
 
 
     useEffect(() => {
-        getSentCotizaciones();
+        getUser();
     }, []);
 
-    const getSentCotizaciones = async () => {
+    const getUser = async () => {
+        const { data: { user } } = await supabase.auth.getUser()
+        getSentCotizaciones(user);
+    }
+
+    const getSentCotizaciones = async (user) => {
+        console.log(user.email);
         const { data, error } = await supabase
         .from('cotizaciones')
         .select(`*, service_id(*)`)
+        .or("option_selected.is.null")
+        .match({ is_ended: false, account_email: user.email })
         .order('id', { ascending: true });
+        console.log(data);
+        console.log(error);
         setCotizaciones(data);
         if(data.length > 0){
             setIsLoading(false);
         }
         else{
             setNoItems(true);
+            setIsLoading(false);
         }
     }
 
     const acceptCotizacion = async () => {
-        console.log('Seleccion final: '  + selectedOption);
-        console.log('Para la cotizacion: '  + selectedCotizacion);
-        // acepta la cotizacion
-        setPromptStyle({backgroundColor: '#77DD77'});
-        setPrompt('Cotizacion Aceptada');
-        await timeout(2000);
-        setPrompt(null);
+        const { error } = await supabase
+        .from('cotizaciones')
+        .update({ option_selected: selectedOption })
+        .eq('id', selectedCotizacion);
+        if(!error){
+            setPromptStyle({backgroundColor: '#77DD77'});
+            setPrompt('Cotizacion Aceptada');
+            await timeout(2000);
+            setPrompt(null);
+            document.location.reload();
+        }
+        else{
+            console.log(error);
+            setPromptStyle({backgroundColor: '#161825'});
+            setPrompt('Intenta de nuevo');
+            await timeout(2000);
+            setPrompt(null);
+        }
     }
 
     const endCotizacion = async () => {
-        // finaliza la cotizacion
+        const { error } = await supabase
+        .from('cotizaciones')
+        .update({ is_ended: true })
+        .eq('id', selectedCotizacion);
+        if(!error){
+            setPromptStyle({backgroundColor: '#161825'});
+            setPrompt('Cotizacion finalizada');
+            await timeout(2000);
+            setPrompt(null);
+            document.location.reload();
+        }
+        else{
+            console.log(error);
+            setPromptStyle({backgroundColor: '#161825'});
+            setPrompt('Intenta de nuevo');
+            await timeout(2000);
+            setPrompt(null);
+        }
         setPromptStyle({backgroundColor: '#161825'});
         setPrompt('Cotizacion Finalizada');
         await timeout(2000);
@@ -71,7 +110,7 @@ export default function SentCotizaciones(){
 
     return(
         <>
-            {!isLoading?
+            {!isLoading ?
                 <div className='cotizaciones_background'>
                     <div className='cotizaciones_container'>
                         {!noItems ?
@@ -98,7 +137,7 @@ export default function SentCotizaciones(){
                                                     </a>
                                                 ))}
                                             </div>
-                                            <a className='sent_cotizaciones_item_end_cotizacion' onClick={(e) => setIsPopUpReject(true)}>
+                                            <a className='sent_cotizaciones_item_end_cotizacion' onClick={(e) => {setIsPopUpReject(true); setSelectedCotizacion(cotizacion.id)}}>
                                                 <span>Finalizar cotizacion</span>
                                             </a>
                                             <span id='sent_cotizaciones_item_end_date' style={dateStyle}>Fecha límite: 20/10/23</span>

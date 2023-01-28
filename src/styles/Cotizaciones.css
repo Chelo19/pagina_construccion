@@ -120,6 +120,7 @@
 }
 
 #cotizaciones_title{
+    max-width: 100%;
     color: rgba(0, 0, 0, 0.8);
     font-size: 25px;
     letter-spacing: 1px;
@@ -131,6 +132,7 @@
 }
 
 #cotizaciones_instructions{
+    width: 80%;
     font-size: 15px;
     color: rgba(0, 0, 0, 0.5);
 }
@@ -150,9 +152,11 @@
 
 .sent_cotizaciones_item_buttons{
     display: flex;
+    max-width: 90%;
     justify-content: center;
     align-items: center;
     gap: 10px;
+    overflow: hidden;
 }
 
 .sent_cotizaciones_item_button{
@@ -244,6 +248,14 @@
     text-align: center;
     letter-spacing: 1px;
     color: rgba(0, 0, 0, 0.8);
+}
+
+#popup_text_accept{
+    color: #33ab5f;
+}
+
+#popup_text_reject{
+    color: #ff5252;
 }
 
 .popup_buttons{
