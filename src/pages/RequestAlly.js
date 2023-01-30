@@ -22,6 +22,8 @@ export default function RequestAlly(){
     const [isInfo, setIsInfo] = useState(true);
 
     const [categories, setCategories] = useState(null);
+    const [enterpriseName, setEnterpriseName] = useState(null);
+    const [rfc, setRfc] = useState(null);
 
     useEffect(() => {
         getUser();
@@ -85,8 +87,6 @@ export default function RequestAlly(){
         );
     };
     
-    console.log(response);
-
     //
 
     const [planSelection, setPlanSelection] = useState(null);
@@ -94,15 +94,43 @@ export default function RequestAlly(){
     const [monthlyStyle, setMonthlyStyle] = useState(null);
 
     const changePlanSelection = (selection) => {
-        console.log(selection);
         if(selection == 'monthly'){
+            setPlanSelection(1);
             setMonthlyStyle({border: '1px solid #ff7f22'});
             setAnualStyle({border: '1px solid rgba(0, 0, 0, 0.2)'});
         }
         if(selection == 'anual'){
+            setPlanSelection(2);
             setAnualStyle({border: '1px solid #ff7f22'});
             setMonthlyStyle({border: '1px solid rgba(0, 0, 0, 0.2)'});
         }
+    }
+    
+    const [prompt, setPrompt] = useState(null);
+    const [promptStyle, setPromptStyle] = useState(null);
+
+    const sendRequest = async () => {
+        console.log(enterpriseName);
+        console.log(rfc);
+        console.log(response);
+        console.log(planSelection);
+        if(enterpriseName && rfc && response && planSelection){
+            console.log('cumple');
+            setPromptStyle({backgroundColor: '#77DD77'});
+            setPrompt('Solicitud enviada');
+            await timeout(2000);
+            setPrompt(null);
+        }
+        else{
+            setPromptStyle({backgroundColor: '#161825'});
+            setPrompt('Faltan campos por llenar');
+            await timeout(2000);
+            setPrompt(null);
+        }
+    }
+
+    function timeout(number) {
+        return new Promise( res => setTimeout(res, number) );
     }
 
     return(
@@ -126,8 +154,8 @@ export default function RequestAlly(){
                         <>
                             <span id='request_ally_info_title'>Crear perfil de aliado</span>
                             <div className='request_ally_form'>
-                                <TextField className='request_ally_input' label="Nombre de la empresa" variant="outlined" />
-                                <TextField className='request_ally_input' label="RFC" variant="outlined" color='primary' />
+                                <TextField className='request_ally_input' label="Nombre de la empresa" variant="outlined" onChange={(e) => setEnterpriseName(e.target.value)} />
+                                <TextField className='request_ally_input' label="RFC" variant="outlined" onChange={(e) => setRfc(e.target.value.toUpperCase())} />
                                 <FormControl sx={{ m: 1 }} className='request_ally_input'>
                                     <InputLabel>Categorías</InputLabel>
                                     <Select
@@ -150,8 +178,8 @@ export default function RequestAlly(){
                                     </Select>
                                 </FormControl>
                             </div>
+                            <span id='request_ally_info_title'>Planes</span>
                             <div className='request_ally_info_request'>
-                                <span id='request_ally_info_title'>Planes</span>
                                 <div className='request_ally_info_request_item' onClick={(e) => changePlanSelection('monthly')} style={monthlyStyle}>
                                     <span id='request_ally_info_request_item_title'>Membresía mensual</span>
                                     <span id='request_ally_info_request_item_price'>$499 por mes</span>
@@ -163,8 +191,15 @@ export default function RequestAlly(){
                                     <span id='request_ally_info_request_item_text'>Inicia cuando obtienes tu primer servicio con DREC</span>
                                 </div>
                             </div>
+                            <div className='request_ally_send_button' onClick={sendRequest}>
+                                Solicitar
+                            </div>
                         </>}
                     </div>
+                    {prompt &&
+                        <div className="reg_log_prompt" style={promptStyle}>
+                            {prompt}
+                        </div>}
                 </div>
             : <LoadingScreen2></LoadingScreen2>}
         </>
