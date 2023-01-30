@@ -55,8 +55,10 @@ export default function ProfileList(){
     }
 
     const profileFiltered = profiles.filter((profile) => {
-        return profile.name.match(searchInput) || profile.id == parseInt(searchInput) || profile.email.match(searchInput)
+        return profile.name.toLowerCase().match(searchInput) || profile.id == parseInt(searchInput) || profile.email.match(searchInput)
     });
+
+    console.log(searchInput);
 
     return(
         <>
@@ -67,7 +69,7 @@ export default function ProfileList(){
                             <input
                             type="text"
                             placeholder="Buscar por nombre o id"
-                            onChange={(e) => setSearchInput(e.target.value)}
+                            onChange={(e) => setSearchInput(e.target.value.toLowerCase())}//
                             value={searchInput} />
                         </div>
                         <div className='profile_list_results'>

@@ -53,6 +53,7 @@ import Requests from "./pages/Requests";
 import WebPage from "./pages/WebPage";
 import ProfileList from "./pages/ProfileList";
 import SelectAllies from "./pages/SelectAllies";
+import RequestAlly from "./pages/RequestAlly";
 
 import { supabase } from "./supabase/client";
 
@@ -141,6 +142,7 @@ function App() {
         <Route path="/webpage" element={<WebPage/>}/>
         <Route path="/profile-list/:type" element={<ProfileList/>}/>
         <Route path="/select-allies/:cotid" element={<SelectAllies/>}/>
+        <Route path="/request-ally" element={<RequestAlly/>}/>
       </Routes>
       <Footer/>
     </div>

@@ -10,29 +10,58 @@ export default function Profile(){
     const { id } = useParams();
     const [isLoading, setIsLoading] = useState(true);
 
-    const [isAlly, setIsAlly] = useState(true);
-    const [isAdmin, setIsAdmin] = useState(true);
+    const [isAlly, setIsAlly] = useState(false);
+    const [isAdmin, setIsAdmin] = useState(false);
     
     const [profile, setProfile] = useState(null);
     const [noItems, setNoItems] = useState(false);
 
     useEffect(() => {
+        getUser();
         getProfile();
     }, [])
+    
+    const getUser = async () => {
+        const { data: { user } } = await supabase.auth.getUser();
+        const { data, error } = await supabase
+        .from('account')
+        .select()
+        .match({ uuid: user.id });
+        if(data[0].role == 'administrador' || data[0].role == 'gerente'){
+            setIsAdmin(true);
+            setIsLoading(false);
+        }
+        else{
+            console.log(data[0]);
+            if(data[0].id == id){
+                setIsLoading(false);
+            }
+            else{
+                window.alert('No puedes acceder a este perfil');
+                navigate('/');
+            }
+        }
+    }
 
-    const getProfile = async() => {
+    const getProfile = async () => {
         const { data, error } = await supabase
         .from('account')
         .select()
         .match({ id: id });
         if(data){
             setProfile(data[0]);
-            setIsLoading(false);
+            checkRole(data[0])
         }
         if(data.length == 0){
             setNoItems(true);
         }
     }
+
+    const checkRole = (profile) => {
+        if(profile.role == 'aliado') setIsAlly(true);
+        if(profile.role == 'cliente') return;
+    }
+
 
     return(
         <>
@@ -93,7 +122,9 @@ export default function Profile(){
                                             </div>
                                         </div>
                                     }
-                                    <span id='profile_link'><Link to={'/'}>Quiero ser aliado</Link></span>
+                                    {!isAlly &&
+                                        <span id='profile_link'><Link to={'/request-ally'}>Quiero ser aliado</Link></span>
+                                    }
                                 </>
                             : <div className='profile_no_items'>No se encontró usuario con Id: {id}</div>}
                         </div>
