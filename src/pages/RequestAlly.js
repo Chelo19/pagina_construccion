@@ -13,8 +13,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import TextField from '@mui/material/TextField';
-import { createTheme } from '@mui/material/styles';
-import { green, orange } from '@mui/material/colors';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 export default function RequestAlly(){
     const navigate = useNavigate();
@@ -90,6 +89,22 @@ export default function RequestAlly(){
 
     //
 
+    const [planSelection, setPlanSelection] = useState(null);
+    const [anualStyle, setAnualStyle] = useState(null);
+    const [monthlyStyle, setMonthlyStyle] = useState(null);
+
+    const changePlanSelection = (selection) => {
+        console.log(selection);
+        if(selection == 'monthly'){
+            setMonthlyStyle({border: '1px solid #ff7f22'});
+            setAnualStyle({border: '1px solid rgba(0, 0, 0, 0.2)'});
+        }
+        if(selection == 'anual'){
+            setAnualStyle({border: '1px solid #ff7f22'});
+            setMonthlyStyle({border: '1px solid rgba(0, 0, 0, 0.2)'});
+        }
+    }
+
     return(
         <>
             {!isLoading ?
@@ -137,12 +152,12 @@ export default function RequestAlly(){
                             </div>
                             <div className='request_ally_info_request'>
                                 <span id='request_ally_info_title'>Planes</span>
-                                <div className='request_ally_info_request_item'>
+                                <div className='request_ally_info_request_item' onClick={(e) => changePlanSelection('monthly')} style={monthlyStyle}>
                                     <span id='request_ally_info_request_item_title'>Membresía mensual</span>
                                     <span id='request_ally_info_request_item_price'>$499 por mes</span>
                                     <span id='request_ally_info_request_item_text'>Inicia cuando obtienes tu primer servicio con DREC</span>
                                 </div>
-                                <div className='request_ally_info_request_item'>
+                                <div className='request_ally_info_request_item' onClick={(e) => changePlanSelection('anual')} style={anualStyle}>
                                     <span id='request_ally_info_request_item_title'>Membresía anual</span>
                                     <span id='request_ally_info_request_item_price'>$399 por mes</span>
                                     <span id='request_ally_info_request_item_text'>Inicia cuando obtienes tu primer servicio con DREC</span>
