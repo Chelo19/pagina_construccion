@@ -13,6 +13,7 @@ export default function Header(){
     const [isLogged, setIsLogged] = useState(false);
     const [isAdmin, setIsAdmin] = useState(false);
     const [isManager, setIsManager] = useState(false);
+    const [userId, setUserId] = useState(null);
 
     useEffect(() => {
         getUserMethod();
@@ -26,6 +27,7 @@ export default function Header(){
             .from('account')
             .select()
             .eq('uuid', user.id);
+            setUserId(data[0].id);
             if(data[0].role == 'administrador' || data[0].role == 'gerente'){
                 setIsAdmin(true);
             }
@@ -51,7 +53,7 @@ export default function Header(){
                 </div>
                 <div className={`nav_items ${isOpen && "open"}`}>
                     <Link to={'/'} className='nav_item_listed' onClick={ () => setIsOpen(!isOpen)}><span>Inicio</span></Link>
-                    <Link to={'/account'} className='nav_item_listed' onClick={ () => setIsOpen(!isOpen)}><span>Perfil</span></Link>
+                    <Link to={`/profile/${userId}`} className='nav_item_listed' onClick={ () => setIsOpen(!isOpen)}><span>Perfil</span></Link>
                     <Link to={'/contact/0'} className='nav_item_listed' onClick={ () => setIsOpen(!isOpen)}><span>Contacto</span></Link>
                     <Link to={'/about-us'} className='nav_item_listed' onClick={ () => setIsOpen(!isOpen)}><span>Nosotros</span></Link>
                     <Link to={'/'} className='nav_item_listed' onClick={ () => setIsOpen(!isOpen)}><span>Aliado</span></Link>

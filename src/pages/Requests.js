@@ -15,6 +15,8 @@ export default function Requests(){
     const [noItems, setNoItems] = useState(false);
     const [isPopUp, setIsPopUp] = useState(false);
     const [isPopUpReject, setIsPopUpReject] = useState(false);
+    const [isAccepting, setIsAccepting] = useState(false);
+    const [isRejecting, setIsRejecting] = useState(false);
 
     const [requests, setRequests] = useState(null);
     const [selectedRequest, setSelectedRequest] = useState(null);
@@ -34,27 +36,36 @@ export default function Requests(){
     }
 
     const acceptRequest = async () => {
-        let currentRequest = requests.filter((request) => {
-            return request.id == selectedRequest
-        });
-        if(currentRequest[0].is_ally_request){
+        if(selectedRequest.is_ally_request){
             const { error } = await supabase
             .from('account')
             .update({ role: 'aliado' })
-            .eq('id', currentRequest[0].account_email.id);
+            .eq('id', selectedRequest.account_email.id);
             if(!error){
                 const { error } = await supabase
                 .from('requests')
                 .update({ is_solved: true })
-                .eq('id', selectedRequest);
-                setPromptStyle({backgroundColor: '#77DD77'});
-                setPrompt('Solicitud Aceptada');
-                await timeout(2000);
-                setPrompt(null);
-                document.location.reload();
+                .eq('id', selectedRequest.id);
+                if(!error){
+                    setPromptStyle({backgroundColor: '#77DD77'});
+                    setPrompt('Solicitud Aceptada');
+                    await timeout(2000);
+                    setPrompt(null);
+                    document.location.reload();
+                }
+                else{
+                    console.log(error);
+                    console.log("1");
+                    setPromptStyle({backgroundColor: '#161825'});
+                    setPrompt('Intenta de nuevo');
+                    await timeout(2000);
+                    setPrompt(null);
+                    return;
+                }
             }
             else{
                 console.log(error);
+                console.log("2");
                 setPromptStyle({backgroundColor: '#161825'});
                 setPrompt('Intenta de nuevo');
                 await timeout(2000);
@@ -67,7 +78,7 @@ export default function Requests(){
         const { error } = await supabase
         .from('requests')
         .update({ is_solved: true })
-        .eq('id', selectedRequest);
+        .eq('id', selectedRequest.id);
         if(!error){
             setPromptStyle({backgroundColor: '#ff5252'});
             setPrompt('Petición rechazada');
@@ -93,96 +104,80 @@ export default function Requests(){
             {!isLoading ?
                 <div className='requests_background'>
                     <div className='requests_container'>
-                        {!noItems ?
-                        <>
-                            {requests.map((request) => {
-                                return(
-                                    <div className='requests_item' key={request.id}>
-                                        <div className='requests_item_container'>
-                                            <span id='requests_item_request'>
-                                                Solicitud {request.id}
-                                            </span>
-                                            <span id='requests_item_user'>
-                                                <Link to={'/profile/1'}>
-                                                    {request.account_email.name}
-                                                </Link>
-                                            </span>
-                                            <span id='requests_item_id'>
-                                                <Link to={'/profile/1'}>
-                                                    id: {request.account_email.id}
-                                                </Link>
-                                            </span>
+                        {!selectedRequest ?
+                            <>
+                                <span className='requests_title'>Solicitudes</span>
+                                {requests.map((request) => {
+                                    return(
+                                        <div className='requests_item' onClick={(e) => setSelectedRequest(request)} key={request.id}>
+                                            <span>{request.account_email.email}</span>
+                                            <span>id de cuenta: {request.account_email.id}</span>
                                             {request.is_ally_request &&
-                                                <span id='requests_item_request'>
-                                                    Solicita ser aliado
-                                                </span>
+                                                <span>Solicita ser aliado</span>
                                             }
-                                            <div className='requests_item_buttons' onClick={(e) => setSelectedRequest(request.id)}>
-                                                <div className='requests_item_button' onClick={(e) => setIsPopUp(true)}>
-                                                    <img src={require('../img/aceptar.png')}/>  
-                                                </div>
-                                                <div className='requests_item_button' onClick={(e) => setIsPopUpReject(true)}>
-                                                    <img src={require('../img/rechazar.png')}/>
-                                                </div>
-                                            </div>
+                                        </div>
+                                    );
+                                })}
+                            </>
+                        : 
+                            <div className='requests_selected_request'>
+                                <div className='requests_selected_request_content'>
+                                    <span><span className='requests_selected_request_orange'>id de solicitud:</span> {selectedRequest.id}</span>
+                                    <span><span className='requests_selected_request_orange'>Email:</span> {selectedRequest.account_email.email}</span>
+                                    <span><span className='requests_selected_request_orange'>id de cuenta:</span> {selectedRequest.account_email.id}</span>
+                                    <span><span className='requests_selected_request_orange'>Nombre de la empresa:</span> {selectedRequest.enterprise_name}</span>
+                                    <span><span className='requests_selected_request_orange'>RFC:</span> {selectedRequest.rfc}</span>
+                                    <span><span className='requests_selected_request_orange'>Plan seleccionado:</span> {selectedRequest.plan_selection == 1 && <>Mensual</>}{selectedRequest.plan_selection == 2 && <>Anual</>}</span>
+                                    <span className='requests_selected_request_orange'>Categorías:</span>
+                                    {selectedRequest.categories.map((category) => {
+                                        return(
+                                            <span key={category}>- {category}</span>
+                                        );
+                                    })}
+                                </div>
+                                {(!isAccepting && !isRejecting) &&
+                                    <div className='requests_selected_request_buttons'>
+                                        <div className='requests_selected_request_button' id='requests_selected_request_button_accept' onClick={(e) => setIsAccepting(true)}>
+                                            Aceptar solicitud
+                                        </div>
+                                        <div className='requests_selected_request_button' id='requests_selected_request_button_reject' onClick={(e) => setIsRejecting(true)}>
+                                            Rechazar solicitud
+                                        </div>
+                                        <div className='requests_selected_request_button' id='requests_selected_request_button_exit' onClick={(e) => setSelectedRequest(null)}>
+                                            Regresar
                                         </div>
                                     </div>
-                                )
-                            })}
-                        </>
-                        :
-                        <div className='cotizaciones_no_items'>
-                            <div className='cotizaciones_no_items_container'>
-                                <div className='cotizaciones_no_items_container_text'>
-                                    <span>Aún no hay solicitudes</span>
-                                </div>
-                            </div>
-                        </div>}
-                        {prompt &&
-                            <div className="reg_log_prompt" style={promptStyle}>
+                                }
+                                {isAccepting &&
+                                    <div className='requests_selected_request_buttons'>
+                                        <span>Seguro que quieres aceptar esta solicitud?</span>
+                                        <div className='requests_selected_request_button' id='requests_selected_request_button_accept' onClick={acceptRequest}>
+                                            Aceptar
+                                        </div>
+                                        <div className='requests_selected_request_button' id='requests_selected_request_button_exit' onClick={(e) => setIsAccepting(false)}>
+                                            Regresar
+                                        </div>
+                                    </div>
+                                }
+                                {isRejecting &&
+                                    <div className='requests_selected_request_buttons'>
+                                        <span>Seguro que quieres rechazar esta solicitud?</span>
+                                        <div className='requests_selected_request_button' id='requests_selected_request_button_reject' onClick={rejectRequest}>
+                                            Rechazar
+                                        </div>
+                                        <div className='requests_selected_request_button' id='requests_selected_request_button_exit' onClick={(e) => setIsRejecting(false)}>
+                                            Regresar
+                                        </div>
+                                    </div>
+                                }
+                            </div>}
+                    </div>
+                    {prompt &&
+                        <div className="reg_log_prompt" style={promptStyle}>
                             {prompt}
                         </div>}
-                    </div>
-                    {isPopUp &&
-                        <div className='popup'>
-                            <div className='popup_container'>
-                                <div className='popup_item_container'>
-                                    <div className='popup_text'>
-                                        <span>¿Estás seguro de que deseas <span id='popup_text_accept'>aceptar</span> la solicitud {selectedRequest}?</span>
-                                    </div>
-                                    <div className='popup_buttons'>
-                                        <div className='popup_button' onClick={(e) => acceptRequest()}>
-                                            <img src={require('../img/aceptar.png')}/>  
-                                        </div>
-                                        <div className='popup_button' onClick={(e) => setIsPopUp(false)}>
-                                            <img src={require('../img/rechazar.png')}/>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    }
-                    {isPopUpReject &&
-                        <div className='popup'>
-                            <div className='popup_container'>
-                                <div className='popup_item_container'>
-                                    <div className='popup_text'>
-                                        <span>¿Estás seguro de que deseas <span id='popup_text_reject'>rechazar</span> la solicitud {selectedRequest}?</span>
-                                    </div>
-                                    <div className='popup_buttons'>
-                                        <div className='popup_button' onClick={(e) => rejectRequest()}>
-                                            <img src={require('../img/aceptar.png')}/>  
-                                        </div>
-                                        <div className='popup_button' onClick={(e) => setIsPopUpReject(false)}>
-                                            <img src={require('../img/rechazar.png')}/>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    }
                 </div>
-            :<LoadingScreen2></LoadingScreen2>}
+            : <LoadingScreen2></LoadingScreen2>}
         </>
     );
 }

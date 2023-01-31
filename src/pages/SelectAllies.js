@@ -46,7 +46,7 @@ export default function SelectAllies(){
     }
 
     const profileFiltered = profiles.filter((profile) => {
-        return profile.name.match(searchInput) || profile.id == parseInt(searchInput) || profile.email.match(searchInput)
+        return profile.name.toLowerCase().match(searchInput) || profile.id == parseInt(searchInput) || profile.email.match(searchInput)
     });
 
     const acceptSelection = () => {
@@ -88,6 +88,8 @@ export default function SelectAllies(){
         return new Promise( res => setTimeout(res, number) );
     }
 
+    console.log(searchInput);
+
     return(
         <>
             {!isLoading ? 
@@ -99,7 +101,7 @@ export default function SelectAllies(){
                                 <input
                                 type="text"
                                 placeholder="Buscar por nombre o id"
-                                onChange={(e) => setSearchInput(e.target.value)}
+                                onChange={(e) => setSearchInput(e.target.value.toLowerCase())}
                                 value={searchInput} />
                             </div>
                             <div className='profile_list_results'>

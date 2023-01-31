@@ -24,6 +24,7 @@ export default function RequestAlly(){
     const [categories, setCategories] = useState(null);
     const [enterpriseName, setEnterpriseName] = useState(null);
     const [rfc, setRfc] = useState(null);
+    const [userEmail, setUserEmail] = useState(null);
 
     useEffect(() => {
         getUser();
@@ -35,6 +36,7 @@ export default function RequestAlly(){
         .from('account')
         .select()
         .match({ uuid: user.id });
+        setUserEmail(user.email);
         if(data[0].role == 'cliente'){
             getCategories();
         }
@@ -47,7 +49,6 @@ export default function RequestAlly(){
         const { data, error } = await supabase
         .from('categories')
         .select('*');
-        console.log(data);
         setCategories(data);
         setIsLoading(false);
     }
@@ -110,16 +111,38 @@ export default function RequestAlly(){
     const [promptStyle, setPromptStyle] = useState(null);
 
     const sendRequest = async () => {
-        console.log(enterpriseName);
-        console.log(rfc);
-        console.log(response);
-        console.log(planSelection);
-        if(enterpriseName && rfc && response && planSelection){
-            console.log('cumple');
-            setPromptStyle({backgroundColor: '#77DD77'});
-            setPrompt('Solicitud enviada');
-            await timeout(2000);
-            setPrompt(null);
+        if(enterpriseName && rfc && response.length > 0 && planSelection){
+            const { data, error } = await supabase
+            .from('requests')
+            .select('*')
+            .match({ account_email: userEmail, is_solved: false });
+            if(data.length > 0){
+                setPromptStyle({backgroundColor: '#161825'});
+                setPrompt('Ya tienes una solicitud pendiente');
+                await timeout(2000);
+                setPrompt(null);
+                return;
+            }
+            else{
+                const { error } = await supabase
+                .from('requests')
+                .insert({ account_email: userEmail, is_ally_request: true, categories: response, enterprise_name: enterpriseName, rfc: rfc, plan_selection: planSelection });
+                if(!error){
+                    setPromptStyle({backgroundColor: '#77DD77'});
+                    setPrompt('Solicitud enviada');
+                    await timeout(2000);
+                    setPrompt(null);
+                    return;
+                }
+                else{
+                    console.log(error);
+                    setPromptStyle({backgroundColor: '#161825'});
+                    setPrompt('Intenta de nuevo');
+                    await timeout(2000);
+                    setPrompt(null);
+                    return;
+                }
+            }
         }
         else{
             setPromptStyle({backgroundColor: '#161825'});

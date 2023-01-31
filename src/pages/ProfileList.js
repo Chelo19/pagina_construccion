@@ -69,7 +69,7 @@ export default function ProfileList(){
                             <input
                             type="text"
                             placeholder="Buscar por nombre o id"
-                            onChange={(e) => setSearchInput(e.target.value.toLowerCase())}//
+                            onChange={(e) => setSearchInput(e.target.value.toLowerCase())}
                             value={searchInput} />
                         </div>
                         <div className='profile_list_results'>
