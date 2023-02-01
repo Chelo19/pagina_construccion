@@ -1,0 +1,173 @@
+.sent_cotizaciones_background{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+}
+
+.sent_cotizaciones_container{
+    margin-top: 50px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 0 20px 0;
+}
+
+.sent_cotizaciones_title{
+    font-size: 30px;
+    letter-spacing: 2px;
+    text-align: center;
+}
+
+.sent_cotizaiones_item{
+    width: calc(100% - 60px);
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 18px;
+    padding: 10px;
+    letter-spacing: 1px;
+    text-align: left;
+}
+
+.sent_cotizaciones_item:hover{
+    transition: 1s;
+    border: 1px solid #ff7f22;
+    background-color: white;
+}
+
+.sent_cotizaciones_cotizacion{
+    width: calc(100% - 40px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.sent_cotizaciones_cotizacion_content{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.sent_cotizaciones_cotizacion_content span{
+    width: 100%;
+    text-align: left;
+    font-size: 20px;
+    letter-spacing: 1px;
+}
+
+.sent_cotizaciones_cotizacion_orange{
+    color: #ff7f22;
+}
+
+.sent_cotizaciones_cotizacion_link{
+    color: #0077b6;
+    text-align: left;
+    font-size: 20px;
+    letter-spacing: 1px;
+    text-decoration: none;
+    border-bottom: 2px solid #0077b6;
+}
+
+.sent_cotizaciones_cotizacion_instructions{
+    text-align: left;
+    font-size: 20px;
+    letter-spacing: 1px;
+    text-decoration: none;
+    border-top: 1px solid rgba(0, 0, 0, 0.8);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.8);
+    padding: 15px 0 15px 0;
+}
+
+.sent_cotizaciones_cotizacion_buttons{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.sent_cotizaciones_cotizacion_buttons span{
+    font-size: 20px;
+    text-align: left;
+    letter-spacing: 1px;
+    padding: 15px 0 15px 0;
+}
+
+.sent_cotizaciones_cotizacion_orange{
+    color: #ff7f22;
+}
+
+.sent_cotizaciones_cotizacion_button{
+    transition: .5s;
+    width: 100%;
+    height: 50px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    letter-spacing: 2px;
+    font-size: 20px;
+    border: 1px solid #ff7f22;
+    color: #ff7f22;
+}
+
+.sent_cotizaciones_cotizacion_button:hover{
+    transition: .5s;
+    background-color: #ff7f22;
+    color: #ebebeb;
+}
+
+#sent_cotizaciones_cotizacion_return{
+    transition: .5s;
+    border: 1px solid #161825;
+    color: #161825;
+}
+
+#sent_cotizaciones_cotizacion_return:hover{
+    transition: .5s;
+    background-color: #161825;
+    color: #ebebeb;
+}
+
+#sent_cotizaciones_cotizacion_accept{
+    transition: .5s;
+    border: 1px solid #77DD77;
+    color: #77DD77;
+}
+
+#sent_cotizaciones_cotizacion_accept:hover{
+    transition: .5s;
+    background-color: #77DD77;
+    color: #ebebeb;
+}
+
+#sent_cotizaciones_cotizacion_reject{
+    transition: .5s;
+    border: 1px solid #ff5252;
+    color: #ff5252;
+}
+
+#sent_cotizaciones_cotizacion_reject:hover{
+    transition: .5s;
+    background-color: #ff5252;
+    color: #ebebeb;
+}
