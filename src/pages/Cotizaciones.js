@@ -49,7 +49,7 @@ export default function Cotizaciones(){
                                                 {cotizacion.account_email.name}
                                             </Link>
                                         </span>
-                                        <span id='cotizaciones_item_id'>
+                                        <span id='cotizaciones_item_user'>
                                             <Link to={`/profile/${cotizacion.account_email.id}`}>
                                                 id: {cotizacion.account_email.id}
                                             </Link>
@@ -66,10 +66,10 @@ export default function Cotizaciones(){
                                     </div>
                                     <div className='cotizaciones_item_buttons'>
                                         <Link to={`/select-allies/${cotizacion.id}`} className='cotizaciones_item_button'>
-                                            <img src={require('../img/usuario_header2.png')}/>
+                                            Aliados
                                         </Link>
                                         <div className='cotizaciones_item_button'>
-                                            +
+                                            Agregar<br/>Cotización
                                         </div>
                                     </div>
                                 </div>
