@@ -56,6 +56,8 @@ import WebPage from "./pages/WebPage";
 import ProfileList from "./pages/ProfileList";
 import SelectAllies from "./pages/SelectAllies";
 import RequestAlly from "./pages/RequestAlly";
+import Admin from "./pages/Admin";
+import AcceptedCotizaciones from "./pages/AcceptedCotizaciones";
 
 import { supabase } from "./supabase/client";
 
@@ -156,6 +158,8 @@ function App() {
           <Route path="/profile-list/:type" element={<ProfileList/>}/>
           <Route path="/select-allies/:cotid" element={<SelectAllies/>}/>
           <Route path="/request-ally" element={<RequestAlly/>}/>
+          <Route path="/admin" element={<Admin/>}/>
+          <Route path="/accepted-cotizaciones" element={<AcceptedCotizaciones/>}/>
         </Routes>
         <Footer/>
       </div>

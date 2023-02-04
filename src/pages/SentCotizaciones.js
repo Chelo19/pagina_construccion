@@ -35,9 +35,10 @@ export default function SentCotizaciones(){
         .from('cotizaciones')
         .select(`*, service_id(*)`)
         .or("option_selected.is.null")
-        .match({ is_ended: false, account_email: user.email })
+        .match({ is_sent: true, is_ended: false, account_email: user.email })
         .order('id', { ascending: true });
         setCotizaciones(data);
+        console.log(data);
         if(data.length > 0){
             setIsLoading(false);
         }
@@ -134,10 +135,10 @@ export default function SentCotizaciones(){
                                 <span className='sent_cotizaciones_title'>Cotizaciones</span>
                                 {cotizaciones.map((cotizacion) => {
                                     return(
-                                        <div className='sent_cotizaiones_item' key={cotizacion.id} onClick={(e) => setSelectedCotizacion(cotizacion)}>
+                                        <Link className='sent_cotizaiones_item' key={cotizacion.id} onClick={(e) => setSelectedCotizacion(cotizacion)}>
                                             <span>{cotizacion.service_id.name}</span>
-                                            <span style={setDateStyle(cotizacion.created_at.split('T')[0])}>{cotizacion.created_at.split('T')[0]}</span>
-                                        </div>
+                                            <span style={setDateStyle(cotizacion.created_at.split('T')[0])}>Fecha de creación: {cotizacion.created_at.split('T')[0]}</span>
+                                        </Link>
                                     );
                                 })}
                             </>
@@ -152,38 +153,38 @@ export default function SentCotizaciones(){
                                 {(!selectedOption && !isRejecting) &&
                                     <div className='sent_cotizaciones_cotizacion_buttons'>
                                         {_.times(selectedCotizacion.options_length, (i) => (
-                                            <a className='sent_cotizaciones_cotizacion_button' onClick={(e) => setSelectedOption(i + 1)} key={i + 1}>
+                                            <Link className='sent_cotizaciones_cotizacion_button' onClick={(e) => setSelectedOption(i + 1)} key={i + 1}>
                                                 Cotización: {i + 1}
-                                            </a>
+                                            </Link>
                                         ))}
-                                        <a className='sent_cotizaciones_cotizacion_button' id='sent_cotizaciones_cotizacion_return' onClick={(e) => {setSelectedCotizacion(null); setSelectedOption(null)}}>
+                                        <Link className='sent_cotizaciones_cotizacion_button' id='sent_cotizaciones_cotizacion_return' onClick={(e) => {setSelectedCotizacion(null); setSelectedOption(null)}}>
                                             Regresar
-                                        </a>
-                                        <a className='sent_cotizaciones_cotizacion_button' id='sent_cotizaciones_cotizacion_reject' onClick={(e) => setIsRejecting(true)}>
+                                        </Link>
+                                        <Link className='sent_cotizaciones_cotizacion_button' id='sent_cotizaciones_cotizacion_reject' onClick={(e) => setIsRejecting(true)}>
                                             Finalizar Cotización
-                                        </a>
+                                        </Link>
                                     </div>
                                 }
                                 {(selectedOption && !isRejecting) &&
                                     <div className='sent_cotizaciones_cotizacion_buttons'>
                                         <span>¿Estás seguro de que deseas aceptar la opción <span className='sent_cotizaciones_cotizacion_orange'>{selectedOption}</span>?</span>
-                                        <a className='sent_cotizaciones_cotizacion_button' id='sent_cotizaciones_cotizacion_accept' onClick={(e) => acceptOption()}>
+                                        <Link className='sent_cotizaciones_cotizacion_button' id='sent_cotizaciones_cotizacion_accept' onClick={(e) => acceptOption()}>
                                             Aceptar
-                                        </a>
-                                        <a className='sent_cotizaciones_cotizacion_button' id='sent_cotizaciones_cotizacion_return' onClick={(e) => setSelectedOption(null)}>
+                                        </Link>
+                                        <Link className='sent_cotizaciones_cotizacion_button' id='sent_cotizaciones_cotizacion_return' onClick={(e) => setSelectedOption(null)}>
                                             Regresar
-                                        </a>
+                                        </Link>
                                     </div>
                                 }
                                 {isRejecting &&
                                     <div className='sent_cotizaciones_cotizacion_buttons'>
                                         <span>¿Estás seguro de que deseas finalizar la cotización?</span>
-                                        <a className='sent_cotizaciones_cotizacion_button' id='sent_cotizaciones_cotizacion_reject' onClick={(e) => endCotizacion()}>
+                                        <Link className='sent_cotizaciones_cotizacion_button' id='sent_cotizaciones_cotizacion_reject' onClick={(e) => endCotizacion()}>
                                             Finalizar
-                                        </a>
-                                        <a className='sent_cotizaciones_cotizacion_button' id='sent_cotizaciones_cotizacion_return' onClick={(e) => setIsRejecting(false)}>
+                                        </Link>
+                                        <Link className='sent_cotizaciones_cotizacion_button' id='sent_cotizaciones_cotizacion_return' onClick={(e) => setIsRejecting(false)}>
                                             Regresar
-                                        </a>
+                                        </Link>
                                     </div>
                                 }
                             </div>}
