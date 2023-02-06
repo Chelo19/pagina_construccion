@@ -50,7 +50,9 @@
 }
 
 .profiles_item_title{
-    font-size: 20px;
+    font-size: 18px;
+    color: rgba(0, 0, 0, 0.8);
+    letter-spacing: 1px;
     font-weight: bold;
     text-overflow: ellipsis;
     overflow: scroll;

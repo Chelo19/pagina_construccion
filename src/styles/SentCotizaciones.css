@@ -22,11 +22,26 @@
 }
 
 .sent_cotizaciones_title{
-    font-size: 28px;
+    font-size: 30px;
     letter-spacing: 2px;
     text-align: center;
     text-decoration: none;
     color: rgba(0, 0, 0, 0.8);
+}
+
+.user_sent_cotizaciones_title{
+    width: calc(100% - 40px);
+    font-size: 25px;
+    letter-spacing: 2px;
+    text-align: center;
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.user_sent_cotizaciones_message{
+    width: calc(100% - 40px);
+    text-align: center;
+    font-size: 20px;
 }
 
 .sent_cotizaiones_item{

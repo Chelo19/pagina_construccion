@@ -60,6 +60,7 @@
 }
 
 .nav_item_listed{
+    transition: .5s;
     display: flex;
     align-items: center;
     padding: 10px;

@@ -18,7 +18,7 @@ export default function UserCotizaciones(){
                                 <img src={require('../img/enviadas.png')}/>
                             </div>
                             <span className='profiles_item_title'>
-                                Enviadas
+                                Mis Cotizaciones
                             </span>
                         </div>
                     </Link>

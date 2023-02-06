@@ -16,6 +16,7 @@ export default function UserSentCotizaciones(){
     const [promptStyle, setPromptStyle] = useState(null);
 
     const [sentCotizaciones, setSentCotizaciones] = useState(null);
+    const [acceptedCotizaciones, setAcceptedCotizaciones] = useState(null);
     const [pendingCotizaciones, setPendingCotizaciones] = useState(null);
     const [endedCotizaciones, setEndedCotizaciones] = useState(null);
     const [selectedCotizacion, setSelectedCotizacion] = useState(null);
@@ -38,6 +39,9 @@ export default function UserSentCotizaciones(){
         .match({ account_email: user.email })
         .order('id', { ascending: true });
         if(data) setIsLoading(false);
+        setAcceptedCotizaciones(data.filter(cotizacion => {
+            return cotizacion.is_ended === false && cotizacion.option_selected != null;
+        }))
         setSentCotizaciones(data.filter(cotizacion => {
             return cotizacion.is_sent === false && cotizacion.is_ended === false && cotizacion.option_selected === null;
         }))
@@ -78,6 +82,8 @@ export default function UserSentCotizaciones(){
         return new Promise( res => setTimeout(res, number) );
     }
 
+    console.log(sentCotizaciones);
+
     return(
         <>
             {!isLoading ?
@@ -87,9 +93,21 @@ export default function UserSentCotizaciones(){
                         <>
                             {!selectedCotizacion ?
                             <>
-                                <span className='sent_cotizaciones_title'>Cotizaciones Enviadas</span>
-                                {pendingCotizaciones.length > 0 ? 
+                                {acceptedCotizaciones.length > 0 &&
                                 <>
+                                    <span className='user_sent_cotizaciones_title'>Cotizaciones Aceptadas</span>
+                                    {acceptedCotizaciones.map((cotizacion) => {
+                                        return(
+                                            <Link className='sent_cotizaiones_item' key={cotizacion.id} onClick={(e) => setSelectedCotizacion(cotizacion)}>
+                                                <span>{cotizacion.service_id.name}</span>
+                                                <span>Fecha: {cotizacion.created_at.split('T')[0]}</span>
+                                            </Link>
+                                        );
+                                    })}
+                                </>}
+                                {sentCotizaciones.length > 0 &&
+                                <>
+                                    <span className='user_sent_cotizaciones_title'>Cotizaciones Enviadas</span>
                                     {sentCotizaciones.map((cotizacion) => {
                                         return(
                                             <Link className='sent_cotizaiones_item' key={cotizacion.id} onClick={(e) => setSelectedCotizacion(cotizacion)}>
@@ -98,15 +116,10 @@ export default function UserSentCotizaciones(){
                                             </Link>
                                         );
                                     })}
-                                </>
-                                :
+                                </>}
+                                {pendingCotizaciones.length > 0 &&
                                 <>
-                                    Aún no tienes cotizaciones enviadas
-                                </>
-                                }
-                                <Link to={'/sent-cotizaciones'} className='sent_cotizaciones_title'>Cotizaciones Pendientes</Link>
-                                {pendingCotizaciones.length > 0 ? 
-                                <>
+                                    <Link to={'/sent-cotizaciones'} className='user_sent_cotizaciones_title'>Cotizaciones Pendientes</Link>
                                     {pendingCotizaciones.map((cotizacion) => {
                                         return(
                                             <Link to={'/sent-cotizaciones'} className='sent_cotizaiones_item' key={cotizacion.id}>
@@ -115,15 +128,10 @@ export default function UserSentCotizaciones(){
                                             </Link>
                                         );
                                     })}
-                                </>
-                                :
+                                </>}
+                                {endedCotizaciones.length > 0 &&
                                 <>
-                                    Aún no tienes cotizaciones pendientes
-                                </>
-                                }
-                                <span className='sent_cotizaciones_title'>Cotizaciones Terminadas</span>
-                                {endedCotizaciones.length > 0 ? 
-                                <>
+                                    <span className='user_sent_cotizaciones_title'>Cotizaciones Terminadas</span>
                                     {endedCotizaciones.map((cotizacion) => {
                                         return(
                                             <Link className='sent_cotizaiones_item' key={cotizacion.id} onClick={(e) => setSelectedCotizacion(cotizacion)}>
@@ -132,10 +140,6 @@ export default function UserSentCotizaciones(){
                                             </Link>
                                         );
                                     })}
-                                </>
-                                :
-                                <>
-                                    Aún no tienes cotizaciones finalizadas
                                 </>}
                             </>
                             :

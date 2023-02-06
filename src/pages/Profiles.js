@@ -35,7 +35,7 @@ export default function Profiles(){
                     <Link to={'/admin'} className='profiles_item'>
                         <div className='profiles_item_container'>
                             <div className='profiles_item_img'>
-                                <img src={require('../img/usuario.png')}/>
+                                <img src={require('../img/aliados.png')}/>
                             </div>
                             <span className='profiles_item_title'>
                                 Admin
