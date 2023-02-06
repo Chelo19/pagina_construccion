@@ -67,7 +67,7 @@ export default function AcceptedCotizaciones(){
                                 {cotizaciones.map((cotizacion) => {
                                     return(
                                     <div className='accepted_cotizaciones_item' key={cotizacion.id} onClick={(e) => setSelectedCotizacion(cotizacion)}>
-                                        <span>{cotizacion.id}</span>
+                                        <span>id: {cotizacion.id}</span>
                                         <span>{cotizacion.account_email}</span>
                                     </div>);
                                 })}

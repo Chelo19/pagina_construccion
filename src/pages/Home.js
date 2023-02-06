@@ -6,7 +6,7 @@ import AddToDB from '../components/AddToDB';
 import { useNavigate, useParams } from "react-router-dom";
 import '../styles/Home.css';
 import { AuthRedirect } from '../hooks/authUser';
-import LoadingScreen from '../components/LoadingScreen';
+import LoadingScreen2 from '../components/LoadingScreen2';
 import { Link } from 'react-router-dom';
 
 
@@ -360,7 +360,7 @@ export default function Home(){
                     </div>
                 </div>
             </>
-        : <LoadingScreen/>}
+        : <LoadingScreen2/>}
         </div>
         
     );

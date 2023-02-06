@@ -5,6 +5,16 @@ import "../styles/RegLog.css";
 import LoadingScreen from '../components/LoadingScreen';
 import { Link } from "react-router-dom";
 
+import TextField from '@mui/material/TextField';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import * as React from 'react';
+import IconButton from '@mui/material/IconButton';
+import InputAdornment from '@mui/material/InputAdornment';
+import InputLabel from '@mui/material/InputLabel';
+import FormControl from '@mui/material/FormControl';
+
 function Register() {
   const navigate = useNavigate();
 
@@ -16,6 +26,18 @@ function Register() {
 
   const [prompt, setPrompt] = useState(null);
   const [promptStyle, setPromptStyle] = useState(null);
+
+  //
+
+  const [showPassword, setShowPassword] = React.useState(false);
+
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
+
+  const handleMouseDownPassword = (event) => {
+      event.preventDefault();
+  };
+
+  //
 
   useEffect(() => {
     getUserMethod();
@@ -88,7 +110,52 @@ function Register() {
             </span>
           </div>
           <div className="reg_log_form">
-            <div className="reg_log_input">
+            <TextField className='reg_log_input' label="Correo" variant="outlined" onChange={(e) => setEmail(e.target.value)}/>
+            <TextField className='reg_log_input' label="Nombre" variant="outlined" onChange={(e) => setName(e.target.value)}/>
+            <TextField className='reg_log_input' label="Teléfono" variant="outlined" onChange={(e) => setPhone(e.target.value)}/>
+            <FormControl sx={{ m: 1, margin: 0}} variant="outlined" className='reg_log_input'>
+              <InputLabel htmlFor="filled-adornment-password">Contraseña</InputLabel>
+              <OutlinedInput
+                id="outlined-adornment-password"
+                type={showPassword ? 'text' : 'password'}
+                endAdornment={
+                <InputAdornment position="end">
+                    <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={handleClickShowPassword}
+                    onMouseDown={handleMouseDownPassword}
+                    edge="end"
+                    >
+                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                    </IconButton>
+                </InputAdornment>
+                }
+                label="Password"
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </FormControl>
+            <FormControl sx={{ m: 1, margin: 0}} variant="outlined" className='reg_log_input'>
+              <InputLabel htmlFor="filled-adornment-password">Confirmar Contraseña</InputLabel>
+              <OutlinedInput
+                id="outlined-adornment-password"
+                type={showPassword ? 'text' : 'password'}
+                endAdornment={
+                <InputAdornment position="end">
+                    <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={handleClickShowPassword}
+                    onMouseDown={handleMouseDownPassword}
+                    edge="end"
+                    >
+                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                    </IconButton>
+                </InputAdornment>
+                }
+                label="Password"
+                onChange={(e) => setConfPassword(e.target.value)}
+              />
+            </FormControl>
+            {/* <div className="reg_log_input">
               <span>
                 Correo
               </span>
@@ -138,7 +205,7 @@ function Register() {
                 placeholder={'1234567890'}
                 onChange={(e) => setPhone(e.target.value)}
               />
-            </div>
+            </div> */}
           </div>
           <Link id="reg_log_submit" onClick={register}>
             Crear Perfil
