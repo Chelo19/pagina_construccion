@@ -81,7 +81,6 @@ export default function SentCotizaciones(){
     }
     
     const endCotizacion = async () => {
-        console.log("end");
         if(isRejecting){
             const { error } = await supabase
             .from('cotizaciones')
@@ -191,7 +190,7 @@ export default function SentCotizaciones(){
                         </>
                         :
                         <>
-                            No cienes cotizaciones aún
+                            No tienes cotizaciones aún
                         </>}
                     </div>
                     {prompt &&

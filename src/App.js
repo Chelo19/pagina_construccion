@@ -58,6 +58,7 @@ import SelectAllies from "./pages/SelectAllies";
 import RequestAlly from "./pages/RequestAlly";
 import Admin from "./pages/Admin";
 import AcceptedCotizaciones from "./pages/AcceptedCotizaciones";
+import UserSentCotizaciones from "./pages/UserSentCotizaciones";
 
 import { supabase } from "./supabase/client";
 
@@ -160,6 +161,7 @@ function App() {
           <Route path="/request-ally" element={<RequestAlly/>}/>
           <Route path="/admin" element={<Admin/>}/>
           <Route path="/accepted-cotizaciones" element={<AcceptedCotizaciones/>}/>
+          <Route path="/user-sent-cotizaciones" element={<UserSentCotizaciones/>}/>
         </Routes>
         <Footer/>
       </div>

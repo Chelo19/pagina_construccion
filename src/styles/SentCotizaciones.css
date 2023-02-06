@@ -22,9 +22,11 @@
 }
 
 .sent_cotizaciones_title{
-    font-size: 30px;
+    font-size: 28px;
     letter-spacing: 2px;
     text-align: center;
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.8);
 }
 
 .sent_cotizaiones_item{
@@ -106,6 +108,7 @@
     align-items: center;
     gap: 20px;
     text-decoration: none;
+    margin-top: 10px;
 }
 
 .sent_cotizaciones_cotizacion_buttons span{
