@@ -28,46 +28,25 @@ export default function UserSentCotizaciones(){
 
     const getUser = async () => {
         const { data: { user } } = await supabase.auth.getUser();
-        getSentCotizaciones(user);
-        getPendingCotizaciones(user);
-        getEndedCotizaciones(user);
-        if(count > 2){
-            setIsLoading(false);
-        }
-        else{
-        }
+        getCotizaciones(user);
     }
 
-    const getSentCotizaciones = async (user) => {
+    const getCotizaciones = async (user) => {
         const { data, error } = await supabase
         .from('cotizaciones')
         .select(`*, service_id(*)`)
-        .or("option_selected.is.null")
-        .match({ is_sent: false, is_ended: false, account_email: user.email })
+        .match({ account_email: user.email })
         .order('id', { ascending: true });
-        setSentCotizaciones(data);
-        if(data) count++;
-    }
-    
-    const getPendingCotizaciones = async (user) => {
-        const { data, error } = await supabase
-        .from('cotizaciones')
-        .select(`*, service_id(*)`)
-        .or("option_selected.is.null")
-        .match({ is_sent: true, is_ended: false, account_email: user.email })
-        .order('id', { ascending: true });
-        setPendingCotizaciones(data);
-        if(data) count++;
-    }
-
-    const getEndedCotizaciones = async (user) => {
-        const { data, error } = await supabase
-        .from('cotizaciones')
-        .select(`*, service_id(*)`)
-        .match({ is_ended: true, account_email: user.email })
-        .order('id', { ascending: true });
-        setEndedCotizaciones(data);
-        if(data) count++;
+        if(data) setIsLoading(false);
+        setSentCotizaciones(data.filter(cotizacion => {
+            return cotizacion.is_sent === false && cotizacion.is_ended === false && cotizacion.option_selected === null;
+        }))
+        setPendingCotizaciones(data.filter(cotizacion => {
+            return cotizacion.is_sent === true && cotizacion.is_ended === false && cotizacion.option_selected === null;
+        }))
+        setEndedCotizaciones(data.filter(cotizacion => {
+            return cotizacion.is_ended === true;
+        }))
     }
 
     const endCotizacion = async () => {
