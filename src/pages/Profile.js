@@ -89,7 +89,7 @@ export default function Profile(){
                                             </>
                                         : 
                                         <>
-                                            <span id='profile_link'><Link to={'/'}>Mis cotizaciones</Link></span>
+                                            <span id='profile_link'><Link to={'/mis-cotizaciones'}>Mis cotizaciones</Link></span>
                                             <span id='profile_link'><Link to={'/'}>Mis proyectos</Link></span>
                                         </>
                                         }
@@ -122,7 +122,7 @@ export default function Profile(){
                                             </div>
                                         </div>
                                     }
-                                    {!isAlly &&
+                                    {(!isAlly && !isAdmin) &&
                                         <span id='profile_link'><Link to={'/request-ally'}>Quiero ser aliado</Link></span>
                                     }
                                 </>

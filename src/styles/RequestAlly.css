@@ -47,6 +47,12 @@
     margin: 5px 0 5px 0;
 }
 
+#request_ally_info_title_info{
+    width: calc(100% - 40px);
+    font-size: 30px;
+    text-align: center;
+}
+
 .request_ally_info_orange{
     color: #ff7f22;
 }
@@ -153,5 +159,25 @@
 .request_ally_send_button:hover{
     transition: .5s;
     color: #ff7f22;
+    background-color: #ebebeb;
+}
+
+.request_ally_back_button{
+    transition: .5s;
+    width: calc(100% - 40px);
+    height: 50px;
+    border-radius: 5px;
+    background-color: #161825;
+    display: flex;
+    color: #ebebeb;
+    letter-spacing: 2px;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+}
+
+.request_ally_back_button:hover{
+    transition: .5s;
+    color: #161825;
     background-color: #ebebeb;
 }

@@ -12,7 +12,7 @@ export default function UserCotizaciones(){
         <div className='profiles_background'>
             <div className='profiles_container'>
                 <div className='profiles_gallery'>
-                    <Link to={'/user-sent-cotizaciones'} className='profiles_item'>
+                    <Link to={'/mis-cotizaciones'} className='profiles_item'>
                         <div className='profiles_item_container'>
                             <div className='profiles_item_img'>
                                 <img src={require('../img/enviadas.png')}/>
@@ -22,7 +22,7 @@ export default function UserCotizaciones(){
                             </span>
                         </div>
                     </Link>
-                    <Link to={'/sent-cotizaciones'} className='profiles_item'>
+                    <Link to={'/cotizaciones-pendientes'} className='profiles_item'>
                         <div className='profiles_item_container'>
                             <div className='profiles_item_img'>
                                 <img src={require('../img/pendientes.png')}/>

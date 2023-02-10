@@ -7,7 +7,7 @@ import LoadingScreen2 from '../components/LoadingScreen2';
 import _ from "lodash";
 
 
-export default function SentCotizaciones(){
+export default function PendingCotizaciones(){
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(true);
     const [isRejecting, setIsRejecting] = useState(false);

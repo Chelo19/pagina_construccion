@@ -50,7 +50,7 @@ import AllyProfile from "./pages/AllyProfile";
 import Cotizaciones from "./pages/Cotizaciones";
 import UserCotizaciones from "./pages/UserCotizaciones";
 import Profile from "./pages/Profile";
-import SentCotizaciones from "./pages/SentCotizaciones";
+import PendingCotizaciones from "./pages/PendingCotizaciones";
 import Requests from "./pages/Requests";
 import WebPage from "./pages/WebPage";
 import ProfileList from "./pages/ProfileList";
@@ -58,7 +58,7 @@ import SelectAllies from "./pages/SelectAllies";
 import RequestAlly from "./pages/RequestAlly";
 import Admin from "./pages/Admin";
 import AcceptedCotizaciones from "./pages/AcceptedCotizaciones";
-import UserSentCotizaciones from "./pages/UserSentCotizaciones";
+import MyCotizaciones from "./pages/MyCotizaciones";
 
 import { supabase } from "./supabase/client";
 
@@ -153,7 +153,7 @@ function App() {
           <Route path="/cotizaciones" element={<Cotizaciones/>}/>
           <Route path="/user-cotizaciones" element={<UserCotizaciones/>}/>
           <Route path="/profile/:id" element={<Profile/>}/>
-          <Route path="/sent-cotizaciones" element={<SentCotizaciones/>}/>
+          <Route path="/cotizaciones-pendientes" element={<PendingCotizaciones/>}/>
           <Route path="/requests" element={<Requests/>}/>
           <Route path="/webpage" element={<WebPage/>}/>
           <Route path="/profile-list/:type" element={<ProfileList/>}/>
@@ -161,7 +161,7 @@ function App() {
           <Route path="/request-ally" element={<RequestAlly/>}/>
           <Route path="/admin" element={<Admin/>}/>
           <Route path="/accepted-cotizaciones" element={<AcceptedCotizaciones/>}/>
-          <Route path="/user-sent-cotizaciones" element={<UserSentCotizaciones/>}/>
+          <Route path="/mis-cotizaciones" element={<MyCotizaciones/>}/>
         </Routes>
         <Footer/>
       </div>

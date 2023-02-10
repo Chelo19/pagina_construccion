@@ -33,6 +33,7 @@ export default function Header(){
     const [isLogged, setIsLogged] = useState(false);
     const [isAdmin, setIsAdmin] = useState(false);
     const [isManager, setIsManager] = useState(false);
+    const [isAlly, setIsAlly] = useState(false);
     const [userId, setUserId] = useState(null);
 
     useEffect(() => {
@@ -53,6 +54,9 @@ export default function Header(){
             }
             if(data[0].role == 'gerente'){
                 setIsManager(true);
+            }
+            if(data[0].role == 'aliado'){
+                setIsAlly(true);
             }
         }
     }
@@ -76,7 +80,10 @@ export default function Header(){
                     <Link to={`/profile/${userId}`} className='nav_item_listed' onClick={ () => setIsOpen(!isOpen)}><PersonOutlineOutlinedIcon color='secondary' fontSize='large'/>&nbsp;&nbsp;&nbsp;&nbsp;<span>Perfil</span></Link>
                     <Link to={'/contact/0'} className='nav_item_listed' onClick={ () => setIsOpen(!isOpen)}><SupportAgentOutlinedIcon color='secondary' fontSize='large'/>&nbsp;&nbsp;&nbsp;&nbsp;<span>Contacto</span></Link>
                     <Link to={'/about-us'} className='nav_item_listed' onClick={ () => setIsOpen(!isOpen)}><GroupsOutlinedIcon color='secondary' fontSize='large'/>&nbsp;&nbsp;&nbsp;&nbsp;<span>Nosotros</span></Link>
-                    <Link to={'/'} className='nav_item_listed' onClick={ () => setIsOpen(!isOpen)}><Person2OutlinedIcon color='secondary' fontSize='large'/>&nbsp;&nbsp;&nbsp;&nbsp;<span>Aliado</span></Link>
+                    {isAdmin &&
+                        <>
+                            <Link to={'/'} className='nav_item_listed' onClick={ () => setIsOpen(!isOpen)}><Person2OutlinedIcon color='secondary' fontSize='large'/>&nbsp;&nbsp;&nbsp;&nbsp;<span>Aliado</span></Link>
+                        </>}
                     {isAdmin &&
                         <>
                             <Link to={'/profiles'} className='nav_item_listed' onClick={ () => setIsOpen(!isOpen)}><PeopleAltOutlinedIcon color='secondary' fontSize='large'/>&nbsp;&nbsp;&nbsp;&nbsp;<span>Perfiles</span></Link>

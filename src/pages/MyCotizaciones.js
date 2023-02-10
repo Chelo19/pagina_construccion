@@ -2,11 +2,12 @@ import {useEffect, useState} from 'react';
 import {supabase} from '../supabase/client';
 import {useNavigate} from 'react-router-dom';
 import '../styles/SentCotizaciones.css';
+import '../styles/NoItems.css';
 import LoadingScreen2 from '../components/LoadingScreen2';
 import { Link } from "react-router-dom";
 import { async } from 'q';
 
-export default function UserSentCotizaciones(){
+export default function MyCotizaciones(){
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(true);
     const [isRejecting, setIsRejecting] = useState(false);
@@ -38,7 +39,11 @@ export default function UserSentCotizaciones(){
         .select(`*, service_id(*)`)
         .match({ account_email: user.email })
         .order('id', { ascending: true });
-        if(data) setIsLoading(false);
+        if(data.length > 0) setIsLoading(false);
+        else{
+            setNoItems(true);
+            setIsLoading(false);
+        }
         setAcceptedCotizaciones(data.filter(cotizacion => {
             return cotizacion.is_ended === false && cotizacion.option_selected != null;
         }))
@@ -93,6 +98,18 @@ export default function UserSentCotizaciones(){
                         <>
                             {!selectedCotizacion ?
                             <>
+                                {pendingCotizaciones.length > 0 &&
+                                <>
+                                    <Link to={'/cotizaciones-pendientes'} className='user_sent_cotizaciones_title'>Cotizaciones Pendientes</Link>
+                                    {pendingCotizaciones.map((cotizacion) => {
+                                        return(
+                                            <Link to={'/cotizaciones-pendientes'} className='sent_cotizaiones_item' key={cotizacion.id}>
+                                                <span>{cotizacion.service_id.name}</span>
+                                                <span>Fecha: {cotizacion.created_at.split('T')[0]}</span>
+                                            </Link>
+                                        );
+                                    })}
+                                </>}
                                 {acceptedCotizaciones.length > 0 &&
                                 <>
                                     <span className='user_sent_cotizaciones_title'>Cotizaciones Aceptadas</span>
@@ -107,22 +124,10 @@ export default function UserSentCotizaciones(){
                                 </>}
                                 {sentCotizaciones.length > 0 &&
                                 <>
-                                    <span className='user_sent_cotizaciones_title'>Cotizaciones Enviadas</span>
+                                    <span className='user_sent_cotizaciones_title'>Cotizaciones Solicitadas</span>
                                     {sentCotizaciones.map((cotizacion) => {
                                         return(
                                             <Link className='sent_cotizaiones_item' key={cotizacion.id} onClick={(e) => setSelectedCotizacion(cotizacion)}>
-                                                <span>{cotizacion.service_id.name}</span>
-                                                <span>Fecha: {cotizacion.created_at.split('T')[0]}</span>
-                                            </Link>
-                                        );
-                                    })}
-                                </>}
-                                {pendingCotizaciones.length > 0 &&
-                                <>
-                                    <Link to={'/sent-cotizaciones'} className='user_sent_cotizaciones_title'>Cotizaciones Pendientes</Link>
-                                    {pendingCotizaciones.map((cotizacion) => {
-                                        return(
-                                            <Link to={'/sent-cotizaciones'} className='sent_cotizaiones_item' key={cotizacion.id}>
                                                 <span>{cotizacion.service_id.name}</span>
                                                 <span>Fecha: {cotizacion.created_at.split('T')[0]}</span>
                                             </Link>
@@ -187,9 +192,17 @@ export default function UserSentCotizaciones(){
                             }
                         </>
                         :
-                        <>
-                            No tienes cotizaciones aún
-                        </>
+                        <div className='no_items_background'>
+                            <div className='no_items_container'>
+                                <div className='no_items_img'>
+                                    <img src={require('../img/financiamiento.png')}/>
+                                </div>
+                                <div className='no_items_spans'>
+                                    <span className='no_items_span_title'>Aún no cuentas con cotizaciones</span>
+                                    <span className='no_items_span_text'>Puedes explorar nuestros diferentes servicios dando click <Link to={'/categories/1'}>aquí</Link></span>
+                                </div>
+                            </div>
+                        </div>
                         }
                     </div>
                     {prompt &&

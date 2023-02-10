@@ -163,7 +163,7 @@ export default function RequestAlly(){
                     <div className='request_ally_container'>
                         {isInfo ?
                         <>
-                            <span id='request_ally_info_title'>¿Qué es un aliado?</span>
+                            <span id='request_ally_info_title_info'>¿Qué es un aliado?</span>
                             <div className='request_ally_info'>
                                 <p>Un <span className='request_ally_info_orange'>aliado</span> es aquel usuario que realiza servicios en el área de la construcción por medio de una empresa o de forma independiente y desea llegar a clientes de una manera alternativa.</p>
                                 <p><span className='request_ally_info_orange'>DREC</span> ofrece beneficios a sus aliados como la captación de clientes y talento en cualquier lugar donde <span className='request_ally_info_orange'>DREC</span> ya está establecido, eventos exlcusivos y la posibilidad de entrar al "programa <span className='request_ally_info_orange'>DREC</span> quality".</p>
@@ -216,6 +216,9 @@ export default function RequestAlly(){
                             </div>
                             <div className='request_ally_send_button' onClick={sendRequest}>
                                 Solicitar
+                            </div>
+                            <div className='request_ally_back_button' onClick={(e) => setIsInfo(true)}>
+                                Regresar
                             </div>
                         </>}
                     </div>
