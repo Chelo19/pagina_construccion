@@ -8,8 +8,7 @@ import '../styles/Home.css';
 import { AuthRedirect } from '../hooks/authUser';
 import LoadingScreen2 from '../components/LoadingScreen2';
 import { Link } from 'react-router-dom';
-import {Helmet} from "react-helmet";
-
+import DocumentMeta from 'react-document-meta';
 
 export default function Home(){
     const [loadingScreen, setLoadingScreen] = useState(true);
@@ -231,12 +230,21 @@ export default function Home(){
         let data = await response.json();
     }
 
+    const meta = {
+        title: 'Grupo Drec',
+        description: 'La construcción que debes tener',
+        canonical: 'https://grupodrec.com/',
+        meta: {
+            charset: 'utf-8',
+            name: {
+                keywords: 'react,meta,document,html,tags'
+            }
+        }
+    }
+
     return(
         <div className='home_background'>
-            <Helmet>
-                <title>Grupo Drec</title>
-                <meta name="description" content="La construcción que debes tener" />
-            </Helmet>
+            <DocumentMeta {...meta} />
             {!loadingScreen
             ? <>
                 <div className='background_img'>
