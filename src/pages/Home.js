@@ -8,6 +8,7 @@ import '../styles/Home.css';
 import { AuthRedirect } from '../hooks/authUser';
 import LoadingScreen2 from '../components/LoadingScreen2';
 import { Link } from 'react-router-dom';
+import {Helmet} from "react-helmet";
 
 
 export default function Home(){
@@ -232,6 +233,10 @@ export default function Home(){
 
     return(
         <div className='home_background'>
+            <Helmet>
+                <title>Grupo Drec</title>
+                <meta name="description" content="La construcción que debes tener" />
+            </Helmet>
             {!loadingScreen
             ? <>
                 <div className='background_img'>
