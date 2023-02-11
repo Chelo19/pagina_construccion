@@ -5,33 +5,33 @@ import '../styles/Profiles.css';
 import LoadingScreen from '../components/LoadingScreen';
 import { Link } from "react-router-dom";
 
-export default function WebPage(){
+export default function WebPageServices(){
     const navigate = useNavigate();
 
     return(
         <div className='profiles_background'>
             <div className='profiles_container'>
                 <div className='profiles_gallery'>
-                    <Link to={'/webpage-services'} className='profiles_item'>
+                    <Link to={'/edit-services'} className='profiles_item'>
                         <div className='profiles_item_container'>
                             <div className='profiles_item_img'>
                                 <img src={require('../img/servicios.png')}/>
                             </div>
                             <span className='profiles_item_title'>
-                                Servicios
+                                Editar Servicios
                             </span>
                         </div>
                     </Link>
-                    <Link to={'/webpage-categories'} className='profiles_item'>
+                    {/* <Link to={'/webpage'} className='profiles_item'>
                         <div className='profiles_item_container'>
                             <div className='profiles_item_img'>
-                                <img src={require('../img/categorias.png')}/>
+                                <img src={require('../img/servicios.png')}/>
                             </div>
                             <span className='profiles_item_title'>
-                                Categorias
+                                Ver Servicios
                             </span>
                         </div>
-                    </Link>
+                    </Link> */}
                 </div>
             </div>
         </div>

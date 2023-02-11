@@ -1,82 +1,134 @@
 import { useEffect, useState } from 'react';
 import {supabase} from '../supabase/client';
-import LoadingScreen from '../components/LoadingScreen';
 import { useNavigate, useParams } from "react-router-dom";
 import '../styles/EditServices.css';
+import '../styles/NoItems.css';
 import { Link } from 'react-router-dom';
+import LoadingScreen2 from '../components/LoadingScreen2';
+
+import TextField from '@mui/material/TextField';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
+import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined';
 
 export default function EditServices(){
-    let { id } = useParams();
-    const navigate = useNavigate();
+  const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(true);
 
-    const [loadingScreen, setLoadingScreen] = useState(true);
-    const [services, setServices] = useState();
-    const [noItems, setNoItems] = useState(false);
+  const [noItems, setNoItems] = useState(false);
+  const [allItems, setAllItems] = useState(false);
+  const [prompt, setPrompt] = useState(null);
 
-    const checkIfAdmin = async () => {
-        const { data: { user } } = await supabase.auth.getUser();
-        if(user){
-            const { data, error } = await supabase
-            .from('account')
-            .select()
-            .eq('uuid', user.id);
-            if(data[0].role == 'administrador' || data[0].role == 'gerente'){
-              showServices();
-            }
-            else{
-                window.alert("No tienes los permisos para acceder a este lugar");
-                navigate("/");
-            }
-        }
-        else{
-            window.alert("Inicia sesión como administrador para acceder");
-            navigate("/login");
-        }
+  const [searchInput, setSearchInput] = useState('');
+  const [services, setServices] = useState([]);
+
+  useEffect(() => {
+    getServices();
+  }, []);
+
+  const getServices = async () => {
+    const { data, error } = await supabase
+    .from('services')
+    .select(`*, category_id(*)`)
+    .order('id', { ascending: true });
+    console.log(data);
+    if(data){
+      setServices(data);
+      setIsLoading(false);
     }
+    if(data.length == 0){
+      setNoItems(true);
+    }
+  }
 
-    const showServices = async () => {
-        const { data, error } = await supabase
-        .from("services")
-        .select("*")
-        .eq("category_id", id);
-        setServices(data);
-        setLoadingScreen(false);
-    };
+  const serviceFiltered = services.filter((service) => {
+    if(searchInput.length == 0) return;
+    return service.name.toLowerCase().match(searchInput) || service.id == parseInt(searchInput)
+  });
 
-    useEffect(() => {
-        checkIfAdmin();
-        console.log(services);
-    }, [loadingScreen]);
+  const fromCategoryFiltered = services.filter((service) => {
+    if(searchInput.length == 0) return;
+    return service.category_id.name.toLowerCase().match(searchInput) || service.category_id.id == parseInt(searchInput)
+  });
 
-    return(
-        <div className="edit_services_background">
-        {!loadingScreen ? 
-          <div className="edit_services_gallery">
-              <div className="edit_services_container">
-                {noItems ?
-                  <div className="edit_services_no_items_alert">No se encontraron resultados</div>
-                : <>
-                  <div className="edit_services_item_names">
-                      <span>Id</span>
-                      <span>Creado el</span>
-                      <span>Nombre</span>
-                  </div>
-                  {services.map((service) => {
-                    return (
-                        <Link to={`/edit-service/${service.id}`} key={service.id} className='edit_services_item'>
-                          <div className='edit_services_item_container'>
-                            <span>{service.id}</span>
-                            <span>{service.created_at}</span>
-                            <span>{service.name}</span>
-                          </div>
-                        </Link>
-                      );
+  return(
+    <>
+      {!isLoading ?
+      <div className='edit_services_background'>
+        <div className='edit_services_container'>
+          <div className='edit_services_search_box'>
+            <TextField 
+            className='edit_services_search_input'
+            label="Buscar" 
+            variant="outlined"
+            onChange={(e) => {setSearchInput(e.target.value.toLowerCase().replace(/([.*+?^=!:$(){}|[\]\/\\])/g, '')); setAllItems(false)}}
+            value={searchInput}/>
+            {!allItems ? 
+            <div className='edit_services_all_items' onClick={(e) => {setAllItems(true); setSearchInput('')}}>
+              <VisibilityOutlinedIcon color='primary' fontSize='large'/>
+            </div>
+            : 
+            <div className='edit_services_all_items' onClick={(e) => setAllItems(false)}>
+              <VisibilityOffOutlinedIcon color='primary' fontSize='large'/>
+            </div>}
+          </div>
+          {(serviceFiltered.length > 0 || fromCategoryFiltered.length > 0 || allItems) ?
+          <>
+            <div className='edit_services_results'>
+              {serviceFiltered.map((service) => {
+                return(
+                  <Link to={`/edit-service/${service.id}`} className='edit_services_item'>
+                    <span>{service.id}</span>
+                    <span>{service.name}</span>
+                  </Link>
+                )
+              })}
+            </div>
+            <div className='edit_services_results'>
+              {fromCategoryFiltered.length > 0 &&
+                <>
+                  <span className='edit_services_results_text'>Desde categorías</span>
+                  {fromCategoryFiltered.map((service) => {
+                    return(
+                      <Link to={`/edit-service/${service.id}`} className='edit_services_item'>
+                        <span>{service.id}</span>
+                        <span>{service.name}</span>
+                      </Link>
+                    )
                   })}
                 </>
-                }
+              }
+            </div>
+            {(allItems && searchInput.length == 0) &&
+              <div className='edit_services_results'>
+                {services.map((service) => {
+                  return(
+                    <Link to={`/edit-service/${service.id}`} className='edit_services_item'>
+                      <span>{service.id}</span>
+                      <span>{service.name}</span>
+                    </Link>
+                  )
+                })}
               </div>
+            }
+          </>
+          : 
+          <div className='no_items_background'>
+            <div className='no_items_container'>
+              <div className='no_items_img'>
+                <img src={require('../img/search.png')}/>
+              </div>
+              <div className='no_items_spans'>
+                <span className='no_items_span_title'>¡Vaya, parece que no has buscado ningún servicio aún!</span>
+                <span className='no_items_span_text'>Si deseas encontrar un servicio, puedes buscarlo en la barra superior con su id o su nombre.</span>
+                <span className='no_items_span_text'>¡Además, puedes buscarlo por medio del id o nombre de su categoría!</span>
+              </div>
+            </div>
           </div>
-          : <LoadingScreen/>}
+          }
         </div>
-    )
+      </div>
+      : <LoadingScreen2/>}
+    </>
+  )
 }

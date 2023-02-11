@@ -12,8 +12,8 @@ export default function ProfileList(){
     const [isLoading, setIsLoading] = useState(true);
 
     const [searchInput, setSearchInput] = useState('');
-    const [profiles, setProfiles] = useState([]);
     const [noItems, setNoItems] = useState(false);
+    const [profiles, setProfiles] = useState([]);
 
     useEffect(() => {
         if(type == 'clientes'){

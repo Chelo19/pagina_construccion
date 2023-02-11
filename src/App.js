@@ -59,6 +59,8 @@ import RequestAlly from "./pages/RequestAlly";
 import Admin from "./pages/Admin";
 import AcceptedCotizaciones from "./pages/AcceptedCotizaciones";
 import MyCotizaciones from "./pages/MyCotizaciones";
+import WebPageServices from "./pages/WebPageServices";
+import WebPageCategories from "./pages/WebPageCategories";
 
 import { supabase } from "./supabase/client";
 
@@ -125,9 +127,9 @@ function App() {
           <Route path="/recover-password" element={<RecoverPassword />} />
           <Route path="/admin-hub/:reload" element={<AdminHub />} />
           <Route path="/edit-services-select-category/:id" element={<EditServicesSelectCategory />} />
-          <Route path="/edit-services/:id" element={<EditServices />} />
+          <Route path="/edit-services" element={<EditServices />} />
           <Route path="/edit-service/:id" element={<EditService />} />
-          <Route path="/edit-categories/:id" element={<EditCategories/>} />
+          <Route path="/edit-categories" element={<EditCategories/>} />
           <Route path="/edit-category/:id" element={<EditCategory/>} />
           <Route path="/edit-enterprises/:id" element={<EditEnterprises/>} />
           <Route path="/add-category/:id" element={<AddCategory/>}/>
@@ -162,6 +164,8 @@ function App() {
           <Route path="/admin" element={<Admin/>}/>
           <Route path="/accepted-cotizaciones" element={<AcceptedCotizaciones/>}/>
           <Route path="/mis-cotizaciones" element={<MyCotizaciones/>}/>
+          <Route path="/webpage-services" element={<WebPageServices/>}/>
+          <Route path="/webpage-categories" element={<WebPageCategories/>}/>
         </Routes>
         <Footer/>
       </div>
