@@ -5,7 +5,7 @@
     flex-direction: column;
     justify-content: start;
     align-items: center;
-    font-family: 'Poppins', sans-serif;
+    /* font-family: 'Poppins', sans-serif; */
     min-height: 100vh;
 }
 
@@ -22,8 +22,8 @@
 }
 
 .cotizaciones_item{
-    width: calc(100% - 40px);
-    height: 300px;
+    width: calc(100% - 80px);
+    padding: 20px;
     transition: .5s;
     border: 1px solid rgba(0, 0, 0, 0.2);
     border-radius: 3px;
@@ -33,7 +33,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 10px;
+    gap: 20px;
 }
 
 .cotizaciones_item:hover{
@@ -43,21 +43,15 @@
 }
 
 .cotizaciones_item_container{
-    width: 90%;
-    height: 50%;
-    text-overflow: ellipsis;
-    overflow: scroll;
+    width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    justify-content: start;
+    gap: 2px;
 }
 
 .cotizaciones_item span{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+    width: 100%;
     font-size: 20px;
     width: 100%;
     letter-spacing: 1px;
@@ -90,37 +84,15 @@
 } */
 
 .cotizaciones_item_buttons{
+    margin-top: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 10px;
 }
 
-.cotizaciones_item_button{
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    border-radius: 3px;
-    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 15px;
-    letter-spacing: 1px;
+.cotizaciones_item_buttons a{
     text-decoration: none;
-    color: #ff7f22;
-    text-align: center;
-    padding: 10px;
-}
-
-.cotizaciones_item_button:hover{
-    transition: 1s;
-    border: 1px solid #ff7f22;
-    background-color: white;
-}
-
-.cotizaciones_item_button img{
-    width: 60%;
-    height: 60%;
-    object-fit: contain;
+    color: inherit;
 }
 
 #cotizaciones_title{

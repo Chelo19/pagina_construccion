@@ -5,7 +5,7 @@
     flex-direction: column;
     justify-content: start;
     align-items: center;
-    font-family: 'Poppins', sans-serif;
+    /* font-family: 'Poppins', sans-serif; */
     min-height: 100vh;
 }
 
@@ -31,11 +31,12 @@
 
 .user_sent_cotizaciones_title{
     width: calc(100% - 40px);
-    font-size: 25px;
+    font-size: 20px;
     letter-spacing: 2px;
-    text-align: center;
+    text-align: left;
     text-decoration: none;
     color: rgba(0, 0, 0, 0.8);
+    font-weight: bold;
 }
 
 .user_sent_cotizaciones_message{

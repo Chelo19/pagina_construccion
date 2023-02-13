@@ -99,6 +99,23 @@ export default function Requests(){
         return new Promise( res => setTimeout(res, number) );
     }
 
+    const randomColor = () => {
+        const rand1 = 0 + Math.random() * (255 - 0);
+        const rand2 = 0 + Math.random() * (255 - 0);
+        const rand3 = 0 + Math.random() * (255 - 0);
+        return {backgroundColor: `rgba(${Math.trunc(rand1)}, ${Math.trunc(rand2)}, ${Math.trunc(rand3)}, 1)`};
+    }
+
+    const getInitials = (request) => {
+        let arr = request.account_email.name.split(" ");
+        if(arr.length > 1){
+            return arr[0][0]+arr[1][0];
+        }
+        else{
+            return arr[0][0];
+        }
+    }
+
     return(
         <>
             {!isLoading ?
@@ -110,11 +127,19 @@ export default function Requests(){
                                 {requests.map((request) => {
                                     return(
                                         <div className='requests_item' onClick={(e) => setSelectedRequest(request)} key={request.id}>
-                                            <span>{request.account_email.email}</span>
-                                            <span>id de cuenta: {request.account_email.id}</span>
-                                            {request.is_ally_request &&
-                                                <span>Solicita ser aliado</span>
-                                            }
+                                            <div className='requests_icon'>
+                                                <div style={randomColor()} className='icon_name'>
+                                                    {getInitials(request)}
+                                                </div>
+                                            </div>
+                                            <div className='requests_item_content'>
+                                                <span>{request.account_email.name}</span>
+                                                <span>{request.account_email.email}</span>
+                                                <span>id de cuenta: {request.account_email.id}</span>
+                                                {request.is_ally_request &&
+                                                    <span>Solicita ser aliado</span>
+                                                }
+                                            </div>
                                         </div>
                                     );
                                 })}

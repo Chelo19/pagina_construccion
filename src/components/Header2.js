@@ -25,7 +25,6 @@ import LoginIcon from '@mui/icons-material/Login';
 import HowToRegIcon from '@mui/icons-material/HowToReg';
 import HowToRegOutlinedIcon from '@mui/icons-material/HowToRegOutlined';
 
-
 export default function Header(){
     const navigate = useNavigate();
 
@@ -65,7 +64,7 @@ export default function Header(){
         const { error } = await supabase.auth.signOut()
         document.location.reload();
     }
-
+      
     return(
         <div className="navbar">
             <div className='navbar_container'>
@@ -77,26 +76,38 @@ export default function Header(){
                 </div>
                 <div className={`nav_items ${isOpen && "open"}`}>
                     <Link to={'/'} className='nav_item_listed' onClick={ () => setIsOpen(!isOpen)}><CottageOutlinedIcon color='secondary' fontSize='large'/>&nbsp;&nbsp;&nbsp;&nbsp;<span>Inicio</span></Link>
+                    <hr className='divider'/>
                     <Link to={`/profile/${userId}`} className='nav_item_listed' onClick={ () => setIsOpen(!isOpen)}><PersonOutlineOutlinedIcon color='secondary' fontSize='large'/>&nbsp;&nbsp;&nbsp;&nbsp;<span>Perfil</span></Link>
+                    <hr className='divider'/>
                     <Link to={'/contact/0'} className='nav_item_listed' onClick={ () => setIsOpen(!isOpen)}><SupportAgentOutlinedIcon color='secondary' fontSize='large'/>&nbsp;&nbsp;&nbsp;&nbsp;<span>Contacto</span></Link>
+                    <hr className='divider'/>
                     <Link to={'/about-us'} className='nav_item_listed' onClick={ () => setIsOpen(!isOpen)}><GroupsOutlinedIcon color='secondary' fontSize='large'/>&nbsp;&nbsp;&nbsp;&nbsp;<span>Nosotros</span></Link>
                     {isAdmin &&
                         <>
+                            <hr className='divider'/>
                             <Link to={'/'} className='nav_item_listed' onClick={ () => setIsOpen(!isOpen)}><Person2OutlinedIcon color='secondary' fontSize='large'/>&nbsp;&nbsp;&nbsp;&nbsp;<span>Aliado</span></Link>
                         </>}
                     {isAdmin &&
                         <>
+                            <hr className='divider'/>
                             <Link to={'/profiles'} className='nav_item_listed' onClick={ () => setIsOpen(!isOpen)}><PeopleAltOutlinedIcon color='secondary' fontSize='large'/>&nbsp;&nbsp;&nbsp;&nbsp;<span>Perfiles</span></Link>
+                            <hr className='divider'/>
                             <Link to={'/admin-hub/0'} className='nav_item_listed' onClick={ () => setIsOpen(!isOpen)}><AdminPanelSettingsOutlinedIcon color='secondary' fontSize='large'/>&nbsp;&nbsp;&nbsp;&nbsp;<span>Admin Hub</span></Link>
                         </>}
                     {isManager &&
                         <>
+                            <hr className='divider'/>
                             <Link to={'/manager-hub/0'} className='nav_item_listed' onClick={ () => setIsOpen(!isOpen)}><HubOutlinedIcon color='secondary' fontSize='large'/>&nbsp;&nbsp;&nbsp;&nbsp;<span>Manager Hub</span></Link>
                         </>}
                     {isLogged ?
-                        <Link to={'/0'} className='nav_item_listed' onClick={signOut}><LogoutIcon color='secondary' fontSize='large'/>&nbsp;&nbsp;&nbsp;&nbsp;<span>Cerrar Sesión</span></Link>
+                        <>
+                            <hr className='divider'/>
+                            <Link to={'/0'} className='nav_item_listed' onClick={signOut}><LogoutIcon color='secondary' fontSize='large'/>&nbsp;&nbsp;&nbsp;&nbsp;<span>Cerrar Sesión</span></Link>
+                        </>
                     : <>
+                        <hr className='divider'/>
                         <Link to={'/login'} className='nav_item_listed' onClick={ () => setIsOpen(!isOpen)}><LoginIcon color='secondary' fontSize='large'/>&nbsp;&nbsp;&nbsp;&nbsp;<span>Iniciar Sesión</span></Link>
+                        <hr className='divider'/>
                         <Link to={'/register'} className='nav_item_listed' onClick={ () => setIsOpen(!isOpen)}><HowToRegOutlinedIcon color='secondary' fontSize='large'/>&nbsp;&nbsp;&nbsp;&nbsp;<span>Registrarse</span></Link>
                     </>}
                 </div>

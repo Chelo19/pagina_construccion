@@ -4,7 +4,7 @@ import { Routes, Route, useNavigate } from "react-router-dom";
 import { UserProvider } from "./context/UserContext";
 import { createBrowserHistory } from "history";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-
+import './index.css'
 
 import Header2 from "./components/Header2";
 import Register from "./pages/Register";
@@ -67,10 +67,12 @@ import { supabase } from "./supabase/client";
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#ff7f22'
+      main: '#ff7f22',
+      contrastText: '#FFFFFF'
     },
     secondary: {
       main: '#FFFFFF',
+      contrastText: '#FFFFFF'
     }
   }
 });
