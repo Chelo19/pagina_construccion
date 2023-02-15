@@ -17,8 +17,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 20px;
-    padding: 20px 0 20px 0;
+    gap: 40px;
+    padding: 40px 0 40px 0;
 }
 
 .sent_cotizaciones_title{
@@ -31,12 +31,11 @@
 
 .user_sent_cotizaciones_title{
     width: calc(100% - 40px);
-    font-size: 20px;
+    font-size: 24px;
     letter-spacing: 2px;
     text-align: left;
     text-decoration: none;
     color: rgba(0, 0, 0, 0.8);
-    font-weight: bold;
 }
 
 .user_sent_cotizaciones_message{
@@ -46,25 +45,55 @@
 }
 
 .sent_cotizaiones_item{
-    width: calc(100% - 60px);
-    border: 1px solid rgba(0, 0, 0, 0.2);
+    width: calc(100% - 40px);
+    height: 200px;
     border-radius: 5px;
     box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
     font-size: 18px;
-    padding: 10px;
     letter-spacing: 1px;
-    text-align: left;
     text-decoration: none;
-    color: rgba(0, 0, 0, 0.8);
+    color: white;
 }
 
 .sent_cotizaciones_item:hover{
-    transition: 1s;
-    border: 1px solid #ff7f22;
-    background-color: white;
+}
+
+.sent_cotizaciones_item_content{
+    width: calc(100% - 20px);
+    background-color: rgba(255, 127, 34, 0.85);
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 10px;
+    position: relative;
+    bottom: 80px;
+}
+
+.sent_cotizaciones_item_title{
+    font-size: 24px;
+    overflow: scroll;
+    white-space: nowrap;
+}
+
+.sent_cotizaciones_item_content_text{
+    font-size: 12px;
+    overflow: scroll;
+    white-space: nowrap;
+}
+
+.sent_cotizaiones_item_img{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sent_cotizaiones_item_img img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 5px;
 }
 
 .sent_cotizaciones_cotizacion{

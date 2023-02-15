@@ -38,7 +38,7 @@ export default function AcceptedCotizaciones(){
     const getCotizaciones = async () => {
         const { data, error } = await supabase
         .from('cotizaciones')
-        .select(`*, service_id(*)`)
+        .select(`*, service_id(*), account_email(*)`)
         .not('option_selected', 'is', null);
         if(data.length > 0){
             console.log(data);
@@ -51,8 +51,22 @@ export default function AcceptedCotizaciones(){
         }
     }
 
-    console.log(selectedCotizacion);
+    const randomColor = () => {
+        const rand1 = 0 + Math.random() * (255 - 0);
+        const rand2 = 0 + Math.random() * (255 - 0);
+        const rand3 = 0 + Math.random() * (255 - 0);
+        return {backgroundColor: `rgba(${Math.trunc(rand1)}, ${Math.trunc(rand2)}, ${Math.trunc(rand3)}, 1)`};
+    }
 
+    const getInitials = (cotizacion) => {
+        let arr = cotizacion.account_email.name.split(" ");
+        if(arr.length > 1){
+            return arr[0][0]+arr[1][0];
+        }
+        else{
+            return arr[0][0];
+        }
+    }
 
     return(
         <>
@@ -66,10 +80,23 @@ export default function AcceptedCotizaciones(){
                                 <span className='accepted_cotizaciones_title'>Cotizaciones</span>
                                 {cotizaciones.map((cotizacion) => {
                                     return(
-                                    <div className='accepted_cotizaciones_item' key={cotizacion.id} onClick={(e) => setSelectedCotizacion(cotizacion)}>
-                                        <span>id: {cotizacion.id}</span>
-                                        <span>{cotizacion.account_email}</span>
-                                    </div>);
+                                    // <div className='accepted_cotizaciones_item' key={cotizacion.id} onClick={(e) => setSelectedCotizacion(cotizacion)}>
+                                    //     <span>id: {cotizacion.id}</span>
+                                    //     <span>{cotizacion.account_email}</span>
+                                    // </div>
+                                    <div className='requests_item' key={cotizacion.id} onClick={(e) => setSelectedCotizacion(cotizacion)}>
+                                        <div className='requests_icon'>
+                                            <div style={randomColor()} className='icon_name'>
+                                                {getInitials(cotizacion)}
+                                            </div>
+                                        </div>
+                                        <div className='requests_item_content'>
+                                            <span>id de cotización: {cotizacion.id}</span>
+                                            <span>{cotizacion.account_email.name}</span>
+                                            <span>{cotizacion.account_email.email}</span>
+                                            <span>id de cuenta: {cotizacion.account_email.id}</span>
+                                    </div>
+                                </div>);
                                 })}
                             </>
                             :

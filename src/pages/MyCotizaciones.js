@@ -7,6 +7,12 @@ import LoadingScreen2 from '../components/LoadingScreen2';
 import { Link } from "react-router-dom";
 import { async } from 'q';
 
+import * as React from 'react';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import SendIcon from '@mui/icons-material/Send';
+import CancelScheduleSendOutlinedIcon from '@mui/icons-material/CancelScheduleSendOutlined';
+import UndoOutlinedIcon from '@mui/icons-material/UndoOutlined';
+
 export default function MyCotizaciones(){
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(true);
@@ -36,9 +42,10 @@ export default function MyCotizaciones(){
     const getCotizaciones = async (user) => {
         const { data, error } = await supabase
         .from('cotizaciones')
-        .select(`*, service_id(*)`)
+        .select(`*, service_id(*), account_email(*)`)
         .match({ account_email: user.email })
         .order('id', { ascending: true });
+        console.log(data);
         if(data.length > 0) setIsLoading(false);
         else{
             setNoItems(true);
@@ -87,8 +94,6 @@ export default function MyCotizaciones(){
         return new Promise( res => setTimeout(res, number) );
     }
 
-    console.log(sentCotizaciones);
-
     return(
         <>
             {!isLoading ?
@@ -103,9 +108,12 @@ export default function MyCotizaciones(){
                                     <Link to={'/cotizaciones-pendientes'} className='user_sent_cotizaciones_title'>Cotizaciones Pendientes</Link>
                                     {pendingCotizaciones.map((cotizacion) => {
                                         return(
-                                            <Link to={'/cotizaciones-pendientes'} className='sent_cotizaiones_item' key={cotizacion.id}>
-                                                <span>{cotizacion.service_id.name}</span>
-                                                <span>Fecha: {cotizacion.created_at.split('T')[0]}</span>
+                                            <Link className='sent_cotizaiones_item' key={cotizacion.id} onClick={(e) => setSelectedCotizacion(cotizacion)}>
+                                                <div className='sent_cotizaiones_item_img'><img src={cotizacion.service_id.img_url[0]}/></div>
+                                                <div className='sent_cotizaciones_item_content'>
+                                                    <span className='sent_cotizaciones_item_title'>{cotizacion.service_id.name}</span>
+                                                    <span className='sent_cotizaciones_item_content_text'>Fecha: {cotizacion.created_at.split('T')[0]}</span>
+                                                </div>
                                             </Link>
                                         );
                                     })}
@@ -116,8 +124,11 @@ export default function MyCotizaciones(){
                                     {acceptedCotizaciones.map((cotizacion) => {
                                         return(
                                             <Link className='sent_cotizaiones_item' key={cotizacion.id} onClick={(e) => setSelectedCotizacion(cotizacion)}>
-                                                <span>{cotizacion.service_id.name}</span>
-                                                <span>Fecha: {cotizacion.created_at.split('T')[0]}</span>
+                                                <div className='sent_cotizaiones_item_img'><img src={cotizacion.service_id.img_url[0]}/></div>
+                                                <div className='sent_cotizaciones_item_content'>
+                                                    <span className='sent_cotizaciones_item_title'>{cotizacion.service_id.name} aejrjae jaerjaejkjeka </span>
+                                                    <span className='sent_cotizaciones_item_content_text'>Fecha: {cotizacion.created_at.split('T')[0]}</span>
+                                                </div>
                                             </Link>
                                         );
                                     })}
@@ -128,8 +139,11 @@ export default function MyCotizaciones(){
                                     {sentCotizaciones.map((cotizacion) => {
                                         return(
                                             <Link className='sent_cotizaiones_item' key={cotizacion.id} onClick={(e) => setSelectedCotizacion(cotizacion)}>
-                                                <span>{cotizacion.service_id.name}</span>
-                                                <span>Fecha: {cotizacion.created_at.split('T')[0]}</span>
+                                                <div className='sent_cotizaiones_item_img'><img src={cotizacion.service_id.img_url[0]}/></div>
+                                                <div className='sent_cotizaciones_item_content'>
+                                                    <span className='sent_cotizaciones_item_title'>{cotizacion.service_id.name}</span>
+                                                    <span className='sent_cotizaciones_item_content_text'>Fecha: {cotizacion.created_at.split('T')[0]}</span>
+                                                </div>
                                             </Link>
                                         );
                                     })}
@@ -140,8 +154,11 @@ export default function MyCotizaciones(){
                                     {endedCotizaciones.map((cotizacion) => {
                                         return(
                                             <Link className='sent_cotizaiones_item' key={cotizacion.id} onClick={(e) => setSelectedCotizacion(cotizacion)}>
-                                                <span>{cotizacion.service_id.name}</span>
-                                                <span>Fecha: {cotizacion.created_at.split('T')[0]}</span>
+                                                <div className='sent_cotizaiones_item_img'><img src={cotizacion.service_id.img_url[0]}/></div>
+                                                <div className='sent_cotizaciones_item_content'>
+                                                    <span className='sent_cotizaciones_item_title'>{cotizacion.service_id.name}</span>
+                                                    <span className='sent_cotizaciones_item_content_text'>Fecha: {cotizacion.created_at.split('T')[0]}</span>
+                                                </div>
                                             </Link>
                                         );
                                     })}
@@ -160,10 +177,12 @@ export default function MyCotizaciones(){
                                             <>
                                                 <div className='sent_cotizaciones_cotizacion_buttons'>
                                                     <Link className='sent_cotizaciones_cotizacion_button' id='sent_cotizaciones_cotizacion_reject' onClick={(e) => setIsRejecting(true)}>
-                                                        Finalizar Cotización
+                                                        Finalizar Cotización &nbsp;
+                                                        <CancelScheduleSendOutlinedIcon/>
                                                     </Link>
                                                     <Link className='sent_cotizaciones_cotizacion_button' id='sent_cotizaciones_cotizacion_return' onClick={(e) => setSelectedCotizacion(null)}>
-                                                        Regresar
+                                                        Regresar &nbsp;
+                                                        <UndoOutlinedIcon/>
                                                     </Link>
                                                 </div>
                                             </>
@@ -172,10 +191,12 @@ export default function MyCotizaciones(){
                                                 <span>¿Estás seguro de que deseas finalizar la cotización?</span>
                                                 <div className='sent_cotizaciones_cotizacion_buttons'>
                                                     <Link className='sent_cotizaciones_cotizacion_button' id='sent_cotizaciones_cotizacion_reject' onClick={endCotizacion}>
-                                                        Finalizar
+                                                        Finalizar &nbsp;
+                                                        <CancelScheduleSendOutlinedIcon/>
                                                     </Link>
                                                     <Link className='sent_cotizaciones_cotizacion_button' id='sent_cotizaciones_cotizacion_return' onClick={(e) => setIsRejecting(false)}>
-                                                        Regresar
+                                                        Regresar &nbsp;
+                                                        <UndoOutlinedIcon/>
                                                     </Link>
                                                 </div>
                                             </>}
@@ -183,7 +204,8 @@ export default function MyCotizaciones(){
                                         :
                                         <>
                                             <Link className='sent_cotizaciones_cotizacion_button' id='sent_cotizaciones_cotizacion_return' onClick={(e) => setSelectedCotizacion(null)}>
-                                                Regresar
+                                                Regresar &nbsp;
+                                                <UndoOutlinedIcon/>
                                             </Link>
                                         </>}
                                     </div>
