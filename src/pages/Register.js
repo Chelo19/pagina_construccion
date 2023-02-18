@@ -130,7 +130,7 @@ function Register() {
                     </IconButton>
                 </InputAdornment>
                 }
-                label="Password"
+                label="Contraseña"
                 onChange={(e) => setPassword(e.target.value)}
               />
             </FormControl>
@@ -151,7 +151,7 @@ function Register() {
                     </IconButton>
                 </InputAdornment>
                 }
-                label="Password"
+                label="Confirmar contraseña"
                 onChange={(e) => setConfPassword(e.target.value)}
               />
             </FormControl>

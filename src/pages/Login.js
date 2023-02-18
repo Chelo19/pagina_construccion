@@ -108,7 +108,7 @@ function Login(){
                                     </IconButton>
                                 </InputAdornment>
                                 }
-                                label="Password"
+                                label="Contraseña"
                                 onChange={(e) => setPassword(e.target.value)}
                             />  
                         </FormControl>

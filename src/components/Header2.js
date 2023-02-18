@@ -61,7 +61,10 @@ export default function Header(){
     }
 
     const signOut = async () => {
-        const { error } = await supabase.auth.signOut()
+        console.log("cerrando sesion");
+        const { error } = await supabase.auth.signOut();
+        console.log(error);
+        navigate('/');
         document.location.reload();
     }
       
@@ -102,7 +105,7 @@ export default function Header(){
                     {isLogged ?
                         <>
                             <hr className='divider'/>
-                            <Link to={'/0'} className='nav_item_listed' onClick={signOut}><LogoutIcon color='secondary' fontSize='large'/>&nbsp;&nbsp;&nbsp;&nbsp;<span>Cerrar Sesión</span></Link>
+                            <Link className='nav_item_listed' onClick={(e) => signOut()}><LogoutIcon color='secondary' fontSize='large'/>&nbsp;&nbsp;&nbsp;&nbsp;<span>Cerrar Sesión</span></Link>
                         </>
                     : <>
                         <hr className='divider'/>
