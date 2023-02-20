@@ -274,7 +274,7 @@ export default function Home(){
                                 )
                             })}
                             </div>
-                            <Link to={`/categories/0/${locationId}`} style={{textDecoration: 'inherit'}} class='our_projects_button'>
+                            <Link to={`/categories2`} style={{textDecoration: 'inherit'}} class='our_projects_button'>
                                     <span>Ver más</span>
                                     <div className='our_projects_button_img'>
                                         <img src={require('../img/flecha.png')}/>

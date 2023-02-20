@@ -14,7 +14,9 @@ import NotFound from "./pages/NotFound";
 import Header from "./components/Header";
 import Account from "./pages/Account";
 import Categories from "./pages/Categories";
+import Categories2 from "./pages/Categories2";
 import Services from "./pages/Services";
+import Services2 from "./pages/Services2";
 import Service from "./pages/Service";
 import MyServices from "./pages/MyServices";
 import ClientService from "./pages/ClientService";
@@ -120,8 +122,10 @@ function App() {
           <Route path="*" element={<NotFound />} />
           <Route path="/account" element={<Account />} />
           <Route path="/categories/:id" element={<Categories />} />
+          <Route path="/categories2" element={<Categories2 />} />
           <Route path="/categories/:reload/:id" element={<Categories />} />
           <Route path="/services/:id" element={<Services />} />
+          <Route path="/services2/:id" element={<Services2 />} />
           <Route path="/service/:id" element={<Service />} />
           <Route path="/my-services" element={<MyServices />} />
           <Route path="/client-service/:reload" element={<ClientService />} />
