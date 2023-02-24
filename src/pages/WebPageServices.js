@@ -22,6 +22,16 @@ export default function WebPageServices(){
                             </span>
                         </div>
                     </Link>
+                    <Link to={'/add-service2'} className='profiles_item'>
+                        <div className='profiles_item_container'>
+                            <div className='profiles_item_img'>
+                                <img src={require('../img/aceptar.png')}/>
+                            </div>
+                            <span className='profiles_item_title'>
+                                Agregar Servicio
+                            </span>
+                        </div>
+                    </Link>
                     {/* <Link to={'/webpage'} className='profiles_item'>
                         <div className='profiles_item_container'>
                             <div className='profiles_item_img'>

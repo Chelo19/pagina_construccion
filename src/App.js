@@ -31,6 +31,7 @@ import EditEnterprises from "./pages/EditEnterprises";
 import AddCategory from "./pages/AddCategory";
 import AddServiceSelectCategory from "./pages/AddServiceSelectCategory";
 import AddService from "./pages/AddService";
+import AddService2 from "./pages/AddService2";
 import AddServiceHomeSelectCategory from "./pages/AddServiceHomeSelectCategory";
 import AddServiceHome from "./pages/AddServiceHome";
 import RemoveServiceHome from "./pages/RemoveServiceHome";
@@ -137,6 +138,7 @@ function App() {
           <Route path="/add-category/:id" element={<AddCategory/>}/>
           <Route path="/add-service-select-category/:id" element={<AddServiceSelectCategory/>}/>
           <Route path="/add-service/:id" element={<AddService/>}/>
+          <Route path="/add-service2" element={<AddService2/>}/>
           <Route path="/add-service-home-select-category/:id" element={<AddServiceHomeSelectCategory/>}/>
           <Route path="/add-service-home/:id" element={<AddServiceHome/>}/>
           <Route path="/remove-service-home/:id" element={<RemoveServiceHome/>}/>
