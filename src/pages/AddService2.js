@@ -20,7 +20,9 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 export default function AddService2(){
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(true);
-
+    
+    const [prompt, setPrompt] = useState(null);
+    const [promptStyle, setPromptStyle] = useState(null);
     const [categories, setCategories] = useState(null);
 
     const [name, setName] = useState(null);
@@ -76,11 +78,79 @@ export default function AddService2(){
         },
     };
 
+    const createService = async () => {
+        if(name && description && categoryId && imgs){
+            const { data, error } = await supabase
+            .from('services')
+            .insert({ name: name, description: description, category_id: categoryId })
+            .select();
+            if(!error){
+                updateBucket(data[0]);
+                setPromptStyle({backgroundColor: '#ff7f22'});
+                setPrompt('Creando servicio...');
+            }
+            else{
+                console.log(error);
+                setPromptStyle({backgroundColor: '#161825'});
+                setPrompt('Intenta de nuevo');
+                await timeout(2000);
+                setPrompt(null);
+            }
+        }
+        else{
+            setPromptStyle({backgroundColor: '#161825'});
+            setPrompt('Faltan campos por llenar');
+            await timeout(2000);
+            setPrompt(null);
+        }
+    }
 
-    console.log(name);
-    console.log(description);
-    console.log(imgs);
-    console.log(categoryId);
+    const updateBucket = async (service) => {
+        let haveError = false;
+        let urlsArray = [];
+        for(let i = 0 ; i < imgs.length ; i++){
+            const { data, error } = await supabase
+            .storage
+            .from('services-img')
+            .upload('/' + `${service.category_id}` + '/' + `${service.id}` + '-' + i, imgs[i]);
+            urlsArray.push(`https://xadwiefldpzbsdciapia.supabase.co/storage/v1/object/public/services-img/${data.path}`);
+            console.log(data);
+            if(error) haveError = true;
+        }
+        if(!haveError){
+            updateUrl(urlsArray, service);
+        }
+        else{
+            setPromptStyle({backgroundColor: '#161825'});
+            setPrompt('Ocurrió un error al subir img');
+            await timeout(2000);
+            setPrompt(null);
+        }
+    }
+
+    const updateUrl = async (urlsArray, service) => {
+        const { error } = await supabase
+        .from('services')
+        .update({ img_url: urlsArray })
+        .eq('id', service.id);
+        if(!error){
+            setPromptStyle({backgroundColor: '#77DD77'});
+            setPrompt('Servicio creado');
+            await timeout(2000);
+            setPrompt(null);
+            navigate('/webpage-services')
+        }
+        else{
+            setPromptStyle({backgroundColor: '#161825'});
+            setPrompt('Error al actualizar la DB');
+            await timeout(2000);
+            setPrompt(null);
+        }
+    }
+
+    function timeout(number) {
+        return new Promise( res => setTimeout(res, number) );
+    }
 
     return(
         <>
@@ -97,7 +167,7 @@ export default function AddService2(){
                                     color='primary'
                                     value={categoryId}
                                     onChange={handleChange}
-                                    input={<OutlinedInput label="Categorías" />}
+                                    input={<OutlinedInput label="Categorías"/>}
                                     MenuProps={MenuProps}
                                     >
                                     {categories.map((category) => (
@@ -131,9 +201,15 @@ export default function AddService2(){
                         variant="contained"
                         component="label"
                         endIcon={<SendIcon />}
+                        onClick={createService}
                         >Enviar</Button>
                     </div>
                 </div>
+                {prompt &&
+                    <div className="reg_log_prompt" style={promptStyle}>
+                        {prompt}
+                    </div>
+                }
             </div>
             :
             <LoadingScreen2/>
