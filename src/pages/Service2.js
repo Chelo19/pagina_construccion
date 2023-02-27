@@ -44,21 +44,25 @@ export default function Service2(){
 
     const tryCreateCotizacion = async () => {
         const { data: { user } } = await supabase.auth.getUser();
-        const { data, error } = await supabase
-        .from('cotizaciones')
-        .select('*')
-        .match({ account_email: user.email, service_id: id });
         if(data.length > 0){
-            setPromptStyle({backgroundColor: '#161825'});
-            setPrompt('Ya tienes una cotización pendiente');
-            await timeout(2000);
-            setPrompt(null);
-            return;
+            const { data, error } = await supabase
+            .from('cotizaciones')
+            .select('*')
+            .match({ account_email: user.email, service_id: id });
+            if(data.length > 0){
+                setPromptStyle({backgroundColor: '#161825'});
+                setPrompt('Ya tienes una cotización pendiente');
+                await timeout(2000);
+                setPrompt(null);
+                return;
+            }
+            else{
+                createCotizacion(user);
+            }
         }
         else{
-            createCotizacion(user);
+            navigate('/register')
         }
-        
     }
 
     const createCotizacion = async (user) => {

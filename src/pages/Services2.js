@@ -45,7 +45,7 @@ export default function Services2() {
                             <div className="gallery">
                                 {services.map((service) => {
                                     return(
-                                        <Link to={`/service/${service.id}`} className="gallery_item">
+                                        <Link to={`/service2/${service.id}`} className="gallery_item">
                                             <div className="gallery_item_img">
                                                 <img src={`${service.img_url[0]}`}/>
                                             </div>
