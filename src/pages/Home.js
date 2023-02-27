@@ -255,7 +255,7 @@ export default function Home(){
                     </div>
                 </div>
                 <div className='our_projects_presentation' ref={projects}>
-                    <Link to={`/categories/0/${locationId}`} style={{textDecoration: 'inherit'}} className='our_projects_presentation_text'>
+                    <Link to={`/categories2`} style={{textDecoration: 'inherit'}} className='our_projects_presentation_text'>
                         SERVICIOS
                     </Link>
                 </div>
@@ -265,7 +265,7 @@ export default function Home(){
                             <div className="categories_cards_container_home">
                             {servicesForDisplay.map((displayService) => {
                                 return(
-                                <Link to={`/service/${displayService.id}`} className="categories_card" key={displayService.id}>
+                                <Link to={`/service2/${displayService.id}`} className="categories_card" key={displayService.id}>
                                     <img src={displayService.img_url[0]}/>
                                     <div className="categories_card__head_home">
                                     <span>{displayService.name}</span>
