@@ -53,7 +53,7 @@ export default function Services2() {
                                                 <span className="gallery_item_content_title">{service.name}</span>
                                                 <span className="gallery_item_content_description">{service.description}</span>
                                                 <div className="gallery_item_buttons">
-                                                    <Link to={`/service/${service.id}`} className="gallery_item_button">Ver más</Link>
+                                                    <Link to={`/service2/${service.id}`} className="gallery_item_button">Ver más</Link>
                                                 </div>
                                             </div>
                                         </Link>

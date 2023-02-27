@@ -1,9 +1,8 @@
-.service_background{
+/* .service_background{
     width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    /* font-family: 'Poppins', sans-serif; */
     min-height: 100vh;
 }
 
@@ -207,4 +206,4 @@
         width: 100%;
     }
 
-}
+} */

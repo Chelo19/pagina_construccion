@@ -18,6 +18,7 @@ import Categories2 from "./pages/Categories2";
 import Services from "./pages/Services";
 import Services2 from "./pages/Services2";
 import Service from "./pages/Service";
+import Service2 from "./pages/Service2";
 import MyServices from "./pages/MyServices";
 import ClientService from "./pages/ClientService";
 import UpdatePassword from "./pages/UpdatePassword";
@@ -128,6 +129,7 @@ function App() {
           <Route path="/services/:id" element={<Services />} />
           <Route path="/services2/:id" element={<Services2 />} />
           <Route path="/service/:id" element={<Service />} />
+          <Route path="/service2/:id" element={<Service2 />} />
           <Route path="/my-services" element={<MyServices />} />
           <Route path="/client-service/:reload" element={<ClientService />} />
           <Route path="/update-password" element={<UpdatePassword />} />
