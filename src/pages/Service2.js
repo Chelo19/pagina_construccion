@@ -44,7 +44,7 @@ export default function Service2(){
 
     const tryCreateCotizacion = async () => {
         const { data: { user } } = await supabase.auth.getUser();
-        if(data.length > 0){
+        if(user.length > 0){
             const { data, error } = await supabase
             .from('cotizaciones')
             .select('*')
