@@ -221,7 +221,7 @@ export default function MyCotizaciones(){
                                 </div>
                                 <div className='no_items_spans'>
                                     <span className='no_items_span_title'>Aún no cuentas con cotizaciones</span>
-                                    <span className='no_items_span_text'>Puedes explorar nuestros diferentes servicios dando click <Link to={'/categories/1'}>aquí</Link></span>
+                                    <span className='no_items_span_text'>Puedes explorar nuestros diferentes servicios dando click <Link to={'/categories2'}>aquí</Link></span>
                                 </div>
                             </div>
                         </div>

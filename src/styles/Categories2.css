@@ -56,10 +56,9 @@
 
 .categories_item_content{
     transition: 2s;
-    width: 50%;
-    height: 10%;
-    margin-bottom: 10px;
-    margin-left: 10px;
+    width: calc(100% - 40px);
+    height: calc(100% - 40px);
+    font-size: 22px;
     align-self: flex-end;
     background-color: rgba(0, 0, 0, 0.5);
     padding: 20px;
@@ -68,7 +67,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 15px;
     overflow: hidden;
     color: white;
     letter-spacing: 1px;
@@ -78,10 +76,6 @@
 
 .categories_item:hover .categories_item_content{
     transition: 1s;
-    width: calc(100% - 40px);
-    height: calc(100% - 40px);
     font-size: 26px;
     margin: 0;
 }
-
-/*  */
