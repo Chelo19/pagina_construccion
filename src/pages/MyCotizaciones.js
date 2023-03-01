@@ -126,7 +126,7 @@ export default function MyCotizaciones(){
                                             <Link className='sent_cotizaiones_item' key={cotizacion.id} onClick={(e) => setSelectedCotizacion(cotizacion)}>
                                                 <div className='sent_cotizaiones_item_img'><img src={cotizacion.service_id.img_url[0]}/></div>
                                                 <div className='sent_cotizaciones_item_content'>
-                                                    <span className='sent_cotizaciones_item_title'>{cotizacion.service_id.name} aejrjae jaerjaejkjeka </span>
+                                                    <span className='sent_cotizaciones_item_title'>{cotizacion.service_id.name}</span>
                                                     <span className='sent_cotizaciones_item_content_text'>Fecha: {cotizacion.created_at.split('T')[0]}</span>
                                                 </div>
                                             </Link>
