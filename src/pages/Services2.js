@@ -6,6 +6,9 @@ import "../styles/Gallery.css";
 import LoadingScreen2 from "../components/LoadingScreen2";
 import { Link } from "react-router-dom";
 
+import TurnLeftOutlinedIcon from '@mui/icons-material/TurnLeftOutlined';
+import NavigateBeforeOutlinedIcon from '@mui/icons-material/NavigateBeforeOutlined';
+
 export default function Services2() {
     let { id } = useParams();
 
@@ -42,6 +45,12 @@ export default function Services2() {
                 <div className="services_background">
                     <div className="services_container">
                         {!noItems ?
+                        <>
+                            <div className="services_hotbar">
+                                <Link to={'/categories2'} className="services_hotbar_item" id="services_hotbar_return_button">
+                                    <NavigateBeforeOutlinedIcon/> Regresar
+                                </Link>
+                            </div>
                             <div className="gallery">
                                 {services.map((service) => {
                                     return(
@@ -60,6 +69,7 @@ export default function Services2() {
                                     )
                                 })}
                             </div>
+                        </>
                         :
                         <div className='no_items_background'>
                             <div className='no_items_container'>
@@ -69,6 +79,11 @@ export default function Services2() {
                                 <div className='no_items_spans'>
                                     <span className='no_items_span_title'>Aún no existen servicios en esta categoría</span>
                                     <span className='no_items_span_text'>Puedes explorar nuestros diferentes servicios dando click <Link to={'/categories2'}>aquí</Link></span>
+                                </div>
+                                <div className="no_items_buttons">
+                                    <Link to={'/categories2'} className="no_items_button" id="no_items_button_return">
+                                        Regresar <TurnLeftOutlinedIcon/>
+                                    </Link>
                                 </div>
                             </div>
                         </div>}

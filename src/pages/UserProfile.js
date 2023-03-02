@@ -2,7 +2,6 @@ import {useEffect, useState} from 'react';
 import {supabase} from '../supabase/client';
 import {useNavigate} from 'react-router-dom';
 import '../styles/Profiles.css';
-import LoadingScreen from '../components/LoadingScreen';
 import { Link } from "react-router-dom";
 
 export default function UserProfile(){

@@ -41,7 +41,7 @@ export default function Header(){
 
     const getUserMethod = async () => {
         const { data: { user } } = await supabase.auth.getUser();
-        if(user) {
+        if(user){
             setIsLogged(true);
             const { data, error } = await supabase
             .from('account')
@@ -79,29 +79,33 @@ export default function Header(){
                 </div>
                 <div className={`nav_items ${isOpen && "open"}`}>
                     <Link to={'/'} className='nav_item_listed' onClick={ () => setIsOpen(!isOpen)}><CottageOutlinedIcon color='secondary' fontSize='large'/>&nbsp;&nbsp;&nbsp;&nbsp;<span>Inicio</span></Link>
-                    <hr className='divider'/>
-                    <Link to={`/profile/${userId}`} className='nav_item_listed' onClick={ () => setIsOpen(!isOpen)}><PersonOutlineOutlinedIcon color='secondary' fontSize='large'/>&nbsp;&nbsp;&nbsp;&nbsp;<span>Perfil</span></Link>
-                    <hr className='divider'/>
-                    <Link to={'/contact/0'} className='nav_item_listed' onClick={ () => setIsOpen(!isOpen)}><SupportAgentOutlinedIcon color='secondary' fontSize='large'/>&nbsp;&nbsp;&nbsp;&nbsp;<span>Contacto</span></Link>
-                    <hr className='divider'/>
-                    <Link to={'/about-us'} className='nav_item_listed' onClick={ () => setIsOpen(!isOpen)}><GroupsOutlinedIcon color='secondary' fontSize='large'/>&nbsp;&nbsp;&nbsp;&nbsp;<span>Nosotros</span></Link>
-                    {isAdmin &&
+                    {isLogged && 
                         <>
                             <hr className='divider'/>
-                            <Link to={'/'} className='nav_item_listed' onClick={ () => setIsOpen(!isOpen)}><Person2OutlinedIcon color='secondary' fontSize='large'/>&nbsp;&nbsp;&nbsp;&nbsp;<span>Aliado</span></Link>
+                            <Link to={`/my-profile`} className='nav_item_listed' onClick={ () => setIsOpen(!isOpen)}><PersonOutlineOutlinedIcon color='secondary' fontSize='large'/>&nbsp;&nbsp;&nbsp;&nbsp;<span>Perfil</span></Link>
+                            <hr className='divider'/>
+                            <Link to={'/contact/0'} className='nav_item_listed' onClick={ () => setIsOpen(!isOpen)}><SupportAgentOutlinedIcon color='secondary' fontSize='large'/>&nbsp;&nbsp;&nbsp;&nbsp;<span>Contacto</span></Link>
+                        </>
+                    }
+                    <hr className='divider'/>
+                    <Link to={'/about-us'} className='nav_item_listed' onClick={ () => setIsOpen(!isOpen)}><GroupsOutlinedIcon color='secondary' fontSize='large'/>&nbsp;&nbsp;&nbsp;&nbsp;<span>Nosotros</span></Link>
+                    {isAlly &&
+                        <>
+                            <hr className='divider'/>
+                            <Link to={'/ally-hub'} className='nav_item_listed' onClick={ () => setIsOpen(!isOpen)}><Person2OutlinedIcon color='secondary' fontSize='large'/>&nbsp;&nbsp;&nbsp;&nbsp;<span>Aliado</span></Link>
                         </>}
                     {isAdmin &&
                         <>
                             <hr className='divider'/>
                             <Link to={'/profiles'} className='nav_item_listed' onClick={ () => setIsOpen(!isOpen)}><PeopleAltOutlinedIcon color='secondary' fontSize='large'/>&nbsp;&nbsp;&nbsp;&nbsp;<span>Perfiles</span></Link>
-                            <hr className='divider'/>
-                            <Link to={'/admin-hub/0'} className='nav_item_listed' onClick={ () => setIsOpen(!isOpen)}><AdminPanelSettingsOutlinedIcon color='secondary' fontSize='large'/>&nbsp;&nbsp;&nbsp;&nbsp;<span>Admin Hub</span></Link>
+                            {/* <hr className='divider'/>
+                            <Link to={'/admin-hub/0'} className='nav_item_listed' onClick={ () => setIsOpen(!isOpen)}><AdminPanelSettingsOutlinedIcon color='secondary' fontSize='large'/>&nbsp;&nbsp;&nbsp;&nbsp;<span>Admin Hub</span></Link> */}
                         </>}
-                    {isManager &&
+                    {/* {isManager &&
                         <>
                             <hr className='divider'/>
                             <Link to={'/manager-hub/0'} className='nav_item_listed' onClick={ () => setIsOpen(!isOpen)}><HubOutlinedIcon color='secondary' fontSize='large'/>&nbsp;&nbsp;&nbsp;&nbsp;<span>Manager Hub</span></Link>
-                        </>}
+                        </>} */}
                     {isLogged ?
                         <>
                             <hr className='divider'/>

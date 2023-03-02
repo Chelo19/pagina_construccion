@@ -21,6 +21,17 @@ export default function Categories2() {
         .from("categories")
         .select("*")
         .not('img_url', 'is', null);
+        console.log(data);
+        data.sort(function (a, b) {
+            if (a.name < b.name) {
+            return -1;
+            }
+            if (a.name > b.name) {
+            return 1;
+            }
+            return 0;
+        });
+        console.log(data);
         setCategories(data);
         console.log(data);
         if(data){

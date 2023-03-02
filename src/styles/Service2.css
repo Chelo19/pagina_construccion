@@ -29,10 +29,10 @@
 }
 
 .service_title{
-    width: 100%;
     letter-spacing: 1px;
     color: rgba(0, 0, 0, 0.8);
-    font-size: 30px;
+    font-size: 32px;
+    margin: 15px 0;
 }
 
 .service_carousel{
@@ -67,7 +67,7 @@
     color: white;
     background-color: #ff7f22;
     padding: 10px;
-    border-radius: 10px;
+    border-radius: 5px;
     text-align: center;
     text-decoration: none;
 }

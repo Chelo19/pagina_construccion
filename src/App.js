@@ -65,6 +65,8 @@ import AcceptedCotizaciones from "./pages/AcceptedCotizaciones";
 import MyCotizaciones from "./pages/MyCotizaciones";
 import WebPageServices from "./pages/WebPageServices";
 import WebPageCategories from "./pages/WebPageCategories";
+import AllyHub from "./pages/AllyHub";
+import MyProfile from "./pages/MyProfile";
 
 import { supabase } from "./supabase/client";
 
@@ -162,7 +164,7 @@ function App() {
           <Route path="/profiles" element={<Profiles/>}/>
           <Route path="/user-profile" element={<UserProfile/>}/>
           <Route path="/ally-profile" element={<AllyProfile/>}/>
-          <Route path="/cotizaciones" element={<Cotizaciones/>}/>
+          <Route path="/cotizaciones-pendientes-usuario" element={<Cotizaciones/>}/>
           <Route path="/user-cotizaciones" element={<UserCotizaciones/>}/>
           <Route path="/profile/:id" element={<Profile/>}/>
           <Route path="/cotizaciones-pendientes" element={<PendingCotizaciones/>}/>
@@ -176,6 +178,8 @@ function App() {
           <Route path="/mis-cotizaciones" element={<MyCotizaciones/>}/>
           <Route path="/webpage-services" element={<WebPageServices/>}/>
           <Route path="/webpage-categories" element={<WebPageCategories/>}/>
+          <Route path="/ally-hub" element={<AllyHub/>}/>
+          <Route path="/my-profile" element={<MyProfile/>}/>
         </Routes>
         <Footer/>
       </div>

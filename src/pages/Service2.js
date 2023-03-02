@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { supabase } from "../supabase/client";
 import "../styles/Service2.css";
+import "../styles/NoItems.css";
 import LoadingScreen2 from "../components/LoadingScreen2";
 import { Link } from "react-router-dom";
 
@@ -10,11 +11,14 @@ import { Pagination } from "swiper";
 import 'swiper/css';
 import 'swiper/css/pagination';
 
+import TurnLeftOutlinedIcon from '@mui/icons-material/TurnLeftOutlined';
+
 export default function Service2(){
     const { id } = useParams();
 
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(true);
+    const [isRegisterAlert, setIsRegisterAlert] = useState(null);
     const [noItems, setNoItems] = useState(false);
 
     const [prompt, setPrompt] = useState(null);
@@ -61,7 +65,7 @@ export default function Service2(){
             }
         }
         else{
-            navigate('/register')
+            setIsRegisterAlert(true);
         }
     }
 
@@ -94,33 +98,60 @@ export default function Service2(){
     return(
         <>
         {!isLoading ?
-            <div className="service_background">
-                <div className="service_container">
-                    <div className="service_body">
-                        <div className="service_title">{service.name}</div>
-                        <Swiper
-                            spaceBetween={10}
-                            pagination={{
-                            dynamicBullets: true,
-                            }}
-                            modules={[Pagination]}
-                            className="service_carousel"
-                        >
-                            {service.img_url.map((url) => {
-                                return(
-                                    <SwiperSlide className="service_carousel_slide"><img className="service_carousel_slide_img" src={url}/></SwiperSlide>
-                                )
-                            })}
-                        </Swiper>
-                        <div className="service_description">{service.description}</div>
-                        <Link className="service_button" onClick={tryCreateCotizacion}>Cotizar servicio</Link>
+        <>
+            {!isRegisterAlert ?
+                <div className="service_background">
+                    <div className="service_container">
+                        <div className="service_body">
+                            <div className="service_title">{service.name}</div>
+                            <Swiper
+                                spaceBetween={10}
+                                pagination={{
+                                dynamicBullets: true,
+                                }}
+                                modules={[Pagination]}
+                                className="service_carousel"
+                            >
+                                {service.img_url.map((url) => {
+                                    return(
+                                        <SwiperSlide className="service_carousel_slide"><img className="service_carousel_slide_img" src={url}/></SwiperSlide>
+                                    )
+                                })}
+                            </Swiper>
+                            <div className="service_description">{service.description}</div>
+                            <Link className="service_button" onClick={tryCreateCotizacion}>Cotizar servicio</Link>
+                        </div>
+                    </div>
+                    {prompt &&
+                        <div className="reg_log_prompt" style={promptStyle}>
+                            {prompt}
+                        </div>}
+                </div>
+                :
+                <div className='no_items_reg_log_background'>
+                    <div className='no_items_container'>
+                    <div className='no_items_img'>
+                        <img src={require('../img/supervision.png')}/>
+                    </div>
+                    <div className='no_items_spans'>
+                        <span className='no_items_span_title'>Inicia sesión o regístrate</span>
+                        <span className='no_items_span_text'>Nos encantaría que fueras parte de nuestra familia, puedes registrarte con el botón de abajo ¡es gratis!</span>
+                    </div>
+                    <div className="no_items_buttons">
+                        <Link to={'/login'} className="no_items_button" id="no_items_button_one">
+                            Iniciar Sesión
+                        </Link>
+                        <Link to={'/register'} className="no_items_button" id="no_items_button_two">
+                            Registrarse
+                        </Link>
+                        <Link onClick={(e) => setIsRegisterAlert(false)} className="no_items_button" id="no_items_button_return">
+                            Regresar <TurnLeftOutlinedIcon/>
+                        </Link>
                     </div>
                 </div>
-                {prompt &&
-                    <div className="reg_log_prompt" style={promptStyle}>
-                        {prompt}
-                    </div>}
-            </div>
+        </div>
+            }
+        </>
         :
             <LoadingScreen2/>
         }

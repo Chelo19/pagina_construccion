@@ -71,7 +71,7 @@ export default function Profile(){
                         <div className='profile_display'>
                             {!noItems ?
                                 <>
-                                    <span id='profile_title'>Perfil de usuario</span>
+                                    <span id='profile_title'>Perfil</span>
                                     <div className='profile_img'>
                                         <img src={require('../img/aliados.png')}/>
                                     </div>
