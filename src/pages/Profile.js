@@ -71,7 +71,7 @@ export default function Profile(){
                         <div className='profile_display'>
                             {!noItems ?
                                 <>
-                                    <span id='profile_title'>Perfil</span>
+                                    <span id='profile_title'>Perfil de {profile.role == 'aliado' ? <>aliado</> : <>usuario</>}</span>
                                     <div className='profile_img'>
                                         <img src={require('../img/aliados.png')}/>
                                     </div>
@@ -81,7 +81,7 @@ export default function Profile(){
                                         <span>Email: {profile.email}</span>
                                         <span>Teléfono: {profile.phone}</span>
                                         <span>Monterrey, N.L., Mexico</span>
-                                        {isAlly ?
+                                        {/* {isAlly ?
                                             <>
                                                 <span id='profile_link'><Link to={'/'}>Servicios y categorias</Link></span>
                                                 <span id='profile_link'><Link to={'/'}>Cotizaciones</Link></span>
@@ -92,7 +92,7 @@ export default function Profile(){
                                             <span id='profile_link'><Link to={'/mis-cotizaciones'}>Mis cotizaciones</Link></span>
                                             <span id='profile_link'><Link to={'/'}>Mis proyectos</Link></span>
                                         </>
-                                        }
+                                        } */}
                                     </div>
                                     {isAdmin &&
                                         <div className='profile_buttons'>
