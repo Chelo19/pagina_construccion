@@ -53,21 +53,29 @@
     font-size: 20px;
     color: rgba(0, 0, 0, 0.8);
     letter-spacing: 1px;
+    text-align: center;
 }
 
 .accepted_cotizaciones_input{
     width: 100%;
 }
 
+.accepted_cotizaciones_search_engine{
+    width: calc(100% - 40px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
 
 .accepted_cotizaciones_back_button{
     transition: .5s;
-    width: 100%;
-    height: 50px;
+    width: 90%;
+    height: 40px;
     border-radius: 3px;
-    border: 1px solid #161825;
     display: flex;
-    color: #161825;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
     letter-spacing: 2px;
     justify-content: center;
     align-items: center;
@@ -77,5 +85,37 @@
 .accepted_cotizaciones_back_button:hover{
     transition: .5s;
     color: white;
-    background-color: #161825;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+#accepted_cotizaciones_send_button{
+    background-color: #ff7f22;
+}
+
+#accepted_cotizaciones_send_button:hover{
+    background-color: rgba(255, 127, 34, 0.8);
+}
+
+.accepted_cotizaciones_selected_ally{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.accepted_cotizaciones_item{
+    width: calc(100% - 100px);
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 18px;
+    padding: 10px;
+    letter-spacing: 1px;
+    text-align: left;
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.8);
 }

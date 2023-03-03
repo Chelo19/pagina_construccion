@@ -9,7 +9,10 @@ export default function MyProfile(){
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(true);
     
+    const [isClient, setIsClient] = useState(false);
     const [isAlly, setIsAlly] = useState(false);
+    const [isAdmin, setIsAdmin] = useState(null);
+    const [isManager, setIsManager] = useState(null);
 
     const [profile, setProfile] = useState(null);
     
@@ -23,7 +26,10 @@ export default function MyProfile(){
         .from('account')
         .select()
         .match({ uuid: user.id });
+        if(data[0].role == 'cliente') setIsClient(true);
         if(data[0].role == 'aliado') setIsAlly(true);
+        if(data[0].role == 'administrador') setIsAdmin(true);
+        if(data[0].role == 'gerente') setIsManager(true);
         setProfile(data[0]);
         setIsLoading(false);
     }
@@ -51,6 +57,9 @@ export default function MyProfile(){
                                         <span id='profile_link'><Link to={'/'}>Cotizaciones pendientes</Link></span>
                                         <span id='profile_link'><Link to={'/'}>Proyectos aceptados</Link></span>
                                     </>
+                                }
+                                {isClient &&
+                                    <span id='profile_link'><Link to={'/request-ally'}>Quiero ser aliado</Link></span>
                                 }
                             </div>
                         </div>

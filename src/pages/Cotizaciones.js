@@ -84,14 +84,6 @@ export default function Cotizaciones(){
                                         </Button>
                                         </Stack>
                                     </div>
-                                    {/* <div className='cotizaciones_item_buttons'>
-                                        <Link to={`/select-allies/${cotizacion.id}`} className='cotizaciones_item_button'>
-                                            Aliados
-                                        </Link>
-                                        <div className='cotizaciones_item_button'>
-                                            Agregar<br/>Cotización
-                                        </div>
-                                    </div> */}
                                 </div>
                             )
                         })}
