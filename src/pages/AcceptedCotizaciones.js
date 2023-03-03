@@ -108,7 +108,7 @@ export default function AcceptedCotizaciones(){
                                 <span className='sent_cotizaciones_cotizacion_instructions'>Se tienen las diferentes opciones de cotizaciones en el siguiente link:</span>
                                 <a href={`${selectedCotizacion.link_drive}`} className='sent_cotizaciones_cotizacion_link'>Link Drive</a>
                                 <span className='accepted_cotizaciones_result'>El usuario eligió la opción: <span className='sent_cotizaciones_cotizacion_orange'>{selectedCotizacion.option_selected}</span></span>
-                                <TextField className='accepted_cotizaciones_input' label="Link Drive" variant="outlined"/>
+                                {/* <TextField className='accepted_cotizaciones_input' label="Link Drive" variant="outlined"/> */}
                                 <div className='accepted_cotizaciones_back_button' onClick={(e) => setSelectedCotizacion(null)}>
                                     Regresar
                                 </div>
