@@ -67,6 +67,7 @@ import WebPageServices from "./pages/WebPageServices";
 import WebPageCategories from "./pages/WebPageCategories";
 import AllyHub from "./pages/AllyHub";
 import MyProfile from "./pages/MyProfile";
+import PendingCotizacionesMore from "./pages/PendingCotizacionesMore";
 
 import { supabase } from "./supabase/client";
 
@@ -168,6 +169,7 @@ function App() {
           <Route path="/user-cotizaciones" element={<UserCotizaciones/>}/>
           <Route path="/profile/:id" element={<Profile/>}/>
           <Route path="/cotizaciones-pendientes" element={<PendingCotizaciones/>}/>
+          <Route path="/cotizaciones-pendientes-mas/:cotid" element={<PendingCotizacionesMore/>}/>
           <Route path="/requests" element={<Requests/>}/>
           <Route path="/webpage" element={<WebPage/>}/>
           <Route path="/profile-list/:type" element={<ProfileList/>}/>

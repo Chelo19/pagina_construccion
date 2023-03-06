@@ -47,6 +47,11 @@ export default function Cotizaciones(){
         navigate(`/select-allies/${e.id}`)
     }
 
+    const link2 = async (e) => {
+        console.log(e);
+        navigate(`/cotizaciones-pendientes-mas/${e.id}`)
+    }
+
     return(
         <>
             {!isLoading ?
@@ -79,7 +84,7 @@ export default function Cotizaciones(){
                                         <Button variant="contained" endIcon={<SendIcon />} onClick={(e) => link(cotizacion)}>
                                             Aliados
                                         </Button>
-                                        <Button variant="contained" startIcon={<AddCircleOutlineIcon />}>
+                                        <Button variant="contained" startIcon={<AddCircleOutlineIcon />} onClick={(e) => link2(cotizacion)}>
                                             Cotización
                                         </Button>
                                         </Stack>
