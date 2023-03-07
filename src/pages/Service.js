@@ -3,11 +3,13 @@ import { supabase } from "../supabase/client";
 import "../styles/Service.css";
 import {useNavigate} from 'react-router-dom';
 import { useParams } from "react-router-dom";
-import LoadingScreen from "../components/LoadingScreen";
+import LoadingScreen2 from "../components/LoadingScreen2";
 import emailjs from 'emailjs-com';
 
 export default function Service(props) {
   const { id } = useParams();
+
+  const [currentUser, setCurrentUser] = useState(null);
   const [service, setService] = useState(null);
   const [loadingScreen, setLoadingScreen] = useState(true);
   const [email, setEmail] = useState(null);
@@ -19,27 +21,34 @@ export default function Service(props) {
   const [correoEnviado, setCorreoEnviado] = useState(null);
   const [isMailSent, setIsMailSent] = useState(false);
   const navigate = useNavigate();
+  
 
   const sendEmail = async (e) => {
-    e.preventDefault();
-    const { data: { user } } = await supabase.auth.getUser();
-    console.log(user);
-    if(user){
-      if(!isMailSent){
-        console.log("User email: " + email);
-        emailjs.send("service_rqa3brt","template_91a0omn",{
-        email: email,
-        serviceName: serviceName,
-        serviceId: serviceId,
-        administradores: listaAdministradores}, 
-        'a9hJXSTK7xAdC26he');
-        setCorreoEnviado(`Gracias por tu interés en: ${serviceName}, un asociado se pondrá en contacto contigo en breve.`);
-        setIsMailSent(true);
-      }
-    }
-    else{
-      alert("Por favor inicia sesión o crea una cuenta");
-      navigate("/login/");
+    // e.preventDefault();
+    // const { data: { user } } = await supabase.auth.getUser();
+    // console.log(user);
+    // if(user){
+    //   if(!isMailSent){
+    //     console.log("User email: " + email);
+    //     emailjs.send("service_rqa3brt","template_91a0omn",{
+    //     email: email,
+    //     serviceName: serviceName,
+    //     serviceId: serviceId,
+    //     administradores: listaAdministradores}, 
+    //     'a9hJXSTK7xAdC26he');
+    //     setCorreoEnviado(`Gracias por tu interés en: ${serviceName}, un asociado se pondrá en contacto contigo en breve.`);
+    //     setIsMailSent(true);
+    //   }
+    // }
+    // else{
+    //   alert("Por favor inicia sesión o crea una cuenta");
+    //   navigate("/login/");
+    // }
+    const { error } = await supabase
+    .from('cotizaciones')
+    .insert({ account_email: currentUser.email, service_id: serviceId })
+    if(error){
+      console.log(error);
     }
   }
 
@@ -58,6 +67,7 @@ export default function Service(props) {
     const { data: { user } } = await supabase.auth.getUser();
     if(user){
       setEmail(user.email);
+      setCurrentUser(user);
     }
     const { data, error } = await supabase
     .from('account')
@@ -128,7 +138,7 @@ export default function Service(props) {
             </div>
           </div>
         </div>
-      ) : <LoadingScreen/>}
+      ) : <LoadingScreen2/>}
     </>
   );
 }

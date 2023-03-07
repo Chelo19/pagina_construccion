@@ -1,0 +1,240 @@
+.select_allies_results_item{
+    width: 100%;
+    font-size: 20px;
+    color: rgba(0, 119, 182, 0.5);
+    display: grid;
+    grid-template-columns: 20% 60% 10%;
+    gap: 10px;
+    text-decoration: none;
+}
+
+.select_allies_results_item:hover{
+    color: rgba(0, 119, 182, 0.8);
+}
+
+.select_allies_results_item span{
+    overflow: scroll;
+}
+
+.select_allies_results_item input{
+    width: 15px;
+    height: 15px;
+}
+
+.select_allies_selection_container{
+    width: calc(100% - 40px);
+    font-size: 20px;    
+    transition: .5s;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+    color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0 20px 0;
+    flex-direction: column;
+    gap: 5px;
+    letter-spacing: 1px;
+}
+
+.select_allies_selection_accept{
+    width: calc(100% - 40px);
+    font-size: 20px;    
+    transition: .5s;
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0 20px 0;
+    color: rgba(0, 0, 0, 0.8);
+    letter-spacing: 1px;
+    font-size: 25px;
+    color: #ff7f22;
+}
+
+.select_allies_selection_accept:hover{
+    transition: .5s;
+    color: white;
+    background-color: #ff7f22;
+}
+
+.select_allies_cotizacion{
+    width: calc(100% - 40px);
+    height: 300px;
+    font-size: 20px;    
+    transition: .5s;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+    color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.select_allies_cotizacion_container{
+    width: calc(100% - 40px);
+    height: calc(100% - 40px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    letter-spacing: 1px;
+}
+
+.select_allies_cotizacion_container span{
+    width: 95%;
+}
+
+.select_allies_cotizacion_container input{
+    width: 95%;
+    padding: 2px 5px 2px 5px;
+    color: rgba(0, 0, 0, 0.8);
+    border-radius: 3px;
+    border-color: rgba(0, 0, 0, 0.3);
+}
+
+.select_allies_buttons{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.select_allies_buttons a{
+    transition: .5s;
+    width: 80%;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3px;
+    padding: 5px 0 5px 0;
+}
+
+.select_allies_buttons span{
+    text-align: center;
+}
+
+#select_allies_send{
+    color: #ff7f22;
+}
+
+#select_allies_send:hover{
+    transition: .5s;
+    background-color: #ff7f22;
+    color: white;
+}
+
+#select_allies_cancel{
+    color: #ff5252;
+    border: 1px solid #ff5252;
+}
+
+#select_allies_cancel:hover{
+    color: white;
+    background-color: #ff5252;
+}
+
+.select_allies_title{
+    width: 100%;
+    font-size: 30px;
+    letter-spacing: 2px;
+    text-align: center;
+}
+
+.select_allies_profiles_container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.select_allies_item{
+    width: calc(100% - 60px);
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    place-items: center;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    border-radius: 3px;
+    padding: 10px;
+}
+
+.select_allies_icon_box{
+    width: 60px;
+    height: 60px;
+    border-radius: 100%;
+    grid-column: 1;
+    background-color: #ff7f22;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.select_allies_ally_info{
+    width: calc(100% - 30px);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: left;
+    grid-column: 2 / 6;
+    color: rgba(0, 0, 0, 0.8);
+    gap: 5px;
+    padding: 0 15px 0 15px;
+}
+
+.select_allies_ally_info span{
+    width: 100%;
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+
+.select_allies_input{
+    width: calc(100% - 40px);
+}
+
+.select_allies_send_button{
+    transition: .5s;
+    width: calc(100% - 40px);
+    height: 50px;
+    border-radius: 3px;
+    border: 1px solid #ff7f22;
+    display: flex;
+    color: #ff7f22;
+    letter-spacing: 2px;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+}
+
+.select_allies_send_button:hover{
+    transition: .5s;
+    color: white;
+    background-color: #ff7f22;
+}
+
+.select_allies_back_button{
+    transition: .5s;
+    width: calc(100% - 40px);
+    height: 50px;
+    border-radius: 3px;
+    border: 1px solid #161825;
+    display: flex;
+    color: #161825;
+    letter-spacing: 2px;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+}
+
+.select_allies_back_button:hover{
+    transition: .5s;
+    color: white;
+    background-color: #161825;
+}

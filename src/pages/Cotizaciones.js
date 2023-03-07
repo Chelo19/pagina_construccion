@@ -5,6 +5,13 @@ import '../styles/Cotizaciones.css';
 import { Link } from "react-router-dom";
 import LoadingScreen2 from '../components/LoadingScreen2';
 
+import * as React from 'react';
+import Button from '@mui/material/Button';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import SendIcon from '@mui/icons-material/Send';
+import Stack from '@mui/material/Stack';
+
+
 export default function Cotizaciones(){
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(true);
@@ -35,6 +42,16 @@ export default function Cotizaciones(){
         }
     }
 
+    const link = async (e) => {
+        console.log(e);
+        navigate(`/select-allies/${e.id}`)
+    }
+
+    const link2 = async (e) => {
+        console.log(e);
+        navigate(`/cotizaciones-pendientes-mas/${e.id}`)
+    }
+
     return(
         <>
             {!isLoading ?
@@ -49,7 +66,7 @@ export default function Cotizaciones(){
                                                 {cotizacion.account_email.name}
                                             </Link>
                                         </span>
-                                        <span id='cotizaciones_item_id'>
+                                        <span id='cotizaciones_item_user'>
                                             <Link to={`/profile/${cotizacion.account_email.id}`}>
                                                 id: {cotizacion.account_email.id}
                                             </Link>
@@ -58,19 +75,19 @@ export default function Cotizaciones(){
                                             Quiere cotizar
                                         </span>
                                         <span id='cotizaciones_item_service'>
-                                            {cotizacion.service_id.name}
+                                            Servicio: {cotizacion.service_id.name}
                                         </span>
                                         <span id='cotizaciones_item_category'>
-                                            {cotizacion.service_id.category_id.name}
+                                            Categoría: {cotizacion.service_id.category_id.name}
                                         </span>
-                                    </div>
-                                    <div className='cotizaciones_item_buttons'>
-                                        <Link to={`/select-allies/${cotizacion.id}`} className='cotizaciones_item_button'>
-                                            <img src={require('../img/usuario_header2.png')}/>
-                                        </Link>
-                                        <div className='cotizaciones_item_button'>
-                                            +
-                                        </div>
+                                        <Stack className='cotizaciones_item_buttons' direction="row" spacing={1}>
+                                        <Button variant="contained" endIcon={<SendIcon />} onClick={(e) => link(cotizacion)}>
+                                            Aliados
+                                        </Button>
+                                        <Button variant="contained" startIcon={<AddCircleOutlineIcon />} onClick={(e) => link2(cotizacion)}>
+                                            Cotización
+                                        </Button>
+                                        </Stack>
                                     </div>
                                 </div>
                             )

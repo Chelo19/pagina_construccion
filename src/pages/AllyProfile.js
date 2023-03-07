@@ -12,7 +12,8 @@ export default function AllyProfile(){
         <div className='profiles_background'>
             <div className='profiles_container'>
                 <div className='profiles_gallery'>
-                    <Link to={'/cotizaciones'} className='profiles_item'>
+                    <Link to={'/ally-profile'} className='profiles_item'> 
+                        {/* Aquí van las cotizaciones de aliado */}
                         <div className='profiles_item_container'>
                             <div className='profiles_item_img'>
                                 <img src={require('../img/cotizaciones.png')}/>

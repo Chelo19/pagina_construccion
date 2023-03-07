@@ -12,7 +12,7 @@ export default function WebPage(){
         <div className='profiles_background'>
             <div className='profiles_container'>
                 <div className='profiles_gallery'>
-                    <Link to={'/webpage'} className='profiles_item'>
+                    <Link to={'/webpage-services'} className='profiles_item'>
                         <div className='profiles_item_container'>
                             <div className='profiles_item_img'>
                                 <img src={require('../img/servicios.png')}/>
@@ -22,7 +22,7 @@ export default function WebPage(){
                             </span>
                         </div>
                     </Link>
-                    <Link to={'/webpage'} className='profiles_item'>
+                    <Link to={'/webpage-categories'} className='profiles_item'>
                         <div className='profiles_item_container'>
                             <div className='profiles_item_img'>
                                 <img src={require('../img/categorias.png')}/>

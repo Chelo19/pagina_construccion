@@ -3,7 +3,6 @@
     display: flex;
     flex-direction: column;
     justify-content: end;
-    font-family: 'Poppins', sans-serif;
 }
 
 .profiles_container{
@@ -22,7 +21,7 @@
 
 .profiles_item{
     transition: .5s;
-    border: 2px solid rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(0, 0, 0, 0.2);
     border-radius: 5px;
     box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
     background-color: #ebebeb;
@@ -35,7 +34,7 @@
 
 .profiles_item:hover{
     transition: 1s;
-    border: 2px solid #ff7f22;
+    border: 1px solid #ff7f22;
     background-color: white;
 }
 
@@ -51,7 +50,8 @@
 
 .profiles_item_title{
     font-size: 20px;
-    font-weight: bold;
+    color: rgba(0, 0, 0, 0.8);
+    letter-spacing: 1px;
     text-overflow: ellipsis;
     overflow: scroll;
     text-align: center;

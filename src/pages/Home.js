@@ -6,8 +6,9 @@ import AddToDB from '../components/AddToDB';
 import { useNavigate, useParams } from "react-router-dom";
 import '../styles/Home.css';
 import { AuthRedirect } from '../hooks/authUser';
-import LoadingScreen from '../components/LoadingScreen';
+import LoadingScreen2 from '../components/LoadingScreen2';
 import { Link } from 'react-router-dom';
+import {Helmet} from "react-helmet";
 
 
 export default function Home(){
@@ -232,6 +233,11 @@ export default function Home(){
 
     return(
         <div className='home_background'>
+            <Helmet>
+                <title>Grupo Drec</title>
+                <meta name="description" content="La construcción que debes" />
+                <meta name="author" content="Marcelo Amado De León Gómez"></meta>
+            </Helmet>
             {!loadingScreen
             ? <>
                 <div className='background_img'>
@@ -249,7 +255,7 @@ export default function Home(){
                     </div>
                 </div>
                 <div className='our_projects_presentation' ref={projects}>
-                    <Link to={`/categories/0/${locationId}`} style={{textDecoration: 'inherit'}} className='our_projects_presentation_text'>
+                    <Link to={`/categories2`} style={{textDecoration: 'inherit'}} className='our_projects_presentation_text'>
                         SERVICIOS
                     </Link>
                 </div>
@@ -259,7 +265,7 @@ export default function Home(){
                             <div className="categories_cards_container_home">
                             {servicesForDisplay.map((displayService) => {
                                 return(
-                                <Link to={`/service/${displayService.id}`} className="categories_card" key={displayService.id}>
+                                <Link to={`/service2/${displayService.id}`} className="categories_card" key={displayService.id}>
                                     <img src={displayService.img_url[0]}/>
                                     <div className="categories_card__head_home">
                                     <span>{displayService.name}</span>
@@ -268,7 +274,7 @@ export default function Home(){
                                 )
                             })}
                             </div>
-                            <Link to={`/categories/0/${locationId}`} style={{textDecoration: 'inherit'}} class='our_projects_button'>
+                            <Link to={`/categories2`} style={{textDecoration: 'inherit'}} class='our_projects_button'>
                                     <span>Ver más</span>
                                     <div className='our_projects_button_img'>
                                         <img src={require('../img/flecha.png')}/>
@@ -360,7 +366,7 @@ export default function Home(){
                     </div>
                 </div>
             </>
-        : <LoadingScreen/>}
+        : <LoadingScreen2/>}
         </div>
         
     );

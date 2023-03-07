@@ -1,0 +1,225 @@
+.sent_cotizaciones_background{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    /* font-family: 'Poppins', sans-serif; */
+    min-height: 100vh;
+}
+
+.sent_cotizaciones_container{
+    margin-top: 50px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    padding: 40px 0 40px 0;
+}
+
+.sent_cotizaciones_title{
+    font-size: 30px;
+    letter-spacing: 2px;
+    text-align: center;
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.user_sent_cotizaciones_title{
+    width: calc(100% - 40px);
+    font-size: 24px;
+    letter-spacing: 2px;
+    text-align: left;
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.user_sent_cotizaciones_message{
+    width: calc(100% - 40px);
+    text-align: center;
+    font-size: 20px;
+}
+
+.sent_cotizaiones_item{
+    width: calc(100% - 40px);
+    height: 200px;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+    font-size: 18px;
+    letter-spacing: 1px;
+    text-decoration: none;
+    color: white;
+}
+
+.sent_cotizaciones_item:hover{
+}
+
+.sent_cotizaciones_item_content{
+    width: calc(100% - 20px);
+    background-color: rgba(255, 127, 34, 0.85);
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 10px;
+    position: relative;
+    bottom: 80px;
+}
+
+.sent_cotizaciones_item_title{
+    font-size: 24px;
+    overflow: scroll;
+    white-space: nowrap;
+}
+
+.sent_cotizaciones_item_content_text{
+    font-size: 12px;
+    overflow: scroll;
+    white-space: nowrap;
+}
+
+.sent_cotizaiones_item_img{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sent_cotizaiones_item_img img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.sent_cotizaciones_cotizacion{
+    width: calc(100% - 40px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.sent_cotizaciones_cotizacion_content{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.sent_cotizaciones_cotizacion_content span{
+    width: 100%;
+    text-align: left;
+    font-size: 20px;
+    letter-spacing: 1px;
+}
+
+.sent_cotizaciones_cotizacion_orange{
+    color: #ff7f22;
+}
+
+.sent_cotizaciones_cotizacion_link{
+    color: #0077b6;
+    text-align: left;
+    font-size: 20px;
+    letter-spacing: 1px;
+    text-decoration: none;
+    border-bottom: 2px solid #0077b6;
+}
+
+.sent_cotizaciones_cotizacion_instructions{
+    text-align: left;
+    font-size: 20px;
+    letter-spacing: 1px;
+    text-decoration: none;
+    border-top: 1px solid rgba(0, 0, 0, 0.8);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.8);
+    padding: 15px 0 15px 0;
+}
+
+.sent_cotizaciones_cotizacion_buttons{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    text-decoration: none;
+    margin-top: 10px;
+}
+
+.sent_cotizaciones_cotizacion_buttons span{
+    font-size: 20px;
+    text-align: left;
+    letter-spacing: 1px;
+    padding: 15px 0 15px 0;
+}
+
+.sent_cotizaciones_cotizacion_orange{
+    color: #ff7f22;
+}
+
+.sent_cotizaciones_cotizacion_button{
+    transition: .5s;
+    width: 100%;
+    height: 50px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    letter-spacing: 2px;
+    font-size: 20px;
+    border: 1px solid #ff7f22;
+    color: #ff7f22;
+    text-decoration: none;
+}
+
+.sent_cotizaciones_cotizacion_button:hover{
+    transition: .5s;
+    background-color: #ff7f22;
+    color: #ebebeb;
+}
+
+#sent_cotizaciones_cotizacion_return{
+    transition: .5s;
+    border: 1px solid #161825;
+    color: #161825;
+}
+
+#sent_cotizaciones_cotizacion_return:hover{
+    transition: .5s;
+    background-color: #161825;
+    color: #ebebeb;
+}
+
+#sent_cotizaciones_cotizacion_accept{
+    transition: .5s;
+    border: 1px solid #77DD77;
+    color: #77DD77;
+}
+
+#sent_cotizaciones_cotizacion_accept:hover{
+    transition: .5s;
+    background-color: #77DD77;
+    color: #ebebeb;
+}
+
+#sent_cotizaciones_cotizacion_reject{
+    transition: .5s;
+    border: 1px solid #ff5252;
+    color: #ff5252;
+}
+
+#sent_cotizaciones_cotizacion_reject:hover{
+    transition: .5s;
+    background-color: #ff5252;
+    color: #ebebeb;
+}

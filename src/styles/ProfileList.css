@@ -32,8 +32,8 @@
     height: 20px;
     font-size: 20px;
     transition: .5s;
-    border: 2px solid rgba(0, 0, 0, 0.2);
-    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
     box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
     padding: 10px;
     color: rgba(0, 0, 0, 0.8);
@@ -48,8 +48,8 @@
     width: calc(100% - 40px);
     font-size: 20px;    
     transition: .5s;
-    border: 2px solid rgba(0, 0, 0, 0.2);
-    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
     color: rgba(0, 0, 0, 0.8);
     display: flex;
     justify-content: center;
@@ -97,144 +97,4 @@
 
 .profile_list_results_item_static span{
     overflow: scroll;
-}
-
-.select_allies_results_item{
-    width: 100%;
-    font-size: 20px;
-    color: rgba(0, 119, 182, 0.5);
-    display: grid;
-    grid-template-columns: 20% 60% 10%;
-    gap: 10px;
-    text-decoration: none;
-}
-
-.select_allies_results_item:hover{
-    color: rgba(0, 119, 182, 0.8);
-}
-
-.select_allies_results_item span{
-    overflow: scroll;
-}
-
-.select_allies_results_item input{
-    width: 15px;
-    height: 15px;
-}
-
-.select_allies_selection_container{
-    width: calc(100% - 40px);
-    font-size: 20px;    
-    transition: .5s;
-    border: 2px solid rgba(0, 0, 0, 0.2);
-    border-radius: 5px;
-    color: rgba(0, 0, 0, 0.8);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px 0 20px 0;
-    flex-direction: column;
-    gap: 5px;
-    letter-spacing: 1px;
-}
-
-.select_allies_selection_accept{
-    width: calc(100% - 40px);
-    font-size: 20px;    
-    transition: .5s;
-    border-radius: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px 0 20px 0;
-    color: rgba(0, 0, 0, 0.8);
-    letter-spacing: 1px;
-    font-size: 25px;
-    color: #ff7f22;
-}
-
-.select_allies_selection_accept:hover{
-    transition: .5s;
-    color: white;
-    background-color: #ff7f22;
-}
-
-.select_allies_cotizacion{
-    width: calc(100% - 40px);
-    height: 300px;
-    font-size: 20px;    
-    transition: .5s;
-    border: 2px solid rgba(0, 0, 0, 0.2);
-    border-radius: 5px;
-    color: rgba(0, 0, 0, 0.8);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.select_allies_cotizacion_container{
-    width: calc(100% - 40px);
-    height: calc(100% - 40px);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    letter-spacing: 1px;
-}
-
-.select_allies_cotizacion_container span{
-    width: 95%;
-}
-
-.select_allies_cotizacion_container input{
-    width: 95%;
-    padding: 2px 5px 2px 5px;
-    color: rgba(0, 0, 0, 0.8);
-    border-radius: 5px;
-    border-color: rgba(0, 0, 0, 0.3);
-}
-
-.select_allies_buttons{
-    width: 80%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
-}
-
-.select_allies_buttons a{
-    transition: .5s;
-    width: 80%;
-    height: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 5px;
-    padding: 5px 0 5px 0;
-}
-
-.select_allies_buttons span{
-    text-align: center;
-}
-
-#select_allies_send{
-    color: #ff7f22;
-}
-
-#select_allies_send:hover{
-    transition: .5s;
-    background-color: #ff7f22;
-    color: white;
-}
-
-#select_allies_cancel{
-    color: #ff5252;
-    border: 1px solid #ff5252;
-}
-
-#select_allies_cancel:hover{
-    color: white;
-    background-color: #ff5252;
 }

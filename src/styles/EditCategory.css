@@ -3,7 +3,6 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    margin-top: 120px;
     gap: 50px;
     flex-direction: column;
     height: 120vh;
@@ -314,8 +313,7 @@
 @media(max-width:500px){
 
     .edit_category_background{
-        margin-top: 69px;
-        padding-top: 20px;
+        padding-top: 80px;
         height: auto;
         gap: 30px;
     }

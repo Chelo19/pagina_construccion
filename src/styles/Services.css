@@ -3,11 +3,11 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    margin-top: 120px;
     padding-bottom: 60px;
 }
 
 .services_container{
+    margin-top: 120px;
     display: flex;
     width: 80%;
     flex-direction: column;
@@ -16,7 +16,7 @@
 }
 
 .services_title{
-    font-family: 'Poppins', sans-serif;
+    /* font-family: 'Poppins', sans-serif; */
     text-align: center;
     color: #161825;
     font-size: 60px;
@@ -77,7 +77,6 @@
 @media(max-width: 500px){
 
     .services_background{
-        margin-top: 90px;
     }
 
     .services_container{
