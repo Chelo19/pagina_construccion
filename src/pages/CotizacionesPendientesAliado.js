@@ -52,7 +52,7 @@ export default function CotizacionesPendientesAliado(){
             .storage
             .from('ally-files')
             .upload('/' + `${selectedCotizacion.cotizacion_id.id}` + '/' + `${selectedCotizacion.ally_email.id}` + '/' + i, files[i]);
-            urlsArray.push(`https://xadwiefldpzbsdciapia.supabase.co/storage/v1/object/public/ally-files/${data.path}`);
+            urlsArray.push(`/${data.path}`);
             if(error){
                 haveError = true;
                 console.log(error);

@@ -114,7 +114,7 @@ export default function SelectAllies(){
                     setPrompt('Cotizaciones enviadas');
                     await timeout(2000);
                     setPrompt(null);
-                    navigate('/cotizaciones');
+                    navigate('/cotizaciones-pendientes-usuario');
                     return;
                 }
                 else{

@@ -70,6 +70,7 @@ import MyProfile from "./pages/MyProfile";
 import PendingCotizacionesMore from "./pages/PendingCotizacionesMore";
 import Calificate from "./pages/Calificate";
 import CotizacionesPendientesAliado from "./pages/CotizacionesPendientesAliado";
+import CotizacionesContestadasPorAliados from "./pages/CotizacionesContestadasPorAliados";
 
 import { supabase } from "./supabase/client";
 
@@ -186,6 +187,7 @@ function App() {
           <Route path="/my-profile" element={<MyProfile/>}/>
           <Route path="/calificate" element={<Calificate/>}/>
           <Route path="/cotizaciones-pendientes-aliado" element={<CotizacionesPendientesAliado/>}/>
+          <Route path="/cotizaciones-contestadas-por-aliados" element={<CotizacionesContestadasPorAliados/>}/>
         </Routes>
         <Footer/>
       </div>
