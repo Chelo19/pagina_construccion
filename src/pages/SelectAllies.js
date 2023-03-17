@@ -107,7 +107,7 @@ export default function SelectAllies(){
             else{
                 const { error } = await supabase
                 .from('cotizaciones')
-                .update({ is_sent: true })
+                .update({ is_sent_to_allies: true })
                 .eq('id', cotid);
                 if(!error){
                     setPromptStyle({backgroundColor: '#77DD77'});

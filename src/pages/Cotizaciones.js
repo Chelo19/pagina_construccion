@@ -28,7 +28,7 @@ export default function Cotizaciones(){
         const { data, error } = await supabase
         .from('cotizaciones')
         .select(`
-            id,
+            *,
             service_id(*, category_id(*)), 
             account_email(*)
         `)
@@ -81,12 +81,14 @@ export default function Cotizaciones(){
                                             Categoría: {cotizacion.service_id.category_id.name}
                                         </span>
                                         <Stack className='cotizaciones_item_buttons' direction="row" spacing={1}>
-                                        <Button variant="contained" endIcon={<SendIcon />} onClick={(e) => link(cotizacion)}>
-                                            Aliados
-                                        </Button>
-                                        <Button variant="contained" startIcon={<AddCircleOutlineIcon />} onClick={(e) => link2(cotizacion)}>
-                                            Cotización
-                                        </Button>
+                                            {!cotizacion.is_sent_to_allies &&
+                                                <Button variant="contained" endIcon={<SendIcon />} onClick={(e) => link(cotizacion)}>
+                                                    Aliados
+                                                </Button>
+                                            }
+                                            <Button variant="contained" startIcon={<AddCircleOutlineIcon />} onClick={(e) => link2(cotizacion)}>
+                                                Cotización
+                                            </Button>
                                         </Stack>
                                     </div>
                                 </div>

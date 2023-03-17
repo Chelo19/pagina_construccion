@@ -68,6 +68,8 @@ import WebPageCategories from "./pages/WebPageCategories";
 import AllyHub from "./pages/AllyHub";
 import MyProfile from "./pages/MyProfile";
 import PendingCotizacionesMore from "./pages/PendingCotizacionesMore";
+import Calificate from "./pages/Calificate";
+import CotizacionesPendientesAliado from "./pages/CotizacionesPendientesAliado";
 
 import { supabase } from "./supabase/client";
 
@@ -182,6 +184,8 @@ function App() {
           <Route path="/webpage-categories" element={<WebPageCategories/>}/>
           <Route path="/ally-hub" element={<AllyHub/>}/>
           <Route path="/my-profile" element={<MyProfile/>}/>
+          <Route path="/calificate" element={<Calificate/>}/>
+          <Route path="/cotizaciones-pendientes-aliado" element={<CotizacionesPendientesAliado/>}/>
         </Routes>
         <Footer/>
       </div>

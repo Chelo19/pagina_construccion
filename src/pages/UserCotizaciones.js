@@ -32,7 +32,7 @@ export default function UserCotizaciones(){
                             </span>
                         </div>
                     </Link>
-                    <Link to={'/user-cotizaciones'} className='profiles_item'>
+                    <Link to={'/calificate'} className='profiles_item'>
                         <div className='profiles_item_container'>
                             <div className='profiles_item_img'>
                                 <img src={require('../img/calificar.png')}/>

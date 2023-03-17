@@ -54,7 +54,7 @@ export default function MyProfile(){
                                 <span id='profile_link'><Link to={'/'}>Mis proyectos</Link></span>
                                 {isAlly &&
                                     <>
-                                        <span id='profile_link'><Link to={'/'}>Cotizaciones pendientes</Link></span>
+                                        <span id='profile_link'><Link to={'/cotizaciones-pendientes-aliado'}>Cotizaciones pendientes</Link></span>
                                         <span id='profile_link'><Link to={'/'}>Proyectos aceptados</Link></span>
                                     </>
                                 }
