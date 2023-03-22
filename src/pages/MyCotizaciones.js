@@ -5,234 +5,170 @@ import '../styles/SentCotizaciones.css';
 import '../styles/NoItems.css';
 import LoadingScreen2 from '../components/LoadingScreen2';
 import { Link } from "react-router-dom";
-import { async } from 'q';
+import _ from 'lodash';
 
-import * as React from 'react';
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
-import SendIcon from '@mui/icons-material/Send';
-import CancelScheduleSendOutlinedIcon from '@mui/icons-material/CancelScheduleSendOutlined';
-import UndoOutlinedIcon from '@mui/icons-material/UndoOutlined';
 
 export default function MyCotizaciones(){
+
+    // en esta pagina van todas las cotizaciones del usuario que entra a esta pagina
+    // cotizaciones solicitadas es cuando le dan click a cotizar en un servicio y esta pendiente a que el administrador se la pase a aliados
+    // cotizaciones pendientes son las que estan esperando a ser respondidas por el cliente a partir de las propuestas que el aliado mando
+    // cotizaciones presentes son aquellas cuyo proyecto se este llevando a cabo
+    // cotizaciones finalizadas son las que su proyecto ya se llevo a cabo
+
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(true);
     const [isRejecting, setIsRejecting] = useState(false);
 
     const [noItems, setNoItems] = useState(false);
-    const [prompt, setPrompt] = useState(null);
-    const [promptStyle, setPromptStyle] = useState(null);
 
-    const [sentCotizaciones, setSentCotizaciones] = useState(null);
-    const [acceptedCotizaciones, setAcceptedCotizaciones] = useState(null);
+    const [requestedCotizaciones, setRequestedCotizaciones] = useState(null);
     const [pendingCotizaciones, setPendingCotizaciones] = useState(null);
-    const [endedCotizaciones, setEndedCotizaciones] = useState(null);
+    const [currentCotizaciones, setCurrentCotizaciones] = useState(null);
+    const [doneCotizaciones, setDoneCotizaciones] = useState(null);
+
+    const [selectedCotizacionType, setSelectedCotizacionType] = useState(null);
     const [selectedCotizacion, setSelectedCotizacion] = useState(null);
-    
-    let count = 0;
+    const [selectedOption, setSelectedOption] = useState(null);
 
     useEffect(() => {
-        getUser();
+        getCotizaciones();
     }, []);
 
-    const getUser = async () => {
-        const { data: { user } } = await supabase.auth.getUser();
-        getCotizaciones(user);
-    }
-
-    const getCotizaciones = async (user) => {
+    const getCotizaciones = async () => {
+        const { data: { user } } = await supabase.auth.getUser()
         const { data, error } = await supabase
         .from('cotizaciones')
         .select(`*, service_id(*), account_email(*)`)
         .match({ account_email: user.email })
         .order('id', { ascending: true });
-        console.log(data);
-        if(data.length > 0) setIsLoading(false);
+        if(data.length > 0){
+            setRequestedCotizaciones(data.filter(cotizacion => {
+                return cotizacion.options_length == null;
+            }))
+            setPendingCotizaciones(data.filter(cotizacion => {
+                return cotizacion.options_length != null && cotizacion.option_selected == null && cotizacion.link_drive_ally && cotizacion.is_done == false;
+            }))
+            setCurrentCotizaciones(data.filter(cotizacion => {
+                return cotizacion.options_length != null && cotizacion.option_selected != null && cotizacion.link_drive_ally && cotizacion.is_done == false
+            }))
+            setDoneCotizaciones(data.filter(cotizacion => {
+                return cotizacion.is_done == true;
+            }))
+        }
         else{
             setNoItems(true);
-            setIsLoading(false);
         }
-        setAcceptedCotizaciones(data.filter(cotizacion => {
-            return cotizacion.is_ended === false && cotizacion.option_selected != null;
-        }))
-        setSentCotizaciones(data.filter(cotizacion => {
-            return cotizacion.is_sent === false && cotizacion.is_ended === false && cotizacion.option_selected === null;
-        }))
-        setPendingCotizaciones(data.filter(cotizacion => {
-            return cotizacion.is_sent === true && cotizacion.is_ended === false && cotizacion.option_selected === null;
-        }))
-        setEndedCotizaciones(data.filter(cotizacion => {
-            return cotizacion.is_ended === true;
-        }))
+        setIsLoading(false);
     }
 
-    const endCotizacion = async () => {
-        if(isRejecting){
-            const { error } = await supabase
-            .from('cotizaciones')
-            .update({ is_ended: true })
-            .eq('id', selectedCotizacion.id);
-            if(!error){
-                setPromptStyle({backgroundColor: '#161825'});
-                setPrompt('Cotización finalizada');
-                await timeout(2000);
-                setPrompt(null);
-                document.location.reload();
-                return;
-            }
-            else{
-                console.log(error);
-                setPromptStyle({backgroundColor: '#161825'});
-                setPrompt('Intenta de nuevo');
-                await timeout(2000);
-                setPrompt(null);
-                return;
-            }
+    const selectOption = async () => {
+        console.log(selectedOption);
+        const { error } = await supabase
+        .from('cotizaciones')
+        .update({ option_selected: selectedOption })
+        .eq('id', selectedCotizacion.id);
+        if(!error){
+            console.log("Hecho");
+        }
+        else{
+            console.log(error);
         }
     }
 
-    function timeout(number) {
-        return new Promise( res => setTimeout(res, number) );
-    }
 
     return(
         <>
             {!isLoading ?
-                <div className='sent_cotizaciones_background'>
-                    <div className='sent_cotizaciones_container'>
-                        {!noItems ?
-                        <>
-                            {!selectedCotizacion ?
+                <div className='generic_background'>
+                    <div className='generic_container'>
+                        {!selectedCotizacion ?
                             <>
-                                {pendingCotizaciones.length > 0 &&
-                                <>
-                                    <Link to={'/cotizaciones-pendientes'} className='user_sent_cotizaciones_title'>Cotizaciones Pendientes</Link>
-                                    {pendingCotizaciones.map((cotizacion) => {
-                                        return(
-                                            <Link className='sent_cotizaiones_item' key={cotizacion.id} onClick={(e) => setSelectedCotizacion(cotizacion)}>
-                                                <div className='sent_cotizaiones_item_img'><img src={cotizacion.service_id.img_url[0]}/></div>
-                                                <div className='sent_cotizaciones_item_content'>
-                                                    <span className='sent_cotizaciones_item_title'>{cotizacion.service_id.name}</span>
-                                                    <span className='sent_cotizaciones_item_content_text'>Fecha: {cotizacion.created_at.split('T')[0]}</span>
-                                                </div>
-                                            </Link>
-                                        );
-                                    })}
-                                </>}
-                                {acceptedCotizaciones.length > 0 &&
-                                <>
-                                    <span className='user_sent_cotizaciones_title'>Cotizaciones Aceptadas</span>
-                                    {acceptedCotizaciones.map((cotizacion) => {
-                                        return(
-                                            <Link className='sent_cotizaiones_item' key={cotizacion.id} onClick={(e) => setSelectedCotizacion(cotizacion)}>
-                                                <div className='sent_cotizaiones_item_img'><img src={cotizacion.service_id.img_url[0]}/></div>
-                                                <div className='sent_cotizaciones_item_content'>
-                                                    <span className='sent_cotizaciones_item_title'>{cotizacion.service_id.name}</span>
-                                                    <span className='sent_cotizaciones_item_content_text'>Fecha: {cotizacion.created_at.split('T')[0]}</span>
-                                                </div>
-                                            </Link>
-                                        );
-                                    })}
-                                </>}
-                                {sentCotizaciones.length > 0 &&
-                                <>
-                                    <span className='user_sent_cotizaciones_title'>Cotizaciones Solicitadas</span>
-                                    {sentCotizaciones.map((cotizacion) => {
-                                        return(
-                                            <Link className='sent_cotizaiones_item' key={cotizacion.id} onClick={(e) => setSelectedCotizacion(cotizacion)}>
-                                                <div className='sent_cotizaiones_item_img'><img src={cotizacion.service_id.img_url[0]}/></div>
-                                                <div className='sent_cotizaciones_item_content'>
-                                                    <span className='sent_cotizaciones_item_title'>{cotizacion.service_id.name}</span>
-                                                    <span className='sent_cotizaciones_item_content_text'>Fecha: {cotizacion.created_at.split('T')[0]}</span>
-                                                </div>
-                                            </Link>
-                                        );
-                                    })}
-                                </>}
-                                {endedCotizaciones.length > 0 &&
-                                <>
-                                    <span className='user_sent_cotizaciones_title'>Cotizaciones Terminadas</span>
-                                    {endedCotizaciones.map((cotizacion) => {
-                                        return(
-                                            <Link className='sent_cotizaiones_item' key={cotizacion.id} onClick={(e) => setSelectedCotizacion(cotizacion)}>
-                                                <div className='sent_cotizaiones_item_img'><img src={cotizacion.service_id.img_url[0]}/></div>
-                                                <div className='sent_cotizaciones_item_content'>
-                                                    <span className='sent_cotizaciones_item_title'>{cotizacion.service_id.name}</span>
-                                                    <span className='sent_cotizaciones_item_content_text'>Fecha: {cotizacion.created_at.split('T')[0]}</span>
-                                                </div>
-                                            </Link>
-                                        );
-                                    })}
-                                </>}
+                                <span>Cotizaciones pendientes</span>
+                                {pendingCotizaciones.map((cotizacion) => {
+                                    return(
+                                        <Link key={cotizacion.id} onClick={(e) => {setSelectedCotizacion(cotizacion); setSelectedCotizacionType('pending')}}>
+                                            <span>{cotizacion.id}</span>
+                                            <span>{cotizacion.service_id.id}</span>
+                                            {/* <img src={cotizacion.service_id.img_url[0]}/> */}
+                                            
+                                        </Link>
+                                    )
+                                })}
+                                <span>Cotizaciones solicitadas</span>
+                                {requestedCotizaciones.map((cotizacion) => {
+                                    return(
+                                        <Link key={cotizacion.id} onClick={(e) => {setSelectedCotizacion(cotizacion); setSelectedCotizacionType('requested')}}>
+                                            <span>{cotizacion.id}</span>
+                                            <span>{cotizacion.service_id.id}</span>
+                                            {/* <img src={cotizacion.service_id.img_url[0]}/> */}
+                                        </Link>
+                                    )
+                                })}
+                                <span>Cotizaciones presentes</span>
+                                {currentCotizaciones.map((cotizacion) => {
+                                    return(
+                                        <Link key={cotizacion.id} onClick={(e) => {setSelectedCotizacion(cotizacion); setSelectedCotizacionType('current')}}>
+                                            <span>{cotizacion.id}</span>
+                                            <span>{cotizacion.service_id.id}</span>
+                                            {/* <img src={cotizacion.service_id.img_url[0]}/> */}
+                                        </Link>
+                                    )
+                                })}
+                                <span>Cotizaciones finalizadas</span>
+                                {doneCotizaciones.map((cotizacion) => {
+                                    return(
+                                        <Link key={cotizacion.id} onClick={(e) => {setSelectedCotizacion(cotizacion); setSelectedCotizacionType('done')}}>
+                                            <span>{cotizacion.id}</span>
+                                            <span>{cotizacion.service_id.id}</span>
+                                            {/* <img src={cotizacion.service_id.img_url[0]}/> */}
+                                        </Link>
+                                    )
+                                })}
                             </>
                             :
                             <>
-                                <div className='sent_cotizaciones_cotizacion'>
-                                    <div className='sent_cotizaciones_cotizacion_content'>
-                                        <span><span className='sent_cotizaciones_cotizacion_orange'>Servicio:</span> {selectedCotizacion.service_id.name}</span>
-                                        <span><span className='sent_cotizaciones_cotizacion_orange'>Descripción del servicio:</span> {selectedCotizacion.service_id.description}</span>
-                                        <span><span className='sent_cotizaciones_cotizacion_orange'>Esta cotización fue creada el:</span> {selectedCotizacion.created_at.split('T')[0]}</span>
-                                        {!selectedCotizacion.is_ended ?
-                                        <>
-                                            {!isRejecting ?
-                                            <>
-                                                <div className='sent_cotizaciones_cotizacion_buttons'>
-                                                    <Link className='sent_cotizaciones_cotizacion_button' id='sent_cotizaciones_cotizacion_reject' onClick={(e) => setIsRejecting(true)}>
-                                                        Finalizar Cotización &nbsp;
-                                                        <CancelScheduleSendOutlinedIcon/>
-                                                    </Link>
-                                                    <Link className='sent_cotizaciones_cotizacion_button' id='sent_cotizaciones_cotizacion_return' onClick={(e) => setSelectedCotizacion(null)}>
-                                                        Regresar &nbsp;
-                                                        <UndoOutlinedIcon/>
-                                                    </Link>
-                                                </div>
-                                            </>
-                                            :
-                                            <>
-                                                <span>¿Estás seguro de que deseas finalizar la cotización?</span>
-                                                <div className='sent_cotizaciones_cotizacion_buttons'>
-                                                    <Link className='sent_cotizaciones_cotizacion_button' id='sent_cotizaciones_cotizacion_reject' onClick={endCotizacion}>
-                                                        Finalizar &nbsp;
-                                                        <CancelScheduleSendOutlinedIcon/>
-                                                    </Link>
-                                                    <Link className='sent_cotizaciones_cotizacion_button' id='sent_cotizaciones_cotizacion_return' onClick={(e) => setIsRejecting(false)}>
-                                                        Regresar &nbsp;
-                                                        <UndoOutlinedIcon/>
-                                                    </Link>
-                                                </div>
-                                            </>}
-                                        </>
-                                        :
-                                        <>
-                                            <Link className='sent_cotizaciones_cotizacion_button' id='sent_cotizaciones_cotizacion_return' onClick={(e) => setSelectedCotizacion(null)}>
-                                                Regresar &nbsp;
-                                                <UndoOutlinedIcon/>
-                                            </Link>
-                                        </>}
+                                {selectedCotizacionType == 'pending' &&
+                                    <div>
+                                        <Link onClick={(e) => setSelectedCotizacion(null)}>Regresar</Link>
+                                        <span>{selectedCotizacion.service_id.name}</span>
+                                        <a href={`${selectedCotizacion.link_ally_drive}`}>Link Drive</a>
+                                        <span>Selecciona la cotizacion que mejor se adecue a tus necesidades</span>
+                                        <select onChange={(e) => setSelectedOption(e.target.value)}>
+                                        {_.times(selectedCotizacion.options_length, (i) => (
+                                            <option key={i + 1} value={i + 1}>
+                                                {i + 1}
+                                            </option>
+                                        ))}
+                                        </select>
+                                        <button onClick={selectOption}>Enviar</button>
                                     </div>
-                                </div>
+                                }
+                                {selectedCotizacionType == 'requested' &&
+                                    <div>
+                                        <Link onClick={(e) => setSelectedCotizacion(null)}>Regresar</Link>
+                                        <span>{selectedCotizacion.service_id.name}</span>
+                                    </div>
+                                }
+                                {selectedCotizacionType == 'current' &&
+                                    <div>
+                                        <Link onClick={(e) => setSelectedCotizacion(null)}>Regresar</Link>
+                                        <span>{selectedCotizacion.service_id.name}</span>
+                                    </div>
+                                }
+                                {selectedCotizacionType == 'done' &&
+                                    <div>
+                                        <Link onClick={(e) => setSelectedCotizacion(null)}>Regresar</Link>
+                                        <span>{selectedCotizacion.service_id.name}</span>
+                                    </div>
+                                }
                             </>
-                            }
-                        </>
-                        :
-                        <div className='no_items_background'>
-                            <div className='no_items_container'>
-                                <div className='no_items_img'>
-                                    <img src={require('../img/financiamiento.png')}/>
-                                </div>
-                                <div className='no_items_spans'>
-                                    <span className='no_items_span_title'>Aún no cuentas con cotizaciones</span>
-                                    <span className='no_items_span_text'>Puedes explorar nuestros diferentes servicios dando click <Link to={'/categories2'}>aquí</Link></span>
-                                </div>
-                            </div>
-                        </div>
                         }
                     </div>
-                    {prompt &&
-                        <div className="reg_log_prompt" style={promptStyle}>
-                            {prompt}
-                        </div>}
                 </div>
-            :<LoadingScreen2></LoadingScreen2>}
+                :
+                <LoadingScreen2/>
+            }
         </>
     );
 }
