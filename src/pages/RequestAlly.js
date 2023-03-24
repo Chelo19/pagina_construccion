@@ -4,6 +4,7 @@ import {useNavigate, useParams} from 'react-router-dom';
 import '../styles/RequestAlly.css';
 import LoadingScreen2 from '../components/LoadingScreen2';
 import { Link } from "react-router-dom";
+import GoBackButton from '../components/GenericAssets';
 
 import * as React from 'react';
 import { useTheme } from '@mui/material/styles';

@@ -71,6 +71,7 @@ import PendingCotizacionesMore from "./pages/PendingCotizacionesMore";
 import Calificate from "./pages/Calificate";
 import CotizacionesPendientesAliado from "./pages/CotizacionesPendientesAliado";
 import CotizacionesContestadasPorAliados from "./pages/CotizacionesContestadasPorAliados";
+import SentCotizacionesUser from "./pages/SentCotizacionesUser";
 
 import { supabase } from "./supabase/client";
 
@@ -188,6 +189,7 @@ function App() {
           <Route path="/calificate" element={<Calificate/>}/>
           <Route path="/cotizaciones-pendientes-aliado" element={<CotizacionesPendientesAliado/>}/>
           <Route path="/cotizaciones-contestadas-por-aliados" element={<CotizacionesContestadasPorAliados/>}/>
+          <Route path="/sent-cotizaciones-user" element={<SentCotizacionesUser/>}/>
         </Routes>
         <Footer/>
       </div>

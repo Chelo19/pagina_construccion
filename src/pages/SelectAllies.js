@@ -82,12 +82,17 @@ export default function SelectAllies(){
             for(var i = 0 ; i < selections.length ; i++){
                 const { error } = await supabase
                 .from('cotizaciones_allies')
-                .insert({ ally_email: selections[i].email, link_drive: drive, cotizacion_id: cotid });
+                .insert({ ally_email: selections[i].email, cotizacion_id: cotid });
                 if(error){
                     console.log(error);
                     errorCount++;
                 }
             }
+            const { error } = await supabase
+            .from('cotizaciones')
+            .update({ link_drive_sent_to_allies: drive })
+            .eq('id', cotid);
+            console.log(error);
             if(errorCount > 0){
                 if(errorCount == selections.length){
                     setPromptStyle({backgroundColor: '#161825'});

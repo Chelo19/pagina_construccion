@@ -32,6 +32,7 @@ export default function Cotizaciones(){
             service_id(*, category_id(*)), 
             account_email(*)
         `)
+        .order('id', { ascending: false });
         setCotizaciones(data);
         if(data.length > 0){
             setIsLoading(false);

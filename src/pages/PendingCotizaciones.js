@@ -35,7 +35,7 @@ export default function PendingCotizaciones(){
         .from('cotizaciones')
         .select(`*, service_id(*)`)
         .or("option_selected.is.null")
-        .match({ is_sent: true, is_ended: false, account_email: user.email })
+        .match({ is_done: false, account_email: user.email })
         .order('id', { ascending: true });
         setCotizaciones(data);
         console.log(data);
@@ -52,7 +52,7 @@ export default function PendingCotizaciones(){
         if(selectedCotizacion && selectedOption){
             const { error } = await supabase
             .from('cotizaciones')
-            .update({ is_sent: true, option_selected: selectedOption })
+            .update({ option_selected: selectedOption })
             .eq('id', selectedCotizacion.id);
             if(!error){
                 setPromptStyle({backgroundColor: '#77DD77'});
@@ -84,7 +84,7 @@ export default function PendingCotizaciones(){
         if(isRejecting){
             const { error } = await supabase
             .from('cotizaciones')
-            .update({ is_ended: true })
+            .update({ is_done: true })
             .eq('id', selectedCotizacion.id);
             if(!error){
                 setPromptStyle({backgroundColor: '#161825'});
@@ -148,7 +148,7 @@ export default function PendingCotizaciones(){
                                     <span><span className='sent_cotizaciones_cotizacion_orange'>Descripción del servicio:</span> {selectedCotizacion.service_id.description}</span>
                                 </div>
                                 <span className='sent_cotizaciones_cotizacion_instructions'>A continuación se le presentarán {selectedCotizacion.options_length} opción(es), donde elegirá una dependiendo de lo que haya visto en la carpeta de muestra.</span>
-                                <a href={`${selectedCotizacion.link_drive}`} className='sent_cotizaciones_cotizacion_link'>Link Drive</a>
+                                <a href={`https://${selectedCotizacion.link_drive}`} className='sent_cotizaciones_cotizacion_link'>Link Drive</a>
                                 {(!selectedOption && !isRejecting) &&
                                     <div className='sent_cotizaciones_cotizacion_buttons'>
                                         {_.times(selectedCotizacion.options_length, (i) => (

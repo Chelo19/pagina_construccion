@@ -33,6 +33,7 @@ export default function CotizacionesContestadasPorAliados(){
         .from('cotizaciones_allies')
         .select('*')
         .not('ally_response', 'is', null)
+        .order('id', { ascending: false });
         if(data.length > 0){
             console.log(data);
             setCotizaciones(data);

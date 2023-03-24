@@ -90,6 +90,7 @@ export default function PendingCotizacionesMore(){
     }
 
     const endCotizacion = async () => {
+        // aqui tiene que eliminar la cotizacion
         const { error } = await supabase
         .from('cotizaciones')
         .update({ is_ended: true })

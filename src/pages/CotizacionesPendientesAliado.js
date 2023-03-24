@@ -24,7 +24,7 @@ export default function CotizacionesPendientesAliado(){
         const { data: { user } } = await supabase.auth.getUser()
         const { data, error } = await supabase
         .from('cotizaciones_allies')
-        .select(`*, cotizacion_id(*), ally_email(*)`)
+        .select(`*, cotizacion_id(*, service_id(*, category_id(*))), ally_email(*)`)
         .eq('ally_email', user.email)
         .or("ally_response.is.null");
         console.log(error);
@@ -81,6 +81,8 @@ export default function CotizacionesPendientesAliado(){
         return new Promise( res => setTimeout(res, number) );
     }
 
+    console.log(cotizaciones);
+
     return(
         <>
         {!isLoading ?
@@ -93,8 +95,8 @@ export default function CotizacionesPendientesAliado(){
                                     {cotizaciones.map((cotizacion) => {
                                         return(
                                             <div key={cotizacion.id}>
-                                                <span>{cotizacion.id}</span>
-                                                <span>{cotizacion.ally_email.email}</span>
+                                                <span>Servicio: {cotizacion.cotizacion_id.service_id.name}</span>
+                                                <span>Categoria: {cotizacion.cotizacion_id.service_id.category_id.name}</span>
                                                 <Link onClick={(e) => setSelectedCotizacion(cotizacion)}>Agregar archivo</Link>
                                             </div>
                                         )
@@ -103,7 +105,7 @@ export default function CotizacionesPendientesAliado(){
                                 :
                                 <>
                                     {selectedCotizacion.id}
-                                    <a href={`${selectedCotizacion.link_drive}`}>Link Drive</a>para ver los archivos
+                                    <a href={`https://${selectedCotizacion.cotizacion_id.link_drive_sent_to_allies}`}>Link Drive</a>para ver los archivos
                                     <Button
                                         className="add_service2_form_item"
                                         id="add_service2_form_input"
