@@ -106,7 +106,7 @@ export default function AcceptedCotizaciones(){
     const acceptAlly = async () => {
         const { error } = await supabase
         .from('cotizaciones')
-        .update({ selected_ally_email: selectedAlly.email })
+        .update({ selected_ally_email: selectedAlly.email, is_project: true })
         .eq('id', selectedCotizacion.id);
         setPromptStyle({backgroundColor: '#ff7f22'});
         setPrompt('Aceptando aliado...');

@@ -13,7 +13,6 @@ export default function AboutUs(){
 
     const getJsonData = async () => {
         let data = require('../assets/country-states-data.json');
-        console.log(data);
     }
 
     useEffect(() => {

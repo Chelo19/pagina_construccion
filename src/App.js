@@ -72,6 +72,9 @@ import Calificate from "./pages/Calificate";
 import CotizacionesPendientesAliado from "./pages/CotizacionesPendientesAliado";
 import CotizacionesContestadasPorAliados from "./pages/CotizacionesContestadasPorAliados";
 import SentCotizacionesUser from "./pages/SentCotizacionesUser";
+import MyProjects from "./pages/MyProjects";
+import AcceptedProjectsAlly from "./pages/AcceptedProjectsAlly";
+import CurrentProjects from "./pages/CurrentProjects";
 
 import { supabase } from "./supabase/client";
 
@@ -190,6 +193,9 @@ function App() {
           <Route path="/cotizaciones-pendientes-aliado" element={<CotizacionesPendientesAliado/>}/>
           <Route path="/cotizaciones-contestadas-por-aliados" element={<CotizacionesContestadasPorAliados/>}/>
           <Route path="/sent-cotizaciones-user" element={<SentCotizacionesUser/>}/>
+          <Route path="/mis-proyectos" element={<MyProjects/>}/>
+          <Route path="/proyectos-aceptados-aliado" element={<AcceptedProjectsAlly/>}/>
+          <Route path="/proyectos-actuales" element={<CurrentProjects/>}/>
         </Routes>
         <Footer/>
       </div>

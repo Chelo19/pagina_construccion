@@ -20,6 +20,13 @@
     padding: 20px 0 20px 0; 
 }
 
+.generic_item_container{
+    width: calc(100% - 40px);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
 .generic_form{
     width: 100%;
     display: flex;

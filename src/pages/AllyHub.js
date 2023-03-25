@@ -11,7 +11,7 @@ export default function AllyHub(){
         <div className='profiles_background'>
             <div className='profiles_container'>
                 <div className='profiles_gallery'>
-                    <Link to={'/user-cotizaciones'} className='profiles_item'>
+                    <Link to={'/cotizaciones-pendientes-aliado'} className='profiles_item'>
                         <div className='profiles_item_container'>
                             <div className='profiles_item_img'>
                                 <img src={require('../img/cotizaciones.png')}/>
@@ -21,7 +21,7 @@ export default function AllyHub(){
                             </span>
                         </div>
                     </Link>
-                    <Link to={'/profile-list/clientes'} className='profiles_item'>
+                    <Link to={'/proyectos-aceptados-aliado'} className='profiles_item'>
                         <div className='profiles_item_container'>
                             <div className='profiles_item_img'>
                                 <img src={require('../img/servicios.png')}/>

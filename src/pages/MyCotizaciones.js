@@ -6,8 +6,10 @@ import '../styles/NoItems.css';
 import LoadingScreen2 from '../components/LoadingScreen2';
 import { Link } from "react-router-dom";
 import _ from 'lodash';
+import GoBackButton from '../components/GenericAssets';
 
 import TurnLeftOutlinedIcon from '@mui/icons-material/TurnLeftOutlined';
+import NavigateBeforeOutlinedIcon from '@mui/icons-material/NavigateBeforeOutlined';
 
 export default function MyCotizaciones(){
 
@@ -51,7 +53,7 @@ export default function MyCotizaciones(){
                 return cotizacion.options_length != null && cotizacion.option_selected == null && cotizacion.link_drive_ally && cotizacion.is_done == false;
             }))
             setCurrentCotizaciones(data.filter(cotizacion => {
-                return cotizacion.options_length != null && cotizacion.option_selected != null && cotizacion.link_drive_ally && cotizacion.is_done == false
+                return cotizacion.is_project == true;
             }))
             setDoneCotizaciones(data.filter(cotizacion => {
                 return cotizacion.is_done == true;
@@ -85,88 +87,137 @@ export default function MyCotizaciones(){
                     <div className='generic_container'>
                         {!noItems ?
                             <>
-                                {!selectedCotizacion ?
-                                    <>
-                                        <span>Cotizaciones pendientes</span>
-                                        {pendingCotizaciones.map((cotizacion) => {
-                                            return(
-                                                <Link key={cotizacion.id} onClick={(e) => {setSelectedCotizacion(cotizacion); setSelectedCotizacionType('pending')}}>
-                                                    <span>{cotizacion.id}</span>
-                                                    <span>{cotizacion.service_id.id}</span>
-                                                    {/* <img src={cotizacion.service_id.img_url[0]}/> */}
-                                                    
-                                                </Link>
-                                            )
-                                        })}
-                                        <span>Cotizaciones solicitadas</span>
-                                        {requestedCotizaciones.map((cotizacion) => {
-                                            return(
-                                                <Link key={cotizacion.id} onClick={(e) => {setSelectedCotizacion(cotizacion); setSelectedCotizacionType('requested')}}>
-                                                    <span>{cotizacion.id}</span>
-                                                    <span>{cotizacion.service_id.id}</span>
-                                                    {/* <img src={cotizacion.service_id.img_url[0]}/> */}
-                                                </Link>
-                                            )
-                                        })}
-                                        <span>Cotizaciones presentes</span>
-                                        {currentCotizaciones.map((cotizacion) => {
-                                            return(
-                                                <Link key={cotizacion.id} onClick={(e) => {setSelectedCotizacion(cotizacion); setSelectedCotizacionType('current')}}>
-                                                    <span>{cotizacion.id}</span>
-                                                    <span>{cotizacion.service_id.id}</span>
-                                                    {/* <img src={cotizacion.service_id.img_url[0]}/> */}
-                                                </Link>
-                                            )
-                                        })}
-                                        <span>Cotizaciones finalizadas</span>
-                                        {doneCotizaciones.map((cotizacion) => {
-                                            return(
-                                                <Link key={cotizacion.id} onClick={(e) => {setSelectedCotizacion(cotizacion); setSelectedCotizacionType('done')}}>
-                                                    <span>{cotizacion.id}</span>
-                                                    <span>{cotizacion.service_id.id}</span>
-                                                    {/* <img src={cotizacion.service_id.img_url[0]}/> */}
-                                                </Link>
-                                            )
-                                        })}
-                                    </>
-                                    :
-                                    <>
-                                        {selectedCotizacionType == 'pending' &&
-                                            <div>
-                                                <Link onClick={(e) => setSelectedCotizacion(null)}>Regresar</Link>
-                                                <span>{selectedCotizacion.service_id.name}</span>
-                                                <a href={`https://${selectedCotizacion.link_drive_ally}`}>Link Drive</a>
-                                                <span>Selecciona la cotizacion que mejor se adecue a tus necesidades</span>
-                                                <select onChange={(e) => setSelectedOption(e.target.value)}>
-                                                {_.times(selectedCotizacion.options_length, (i) => (
-                                                    <option key={i + 1} value={i + 1}>
-                                                        {i + 1}
-                                                    </option>
-                                                ))}
-                                                </select>
-                                                <button onClick={selectOption}>Enviar</button>
+                                <div className='generic_item_container'>
+
+                                    {!selectedCotizacion ?
+                                        <>
+                                            <GoBackButton/>
+                                            <div className='generic_form gap20'>
+
+                                                {pendingCotizaciones.length > 0 &&
+                                                    <>
+                                                    <span className='generic_title font30 posL' style={{margin: "10px 0px"}}>Cotizaciones pendientes</span>
+                                                    {pendingCotizaciones.map((cotizacion) => {
+                                                        return(
+                                                            <div className='project_item project_item_current' onClick={(e) => {setSelectedCotizacion(cotizacion); setSelectedCotizacionType('pending')}} key={cotizacion.id}>
+                                                                <div className='project_item_content'>
+                                                                    <span>Identificador del proyecto: {cotizacion.id}</span>
+                                                                    <span>Servicio: {cotizacion.service_id.name}</span>
+                                                                    <span>Categoría: {cotizacion.service_id.category_id.name}</span>
+                                                                </div>
+                                                                <div className='project_item_img'>
+                                                                    <img src={`${cotizacion.service_id.img_url[0]}`}/>
+                                                                </div>
+                                                            </div>
+                                                        )
+                                                    })}
+                                                    </>
+                                                }
+                                                {requestedCotizaciones.length > 0 &&
+                                                    <>
+                                                    <span className='generic_title font30 posL' style={{margin: "10px 0px"}}>Cotizaciones solicitadas</span>
+                                                    {requestedCotizaciones.map((cotizacion) => {
+                                                        return(
+                                                            <div className='project_item project_item_current' onClick={(e) => {setSelectedCotizacion(cotizacion); setSelectedCotizacionType('requested')}} key={cotizacion.id}>
+                                                                <div className='project_item_content'>
+                                                                    <span>Identificador del proyecto: {cotizacion.id}</span>
+                                                                    <span>Servicio: {cotizacion.service_id.name}</span>
+                                                                    <span>Categoría: {cotizacion.service_id.category_id.name}</span>
+                                                                </div>
+                                                                <div className='project_item_img'>
+                                                                    <img src={`${cotizacion.service_id.img_url[0]}`}/>
+                                                                </div>
+                                                            </div>
+                                                        )
+                                                    })}
+                                                    </>
+                                                }
+                                                {currentCotizaciones.length > 0 &&
+                                                    <>
+                                                    <span className='generic_title font30 posL' style={{margin: "10px 0px"}}>Proyectos</span>
+                                                    {currentCotizaciones.map((cotizacion) => {
+                                                        return(
+                                                            <div className='project_item project_item_current' onClick={(e) => {setSelectedCotizacion(cotizacion); setSelectedCotizacionType('current')}} key={cotizacion.id}>
+                                                                <div className='project_item_content'>
+                                                                    <span>Identificador del proyecto: {cotizacion.id}</span>
+                                                                    <span>Servicio: {cotizacion.service_id.name}</span>
+                                                                    <span>Categoría: {cotizacion.service_id.category_id.name}</span>
+                                                                </div>
+                                                                <div className='project_item_img'>
+                                                                    <img src={`${cotizacion.service_id.img_url[0]}`}/>
+                                                                </div>
+                                                            </div>
+                                                        )
+                                                    })}
+                                                    </>
+                                                }
+                                                {doneCotizaciones.length > 0 &&
+                                                    <>
+                                                    <span className='generic_title font30 posL' style={{margin: "10px 0px"}}>Cotizaciones finalizadas</span>
+                                                    {doneCotizaciones.map((cotizacion) => {
+                                                        return(
+                                                            <div className='project_item project_item_done' onClick={(e) => {setSelectedCotizacion(cotizacion); setSelectedCotizacionType('done')}} key={cotizacion.id}>
+                                                                <div className='project_item_content'>
+                                                                    <span>Identificador del proyecto: {cotizacion.id}</span>
+                                                                    <span>Servicio: {cotizacion.service_id.name}</span>
+                                                                    <span>Categoría: {cotizacion.service_id.category_id.name}</span>
+                                                                </div>
+                                                                <div className='project_item_img'>
+                                                                    <img src={`${cotizacion.service_id.img_url[0]}`}/>
+                                                                </div>
+                                                            </div>
+                                                        )
+                                                    })}
+                                                    </>
+                                                }
                                             </div>
-                                        }
-                                        {selectedCotizacionType == 'requested' &&
-                                            <div>
-                                                <Link onClick={(e) => setSelectedCotizacion(null)}>Regresar</Link>
-                                                <span>{selectedCotizacion.service_id.name}</span>
-                                            </div>
-                                        }
-                                        {selectedCotizacionType == 'current' &&
-                                            <div>
-                                                <Link onClick={(e) => setSelectedCotizacion(null)}>Regresar</Link>
-                                                <span>{selectedCotizacion.service_id.name}</span>
-                                            </div>
-                                        }
-                                        {selectedCotizacionType == 'done' &&
-                                            <div>
-                                                <Link onClick={(e) => setSelectedCotizacion(null)}>Regresar</Link>
-                                                <span>{selectedCotizacion.service_id.name}</span>
-                                            </div>
-                                        }
-                                    </>
-                                }
+                                        </>
+                                        :
+                                        <>
+                                            <Link onClick={(e) => setSelectedCotizacion(null)} className="generic_back_button">
+                                                <NavigateBeforeOutlinedIcon/> Regresar
+                                            </Link>
+                                            {selectedCotizacionType == 'pending' &&
+                                                <>
+                                                    <span className='generic_title font30 posL' style={{margin: "10px 0px"}}>Cotización pendiente</span>
+                                                    <div className='profile_content generic_description font20 posL gap20'>
+                                                        <span>Servicio: {selectedCotizacion.service_id.name}</span>
+                                                        <span>Categoría: {selectedCotizacion.service_id.category_id.name}</span>
+                                                    </div>
+                                                    <span>{selectedCotizacion.service_id.name}</span>
+                                                    <a href={`https://${selectedCotizacion.link_drive_ally}`}>Link Drive</a>
+                                                    <span>Selecciona la cotizacion que mejor se adecue a tus necesidades</span>
+                                                    <select onChange={(e) => setSelectedOption(e.target.value)}>
+                                                    {_.times(selectedCotizacion.options_length, (i) => (
+                                                        <option key={i + 1} value={i + 1}>
+                                                            {i + 1}
+                                                        </option>
+                                                    ))}
+                                                    </select>
+                                                    <button onClick={selectOption}>Enviar</button>
+                                                </>
+                                            }
+                                            {selectedCotizacionType == 'requested' &&
+                                                <>
+                                                    <span className='generic_title font30 posL' style={{margin: "10px 0px"}}>Cotización solicitada</span>
+                                                    <span>{selectedCotizacion.service_id.name}</span>
+                                                </>
+                                            }
+                                            {selectedCotizacionType == 'current' &&
+                                                <>
+                                                    <span className='generic_title font30 posL' style={{margin: "10px 0px"}}>Proyecto actual</span>
+                                                    <span>{selectedCotizacion.service_id.name}</span>
+                                                </>
+                                            }
+                                            {selectedCotizacionType == 'done' &&
+                                                <>
+                                                    <span className='generic_title font30 posL' style={{margin: "10px 0px"}}>Cotización finalizada</span>
+                                                    <span>{selectedCotizacion.service_id.name}</span>
+                                                </>
+                                            }
+                                        </>
+                                    }
+                                </div>
                             </>
                             :
                             <div className='no_items_background'>

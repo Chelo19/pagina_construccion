@@ -51,11 +51,11 @@ export default function MyProfile(){
                                 <span>Teléfono: {profile.phone}</span>
                                 <span>Monterrey, N.L., Mexico</span>
                                 <span id='profile_link'><Link to={'/mis-cotizaciones'}>Mis cotizaciones</Link></span>
-                                <span id='profile_link'><Link to={'/'}>Mis proyectos</Link></span>
+                                <span id='profile_link'><Link to={'/mis-proyectos'}>Mis proyectos</Link></span>
                                 {isAlly &&
                                     <>
                                         <span id='profile_link'><Link to={'/cotizaciones-pendientes-aliado'}>Cotizaciones pendientes</Link></span>
-                                        <span id='profile_link'><Link to={'/'}>Proyectos aceptados</Link></span>
+                                        <span id='profile_link'><Link to={'/proyectos-aceptados-aliado'}>Proyectos aceptados</Link></span>
                                     </>
                                 }
                                 {isClient &&

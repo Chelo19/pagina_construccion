@@ -22,6 +22,16 @@ export default function Admin(){
                             </span>
                         </div>
                     </Link>
+                    <Link to={'/proyectos-actuales'} className='profiles_item'>
+                        <div className='profiles_item_container'>
+                            <div className='profiles_item_img'>
+                                <img src={require('../img/cotizaciones.png')}/>
+                            </div>
+                            <span className='profiles_item_title'>
+                                Proyectos actuales
+                            </span>
+                        </div>
+                    </Link>
                 </div>
             </div>
         </div>
