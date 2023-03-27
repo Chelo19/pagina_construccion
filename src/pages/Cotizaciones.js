@@ -17,11 +17,13 @@ export default function Cotizaciones(){
     const [isLoading, setIsLoading] = useState(true);
 
     const [cotizaciones, setCotizaciones] = useState(null);
+    const [responses, setResponses] = useState(null);
 
     const [noItems, setNoItems] = useState(false);
 
     useEffect(() => {
         getCotizaciones();
+        getResponses();
     }, []);
 
     const getCotizaciones = async () => {
@@ -51,6 +53,26 @@ export default function Cotizaciones(){
     const link2 = async (e) => {
         console.log(e);
         navigate(`/cotizaciones-pendientes-mas/${e.id}`)
+    }
+
+    const getResponses = async () => {
+        const { data, error } = await supabase
+        .from('cotizaciones_allies')
+        .select(`*`);
+        setResponses(data);
+    }
+
+    const checkResponses = (cotid) => {
+        let hasSomething = [];
+        hasSomething.push(responses.filter(response => {
+            return response.ally_response != null && response.cotizacion_id == cotid;
+        }));
+        if(hasSomething[0].length > 0){
+            return;
+        }
+        else if(hasSomething[0].length == 0){
+            return {display: 'none'};
+        }
     }
 
     return(
@@ -87,7 +109,7 @@ export default function Cotizaciones(){
                                                     Aliados
                                                 </Button>
                                             }
-                                            <Button variant="contained" startIcon={<AddCircleOutlineIcon />} onClick={(e) => link2(cotizacion)}>
+                                            <Button variant="contained" style={checkResponses(cotizacion.id)} startIcon={<AddCircleOutlineIcon />} onClick={(e) => link2(cotizacion)}>
                                                 Cotización
                                             </Button>
                                         </Stack>

@@ -10,9 +10,12 @@ import Button from '@mui/material/Button';
 import AttachFileOutlinedIcon from '@mui/icons-material/AttachFileOutlined';
 import { match } from 'react-router-dom';
 
+import TurnLeftOutlinedIcon from '@mui/icons-material/TurnLeftOutlined';
+
 export default function CotizacionesPendientesAliado(){
     // en esta pestana va un campo donde el aliado ve las cotizaciones que le llegaron que le mando el administrador para subir una archivo
 
+    const navigate = useNavigate();
     const [cotizaciones, setCotizaciones] = useState(null);
     const [selectedCotizacion, setSelectedCotizacion] = useState(null);
 
@@ -125,9 +128,21 @@ export default function CotizacionesPendientesAliado(){
                             }
                         </>
                         :
-                        <>
-                            No tienes cotizaciones
-                        </>
+                        <div className='no_items_background'>
+                            <div className='no_items_container'>
+                                <div className='no_items_img'>
+                                    <img src={require('../img/financiamiento.png')}/>
+                                </div>
+                                <div className='no_items_spans'>
+                                    <span className='no_items_span_title'>Aún no tienes cotizaciones pendientes</span>
+                                </div>
+                                <div className="no_items_buttons">
+                                    <Link onClick={(e) => navigate(-1)} className="no_items_button" id="no_items_button_return">
+                                        Regresar <TurnLeftOutlinedIcon/>
+                                    </Link>
+                                </div>
+                            </div>
+                        </div>
                     }
                 </div>
             </div>

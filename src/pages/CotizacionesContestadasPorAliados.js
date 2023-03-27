@@ -2,8 +2,13 @@ import {useEffect, useState} from 'react';
 import {supabase} from '../supabase/client';
 import {useNavigate} from 'react-router-dom';
 import '../styles/GenericAssets.css';
+import '../styles/Projects.css';
 import { Link } from "react-router-dom";
 import LoadingScreen2 from '../components/LoadingScreen2';
+import GoBackButton from '../components/GenericAssets';
+
+import TurnLeftOutlinedIcon from '@mui/icons-material/TurnLeftOutlined';
+import NavigateBeforeOutlinedIcon from '@mui/icons-material/NavigateBeforeOutlined';
 
 import * as React from 'react';
 import ListSubheader from '@mui/material/ListSubheader';
@@ -26,28 +31,20 @@ export default function CotizacionesContestadasPorAliados(){
 
     const [cotizaciones, setCotizaciones] = useState(null);
     const [selectedCotizacionResponses, setSelectedCotizacionResponses] = useState(null);
-    const [uniqueIds, setUniqueIds] = useState(null);
 
     const getCotizaciones = async () => {
         const { data, error } = await supabase
-        .from('cotizaciones_allies')
-        .select('*')
-        .not('ally_response', 'is', null)
+        .from('cotizaciones')
+        .select('*, account_email(*), service_id(*, category_id(*)), selected_ally_email(*)')
         .order('id', { ascending: false });
         if(data.length > 0){
-            console.log(data);
             setCotizaciones(data);
-            checkUniqueIds(data);
             setIsLoading(false);
         }
         else{
             setNoItems(true);
             setIsLoading(false);
         }
-    }
-
-    const checkUniqueIds = async (data) => {
-        setUniqueIds([...new Set(data.map(cotizacion => cotizacion.cotizacion_id))]);
     }
 
     useEffect(() => {
@@ -57,7 +54,7 @@ export default function CotizacionesContestadasPorAliados(){
     const getCotizacionData = async (cotid) => {
         const { data, error } = await supabase
         .from('cotizaciones_allies')
-        .select('*, ally_email(*), cotizacion_id(*)')
+        .select('*, ally_email(*), cotizacion_id(*, service_id(*, category_id(*)))')
         .eq("cotizacion_id", cotid)
         .not('ally_response', 'is', null);
         if(data.length > 0){
@@ -93,37 +90,55 @@ export default function CotizacionesContestadasPorAliados(){
                 <div className="generic_container">
                     {!noItems ?
                         <>
-                            {!selectedCotizacionResponses ?
-                            <>
-                                {uniqueIds.map((cotizacionesId) => {
-                                    return(
-                                        <Link onClick={(e) => getCotizacionData(cotizacionesId)} key={cotizacionesId.id}>
-                                            Cotizacion: {cotizacionesId}
+                            <div className='generic_item_container'>
+                                {!selectedCotizacionResponses ?
+                                <>
+                                    <GoBackButton/>
+                                    <div className='generic_form gap20'>
+                                        <span className='generic_title font30 posL' style={{margin: "10px 0px"}}>Cotizaciones</span>
+                                        {cotizaciones.map((cotizacion) => {
+                                            return(
+                                                <div className='project_item project_item_done' onClick={(e) => getCotizacionData(cotizacion.id)} key={cotizacion.id}>
+                                                    <div className='project_item_content'>
+                                                        <span>Identificador del proyecto: {cotizacion.id}</span>
+                                                        <span>Servicio: {cotizacion.service_id.name}</span>
+                                                        <span>Categoría: {cotizacion.service_id.category_id.name}</span>
+                                                    </div>
+                                                    <div className='project_item_img'>
+                                                        <img src={`${cotizacion.service_id.img_url[0]}`}/>
+                                                    </div>
+                                                </div>
+                                            )
+                                        })}
+                                    </div>
+                                </>
+                                :
+                                <>
+                                    <Link onClick={(e) => setSelectedCotizacionResponses(null)} className="generic_back_button">
+                                            <NavigateBeforeOutlinedIcon/> Regresar
                                         </Link>
-                                    )
-                                })}
-                            </>
-                            :
-                            <>
-                                <span onClick={(e) => setSelectedCotizacionResponses(null)}>Regresar</span>
-                                {selectedCotizacionResponses.map((response) => {
-                                    return(
-                                        <div key={response.id}>
-                                            {response.ally_email.id}
-                                            {response.ally_email.email}
-                                            {response.ally_email.name}
-                                            {response.ally_response.map((file) => {
-                                                return(
-                                                    <Link onClick={(e) => downloadFile(file)} key={file}>
-                                                        {file}
-                                                    </Link>
-                                                )
-                                            })}
-                                        </div>
-                                    )
-                                })}
-                            </>
-                            }
+                                    {selectedCotizacionResponses.map((response) => {
+                                        return(
+                                            <div className='project_responses_container' key={response.id}>
+                                                <span className='generic_title font20 posL' style={{margin: "10px 0px"}}>Respuesta por: {response.ally_email.email}</span>
+                                                <span className='generic_description font16 posL'>Servicio: {response.cotizacion_id.service_id.name}</span>
+                                                <span className='generic_description font16 posL'>Categoría: {response.cotizacion_id.service_id.category_id.name}</span>
+                                                <div className='project_responses_item_container'>
+                                                    {response.ally_response.map((file) => {
+                                                        return(
+                                                            <Link className='project_response posL' onClick={(e) => downloadFile(file)} key={file}>
+                                                                Respuesta: {file}
+                                                            </Link>
+                                                        )
+                                                    })}
+
+                                                </div>
+                                            </div>
+                                        )
+                                    })}
+                                </>
+                                }
+                            </div>
                         </>
                         :
                         <>
