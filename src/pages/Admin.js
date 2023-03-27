@@ -28,7 +28,7 @@ export default function Admin(){
                                 <img src={require('../img/cotizaciones.png')}/>
                             </div>
                             <span className='profiles_item_title'>
-                                Proyectos actuales
+                                Proyectos
                             </span>
                         </div>
                     </Link>

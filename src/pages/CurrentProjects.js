@@ -30,6 +30,7 @@ export default function CurrentProjects(){
     const [projects, setProjects] = useState(null);
     const [doneProjects, setDoneProjects] = useState(null);
     const [selectedProject, setSelectedProject] = useState(null);
+    const [selectedProjectType, setSelectedProjectType] = useState(null);
 
     const [prompt, setPrompt] = useState(null);
     const [promptSeverity, setPromptSeverity] = useState('success');
@@ -105,37 +106,45 @@ export default function CurrentProjects(){
                                     <>
                                         <GoBackButton/>
                                         <div className='generic_form gap20'>
-                                            <span className='generic_title font30 posL' style={{margin: "10px 0px"}}>Proyectos actuales</span>
-                                            {projects.map((project) => {
-                                                return(
-                                                    <div className='project_item project_item_current' onClick={(e) => setSelectedProject(project)} key={project.id}>
-                                                        <div className='project_item_content'>
-                                                            <span>Identificador del proyecto: {project.id}</span>
-                                                            <span>Servicio: {project.service_id.name}</span>
-                                                            <span>Categoría: {project.service_id.category_id.name}</span>
-                                                        </div>
-                                                        <div className='project_item_img'>
-                                                            <img src={`${project.service_id.img_url[0]}`}/>
-                                                        </div>
-                                                    </div>
-                                                )
-                                            })}
-                                            <span className='generic_title font30 posL' style={{margin: "10px 0px"}}>Proyectos terminados</span>
-                                            {doneProjects.map((project) => {
-                                                return(
-                                                    <div className='project_item project_item_done' onClick={(e) => setSelectedProject(project)} key={project.id}>
-                                                        <div className='project_item_content'>
-                                                            <span>Identificador del proyecto: {project.id}</span>
-                                                            <span>Servicio: {project.service_id.name}</span>
-                                                            <span>Categoría: {project.service_id.category_id.name}</span>
-                                                        </div>
-                                                        <div className='project_item_img'>
-                                                            <img src={`${project.service_id.img_url[0]}`}/>
-                                                        </div>
-                                                    </div>
-                                                    
-                                                )
-                                            })}
+                                            {projects.length > 0 &&
+                                                <>
+                                                    <span className='generic_title font30 posL' style={{margin: "10px 0px"}}>Proyectos actuales</span>
+                                                    {projects.map((project) => {
+                                                        return(
+                                                            <div className='project_item project_item_current' onClick={(e) => {setSelectedProject(project); setSelectedProjectType('current')}} key={project.id}>
+                                                                <div className='project_item_content'>
+                                                                    <span>Identificador del proyecto: {project.id}</span>
+                                                                    <span>Servicio: {project.service_id.name}</span>
+                                                                    <span>Categoría: {project.service_id.category_id.name}</span>
+                                                                </div>
+                                                                <div className='project_item_img'>
+                                                                    <img src={`${project.service_id.img_url[0]}`}/>
+                                                                </div>
+                                                            </div>
+                                                        )
+                                                    })}
+                                                </>
+                                            }
+                                            {doneProjects.length > 0 &&
+                                                <>
+                                                    <span className='generic_title font30 posL' style={{margin: "10px 0px"}}>Proyectos terminados</span>
+                                                    {doneProjects.map((project) => {
+                                                        return(
+                                                            <div className='project_item project_item_done' onClick={(e) => {setSelectedProject(project); setSelectedProjectType('done')}} key={project.id}>
+                                                                <div className='project_item_content'>
+                                                                    <span>Identificador del proyecto: {project.id}</span>
+                                                                    <span>Servicio: {project.service_id.name}</span>
+                                                                    <span>Categoría: {project.service_id.category_id.name}</span>
+                                                                </div>
+                                                                <div className='project_item_img'>
+                                                                    <img src={`${project.service_id.img_url[0]}`}/>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                        )
+                                                    })}
+                                                </>
+                                            }
                                         </div>
                                     </>
                                     :
@@ -156,28 +165,32 @@ export default function CurrentProjects(){
                                             <span>Nombre: {selectedProject.selected_ally_email.email}</span>
                                             <span>Nombre: {selectedProject.selected_ally_email.phone}</span>
                                         </div>
-                                        <div className='generic_button font20' style={{backgroundColor: '#ff5252'}} onClick={handleClickOpen}>Finalizar cotizacion</div>
-                                        <Dialog
-                                            open={open}
-                                            onClose={handleClose}
-                                            aria-labelledby="alert-dialog-title"
-                                            aria-describedby="alert-dialog-description"
-                                        >
-                                            <DialogTitle id="alert-dialog-title">
-                                            {"¿Quieres finalizar la cotización?"}
-                                            </DialogTitle>
-                                            <DialogContent>
-                                            <DialogContentText id="alert-dialog-description">
-                                                ¿Estás seguro de que deseas finalizar la cotización?
-                                            </DialogContentText>
-                                            </DialogContent>
-                                            <DialogActions>
-                                            <Button onClick={handleClose}>Regresar</Button>
-                                            <Button onClick={() => {doneProject(); handleClose()}} autoFocus>
-                                                Finalizar
-                                            </Button>
-                                            </DialogActions>
-                                        </Dialog>
+                                        {selectedProjectType != 'done' &&
+                                            <>
+                                                <div className='generic_button font20' style={{backgroundColor: '#ff5252'}} onClick={handleClickOpen}>Finalizar cotizacion</div>
+                                                <Dialog
+                                                    open={open}
+                                                    onClose={handleClose}
+                                                    aria-labelledby="alert-dialog-title"
+                                                    aria-describedby="alert-dialog-description"
+                                                >
+                                                    <DialogTitle id="alert-dialog-title">
+                                                    {"¿Quieres finalizar la cotización?"}
+                                                    </DialogTitle>
+                                                    <DialogContent>
+                                                    <DialogContentText id="alert-dialog-description">
+                                                        ¿Estás seguro de que deseas finalizar la cotización?
+                                                    </DialogContentText>
+                                                    </DialogContent>
+                                                    <DialogActions>
+                                                    <Button onClick={handleClose}>Regresar</Button>
+                                                    <Button onClick={() => {doneProject(); handleClose()}} autoFocus>
+                                                        Finalizar
+                                                    </Button>
+                                                    </DialogActions>
+                                                </Dialog>
+                                            </>
+                                        }
                                     </>
                                 }
                             </div>
