@@ -4,12 +4,14 @@ import {useNavigate} from 'react-router-dom';
 import '../styles/GenericAssets.css';
 import { Link } from "react-router-dom";
 import LoadingScreen2 from '../components/LoadingScreen2';
+import GoBackButton from '../components/GenericAssets';
 
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import AttachFileOutlinedIcon from '@mui/icons-material/AttachFileOutlined';
 import { match } from 'react-router-dom';
 
+import NavigateBeforeOutlinedIcon from '@mui/icons-material/NavigateBeforeOutlined';
 import TurnLeftOutlinedIcon from '@mui/icons-material/TurnLeftOutlined';
 
 export default function CotizacionesPendientesAliado(){
@@ -30,7 +32,7 @@ export default function CotizacionesPendientesAliado(){
         .select(`*, cotizacion_id(*, service_id(*, category_id(*))), ally_email(*)`)
         .eq('ally_email', user.email)
         .or("ally_response.is.null");
-        console.log(error);
+        console.log(data);
         if(data.length > 0){
             setCotizaciones(data);
             setIsLoading(false);
@@ -84,8 +86,6 @@ export default function CotizacionesPendientesAliado(){
         return new Promise( res => setTimeout(res, number) );
     }
 
-    console.log(cotizaciones);
-
     return(
         <>
         {!isLoading ?
@@ -93,39 +93,47 @@ export default function CotizacionesPendientesAliado(){
                 <div className="generic_container">
                     {!noItems ?
                         <>
-                            {!selectedCotizacion ? 
-                                <div>
-                                    {cotizaciones.map((cotizacion) => {
-                                        return(
-                                            <div key={cotizacion.id}>
-                                                <span>Servicio: {cotizacion.cotizacion_id.service_id.name}</span>
-                                                <span>Categoria: {cotizacion.cotizacion_id.service_id.category_id.name}</span>
-                                                <Link onClick={(e) => setSelectedCotizacion(cotizacion)}>Agregar archivo</Link>
-                                            </div>
-                                        )
-                                    })}
-                                </div>
-                                :
-                                <>
-                                    {selectedCotizacion.id}
-                                    <a href={`https://${selectedCotizacion.cotizacion_id.link_drive_sent_to_allies}`}>Link Drive</a>para ver los archivos
-                                    <Button
-                                        className="add_service2_form_item"
-                                        id="add_service2_form_input"
-                                        variant="contained"
-                                        component="label"
-                                        >
-                                        Agregar &nbsp;<AttachFileOutlinedIcon/>
-                                        <input
-                                            type="file"
-                                            multiple="multiple"
-                                            hidden
-                                            onChange={(e) => setFiles(e.target.files)}
-                                        />
-                                    </Button>
-                                    <Link onClick={uploadBucket}>Enviar</Link>
-                                </>    
-                            }
+                            <div className='generic_item_container'>
+                                {!selectedCotizacion ? 
+                                    <>
+                                        <GoBackButton/>
+                                        {cotizaciones.map((cotizacion) => {
+                                            return(
+                                                <div className='cotizaciones_pendientes_aliado_container' key={cotizacion.id}>
+                                                    <span className='generic_title font30 posL'>Servicio: {cotizacion.cotizacion_id.service_id.name}</span>
+                                                    <span className='generic_title font22 posL'>Categoria: {cotizacion.cotizacion_id.service_id.category_id.name}</span>
+                                                    <Link className='generic_button' style={{backgroundColor: '#ff7f22'}} onClick={(e) => setSelectedCotizacion(cotizacion)}>Agregar archivo</Link>
+                                                </div>
+                                            )
+                                        })}
+                                    </>
+                                    :
+                                    <>
+                                        <Link onClick={(e) => setSelectedCotizacion(null)} className="generic_back_button">
+                                            <NavigateBeforeOutlinedIcon/> Regresar
+                                        </Link>
+                                        <div className='cotizaciones_pendientes_aliado_selected_container'>
+                                            <span className='generic_title font30 posL'>Identificador: {selectedCotizacion.id}</span>
+                                            <a className='generic_title font22 posL' href={`https://${selectedCotizacion.cotizacion_id.link_drive_sent_to_allies}`}>Link Drive</a>para ver los archivos
+                                            <Button
+                                                className="add_service2_form_item"
+                                                id="add_service2_form_input"
+                                                variant="contained"
+                                                component="label"
+                                                >
+                                                Agregar &nbsp;<AttachFileOutlinedIcon/>
+                                                <input
+                                                    type="file"
+                                                    multiple="multiple"
+                                                    hidden
+                                                    onChange={(e) => setFiles(e.target.files)}
+                                                />
+                                            </Button>
+                                            <Link onClick={uploadBucket}>Enviar</Link>
+                                        </div>
+                                    </>    
+                                }
+                            </div>
                         </>
                         :
                         <div className='no_items_background'>

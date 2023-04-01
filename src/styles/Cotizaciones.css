@@ -113,3 +113,20 @@
     color: rgba(0, 0, 0, 0.5);
 }
 
+.cotizaciones_pendientes_aliado_container{
+    width: calc(100% - 40px);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding: 20px;
+}
+
+.cotizaciones_pendientes_aliado_selected_container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+}
