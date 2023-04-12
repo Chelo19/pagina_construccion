@@ -116,8 +116,9 @@ export default function CotizacionesPendientesAliado(){
                                             <span className='generic_title font30 posL'>Identificador: {selectedCotizacion.id}</span>
                                             <a className='generic_title font22 posL' href={`https://${selectedCotizacion.cotizacion_id.link_drive_sent_to_allies}`}>Link Drive</a>para ver los archivos
                                             <Button
-                                                className="add_service2_form_item"
+                                                className="generic_button"
                                                 id="add_service2_form_input"
+                                                style={{letterSpacing: '1px'}}
                                                 variant="contained"
                                                 component="label"
                                                 >
@@ -129,7 +130,7 @@ export default function CotizacionesPendientesAliado(){
                                                     onChange={(e) => setFiles(e.target.files)}
                                                 />
                                             </Button>
-                                            <Link onClick={uploadBucket}>Enviar</Link>
+                                            <Link className='generic_button' style={{backgroundColor: '#ff7f22'}} onClick={uploadBucket}>Enviar</Link>
                                         </div>
                                     </>    
                                 }

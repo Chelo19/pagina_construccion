@@ -7,6 +7,9 @@
 
 .profiles_container{
     height: calc(100% - 50px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .profiles_gallery{

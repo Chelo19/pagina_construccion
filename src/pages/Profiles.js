@@ -5,12 +5,17 @@ import '../styles/Profiles.css';
 import LoadingScreen from '../components/LoadingScreen';
 import { Link } from "react-router-dom";
 
+import NavigateBeforeOutlinedIcon from '@mui/icons-material/NavigateBeforeOutlined';
+
 export default function Profiles(){
     const navigate = useNavigate();
 
     return(
         <div className='profiles_background'>
             <div className='profiles_container'>
+                <Link onClick={navigate(-1)} style={{margin: '10px 0 0 20px', height: '40px'}} className="generic_back_button">
+                    <NavigateBeforeOutlinedIcon/> Regresar
+                </Link>
                 <div className='profiles_gallery'>
                     <Link to={'/user-profile'} className='profiles_item'>
                         <div className='profiles_item_container'>

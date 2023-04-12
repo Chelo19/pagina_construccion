@@ -3,6 +3,9 @@ import {supabase} from '../supabase/client';
 import {useNavigate} from 'react-router-dom';
 import '../styles/Profiles.css';
 import { Link } from "react-router-dom";
+import GoBackButton from '../components/GenericAssets';
+
+import NavigateBeforeOutlinedIcon from '@mui/icons-material/NavigateBeforeOutlined';
 
 export default function AllyHub(){
     const navigate = useNavigate();
@@ -10,6 +13,9 @@ export default function AllyHub(){
     return(
         <div className='profiles_background'>
             <div className='profiles_container'>
+                <Link onClick={navigate(-1)} style={{margin: '10px 0 0 20px'}} className="generic_back_button">
+                    <NavigateBeforeOutlinedIcon/> Regresar
+                </Link>
                 <div className='profiles_gallery'>
                     <Link to={'/cotizaciones-pendientes-aliado'} className='profiles_item'>
                         <div className='profiles_item_container'>
