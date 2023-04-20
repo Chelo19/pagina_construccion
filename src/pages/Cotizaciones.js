@@ -4,6 +4,7 @@ import {useNavigate} from 'react-router-dom';
 import '../styles/Cotizaciones.css';
 import { Link } from "react-router-dom";
 import LoadingScreen2 from '../components/LoadingScreen2';
+import GoBackButton from '../components/GenericAssets';
 
 import * as React from 'react';
 import Button from '@mui/material/Button';
@@ -11,13 +12,14 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import SendIcon from '@mui/icons-material/Send';
 import Stack from '@mui/material/Stack';
 
+import NavigateBeforeOutlinedIcon from '@mui/icons-material/NavigateBeforeOutlined';
 
 export default function Cotizaciones(){
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(true);
 
     const [cotizaciones, setCotizaciones] = useState(null);
-    const [responses, setResponses] = useState(null);
+    const [responses, setResponses] = useState([]);
 
     const [noItems, setNoItems] = useState(false);
 
@@ -80,6 +82,9 @@ export default function Cotizaciones(){
             {!isLoading ?
                 <div className='cotizaciones_background'>
                     <div className='cotizaciones_container'>
+                        <Link onClick={(e) => navigate(-1)} style={{alignSelf: 'start', marginLeft: '15px'}} className="generic_back_button">
+                            <NavigateBeforeOutlinedIcon/> Regresar
+                        </Link>
                         {cotizaciones.map((cotizacion) => {
                             return(
                                 <div className='cotizaciones_item' key={cotizacion.id}>

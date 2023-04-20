@@ -8,6 +8,7 @@ import LoadingScreen2 from '../components/LoadingScreen2';
 import GoBackButton from '../components/GenericAssets';
 
 import TextField from '@mui/material/TextField';
+import NavigateBeforeOutlinedIcon from '@mui/icons-material/NavigateBeforeOutlined';
 export default function SentCotizacionesUser(){
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(true);
@@ -75,36 +76,39 @@ export default function SentCotizacionesUser(){
                     <div className='generic_container'>
                         {!noItems ?
                             <>
-                                {!selectedCotizacion ?
-                                    <>
-                                        <GoBackButton/>
-                                        {cotizaciones.map((cotizacion) => {
-                                            return(
-                                                <div className='generic_container' onClick={(e) => setSelectedCotizacion(cotizacion)}>
-                                                    <span>Id de cotizacion: {cotizacion.id}</span>
-                                                    <span>Cliente que la solicito: {cotizacion.account_email.email}</span>
-                                                </div>
-                                            )
-                                        })}
-                                    </>
-                                    :
-                                    <>
+                                <div className='generic_item_container'>
+                                    
+                                    {!selectedCotizacion ?
                                         <>
-                                            <span onClick={(e) => setSelectedCotizacion(null)}>Regresar</span>
-                                            <span>Id de cotizacion: {selectedCotizacion.id}</span>
-                                            <Link to={`/profile/${selectedCotizacion.account_email.id}`}>Cliente que la solicito: {selectedCotizacion.account_email.email}</Link>
-                                            <span>Servicio: {selectedCotizacion.service_id.name}</span>
-                                            <span>Categoria: {selectedCotizacion.service_id.category_id.name}</span>
-                                            <a href={`https://${selectedCotizacion.link_drive_sent_to_allies}`}>Link que se mando a aliados</a>
+                                            <GoBackButton/>
+                                            {cotizaciones.map((cotizacion) => {
+                                                return(
+                                                    <div className='cotizaciones_pendientes_aliado_container' onClick={(e) => setSelectedCotizacion(cotizacion)}>
+                                                        <span className='generic_title font30 posL'>Id de cotizacion: {cotizacion.id}</span>
+                                                        <span className='generic_title font16 posL'>Cliente que la solicito: {cotizacion.account_email.email}</span>
+                                                    </div>
+                                                )
+                                            })}
+                                        </>
+                                        :
+                                        <>
+                                            <Link onClick={(e) => setSelectedCotizacion(null)} className="generic_back_button">
+                                                <NavigateBeforeOutlinedIcon/> Regresar
+                                            </Link>
+                                            <span className='generic_title font30 posL'>Id de cotizacion: {selectedCotizacion.id}</span>
+                                            <Link to={`/profile/${selectedCotizacion.account_email.id}`} className='generic_title font16 posL noDecoration'>Cliente que la solicitó: {selectedCotizacion.account_email.email}</Link>
+                                            <span className='generic_title font30 posL'>Servicio: {selectedCotizacion.service_id.name}</span>
+                                            <span className='generic_title font30 posL'>Categoria: {selectedCotizacion.service_id.category_id.name}</span>
+                                            <a href={`https://${selectedCotizacion.link_drive_sent_to_allies}`} className='generic_title font16 posL noDecoration'>Link que se mandó a aliados</a>
                                             <TextField className='generic_text_field' label="Nuevo Drive para aliados" variant="outlined" onChange={(e) => setNewDriveToAllies(e.target.value)}/>
-                                            <a href={`https://${selectedCotizacion.link_drive_ally}`}>Link que se mando al cliente</a>
+                                            <a href={`https://${selectedCotizacion.link_drive_ally}`} className='generic_title font16 posL noDecoration'>Link que se mando al cliente</a>
                                             <TextField className='generic_text_field' label="Nuevo Drive para cliente" variant="outlined" onChange={(e) => setNewDrive(e.target.value)}/>
                                             <div className='generic_button font20' style={{backgroundColor: '#ff7f22'}} onClick={sendData}>
                                                 Enviar
                                             </div>
                                         </>
-                                    </>
-                                }
+                                    }
+                                </div>
                             </>
                             :
                             <div>

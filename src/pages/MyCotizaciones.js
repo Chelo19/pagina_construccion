@@ -184,17 +184,17 @@ export default function MyCotizaciones(){
                                                         <span>Servicio: {selectedCotizacion.service_id.name}</span>
                                                         <span>Categoría: {selectedCotizacion.service_id.category_id.name}</span>
                                                     </div>
-                                                    <span>{selectedCotizacion.service_id.name}</span>
-                                                    <a href={`https://${selectedCotizacion.link_drive_ally}`}>Link Drive</a>
-                                                    <span>Selecciona la cotizacion que mejor se adecue a tus necesidades</span>
-                                                    <select onChange={(e) => setSelectedOption(e.target.value)}>
+                                                    <span className='generic_description font18 posL'>{selectedCotizacion.service_id.name}</span>
+                                                    <a href={`https://${selectedCotizacion.link_drive_ally}`} className='project_response'>Link Drive</a>
+                                                    <span className='generic_title font20 posL'>Selecciona la cotizacion que mejor se adecue a tus necesidades</span>
+                                                    <select className='generic_text_field' onChange={(e) => setSelectedOption(e.target.value)}>
                                                     {_.times(selectedCotizacion.options_length, (i) => (
                                                         <option key={i + 1} value={i + 1}>
                                                             {i + 1}
                                                         </option>
                                                     ))}
                                                     </select>
-                                                    <button onClick={selectOption}>Enviar</button>
+                                                    <a className='generic_button font20' style={{backgroundColor: '#ff7f22'}} onClick={selectOption}>Enviar</a>
                                                 </>
                                             }
                                             {selectedCotizacionType == 'requested' &&

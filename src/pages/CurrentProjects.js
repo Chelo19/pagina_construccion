@@ -167,7 +167,7 @@ export default function CurrentProjects(){
                                         </div>
                                         {selectedProjectType != 'done' &&
                                             <>
-                                                <div className='generic_button font20' style={{backgroundColor: '#ff5252'}} onClick={handleClickOpen}>Finalizar cotizacion</div>
+                                                <div className='generic_button font20' style={{backgroundColor: '#ff5252'}} onClick={handleClickOpen}>Finalizar proyecto</div>
                                                 <Dialog
                                                     open={open}
                                                     onClose={handleClose}

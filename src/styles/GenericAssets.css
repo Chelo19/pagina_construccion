@@ -143,3 +143,9 @@
 .font30{
     font-size: 30px;
 }
+
+/* Otros */
+
+.noDecoration{
+    text-decoration: none;
+}

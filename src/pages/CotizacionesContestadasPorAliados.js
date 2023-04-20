@@ -120,9 +120,9 @@ export default function CotizacionesContestadasPorAliados(){
                                     {selectedCotizacionResponses.map((response) => {
                                         return(
                                             <div className='project_responses_container' key={response.id}>
-                                                <span className='generic_title font20 posL' style={{margin: "10px 0px"}}>Respuesta por: {response.ally_email.email}</span>
-                                                <span className='generic_description font16 posL'>Servicio: {response.cotizacion_id.service_id.name}</span>
-                                                <span className='generic_description font16 posL'>Categoría: {response.cotizacion_id.service_id.category_id.name}</span>
+                                                <span className='generic_title font30 posL' style={{margin: "10px 0px"}}>Respuesta por: {response.ally_email.email}</span>
+                                                <span className='generic_description font18 posL'>Servicio: {response.cotizacion_id.service_id.name}</span>
+                                                <span className='generic_description font18 posL'>Categoría: {response.cotizacion_id.service_id.category_id.name}</span>
                                                 <div className='project_responses_item_container'>
                                                     {response.ally_response.map((file) => {
                                                         return(
