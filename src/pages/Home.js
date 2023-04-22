@@ -244,7 +244,7 @@ export default function Home(){
                     <div className='background_img_container'>
                         <div className='background_img_separator'>
                             <span id='background_img_title'>DREC</span>
-                            <span id='background_img_eslogan'><i>"La construcción que debes tener"</i></span>
+                            <span id='background_img_eslogan'><i>"Demoler, Remodelar, Edificar y Construir, somos DREC, la construcción que une"</i></span>
                         </div>
                         <Link style={{textDecoration: 'inherit'}} onClick={executeScroll} id='background_img_services'>
                             <span>Servicios</span>
@@ -289,7 +289,7 @@ export default function Home(){
                 </div>
                 <br/>
                 <br/>
-                <div className='enterprises'>
+                {/* <div className='enterprises'>
                     <div className='enterprises_container'>
                         <div className='enterprises_left'>
                             <div className='enterprises_text'>
@@ -315,7 +315,7 @@ export default function Home(){
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> */}
                 <br/>
                 <br/>
                 <div className='our_features'>
@@ -330,7 +330,7 @@ export default function Home(){
                                 </div>
                             </div>
                             <div className='our_features_item_text'>
-                                <span>La mejor calidad</span>
+                                <span>Optimiza tiempos al cotizar</span>
                             </div>
                         </div>
                         <div className='our_features_item'>
@@ -340,7 +340,7 @@ export default function Home(){
                                 </div>
                             </div>
                             <div className='our_features_item_text'>
-                                <span>Supervision en todo el proyecto</span>
+                                <span>Obtén más de una sola cotización</span>
                             </div>
                         </div>
                         <div className='our_features_item'>
@@ -350,7 +350,7 @@ export default function Home(){
                                 </div>
                             </div>
                             <div className='our_features_item_text'>
-                                <span>Garantía</span>
+                                <span>Todas las áreas de la construcción en una sola plataforma</span>
                             </div>
                         </div>
                         <div className='our_features_item'>

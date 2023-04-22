@@ -73,7 +73,7 @@ export default function Header(){
             <div className='navbar_container'>
                 <div className='nav_logo_container'>
                     <Link to={'/'} className='nav_logo_drec'>
-                        <img src={require('../img/logoblanco.png')}/>
+                        <img src={require('../img/logodrecfullsize.png')}/>
                     </Link>
                     <Link to={'/'} className="nav_logo">DREC</Link>
                 </div>
