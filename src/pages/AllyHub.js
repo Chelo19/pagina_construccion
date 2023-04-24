@@ -13,9 +13,9 @@ export default function AllyHub(){
     return(
         <div className='profiles_background'>
             <div className='profiles_container'>
-                <Link onClick={navigate(-1)} style={{margin: '10px 0 0 20px'}} className="generic_back_button">
+                {/* <Link onClick={navigate(-1)} style={{margin: '10px 0 0 20px'}} className="generic_back_button">
                     <NavigateBeforeOutlinedIcon/> Regresar
-                </Link>
+                </Link> */}
                 <div className='profiles_gallery'>
                     <Link to={'/cotizaciones-pendientes-aliado'} className='profiles_item'>
                         <div className='profiles_item_container'>

@@ -47,7 +47,7 @@ export default function MyCotizaciones(){
         const { data: { user } } = await supabase.auth.getUser()
         const { data, error } = await supabase
         .from('cotizaciones')
-        .select(`*, service_id(*), account_email(*)`)
+        .select(`*, service_id(*, category_id(*)), account_email(*)`)
         .match({ account_email: user.email })
         .order('id', { ascending: true });
         if(data.length > 0){
