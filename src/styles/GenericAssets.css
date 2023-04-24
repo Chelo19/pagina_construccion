@@ -88,6 +88,26 @@
     align-items: center;
 }
 
+.generic_list{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    color: rgba(0, 0, 0, 0.6);
+    line-height: 25px;
+}
+
+.generic_list div{
+    display: flex;
+    gap: 10px;
+}
+
+.generic_list_icon_img{
+    width: 30px;
+    height: 30px;
+    align-self: center;
+    justify-self: center;
+}
+
 /* display */
 
 .gap10{
@@ -142,6 +162,10 @@
 
 .font30{
     font-size: 30px;
+}
+
+.font36{
+    font-size: 36px;
 }
 
 /* Otros */

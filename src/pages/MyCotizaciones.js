@@ -11,6 +11,11 @@ import GoBackButton from '../components/GenericAssets';
 import TurnLeftOutlinedIcon from '@mui/icons-material/TurnLeftOutlined';
 import NavigateBeforeOutlinedIcon from '@mui/icons-material/NavigateBeforeOutlined';
 
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination } from "swiper";
+import 'swiper/css';
+import 'swiper/css/pagination';
+
 export default function MyCotizaciones(){
 
     // en esta pagina van todas las cotizaciones del usuario que entra a esta pagina
@@ -78,7 +83,6 @@ export default function MyCotizaciones(){
             console.log(error);
         }
     }
-
 
     return(
         <>
@@ -200,19 +204,61 @@ export default function MyCotizaciones(){
                                             {selectedCotizacionType == 'requested' &&
                                                 <>
                                                     <span className='generic_title font30 posL' style={{margin: "10px 0px"}}>Cotización solicitada</span>
-                                                    <span>{selectedCotizacion.service_id.name}</span>
+                                                    <span className='generic_description font20 posL'>{selectedCotizacion.service_id.name}</span>
+                                                    <Swiper
+                                                        spaceBetween={10}
+                                                        pagination={{
+                                                        dynamicBullets: true,
+                                                        }}
+                                                        modules={[Pagination]}
+                                                        className="service_carousel"
+                                                    >
+                                                        {selectedCotizacion.service_id.img_url.map((url) => {
+                                                            return(
+                                                                <SwiperSlide className="service_carousel_slide"><img className="service_carousel_slide_img" src={url}/></SwiperSlide>
+                                                            )
+                                                        })}
+                                                    </Swiper>
                                                 </>
                                             }
                                             {selectedCotizacionType == 'current' &&
                                                 <>
                                                     <span className='generic_title font30 posL' style={{margin: "10px 0px"}}>Proyecto actual</span>
-                                                    <span>{selectedCotizacion.service_id.name}</span>
+                                                    <span className='generic_description font20 posL'>{selectedCotizacion.service_id.name}</span>
+                                                    <Swiper
+                                                        spaceBetween={10}
+                                                        pagination={{
+                                                        dynamicBullets: true,
+                                                        }}
+                                                        modules={[Pagination]}
+                                                        className="service_carousel"
+                                                    >
+                                                        {selectedCotizacion.service_id.img_url.map((url) => {
+                                                            return(
+                                                                <SwiperSlide className="service_carousel_slide"><img className="service_carousel_slide_img" src={url}/></SwiperSlide>
+                                                            )
+                                                        })}
+                                                    </Swiper>
                                                 </>
                                             }
                                             {selectedCotizacionType == 'done' &&
                                                 <>
                                                     <span className='generic_title font30 posL' style={{margin: "10px 0px"}}>Cotización finalizada</span>
-                                                    <span>{selectedCotizacion.service_id.name}</span>
+                                                    <span className='generic_description font20 posL'>{selectedCotizacion.service_id.name}</span>
+                                                    <Swiper
+                                                        spaceBetween={10}
+                                                        pagination={{
+                                                        dynamicBullets: true,
+                                                        }}
+                                                        modules={[Pagination]}
+                                                        className="service_carousel"
+                                                    >
+                                                        {selectedCotizacion.service_id.img_url.map((url) => {
+                                                            return(
+                                                                <SwiperSlide className="service_carousel_slide"><img className="service_carousel_slide_img" src={url}/></SwiperSlide>
+                                                            )
+                                                        })}
+                                                    </Swiper>
                                                 </>
                                             }
                                         </>

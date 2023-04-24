@@ -326,7 +326,7 @@ export default function Home(){
                         <div className='our_features_item'>
                             <div className='our_features_item_img'>
                                 <div className='our_features_item_img_bg'>
-                                    <img className='our_features_img' src={require('../img/calidad.png')}/>
+                                    <img className='our_features_img' src={require('../img/primero.png')}/>
                                 </div>
                             </div>
                             <div className='our_features_item_text'>
@@ -336,7 +336,7 @@ export default function Home(){
                         <div className='our_features_item'>
                             <div className='our_features_item_img'>
                                 <div className='our_features_item_img_bg'>
-                                    <img className='our_features_img' src={require('../img/supervision.png')}/>
+                                    <img className='our_features_img' src={require('../img/segundo.png')}/>
                                 </div>
                             </div>
                             <div className='our_features_item_text'>
@@ -346,21 +346,11 @@ export default function Home(){
                         <div className='our_features_item'>
                             <div className='our_features_item_img'>
                                 <div className='our_features_item_img_bg'>
-                                    <img className='our_features_img' src={require('../img/garantia.png')}/>
+                                    <img className='our_features_img' src={require('../img/tercero.png')}/>
                                 </div>
                             </div>
                             <div className='our_features_item_text'>
                                 <span>Todas las áreas de la construcción en una sola plataforma</span>
-                            </div>
-                        </div>
-                        <div className='our_features_item'>
-                            <div className='our_features_item_img'>
-                                <div className='our_features_item_img_bg'>
-                                    <img className='our_features_img' src={require('../img/financiamiento.png')}/>
-                                </div>
-                            </div>
-                            <div className='our_features_item_text'>
-                                <span>Financiamiento</span>
                             </div>
                         </div>
                     </div>
