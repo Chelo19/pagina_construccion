@@ -1,131 +1,199 @@
 import { useEffect, useState } from "react";
-import { supabase } from "../supabase/client";
 import { useNavigate, useParams } from "react-router-dom";
-import LoadingScreen from "../components/LoadingScreen";
+import { supabase } from "../supabase/client";
+import "../styles/AddService2.css";
+import LoadingScreen2 from "../components/LoadingScreen2";
 import { Link } from "react-router-dom";
-import "../styles/AddCategory.css";
+
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import SendIcon from '@mui/icons-material/Send';
+import AddAPhotoOutlinedIcon from '@mui/icons-material/AddAPhotoOutlined';
+import FormControl from '@mui/material/FormControl';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 
 export default function AddCategory(){
-    const { id } = useParams();
     const navigate = useNavigate();
-    const [newName, setNewName] = useState(null);
-    const [newFile, setNewFile] = useState(null);
-    const [alert, setAlert] = useState(null);
-    const [loadingScreen, setLoadingScreen] = useState(true);
-    var categoryId;
-    const newUrl = [];
+    const [isLoading, setIsLoading] = useState(true);
+    
+    const [prompt, setPrompt] = useState(null);
+    const [promptStyle, setPromptStyle] = useState(null);
+    const [categories, setCategories] = useState(null);
 
-    const checkIfAdmin = async () => {
-        const { data: { user } } = await supabase.auth.getUser();
-        if(user){
-            const { data, error } = await supabase
-            .from('account')
-            .select()
-            .eq('uuid', user.id);
-            if(data[0].role == 'administrador' || data[0].role == 'gerente'){
-                setLoadingScreen(false);
-            }
-            else{
-            window.alert("No tienes los permisos para acceder a este lugar");
-            navigate("/");
-            }
-        }
-        else{
-            window.alert("Inicia sesión como administrador para acceder");
-            navigate("/login");
-        }
-    }
+    const [name, setName] = useState(null);
+    const [description, setDescription] = useState(null);
+    const [categoryId, setCategoryId] = useState(null);
+    const [imgs, setImgs] = useState(null);
+    const [imgsUrl, setImgsUrl] = useState(null);
 
     useEffect(() => {
-        checkIfAdmin();
-    }, [loadingScreen]);
+        getUser();
+    }, []);
 
-    const createItem = async () => {
-        setAlert("Recuerda esperar la alerta de confirmación antes de abandonar esta página");
-        if(newName != null && newFile != null){
-            insertDb();
-            getItem();
+    const getUser = async () => {
+        const { data: { user } } = await supabase.auth.getUser();
+        const { data, error } = await supabase
+        .from('account')
+        .select()
+        .match({ uuid: user.id });
+        if(data[0].role == 'administrador' || data[0].role == 'gerente'){
+            getCategories();
         }
         else{
-            window.alert("Favor de ingresar todos los campos");
+            window.alert("No puedes acceder a este lugar");
+            console.log(user);
         }
     }
-    
-    const insertDb = async () => {
-        const { error } = await supabase
-        .from('categories')
-        .insert({ name: newName, location_id: id })
-    }
 
-    const getItem = async () => {
+    const getCategories = async () => {
         const { data, error } = await supabase
         .from('categories')
-        .select()
-        .match({ location_id: id, name: newName });
-        categoryId = data[0].id;
-        uploadBucket();
+        .select('*');
+        setCategories(data);
+        setIsLoading(false);
     }
 
-    const uploadBucket = async () => {
-        console.log("Log CATID uploadB: " + categoryId);
-        const { data, error } = await supabase
-        .storage
-        .from('categories-img')
-        .upload('/' + `${categoryId}`, newFile[0]);
-        getPublicUrl();
+    const handleChange = (event) => {
+        const {
+          target: { value },
+        } = event;
+        setCategoryId(
+          // On autofill we get a stringified value.
+          typeof value === 'string' ? value.split(',') : value,
+        );
+    };
+
+    const ITEM_HEIGHT = 48;
+    const ITEM_PADDING_TOP = 8;
+    const MenuProps = {
+    PaperProps: {
+            style: {
+            maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+            width: 250,
+            },
+        },
+    };
+
+    const createCategory = async () => {
+        if(name && imgs){
+            const { data, error } = await supabase
+            .from('categories')
+            .insert({ name: name })
+            .select();
+            if(!error){
+                updateBucket(data[0]);
+                setPromptStyle({backgroundColor: '#ff7f22'});
+                setPrompt('Creando categoria...');
+            }
+            else{
+                console.log(error);
+                setPromptStyle({backgroundColor: '#161825'});
+                setPrompt('Intenta de nuevo');
+                await timeout(2000);
+                setPrompt(null);
+            }
+        }
+        else{
+            setPromptStyle({backgroundColor: '#161825'});
+            setPrompt('Faltan campos por llenar');
+            await timeout(2000);
+            setPrompt(null);
+        }
     }
 
-    const getPublicUrl = async () => {
-        const { data } = supabase
-        .storage
-        .from('categories-img')
-        .getPublicUrl(`${categoryId}`);
+    const updateBucket = async (category) => {
+        let haveError = false;
+        let urlsArray = [];
+        for(let i = 0 ; i < imgs.length ; i++){
+            const { data, error } = await supabase
+            .storage
+            .from('categories-img')
+            .upload('/' + `${category.id}`, imgs[i]);
+            urlsArray.push(`https://xadwiefldpzbsdciapia.supabase.co/storage/v1/object/public/categories-img/${data.path}`);
+            console.log(data);
+            if(error) haveError = true;
+        }
+        if(!haveError){
+            updateUrl(urlsArray, category);
+        }
+        else{
+            setPromptStyle({backgroundColor: '#161825'});
+            setPrompt('Ocurrió un error al subir img');
+            await timeout(2000);
+            setPrompt(null);
+        }
+    }
 
-        newUrl.push(data.publicUrl.toString());
-
+    const updateUrl = async (urlsArray, category) => {
         const { error } = await supabase
         .from('categories')
-        .update({ img_url: newUrl })
-        .eq('name', newName);
-        window.alert("Categoría agregada correctamente");
-        document.location.reload();
+        .update({ img_url: urlsArray })
+        .eq('id', category.id);
+        if(!error){
+            setPromptStyle({backgroundColor: '#77DD77'});
+            setPrompt('Servicio creado');
+            await timeout(2000);
+            setPrompt(null);
+            navigate('/webpage-categories')
+        }
+        else{
+            setPromptStyle({backgroundColor: '#161825'});
+            setPrompt('Error al actualizar la DB');
+            await timeout(2000);
+            setPrompt(null);
+        }
     }
 
-    
+    function timeout(number) {
+        return new Promise( res => setTimeout(res, number) );
+    }
+
     return(
-        <div className="add_category_background">
-            {!loadingScreen ?
-            <div className="add_category_container">
-                <div className="add_category_form">
-                    <div className="add_category_form_container">
-                        <span className="add_category_instructions">Nombre</span>
-                        <input
-                        id={'add_category_text_input'}
-                        type={'text'}
-                        placeholder={'Nombre de la nueva categoría'}
-                        onChange={(e) => setNewName(e.target.value)}
-                        />
+        <>
+        {!isLoading ?
+            <div className="add_service2_background">
+                <div className="add_service2_container">
+                    <div className="add_service2_form">
+                        <span id="add_service2_form_title" className="add_service2_form_span">Agregar una categoria</span>
+                        <TextField className='add_service2_form_item' label="Nombre" variant="outlined" onChange={(e) => setName(e.target.value)}/>
+                        <span className="add_service2_form_span">Agregar Imagen</span>
+                        <Button
+                        className="add_service2_form_item"
+                        id="add_service2_form_input"
+                        variant="contained"
+                        component="label"
+                        >
+                            Agregar &nbsp;<AddAPhotoOutlinedIcon/>
+                            <input
+                                type="file"
+                                accept="png, jpg, jpeg"
+                                hidden
+                                onChange={(e) => setImgs(e.target.files)}
+                            />
+                        </Button>
+                        <Button
+                        className="add_service2_form_item"
+                        variant="contained"
+                        component="label"
+                        endIcon={<SendIcon />}
+                        onClick={createCategory}
+                        >Enviar</Button>
                     </div>
-                    <div className="add_category_form_container">
-                        <span className="add_category_instructions">Imagen</span>
-                        <input
-                        type={"file"}
-                        accept={".png, .jpg, .jpeg"}
-                        onChange={(e) => setNewFile(e.target.files)}
-                        />
-                    </div>
-                    <input
-                    id={'add_category_submit'}
-                    type={'submit'}
-                    value={"Crear nueva categoría"}
-                    onClick={createItem}
-                    />
-                    <span id="add_category_alert">Recuerda esperar hasta el mensaje correcto antes de salir de esta página</span>
-                    <span id="add_category_alert">{alert}</span>
                 </div>
+                {prompt &&
+                    <div className="reg_log_prompt" style={promptStyle}>
+                        {prompt}
+                    </div>
+                }
             </div>
-            : <LoadingScreen/>}
-        </div>
+            :
+            <LoadingScreen2/>
+        }
+        </>
     )
 }

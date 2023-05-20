@@ -151,7 +151,7 @@ function App() {
           <Route path="/edit-categories" element={<EditCategories/>} />
           <Route path="/edit-category/:id" element={<EditCategory/>} />
           <Route path="/edit-enterprises/:id" element={<EditEnterprises/>} />
-          <Route path="/add-category/:id" element={<AddCategory/>}/>
+          <Route path="/add-category" element={<AddCategory/>}/>
           <Route path="/add-service-select-category/:id" element={<AddServiceSelectCategory/>}/>
           <Route path="/add-service/:id" element={<AddService/>}/>
           <Route path="/add-service2" element={<AddService2/>}/>

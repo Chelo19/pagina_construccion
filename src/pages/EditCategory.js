@@ -1,240 +1,139 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../supabase/client";
 import { useNavigate, useParams } from "react-router-dom";
-import LoadingScreen from "../components/LoadingScreen";
-import "../styles/Service.css";
-import "../styles/EditService.css";
-import "../styles/EditCategory.css";
+import LoadingScreen2 from "../components/LoadingScreen2";
 import { Link } from "react-router-dom";
 
-export default function EditCategory() {
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination } from "swiper";
+import 'swiper/css';
+import 'swiper/css/pagination';
+import TurnLeftOutlinedIcon from '@mui/icons-material/TurnLeftOutlined';
+import TextField from '@mui/material/TextField';
+
+export default function EditCategory(){
   const { id } = useParams();
   const navigate = useNavigate();
-
-  const [category, setCategory] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [alert, setAlert] = useState(null);
-  const [locationId, setLocationId] = useState(null);
+  const [noItems, setNoItems] = useState(false);
+
+  const [isRegisterAlert, setIsRegisterAlert] = useState(null);
+  const [prompt, setPrompt] = useState(null);
+  const [promptStyle, setPromptStyle] = useState(null);
+  const [category, setCategory] = useState();
 
   const [newName, setNewName] = useState(null);
 
-  const [newFile, setNewFile] = useState(null);
+  useEffect(() => {
+    getUser();
+  }, []);
 
-  var confirmacionesRemove = [false, false];
-  
-  const newUrl = [];
-
-  const checkIfAdmin = async () => {
+  const getUser = async () => {
     const { data: { user } } = await supabase.auth.getUser();
-    if(user){
-      const { data, error } = await supabase
-      .from('account')
-      .select()
-      .eq('uuid', user.id);
-      setLocationId(data[0].location_id);
-      console.log(data[0].location_id);
-      if(data[0].role == 'administrador' || data[0].role == 'gerente'){
-        showCategory();
-      }
-      else{
-        window.alert("No tienes los permisos para acceder a este lugar");
-        navigate("/");
-      }
+    const { data, error } = await supabase
+    .from('account')
+    .select()
+    .match({ uuid: user.id });
+    if(data[0].role == 'administrador' || data[0].role == 'gerente'){
+      getProject();
     }
     else{
-      window.alert("Inicia sesión como administrador para acceder");
-      navigate("/login");
+        window.alert("No puedes acceder a este lugar");
+        console.log(user);
+    }
+}
+
+  const getProject = async () => {
+    const { data, error } = await supabase
+    .from("categories")
+    .select("*")
+    .eq("id", id)
+    .not('img_url', 'is', null);
+    setCategory(data[0]);
+    console.log(data[0]);
+    if(data.length > 0){
+      setIsLoading(false);
+    }
+    else{
+      setNoItems(true);
+      setIsLoading(false);
     }
   }
 
-  const showCategory = async () => {
-    const { data, error } = await supabase
-      .from("categories")
-      .select("*")
-      .eq("id", id);
-    setCategory(data[0]);
-    setIsLoading(false);
-  };
-
-  useEffect(() => {
-    checkIfAdmin();
-  }, [isLoading]);
-
-  const submitNewData = async () => {
-    if(newName != null){
+  const updateCategory = async () => {
+    if(newName){
       const { error } = await supabase
       .from('categories')
       .update({ name: newName })
-      .eq('id', id)
-      window.alert('Nombre agregado correctamente');
-      document.location.reload();
+      .eq('id', id);
+      validError(error);
+    }
+  }
+
+  const validError = async (error) => {
+    if(error){
+      setPromptStyle({backgroundColor: '#161825'});
+      setPrompt('Error al actualizar');
+      await timeout(2000);
+      setPrompt(null);
       return;
     }
     else{
-      window.alert("Ingresa los campos a cambiar");
+      setPromptStyle({backgroundColor: '#77DD77'});
+      setPrompt('Actualizado correctamente');
+      await timeout(2000);
+      setPrompt(null);
+      navigate(-1);
       return;
     }
   }
 
-  const updateItem = async () => {
-    if(newFile){
-      updateDb();
-      updateBucket();
-    }
-    else if(!newFile){
-      window.alert("Favor de ingresar una imagen");
-    }
+  function timeout(number) {
+    return new Promise( res => setTimeout(res, number) );
   }
 
-  const updateBucket = async () => {
-    const { data, error } = await supabase
-    .storage
-    .from('categories-img')
-    .update(`${category.id}`, newFile[0], {
-      cacheControl: '3600',
-      upsert: false
-    })
-    document.location.reload();
-  }
 
-  const uploadBucket = async () => {
-    if(newFile != null){
-      const { data, error } = await supabase
-      .storage
-      .from('categories-img')
-      .upload(`${category.id}`, newFile[0]);
-      document.location.reload();
-    }
-    else{
-      window.alert("Favor de ingresar una imagen");
-    }
-  }
-
-  const updateDb = async () => {
-    console.log("Obteniendo PublicURL");
-    const { data } = supabase
-    .storage
-    .from('categories-img')
-    .getPublicUrl(`${category.id}`);
-    console.log(data.publicUrl.toString());
-
-    newUrl.push(data.publicUrl.toString());
-
-    console.log("Actualizando DB...");
-    const { error } = await supabase
-    .from('categories')
-    .update({ img_url: newUrl })
-    .eq('id', id);
-  }
-
-  const removeItem = async () => {
-    removeBucket();
-    removeDb();
-  }
-
-  const removeBucket = async () => {
-    console.log("Eliminando de Bucket...");
-    for(var i = 0 ; i < 5 ; i++){
-      const { data, error } = await supabase
-      .storage
-      .from('categories-img')
-      .remove([`${id}`]);
-      console.log(data);
-      console.log(error);
-    }
-    confirmacionesRemove[0] = true;
-    if(confirmacionesRemove[0] && confirmacionesRemove[1]){
-      window.alert("Categoría eliminada correctamente");
-      setAlert("Ya puedes abandonar esta página");
-      navigate(`/edit-categories/${locationId}`);
-    }
-  }
-
-  const removeDb = async () => {
-    const { error } = await supabase
-    .from('categories')
-    .delete()
-    .eq('id', id)
-    console.log(error);
-    confirmacionesRemove[1] = true;
-    if(confirmacionesRemove[0] && confirmacionesRemove[1]){
-      window.alert("Categoría eliminada correctamente");
-      setAlert("Ya puedes abandonar esta página");
-      navigate(`/edit-categories/${locationId}`);
-    }
-  }
-
-  return (
+  return(
     <>
-      {!isLoading ? (
-        <div className="edit_category_background">
-          <div className="edit_category_display">
-            <div className="edit_category_display_left">
-              <div id="edit_service_cat_img">
-                <img src={category.img_url[0]}/>
+    {!isLoading ?
+    <>
+      {!isRegisterAlert ?
+        <div className="service_background">
+            <div className="service_container">
+              <div className="service_body">
+                  <div className="service_title">{category.name}</div>
+                  <TextField className='request_ally_input' label="Nuevo Nombre" variant="outlined" onChange={(e) => setNewName(e.target.value)} />
+                  <Swiper
+                      spaceBetween={10}
+                      pagination={{
+                      dynamicBullets: true,
+                      }}
+                      modules={[Pagination]}
+                      className="service_carousel"
+                  >
+                      {category.img_url.map((url) => {
+                          return(
+                              <SwiperSlide className="service_carousel_slide"><img className="service_carousel_slide_img" src={url}/></SwiperSlide>
+                          )
+                      })}
+                  </Swiper>
+                  <Link className="service_button" onClick={(e) => updateCategory()}>Actualizar servicio</Link>
               </div>
             </div>
-            <div className="edit_category_display_mid">
-                <div className="edit_category_info">
-                    <span>
-                        <bn>Id: </bn>{category.id}
-                    </span>
-                    <span>
-                        <bn>Nombre actual:</bn><br/>{category.name}
-                    </span>
-                    <span>
-                        <bn>Nuevo nombre:</bn><br/>
-                        <input type={'text'}
-                        placeholder={'Nuevo nombre'}
-                        onChange={(e) => setNewName(e.target.value)}/>
-                    </span>
-                </div>
-            </div>
-            <div className="edit_category_display_right">
-                <div className="edit_category_new_info">
-                    <span id="edit_category_new_info_title"><bn>Nuevos datos</bn></span>
-                    <span><bn>Nuevo nombre:</bn><br/>{newName}</span>
-                    <input type={'submit'}
-                    value={"Sobreescribir datos"}
-                    onClick={submitNewData}
-                    />
-                </div>
-            </div>
-          </div>
-          <div className="edit_category_selection">
-            <div className="edit_category_selection_space">
-              <span>Cambiar imagen de la categoría: {category.name}</span>
-              <div id='edit_category_new_file'>
-                Nueva imagen:
-                <input
-                  type={"file"}
-                  accept={".png, .jpg, .jpeg"}
-                  onChange={(e) => setNewFile(e.target.files)}
-                />
-              </div>
-              <input 
-                id='edit_category_submit'
-                type={"submit"}
-                onClick={updateItem}
-                value={`Cambiar imagen`}>
-              </input>
-            </div>
-          </div>
-          <div className="edit_service_remove">
-            <span>--- Zona de peligro ---</span>
-            <div className="edit_service_remove_options">
-              <span>Eliminar servicio</span>
-              <input 
-                id='edit_service_remove_input'
-                type={"submit"}
-                onClick={removeItem}
-                value={`Eliminar: ${category.name}`}>
-              </input>
-              <span>{alert}</span>
-            </div>
-          </div>
+            {prompt &&
+            <div className="reg_log_prompt" style={promptStyle}>
+                {prompt}
+            </div>}
         </div>
-      ) : <LoadingScreen/>}
+        :
+        <>
+          Hubo un problema
+        </>
+      }
     </>
-  );
+    :
+      <LoadingScreen2/>
+    }
+    </>
+  )
 }

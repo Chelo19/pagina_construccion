@@ -1,298 +1,221 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../supabase/client";
 import { useNavigate, useParams } from "react-router-dom";
-import LoadingScreen from "../components/LoadingScreen";
+import LoadingScreen2 from "../components/LoadingScreen2";
 import "../styles/EditService.css";
 import { Link } from "react-router-dom";
 
-export default function EditService() {
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination } from "swiper";
+import 'swiper/css';
+import 'swiper/css/pagination';
+import TurnLeftOutlinedIcon from '@mui/icons-material/TurnLeftOutlined';
+import TextField from '@mui/material/TextField';
+
+import Button from '@mui/material/Button';
+import SendIcon from '@mui/icons-material/Send';
+import AddAPhotoOutlinedIcon from '@mui/icons-material/AddAPhotoOutlined';
+import FormControl from '@mui/material/FormControl';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+
+export default function EditService(){
   const { id } = useParams();
   const navigate = useNavigate();
-
-  const [service, setService] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [alert, setAlert] = useState(null);
+  const [noItems, setNoItems] = useState(false);
+
+  const [isRegisterAlert, setIsRegisterAlert] = useState(null);
+  const [prompt, setPrompt] = useState(null);
+  const [promptStyle, setPromptStyle] = useState(null);
+  const [service, setService] = useState();
 
   const [newName, setNewName] = useState(null);
   const [newDescription, setNewDescription] = useState(null);
-
-  const [selection, setSelection] = useState(null);
-  const [newFile, setNewFile] = useState(null);
-  var confirmacionesRemove = [false, false];
-
-  const newUrl = [];
-
-  const checkIfAdmin = async () => {
-    const { data: { user } } = await supabase.auth.getUser();
-    if(user){
-      const { data, error } = await supabase
-      .from('account')
-      .select()
-      .eq('uuid', user.id);
-      if(data[0].role == 'administrador' || data[0].role == 'gerente'){
-        showService();
-      }
-      else{
-          window.alert("No tienes los permisos para acceder a este lugar");
-          navigate("/");
-      }
-    }
-    else{
-      window.alert("Inicia sesión como administrador para acceder");
-      navigate("/login");
-    }
-  }
-
-  const showService = async () => {
-    const { data, error } = await supabase
-      .from("services")
-      .select("*")
-      .eq("id", id);
-    setService(data[0]);
-    setIsLoading(false);
-  };
+  const [categoryId, setCategoryId] = useState(null);
+  const [categories, setCategories] = useState(null);
 
   useEffect(() => {
-    checkIfAdmin();
-  }, [isLoading]);
+    getUser();
+  }, []);
 
-  const submitNewData = async () => {
-    if(newName != null && newDescription != null){
-      const { error } = await supabase
-      .from('services')
-      .update({ name: newName, description: newDescription })
-      .eq('id', id)
-      window.alert('Nombre y descripción agregados correctamente');
-      document.location.reload();
-      return;
-    }
-    else if(!newName && !newDescription){
-      window.alert("Ingresa los campos a cambiar");
-      return;
-    }
-    if(newDescription == null){
-      sumbitOnlyName();
-      window.alert('Nombre agregado correctamente');
-      document.location.reload();
-      return;
-    }
-    if(newName == null){
-      sumbitOnlyDescription();
-      window.alert('Descripción agregada correctamente');
-      document.location.reload();
-      return;
-    }
-  }
-
-  const sumbitOnlyName = async () => {
-    const { error } = await supabase
-    .from('services')
-    .update({ name: newName })
-    .eq('id', id)
-  }
-
-  const sumbitOnlyDescription = async () => {
-    const { error } = await supabase
-    .from('services')
-    .update({ description: newDescription })
-    .eq('id', id)
-  }
-
-  const uploadItem = async () => {
-    if(newFile){
-      updateBucket();
-      updateDb();
-    }
-    else if(!newFile){
-      window.alert("Favor de ingresar una imagen");
-    }
-  }
-
-  const updateBucket = async () => {
+  const getUser = async () => {
+    const { data: { user } } = await supabase.auth.getUser();
     const { data, error } = await supabase
-    .storage
-    .from('services-img')
-    .update(`${service.category_id}` + '/' + `${service.id}` + '-' + `${selection}`, newFile[0], {
-      cacheControl: '3600',
-      upsert: false
-    })
-    document.location.reload();
-  }
-
-
-  const uploadBucket = async () => {
-    if(newFile != null){
-        console.log("Subiendo a Bucket...");
-        const { data, error } = await supabase
-        .storage
-        .from('services-img')
-        .upload(`${service.category_id}` + '/' + `${service.id}` + '-' + `${selection}`, newFile[0]);
-        console.log('Route: ' + `${service.category_id}` + '/' + `${service.id}` + '-' + `${selection}`);
-        console.log("Sale de UploadBucket");
-        document.location.reload();
+    .from('account')
+    .select()
+    .match({ uuid: user.id });
+    if(data[0].role == 'administrador' || data[0].role == 'gerente'){
+      getCategories();
     }
     else{
-        alert("Favor de ingresar una imagen");
+        window.alert("No puedes acceder a este lugar");
+        console.log(user);
+    }
+}
+
+const getCategories = async () => {
+  const { data, error } = await supabase
+  .from('categories')
+  .select('*');
+  setCategories(data);
+  console.log(data);
+  getProject();
+}
+
+  const getProject = async () => {
+    const { data, error } = await supabase
+    .from("services")
+    .select("*, category_id(*)")
+    .eq("id", id)
+    .not('img_url', 'is', null);
+    setService(data[0]);
+    console.log(data[0]);
+    if(data.length > 0){
+      setIsLoading(false);
+    }
+    else{
+      setNoItems(true);
+      setIsLoading(false);
     }
   }
 
-  const updateDb = async () => {
-    console.log("Obteniendo PublicURL");
-    const { data } = supabase
-    .storage
-    .from('services-img')
-    .getPublicUrl(`${service.category_id}` + '/' + `${service.id}` + '-');
-
-    for(var i = 0 ; i < 5 ; i++){
-      newUrl.push(data.publicUrl.toString() + `${i}`);
+  const updateService = async () => {
+    if(newName){
+      const { error } = await supabase
+      .from('services')
+      .update({ name: newName })
+      .eq('id', id);
+      if(validError(error) == true) return;
     }
-
-    console.log("Actualizando DB...");
-    const { error } = await supabase
-    .from('services')
-    .update({ img_url: newUrl })
-    .eq('id', id);
+    if(newDescription){
+      const { error } = await supabase
+      .from('services')
+      .update({ description: newDescription })
+      .eq('id', id);
+      if(validError(error) == true) return;
+    }
+    if(categoryId){
+      const { error } = await supabase
+      .from('services')
+      .update({ category_id: categoryId })
+      .eq('id', id);
+      if(validError(error) == true) return;
+    }
+    setPromptStyle({backgroundColor: '#77DD77'});
+    setPrompt('Actualizado correctamente');
+    await timeout(2000);
+    setPrompt(null);
+    navigate(-1);
   }
 
-  const removeItem = async () => {
-    removeBucket();
-    removeDb();
-  }
-
-  const removeBucket = async () => {
-    console.log("Eliminando de Bucket...");
-    for(var i = 0 ; i < 5 ; i++){
-      const { data, error } = await supabase
-      .storage
-      .from('services-img')
-      .remove([`${service.category_id}` + '/' + `${service.id}` + `-${i}`])
-      console.log(data);
-      console.log(error);
-    }
-    confirmacionesRemove[0] = true;
-    if(confirmacionesRemove[0] && confirmacionesRemove[1]){
-      window.alert("Categoría eliminada correctamente");
-      navigate(`/admin-hub/`);
-    }
-  }
-
-  const removeDb = async () => {
-    const { error } = await supabase
-    .from('services')
-    .delete()
-    .eq('id', id)
+  const validError = async (error) => {
+    console.log('entra');
     console.log(error);
-    confirmacionesRemove[1] = true;
-    if(confirmacionesRemove[0] && confirmacionesRemove[1]){
-      window.alert("Categoría eliminada correctamente");
-      setAlert("Ya puedes abandonar esta página");
-      navigate(`/admin-hub/`);
+    if(error){
+      setPromptStyle({backgroundColor: '#161825'});
+      setPrompt('Error al actualizar');
+      await timeout(2000);
+      setPrompt(null);
+      return true;
+    }
+    else{
+      return false;
     }
   }
 
-  return (
+  function timeout(number) {
+    return new Promise( res => setTimeout(res, number) );
+  }
+
+  const handleChange = (event) => {
+    const {
+      target: { value },
+    } = event;
+    setCategoryId(
+      // On autofill we get a stringified value.
+      typeof value === 'string' ? value.split(',') : value,
+    );
+  };
+
+  const ITEM_HEIGHT = 48;
+  const ITEM_PADDING_TOP = 8;
+  const MenuProps = {
+  PaperProps: {
+          style: {
+          maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+          width: 250,
+          },
+      },
+  };
+
+  return(
     <>
-      {!isLoading ? (
-        <div className="edit_service_service_background">
-          <div className="edit_service_service_display">
-            <div className="edit_service_service_display_left">
-              <div className="edit_service_service_gallery">
-                <div id="edit_service_main_service_img" className="edit_service_service_img" onClick={(e) => setSelection(0)}>
-                  <img src={service.img_url[0]}/>
-                  <span>0</span>
-                </div>
-                <div id="edit_service_first_service_img" className="edit_service_service_img" onClick={(e) => setSelection(1)}>
-                  <img src={service.img_url[1]}/>
-                  <span>1</span>
-                </div>
-                <div id="edit_service_second_service_img" className="edit_service_service_img" onClick={(e) => setSelection(2)}>
-                  <img src={service.img_url[2]}/>
-                  <span>2</span>
-                </div>
-                <div id="edit_service_third_service_img" className="edit_service_service_img" onClick={(e) => setSelection(3)}>
-                  <img src={service.img_url[3]}/>
-                  <span>3</span>
-                </div>
-                <div id="edit_service_fourth_service_img" className="edit_service_service_img" onClick={(e) => setSelection(4)}>
-                  <img src={service.img_url[4]}/>
-                  <span>4</span>
-                </div>
+    {!isLoading ?
+    <>
+      {!isRegisterAlert ?
+        <div className="service_background">
+            <div className="service_container">
+              <div className="service_body">
+                  <div className="service_title">{service.name}</div>
+                  <TextField className='request_ally_input' label="Nuevo Nombre" variant="outlined" onChange={(e) => setNewName(e.target.value)} />
+                  <Swiper
+                      spaceBetween={10}
+                      pagination={{
+                      dynamicBullets: true,
+                      }}
+                      modules={[Pagination]}
+                      className="service_carousel"
+                  >
+                      {service.img_url.map((url) => {
+                          return(
+                              <SwiperSlide className="service_carousel_slide"><img className="service_carousel_slide_img" src={url}/></SwiperSlide>
+                          )
+                      })}
+                  </Swiper>
+                  <div className="service_description">{service.description}</div>
+                  <TextField className='request_ally_input' label="Nueva Descripción" variant="outlined" onChange={(e) => setNewDescription(e.target.value)} />
+                  <div className="service_description">{service.category_id.name}</div>
+                  <FormControl className='add_service2_form_item'>
+                    <InputLabel>Nueva Categoría</InputLabel>
+                    <Select
+                    color='primary'
+                    value={categoryId}
+                    onChange={handleChange}
+                    input={<OutlinedInput label="Nueva Categoría"/>}
+                    MenuProps={MenuProps}
+                    >
+                    {categories.map((category) => (
+                        <MenuItem
+                        key={category.id}
+                        value={category.id}
+                        >
+                        {category.name}
+                        </MenuItem>
+                    ))}
+                    </Select>
+                </FormControl>
+                  <Link className="service_button" onClick={(e) => updateService()}>Actualizar servicio</Link>
+                  <Link className="service_button" style={{backgroundColor:'#161825'}} onClick={(e) => document.location.reload()}>Limpiar seleccion</Link>
               </div>
             </div>
-            <div className="edit_service_service_display_mid">
-                <div className="edit_service_service_info">
-                    <span>
-                        <bn>Id: </bn>{service.id}
-                    </span>
-                    <span>
-                        <bn>Id categoría: </bn>{service.category_id}
-                    </span>
-                    <span>
-                        <bn>Nombre actual:</bn><br/>{service.name}
-                    </span>
-                    <span>
-                        <bn>Nuevo nombre:</bn><br/>
-                        <input type={'text'}
-                        placeholder={'Nuevo nombre'}
-                        onChange={(e) => setNewName(e.target.value)}/>
-                    </span>
-                    <span>
-                        <bn>Descripción actual:</bn><br/>{service.description}
-                    </span>
-                    <span>
-                        <bn>Nueva descripción:</bn><br/>
-                        <input type={'text'}
-                        placeholder={'Nueva descripción'}
-                        onChange={(e) => setNewDescription(e.target.value)}/>
-                    </span>
-                </div>
-            </div>
-            <div className="edit_service_service_display_right">
-                <div className="edit_service_new_info">
-                    <span id="edit_service_new_info_title"><bn>Nuevos datos</bn></span>
-                    <span><bn>Nuevo nombre:</bn><br/>{newName}</span>
-                    <span><bn>Nueva descripción:</bn><br/>{newDescription}</span> 
-                    <input type={'submit'}
-                    value={"Sobreescribir datos"}
-                    onClick={submitNewData}
-                    />
-                </div>
-            </div>
-          </div>
-          <div className="edit_service_selection">
-            <div className="edit_service_selection_space">
-              <span>Imagen a cambiar: {selection}</span>
-              <div id='edit_service_new_file'>
-                Nueva imagen:
-                <input
-                  type={"file"}
-                  accept={".png, .jpg, .jpeg"}
-                  onChange={(e) => setNewFile(e.target.files)}
-                />
-              </div>
-              <input 
-                id='edit_service_submit'
-                type={"submit"}
-                onClick={uploadItem}
-                value={`Cambiar imagen: ${selection}`}>
-              </input>
-            </div>
-          </div>
-          <div className="edit_service_remove">
-            <span>--- Zona de peligro ---</span>
-            <div className="edit_service_remove_options">
-              <span>Eliminar servicio</span>
-              <input 
-                id='edit_service_remove_input'
-                type={"submit"}
-                onClick={removeItem}
-                value={`Eliminar: ${service.name}`}>
-              </input>
-              <span>{alert}</span>
-            </div>
-          </div>
+            {prompt &&
+            <div className="reg_log_prompt" style={promptStyle}>
+                {prompt}
+            </div>}
         </div>
-      ) : <LoadingScreen/>}
+        :
+        <>
+          Hubo un problema
+        </>
+      }
     </>
-  );
+    :
+      <LoadingScreen2/>
+    }
+    </>
+  )
 }

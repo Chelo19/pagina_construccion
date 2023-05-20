@@ -22,6 +22,16 @@ export default function WebPageCategories(){
                             </span>
                         </div>
                     </Link>
+                    <Link to={'/add-category'} className='profiles_item'>
+                        <div className='profiles_item_container'>
+                            <div className='profiles_item_img'>
+                                <img src={require('../img/categorias.png')}/>
+                            </div>
+                            <span className='profiles_item_title'>
+                                Agregar Categorias
+                            </span>
+                        </div>
+                    </Link>
                 </div>
             </div>
         </div>
