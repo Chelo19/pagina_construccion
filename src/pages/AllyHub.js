@@ -33,7 +33,7 @@ export default function AllyHub(){
                                 <img src={require('../img/servicios.png')}/>
                             </div>
                             <span className='profiles_item_title'>
-                                Proyectos aceptados
+                                Proyectos
                             </span>
                         </div>
                     </Link>

@@ -158,12 +158,12 @@ export default function CurrentProjects(){
                                             <span>Categoría: {selectedProject.service_id.category_id.name}</span>
                                             <span className='generic_title font30 posL'>Cliente: </span>
                                             <span>Nombre: {selectedProject.account_email.name}</span>
-                                            <span>Nombre: {selectedProject.account_email.email}</span>
-                                            <span>Nombre: {selectedProject.account_email.phone}</span>
+                                            <span>Email: {selectedProject.account_email.email}</span>
+                                            <span>Teléfono: {selectedProject.account_email.phone}</span>
                                             <span className='generic_title font30 posL'>Encargado: </span>
                                             <span>Nombre: {selectedProject.selected_ally_email.name}</span>
-                                            <span>Nombre: {selectedProject.selected_ally_email.email}</span>
-                                            <span>Nombre: {selectedProject.selected_ally_email.phone}</span>
+                                            <span>Email: {selectedProject.selected_ally_email.email}</span>
+                                            <span>Teléfono: {selectedProject.selected_ally_email.phone}</span>
                                         </div>
                                         {selectedProjectType != 'done' &&
                                             <>

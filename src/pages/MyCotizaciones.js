@@ -34,10 +34,12 @@ export default function MyCotizaciones(){
     const [pendingCotizaciones, setPendingCotizaciones] = useState(null);
     const [currentCotizaciones, setCurrentCotizaciones] = useState(null);
     const [doneCotizaciones, setDoneCotizaciones] = useState(null);
+    const [pendingToRateCotizaciones, setPendingToRateCotizaciones] = useState(null);
 
     const [selectedCotizacionType, setSelectedCotizacionType] = useState(null);
     const [selectedCotizacion, setSelectedCotizacion] = useState(null);
     const [selectedOption, setSelectedOption] = useState(null);
+    const [allyRating, setAllyRating] = useState(null);
 
     useEffect(() => {
         getCotizaciones();
@@ -58,10 +60,13 @@ export default function MyCotizaciones(){
                 return cotizacion.options_length != null && cotizacion.option_selected == null && cotizacion.link_drive_ally && cotizacion.is_done == false;
             }))
             setCurrentCotizaciones(data.filter(cotizacion => {
-                return cotizacion.is_project == true;
+                return cotizacion.is_project == true && cotizacion.is_done == false;
+            }))
+            setPendingToRateCotizaciones(data.filter(cotizacion => {
+                return cotizacion.is_done == true && cotizacion.ally_rating == null;
             }))
             setDoneCotizaciones(data.filter(cotizacion => {
-                return cotizacion.is_done == true;
+                return cotizacion.is_done == true && cotizacion.ally_rating != null;
             }))
         }
         else{
@@ -75,6 +80,20 @@ export default function MyCotizaciones(){
         const { error } = await supabase
         .from('cotizaciones')
         .update({ option_selected: selectedOption })
+        .eq('id', selectedCotizacion.id);
+        if(!error){
+            console.log("Hecho");
+        }
+        else{
+            console.log(error);
+        }
+    }
+
+    const selectAllyRating = async () => {
+        console.log(allyRating);
+        const { error } = await supabase
+        .from('cotizaciones')
+        .update({ ally_rating: allyRating })
         .eq('id', selectedCotizacion.id);
         if(!error){
             console.log("Hecho");
@@ -155,9 +174,28 @@ export default function MyCotizaciones(){
                                                     })}
                                                     </>
                                                 }
+                                                {pendingToRateCotizaciones.length > 0 &&
+                                                    <>
+                                                    <span className='generic_title font30 posL' style={{margin: "10px 0px"}}>Calificación pendiente</span>
+                                                    {pendingToRateCotizaciones.map((cotizacion) => {
+                                                        return(
+                                                            <div className='project_item project_item_done' onClick={(e) => {setSelectedCotizacion(cotizacion); setSelectedCotizacionType('pendingRating')}} key={cotizacion.id}>
+                                                                <div className='project_item_content'>
+                                                                    <span>Identificador del proyecto: {cotizacion.id}</span>
+                                                                    <span>Servicio: {cotizacion.service_id.name}</span>
+                                                                    <span>Categoría: {cotizacion.service_id.category_id.name}</span>
+                                                                </div>
+                                                                <div className='project_item_img'>
+                                                                    <img src={`${cotizacion.service_id.img_url[0]}`}/>
+                                                                </div>
+                                                            </div>
+                                                        )
+                                                    })}
+                                                    </>
+                                                }
                                                 {doneCotizaciones.length > 0 &&
                                                     <>
-                                                    <span className='generic_title font30 posL' style={{margin: "10px 0px"}}>Cotizaciones finalizadas</span>
+                                                    <span className='generic_title font30 posL' style={{margin: "10px 0px"}}>Proyectos finalizados</span>
                                                     {doneCotizaciones.map((cotizacion) => {
                                                         return(
                                                             <div className='project_item project_item_done' onClick={(e) => {setSelectedCotizacion(cotizacion); setSelectedCotizacionType('done')}} key={cotizacion.id}>
@@ -239,6 +277,35 @@ export default function MyCotizaciones(){
                                                             )
                                                         })}
                                                     </Swiper>
+                                                </>
+                                            }
+                                            {selectedCotizacionType == 'pendingRating' &&
+                                                <>
+                                                    <span className='generic_title font30 posL' style={{margin: "10px 0px"}}>Cotización finalizada</span>
+                                                    <span className='generic_description font20 posL'>{selectedCotizacion.service_id.name}</span>
+                                                    <span className='generic_title font20 posL'>¿Qué te pareció el trato del servidor?</span>
+                                                    <select onChange={(e) => setAllyRating(e.target.value)}>
+                                                        <option>1</option>
+                                                        <option>2</option>
+                                                        <option>3</option>
+                                                        <option>4</option>
+                                                        <option>5</option>
+                                                    </select>
+                                                    <Swiper
+                                                        spaceBetween={10}
+                                                        pagination={{
+                                                        dynamicBullets: true,
+                                                        }}
+                                                        modules={[Pagination]}
+                                                        className="service_carousel"
+                                                    >
+                                                        {selectedCotizacion.service_id.img_url.map((url) => {
+                                                            return(
+                                                                <SwiperSlide className="service_carousel_slide"><img className="service_carousel_slide_img" src={url}/></SwiperSlide>
+                                                            )
+                                                        })}
+                                                    </Swiper>
+                                                    <a className='generic_button font20' style={{backgroundColor: '#ff7f22'}} onClick={selectAllyRating}>Enviar</a>
                                                 </>
                                             }
                                             {selectedCotizacionType == 'done' &&

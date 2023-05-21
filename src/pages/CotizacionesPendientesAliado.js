@@ -31,7 +31,8 @@ export default function CotizacionesPendientesAliado(){
         .from('cotizaciones_allies')
         .select(`*, cotizacion_id(*, service_id(*, category_id(*))), ally_email(*)`)
         .eq('ally_email', user.email)
-        .or("ally_response.is.null");
+        .or("ally_response.is.null")
+        .order('id', { ascending: false });
         console.log(data);
         if(data.length > 0){
             setCotizaciones(data);
