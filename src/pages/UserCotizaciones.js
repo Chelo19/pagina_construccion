@@ -32,7 +32,7 @@ export default function UserCotizaciones(){
                             </span>
                         </div>
                     </Link>
-                    <Link to={'/calificate'} className='profiles_item'>
+                    {/* <Link to={'/calificate'} className='profiles_item'>  no creo que sea necesario
                         <div className='profiles_item_container'>
                             <div className='profiles_item_img'>
                                 <img src={require('../img/calificar.png')}/>
@@ -41,7 +41,7 @@ export default function UserCotizaciones(){
                                 Calificar
                             </span>
                         </div>
-                    </Link>
+                    </Link> */}
                 </div>
             </div>
         </div>
