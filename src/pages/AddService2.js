@@ -182,13 +182,15 @@ export default function AddService2(){
                                 </FormControl>
                         <span className="add_service2_form_span">Agregar Imágenes</span>
                         <Button
-                        className="add_service2_form_item"
-                        id="add_service2_form_input"
+                        // className="add_service2_form_item"
+                        // id="add_service2_form_input"
+                        className="generic_button font20"
                         variant="contained"
                         component="label"
                         >
                             Agregar &nbsp;<AddAPhotoOutlinedIcon/>
                             <input
+                                className="font20"
                                 type="file"
                                 accept="png, jpg, jpeg"
                                 multiple="multiple"
@@ -196,13 +198,15 @@ export default function AddService2(){
                                 onChange={(e) => setImgs(e.target.files)}
                             />
                         </Button>
-                        <Button
+                        {/* <Button
                         className="add_service2_form_item"
                         variant="contained"
                         component="label"
                         endIcon={<SendIcon />}
                         onClick={createService}
-                        >Enviar</Button>
+                        >Enviar</Button> */}
+                        <Link className="generic_button font20" style={{backgroundColor:'#ff7f22'}} onClick={(e) => createService()}>Crear servicio</Link>
+
                     </div>
                 </div>
                 {prompt &&

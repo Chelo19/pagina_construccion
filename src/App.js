@@ -163,7 +163,7 @@ function App() {
           <Route path="/edit-posts/:id" element={<EditPosts/>}/>
           <Route path="/confirmed-email" element={<ConfirmedEmail/>}/>
           <Route path="/about-us" element={<AboutUs/>}/>
-          <Route path="/contact/:reload" element={<Contact/>}/>
+          <Route path="/contact" element={<Contact/>}/>
           <Route path="/manager-hub" element={<ManagerHub/>}/>
           <Route path="/manager-hub/:reload" element={<ManagerHub/>}/>
           <Route path="/edit-users/:id" element={<EditUsers/>}/>

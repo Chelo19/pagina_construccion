@@ -22,6 +22,14 @@ import Select from '@mui/material/Select';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
+import * as React from 'react';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import Alert from '@mui/material/Alert';
+
 export default function EditService(){
   const { id } = useParams();
   const navigate = useNavigate();
@@ -30,13 +38,24 @@ export default function EditService(){
 
   const [isRegisterAlert, setIsRegisterAlert] = useState(null);
   const [prompt, setPrompt] = useState(null);
-  const [promptStyle, setPromptStyle] = useState(null);
+  const [promptSeverity, setPromptSeverity] = useState('success');
+  // const [promptStyle, setPromptStyle] = useState(null);
   const [service, setService] = useState();
 
   const [newName, setNewName] = useState(null);
   const [newDescription, setNewDescription] = useState(null);
   const [categoryId, setCategoryId] = useState(null);
   const [categories, setCategories] = useState(null);
+
+  const [open, setOpen] = React.useState(false);
+  
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+      setOpen(false);
+  };
 
   useEffect(() => {
     getUser();
@@ -84,11 +103,20 @@ const getCategories = async () => {
   }
 
   const updateService = async () => {
+    if(!newName && !newDescription && !categoryId){
+      setPromptSeverity('error');
+      setPrompt('Hubo un error al actualizar');
+      await timeout(2000);
+      setPrompt(null);
+      return;
+    }
+    let existingErrors = 0;
     if(newName){
       const { error } = await supabase
       .from('services')
       .update({ name: newName })
       .eq('id', id);
+      if(error) existingErrors++;
       if(validError(error) == true) return;
     }
     if(newDescription){
@@ -96,6 +124,7 @@ const getCategories = async () => {
       .from('services')
       .update({ description: newDescription })
       .eq('id', id);
+      if(error) existingErrors++;
       if(validError(error) == true) return;
     }
     if(categoryId){
@@ -103,20 +132,29 @@ const getCategories = async () => {
       .from('services')
       .update({ category_id: categoryId })
       .eq('id', id);
+      if(error) existingErrors++;
       if(validError(error) == true) return;
     }
-    setPromptStyle({backgroundColor: '#77DD77'});
-    setPrompt('Actualizado correctamente');
-    await timeout(2000);
-    setPrompt(null);
-    navigate(-1);
+    if(existingErrors > 0){
+      setPromptSeverity('erorr');
+      setPrompt('Hubo un error al actualizar');
+      await timeout(2000);
+      setPrompt(null);
+    }
+    else{
+      setPromptSeverity('success');
+      setPrompt('Actualizado correctamente');
+      await timeout(2000);
+      setPrompt(null);
+      navigate(-1);
+    }
   }
 
   const validError = async (error) => {
     console.log('entra');
     console.log(error);
     if(error){
-      setPromptStyle({backgroundColor: '#161825'});
+      setPromptSeverity('error');
       setPrompt('Error al actualizar');
       await timeout(2000);
       setPrompt(null);
@@ -151,6 +189,27 @@ const getCategories = async () => {
           },
       },
   };
+
+  const deleteService = async () => {
+    console.log('Entra');
+    const { error } = await supabase
+    .from('services')
+    .delete()
+    .eq('id', id);
+    if(error){
+      setPromptSeverity('error');
+      setPrompt(error);
+      await timeout(2000);
+      setPrompt(null);
+    }
+    else{
+      setPromptSeverity('success');
+      setPrompt('Servicio eliminado correctamente');
+      await timeout(2000);
+      setPrompt(null);
+      navigate(-1);
+    }
+  }
 
   return(
     <>
@@ -198,14 +257,38 @@ const getCategories = async () => {
                     ))}
                     </Select>
                 </FormControl>
-                  <Link className="service_button" onClick={(e) => updateService()}>Actualizar servicio</Link>
-                  <Link className="service_button" style={{backgroundColor:'#161825'}} onClick={(e) => document.location.reload()}>Limpiar seleccion</Link>
+                  <Link className="generic_button font20" style={{backgroundColor:'#161825'}} onClick={(e) => document.location.reload()}>Limpiar seleccion</Link>
+                  <Link className="generic_button font20" style={{backgroundColor:'#ff7f22'}} onClick={(e) => updateService()}>Actualizar servicio</Link>
+                  <Link className='generic_button font20' style={{backgroundColor: '#ff5252'}} onClick={handleClickOpen}>
+                    Eliminar servicio
+                  </Link>
+                  <Dialog
+                      open={open}
+                      onClose={handleClose}
+                      aria-labelledby="alert-dialog-title"
+                      aria-describedby="alert-dialog-description"
+                  >
+                      <DialogTitle id="alert-dialog-title">
+                      {"¿Quieres finalizar la cotización?"}
+                      </DialogTitle>
+                      <DialogContent>
+                      <DialogContentText id="alert-dialog-description">
+                          ¿Estás seguro de que deseas eliminar el servicio?
+                      </DialogContentText>
+                      </DialogContent>
+                      <DialogActions>
+                      <Button onClick={handleClose}>Regresar</Button>
+                      <Button onClick={() => {deleteService(); handleClose()}} autoFocus>
+                          Eliminar
+                      </Button>
+                      </DialogActions>
+                  </Dialog>
               </div>
             </div>
             {prompt &&
-            <div className="reg_log_prompt" style={promptStyle}>
-                {prompt}
-            </div>}
+              <>
+                  <Alert className='generic_alert' severity={`${promptSeverity}`} onClose={(e) => setPrompt(null)}>{prompt}</Alert>
+              </>}
         </div>
         :
         <>

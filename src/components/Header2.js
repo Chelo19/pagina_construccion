@@ -84,7 +84,7 @@ export default function Header(){
                             <hr className='divider'/>
                             <Link to={`/my-profile`} className='nav_item_listed' onClick={ () => setIsOpen(!isOpen)}><PersonOutlineOutlinedIcon color='secondary' fontSize='large'/>&nbsp;&nbsp;&nbsp;&nbsp;<span>Perfil</span></Link>
                             <hr className='divider'/>
-                            <Link to={'/contact/0'} className='nav_item_listed' onClick={ () => setIsOpen(!isOpen)}><SupportAgentOutlinedIcon color='secondary' fontSize='large'/>&nbsp;&nbsp;&nbsp;&nbsp;<span>Contacto</span></Link>
+                            <Link to={'/contact'} className='nav_item_listed' onClick={ () => setIsOpen(!isOpen)}><SupportAgentOutlinedIcon color='secondary' fontSize='large'/>&nbsp;&nbsp;&nbsp;&nbsp;<span>Contacto</span></Link>
                         </>
                     }
                     <hr className='divider'/>

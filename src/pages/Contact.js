@@ -1,97 +1,61 @@
+import {useEffect, useState} from 'react';
+import {supabase} from '../supabase/client';
+import {useNavigate} from 'react-router-dom';
 import '../styles/Contact.css';
-import LoadingScreen from "../components/LoadingScreen";
+import { Link } from "react-router-dom";
+import LoadingScreen2 from '../components/LoadingScreen2';
+import GoBackButton from '../components/GenericAssets';
 import emailjs from 'emailjs-com';
-import { useEffect, useState } from "react";
-import { supabase } from "../supabase/client";
-import { useNavigate, useParams } from "react-router-dom";
-import { Link } from 'react-router-dom';
+
+import TurnLeftOutlinedIcon from '@mui/icons-material/TurnLeftOutlined';
+import NavigateBeforeOutlinedIcon from '@mui/icons-material/NavigateBeforeOutlined';
+import Alert from '@mui/material/Alert';
 
 export default function Contact(){
     const navigate = useNavigate();
-    const [superAdminPhone, setSuperAdminPhone] = useState(+528672207801);
-    const [isMailSent, setIsMailSent] = useState(false);
-    const [email, setEmail] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
     const [message, setMessage] = useState(null);
-    const [confirmationAlert, setConfirmationAlert] = useState(null);
-    const [loadingScreen, setLoadingScreen] = useState(true);
-    const [contactEmail, setContactEmail] = useState(null);
+    const [userEmail, setUserEmail] = useState(null);
     const [additionalMessage, setAdditionalMessage] = useState(null);
-    var confirmacionesUser = 0;
 
-    const { reload } = useParams();
+    const [prompt, setPrompt] = useState(null);
+    const [promptSeverity, setPromptSeverity] = useState('success');
 
     useEffect(() => {
-        if(reload == "0"){
-            navigate('/contact/1');
-            window.location.reload();
-        }
-    },[]);
+        getUserData();
+    }, []);
 
     const getUserData = async () => {
         const { data: { user } } = await supabase.auth.getUser();
         if(user){
-            getContactEmail();
-            setEmail(user.email);
-            setLoadingScreen(false);
-        }
-        else if(!user){
-            confirmacionesUser++;
-            console.log(confirmacionesUser);
-            if(confirmacionesUser >= 2){
-                navigate('/');
-            }
-        }
-    }
-
-    const getContactEmail = async () => {
-        const { data: { user } } = await supabase.auth.getUser();
-        const { data, error } = await supabase
-        .from('account')
-        .select('location_id (state_id (id))')
-        .eq('uuid', user.id);
-        fetchContactUsers(data[0].location_id.state_id.id);
-    }
-
-    const fetchContactUsers = async (stateId) => {
-        const { data, error } = await supabase
-        .from('account')
-        .select()
-        .eq('contact_state_id', stateId);
-        if(data.length > 0){
-            setContactEmail(data[0].email);
-        }
-        else if(data.length <= 0){
-            const { data, error } = await supabase
-            .from('account')
-            .select()
-            .not('contact_state_id', 'is', null);
-            setContactEmail(data[0].email);
-            setAdditionalMessage(`Este usuario es del estado con id: ${stateId}`);
+            setUserEmail(user.email);
+            setIsLoading(false);
         }
     }
 
     const sendEmail = async () => {
         if(message){
-            console.log(email);
-            console.log(message);
             emailjs.send("service_rqa3brt","template_a3asdl2",{
             additionalMessage: additionalMessage,
-            contactEmail: contactEmail,
-            email: email,
+            contactEmail: 'marcelodeleongo2@gmail.com',
+            email: userEmail,
             message: message},
             'a9hJXSTK7xAdC26he');
-            setConfirmationAlert("Tu mensaje ha sido enviado correctamente");
-            window.alert("Tu mensaje ha sido enviado correctamente");
+            setPrompt('¡Tu comentario ha sido enviado correctamente!')
+            setPromptSeverity('success');
+            await timeout(2000);
+            setPrompt(null);
+            navigate('/');
         }
     }
 
-    useEffect(() => {
-        getUserData();
-      }, [loadingScreen]);
+    function timeout(number) {
+        return new Promise( res => setTimeout(res, number) );
+    }
 
     return(
         <div className="contact_background">
-            {!loadingScreen ?
+            {!isLoading ?
                 <div className='contact_container'>
                     <div className='contact_img_container' id='left_contact_img_container'>
                         <a target="_blank" href='https://www.facebook.com/GrupoDREC?mibextid=ZbWKwL' id='contact_img'>
@@ -110,11 +74,10 @@ export default function Contact(){
                             placeholder={"Envía tu mensaje"}
                             />
                             <button id='contact_submit'>Enviar</button>
-                            <span>{confirmationAlert}</span>
                         </form>
                     </div>
                     <div className='contact_img_container'>
-                        <a target="_blank" href={`https://wa.me/${superAdminPhone}`} id='contact_img'>
+                        <a target="_blank" href={`https://wa.me/+528672207801`} id='contact_img'>
                             <img src={require('../img/whatsicon.png')}/>
                         </a>
                         <a target="_blank" href={'/'} id='contact_img'>
@@ -128,15 +91,20 @@ export default function Contact(){
                         <a target="_blank" href={'https://www.instagram.com/drec_constructor/'} id='contact_link_img'>
                             <img src={require('../img/igicon.png')}/>
                         </a>
-                        <a target="_blank" href={`https://wa.me/${superAdminPhone}`} id='contact_link_img'>
+                        <a target="_blank" href={`https://wa.me/+528672207801`} id='contact_link_img'>
                             <img src={require('../img/whatsicon.png')}/>
                         </a>
                         <a target="_blank" href={'/'} id='contact_link_img'>
                             <img src={require('../img/mailicon.png')}/>
                         </a>
                     </div>
+                    {prompt &&
+                        <>
+                            <Alert className='generic_alert' severity={`${promptSeverity}`} onClose={(e) => setPrompt(null)}>{prompt}</Alert>
+                        </>}
                 </div>
-            : <LoadingScreen/>}
+            :
+            <LoadingScreen2/>}
         </div>
     )
 }
