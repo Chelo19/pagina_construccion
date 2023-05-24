@@ -33,6 +33,7 @@ export default function EditCategory(){
   const [category, setCategory] = useState();
 
   const [newName, setNewName] = useState(null);
+  const [img, setImg] = useState(null);
 
   const [open, setOpen] = React.useState(false);
   
@@ -88,6 +89,22 @@ export default function EditCategory(){
       .eq('id', id);
       validError(error);
     }
+    if(img){
+      const { data, error } = await supabase
+      .storage
+      .from('categories-img')
+      .update(id, img[0], {
+        cacheControl: '3600',
+        upsert: true
+      })
+      validError(error);
+    }
+    if(!newName && !img){
+      setPromptSeverity('error');
+      setPrompt('Ingresa datos para actualizar');
+      await timeout(2000);
+      setPrompt(null);
+    }
   }
 
   const validError = async (error) => {
@@ -121,7 +138,7 @@ export default function EditCategory(){
     .eq('id', id);
     if(error){
       setPromptSeverity('error');
-      setPrompt(error);
+      setPrompt(error.message);
       await timeout(2000);
       setPrompt(null);
     }
@@ -159,9 +176,22 @@ export default function EditCategory(){
                           )
                       })}
                   </Swiper>
-                  <Link className="generic_button font20" style={{backgroundColor:'#ff7f22'}} onClick={(e) => updateCategory()}>Actualizar servicio</Link>
+                  <Button className="generic_button font20"
+                    variant="contained"
+                    component="label" style={{backgroundColor:'#ff7f22'}}>
+                    Actualizar imagen 
+                    <input
+                      className="font20"
+                      type="file"
+                      accept="png, jpg, jpeg"
+                      hidden
+                      onChange={(e) => setImg(e.target.files)}
+                    />
+                  </Button>
+                  {img && <span className="service_description">Nombre de la imagen: {img[0].name}</span>}
+                  <Link className="generic_button font20" style={{backgroundColor:'#ff7f22'}} onClick={(e) => updateCategory()}>Actualizar categoría</Link>
                   <Link className='generic_button font20' style={{backgroundColor: '#ff5252'}} onClick={handleClickOpen}>
-                    Eliminar servicio
+                    Eliminar categoría
                   </Link>
                   <Dialog
                       open={open}
@@ -174,7 +204,7 @@ export default function EditCategory(){
                       </DialogTitle>
                       <DialogContent>
                       <DialogContentText id="alert-dialog-description">
-                          ¿Estás seguro de que deseas eliminar el servicio?
+                          ¿Estás seguro de que deseas eliminar la categoría?
                       </DialogContentText>
                       </DialogContent>
                       <DialogActions>

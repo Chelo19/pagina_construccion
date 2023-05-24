@@ -29,6 +29,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Alert from '@mui/material/Alert';
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 
 export default function EditService(){
   const { id } = useParams();
@@ -47,7 +48,19 @@ export default function EditService(){
   const [categoryId, setCategoryId] = useState(null);
   const [categories, setCategories] = useState(null);
 
+  const [img, setImg] = useState(null);
+  const [selectedImg, setSelectedImg] = useState(null);
+
   const [open, setOpen] = React.useState(false);
+  const [open2, setOpen2] = React.useState(false);
+
+  const handleClickOpen2 = () => {
+    setOpen2(true);
+  };
+
+  const handleClose2 = () => {
+    setOpen2(false);
+  };
   
   const handleClickOpen = () => {
     setOpen(true);
@@ -103,9 +116,9 @@ const getCategories = async () => {
   }
 
   const updateService = async () => {
-    if(!newName && !newDescription && !categoryId){
+    if(!newName && !newDescription && !categoryId && !img){
       setPromptSeverity('error');
-      setPrompt('Hubo un error al actualizar');
+      setPrompt('Establece un valor para actualizar');
       await timeout(2000);
       setPrompt(null);
       return;
@@ -135,6 +148,9 @@ const getCategories = async () => {
       if(error) existingErrors++;
       if(validError(error) == true) return;
     }
+    if(img){
+      existingErrors += updateBucket();
+    }
     if(existingErrors > 0){
       setPromptSeverity('erorr');
       setPrompt('Hubo un error al actualizar');
@@ -146,7 +162,7 @@ const getCategories = async () => {
       setPrompt('Actualizado correctamente');
       await timeout(2000);
       setPrompt(null);
-      navigate(-1);
+      // navigate(-1);
     }
   }
 
@@ -197,7 +213,7 @@ const getCategories = async () => {
     .eq('id', id);
     if(error){
       setPromptSeverity('error');
-      setPrompt(error);
+      setPrompt(error.message);
       await timeout(2000);
       setPrompt(null);
     }
@@ -209,6 +225,77 @@ const getCategories = async () => {
       navigate(-1);
     }
   }
+
+  const updateBucket = async () => {
+    let urlArray = service.img_url;
+    let nums = [];
+    for(let i = 0 ; i < urlArray.length ; i++){
+      nums.push(parseInt(urlArray[i].split("-").reverse()[0]));
+    }
+    let maxNum = Math.max(...nums);
+    maxNum++;
+    console.log('/' + `${service.category_id.id}` + '/' + `${service.id}` + '-' + `${maxNum}`);
+    const { data, error } = await supabase
+    .storage
+    .from('services-img')
+    .upload('/' + `${service.category_id.id}` + '/' + `${service.id}` + '-' + `${maxNum}`, img[0]);
+    if(!error){
+      console.log(data);
+      urlArray.push(`https://xadwiefldpzbsdciapia.supabase.co/storage/v1/object/public/services-img/${data.path}`);
+      console.log(urlArray);
+      const { error } = await supabase
+      .from('services')
+      .update({ img_url: urlArray })
+      .eq('id', id);
+      if(!error){
+        setPromptSeverity('success');
+        setPrompt('Imagen subida correctamente');
+        await timeout(2000);
+        setPrompt(null);
+        document.location.reload();
+      }
+      else{
+        setPromptSeverity('error');
+        setPrompt('Error al subir a db');
+        await timeout(2000);
+        setPrompt(null);
+        return 1;
+      }
+    }
+    else{
+      setPromptSeverity('error');
+      setPrompt('Error al subir imagen');
+      await timeout(2000);
+      setPrompt(null);
+      return 1;
+    }
+  }
+
+  const deleteImg = async () => {
+    let urlArray = service.img_url;
+    let index = urlArray.indexOf(selectedImg);
+    if (index !== -1) {
+      urlArray.splice(index, 1);
+    }
+    const { error } = await supabase
+    .from('services')
+    .update({ img_url: urlArray })
+    .eq('id', service.id);
+    if(!error){
+      setPromptSeverity('success');
+      setPrompt('Imagen eliminada correctamente');
+      await timeout(2000);
+      setPrompt(null);
+      document.location.reload();
+    }
+    else{
+      setPromptSeverity('error');
+      setPrompt('Error al eliminar imagen');
+      await timeout(2000);
+      setPrompt(null);
+    }
+  }
+
 
   return(
     <>
@@ -230,10 +317,23 @@ const getCategories = async () => {
                   >
                       {service.img_url.map((url) => {
                           return(
-                              <SwiperSlide className="service_carousel_slide"><img className="service_carousel_slide_img" src={url}/></SwiperSlide>
+                              <SwiperSlide className="service_carousel_slide_delete"><span><HighlightOffIcon onClick={(e) => {handleClickOpen2(); setSelectedImg(url)}}/></span><img className="service_carousel_slide_img_delete" src={url}/></SwiperSlide>
                           )
                       })}
                   </Swiper>
+                  <Button className="generic_button font20"
+                    variant="contained"
+                    component="label" style={{backgroundColor:'#ff7f22'}}>
+                    Agregar imagen 
+                    <input
+                      className="font20"
+                      type="file"
+                      accept="png, jpg, jpeg"
+                      hidden
+                      onChange={(e) => setImg(e.target.files)}
+                    />
+                  </Button>
+                  {img && <span className="service_description">Nombre de la imagen: {img[0].name}</span>}
                   <div className="service_description">{service.description}</div>
                   <TextField className='request_ally_input' label="Nueva Descripción" variant="outlined" onChange={(e) => setNewDescription(e.target.value)} />
                   <div className="service_description">{service.category_id.name}</div>
@@ -255,7 +355,7 @@ const getCategories = async () => {
                         </MenuItem>
                     ))}
                     </Select>
-                </FormControl>
+                  </FormControl>
                   <Link className="generic_button font20" style={{backgroundColor:'#161825'}} onClick={(e) => document.location.reload()}>Limpiar seleccion</Link>
                   <Link className="generic_button font20" style={{backgroundColor:'#ff7f22'}} onClick={(e) => updateService()}>Actualizar servicio</Link>
                   <Link className='generic_button font20' style={{backgroundColor: '#ff5252'}} onClick={handleClickOpen}>
@@ -278,6 +378,27 @@ const getCategories = async () => {
                       <DialogActions>
                       <Button onClick={handleClose}>Regresar</Button>
                       <Button onClick={() => {deleteService(); handleClose()}} autoFocus>
+                          Eliminar
+                      </Button>
+                      </DialogActions>
+                    </Dialog>
+                    <Dialog
+                      open={open2}
+                      onClose={handleClose2}
+                      aria-labelledby="alert-dialog-title"
+                      aria-describedby="alert-dialog-description"
+                    >
+                      <DialogTitle id="alert-dialog-title">
+                      {"¿Quieres finalizar la cotización?"}
+                      </DialogTitle>
+                      <DialogContent>
+                      <DialogContentText id="alert-dialog-description">
+                          ¿Estás seguro de que deseas eliminar esta imagen?
+                      </DialogContentText>
+                      </DialogContent>
+                      <DialogActions>
+                      <Button onClick={handleClose2}>Regresar</Button>
+                      <Button onClick={() => {deleteImg(); handleClose2()}} autoFocus>
                           Eliminar
                       </Button>
                       </DialogActions>
