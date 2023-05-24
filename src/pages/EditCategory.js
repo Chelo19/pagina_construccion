@@ -11,6 +11,15 @@ import 'swiper/css/pagination';
 import TurnLeftOutlinedIcon from '@mui/icons-material/TurnLeftOutlined';
 import TextField from '@mui/material/TextField';
 
+import Button from '@mui/material/Button';
+import * as React from 'react';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import Alert from '@mui/material/Alert';
+
 export default function EditCategory(){
   const { id } = useParams();
   const navigate = useNavigate();
@@ -19,10 +28,21 @@ export default function EditCategory(){
 
   const [isRegisterAlert, setIsRegisterAlert] = useState(null);
   const [prompt, setPrompt] = useState(null);
-  const [promptStyle, setPromptStyle] = useState(null);
+  const [promptSeverity, setPromptSeverity] = useState('success');
+  // const [promptStyle, setPromptStyle] = useState(null);
   const [category, setCategory] = useState();
 
   const [newName, setNewName] = useState(null);
+
+  const [open, setOpen] = React.useState(false);
+  
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   useEffect(() => {
     getUser();
@@ -72,14 +92,16 @@ export default function EditCategory(){
 
   const validError = async (error) => {
     if(error){
-      setPromptStyle({backgroundColor: '#161825'});
+      // setPromptStyle({backgroundColor: '#161825'});
+      setPromptSeverity('error');
       setPrompt('Error al actualizar');
       await timeout(2000);
       setPrompt(null);
       return;
     }
     else{
-      setPromptStyle({backgroundColor: '#77DD77'});
+      // setPromptStyle({backgroundColor: '#77DD77'});
+      setPromptSeverity('success');
       setPrompt('Actualizado correctamente');
       await timeout(2000);
       setPrompt(null);
@@ -90,6 +112,26 @@ export default function EditCategory(){
 
   function timeout(number) {
     return new Promise( res => setTimeout(res, number) );
+  }
+
+  const deleteCategory = async () => {
+    const { error } = await supabase
+    .from('categories')
+    .delete()
+    .eq('id', id);
+    if(error){
+      setPromptSeverity('error');
+      setPrompt(error);
+      await timeout(2000);
+      setPrompt(null);
+    }
+    else{
+      setPromptSeverity('success');
+      setPrompt('Categoría eliminada correctamente');
+      await timeout(2000);
+      setPrompt(null);
+      navigate(-1);
+    }
   }
 
 
@@ -117,13 +159,37 @@ export default function EditCategory(){
                           )
                       })}
                   </Swiper>
-                  <Link className="service_button" onClick={(e) => updateCategory()}>Actualizar servicio</Link>
+                  <Link className="generic_button font20" style={{backgroundColor:'#ff7f22'}} onClick={(e) => updateCategory()}>Actualizar servicio</Link>
+                  <Link className='generic_button font20' style={{backgroundColor: '#ff5252'}} onClick={handleClickOpen}>
+                    Eliminar servicio
+                  </Link>
+                  <Dialog
+                      open={open}
+                      onClose={handleClose}
+                      aria-labelledby="alert-dialog-title"
+                      aria-describedby="alert-dialog-description"
+                  >
+                      <DialogTitle id="alert-dialog-title">
+                      {"¿Quieres finalizar la cotización?"}
+                      </DialogTitle>
+                      <DialogContent>
+                      <DialogContentText id="alert-dialog-description">
+                          ¿Estás seguro de que deseas eliminar el servicio?
+                      </DialogContentText>
+                      </DialogContent>
+                      <DialogActions>
+                      <Button onClick={handleClose}>Regresar</Button>
+                      <Button onClick={() => {deleteCategory(); handleClose()}} autoFocus>
+                          Eliminar
+                      </Button>
+                      </DialogActions>
+                    </Dialog>
               </div>
             </div>
             {prompt &&
-            <div className="reg_log_prompt" style={promptStyle}>
-                {prompt}
-            </div>}
+              <>
+                  <Alert className='generic_alert' severity={`${promptSeverity}`} onClose={(e) => setPrompt(null)}>{prompt}</Alert>
+              </>}
         </div>
         :
         <>

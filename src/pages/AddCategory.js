@@ -163,8 +163,9 @@ export default function AddCategory(){
                         <TextField className='add_service2_form_item' label="Nombre" variant="outlined" onChange={(e) => setName(e.target.value)}/>
                         <span className="add_service2_form_span">Agregar Imagen</span>
                         <Button
-                        className="add_service2_form_item"
-                        id="add_service2_form_input"
+                        // className="add_service2_form_item"
+                        // id="add_service2_form_input"
+                        className="generic_button font20"
                         variant="contained"
                         component="label"
                         >
@@ -176,13 +177,14 @@ export default function AddCategory(){
                                 onChange={(e) => setImgs(e.target.files)}
                             />
                         </Button>
-                        <Button
+                        {/* <Button
                         className="add_service2_form_item"
                         variant="contained"
                         component="label"
                         endIcon={<SendIcon />}
                         onClick={createCategory}
-                        >Enviar</Button>
+                        >Enviar</Button> */}
+                        <Link className="generic_button font20" style={{backgroundColor:'#ff7f22'}} onClick={(e) => createCategory()}>Crear categoría</Link>
                     </div>
                 </div>
                 {prompt &&

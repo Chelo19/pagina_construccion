@@ -330,7 +330,7 @@ export default function Home(){
                                 </div>
                             </div>
                             <div className='our_features_item_text'>
-                                <span>Optimiza tiempos al cotizar</span>
+                                <span>Optimiza tus tiempos al cotizar</span>
                             </div>
                         </div>
                         <div className='our_features_item'>

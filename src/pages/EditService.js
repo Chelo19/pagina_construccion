@@ -54,7 +54,7 @@ export default function EditService(){
   };
 
   const handleClose = () => {
-      setOpen(false);
+    setOpen(false);
   };
 
   useEffect(() => {
@@ -191,7 +191,6 @@ const getCategories = async () => {
   };
 
   const deleteService = async () => {
-    console.log('Entra');
     const { error } = await supabase
     .from('services')
     .delete()
@@ -282,7 +281,7 @@ const getCategories = async () => {
                           Eliminar
                       </Button>
                       </DialogActions>
-                  </Dialog>
+                    </Dialog>
               </div>
             </div>
             {prompt &&
