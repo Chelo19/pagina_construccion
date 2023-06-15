@@ -94,7 +94,7 @@ export default function Profile(){
                                         </>
                                         } */}
                                     </div>
-                                    {isAdmin &&
+                                    {/* {isAdmin &&
                                         <div className='profile_buttons'>
                                             <div className='profile_button'>
                                                 <div className='profile_button_img'>
@@ -121,7 +121,7 @@ export default function Profile(){
                                                 </div>
                                             </div>
                                         </div>
-                                    }
+                                    } */}
                                     {(!isAlly && !isAdmin) &&
                                         <span id='profile_link'><Link to={'/request-ally'}>Quiero ser aliado</Link></span>
                                     }
