@@ -100,12 +100,12 @@ export default function SentCotizacionesUser(){
                                             <span className='generic_title font30 posL'>Servicio: {selectedCotizacion.service_id.name}</span>
                                             <span className='generic_title font30 posL'>Categoria: {selectedCotizacion.service_id.category_id.name}</span>
                                             <a href={`https://${selectedCotizacion.link_drive_sent_to_allies}`} className='generic_title font16 posL noDecoration' style={{color:'rgba(0, 119, 182, 0.5)'}}>Link que se mandó a aliados</a>
-                                            {/* <TextField className='generic_text_field' label="Nuevo Drive para aliados" variant="outlined" onChange={(e) => setNewDriveToAllies(e.target.value)}/> */}
+                                            <TextField className='generic_text_field' label="Nuevo Drive para aliados" variant="outlined" onChange={(e) => setNewDriveToAllies(e.target.value)}/>
                                             <a href={`https://${selectedCotizacion.link_drive_ally}`} className='generic_title font16 posL noDecoration' style={{color:'rgba(0, 119, 182, 0.5)'}}>Link que se mando al cliente</a>
-                                            {/* <TextField className='generic_text_field' label="Nuevo Drive para cliente" variant="outlined" onChange={(e) => setNewDrive(e.target.value)}/>
+                                            <TextField className='generic_text_field' label="Nuevo Drive para cliente" variant="outlined" onChange={(e) => setNewDrive(e.target.value)}/>
                                             <div className='generic_button font20' style={{backgroundColor: '#ff7f22'}} onClick={sendData}>
                                                 Enviar
-                                            </div> */}
+                                            </div>
                                         </>
                                     }
                                 </div>
