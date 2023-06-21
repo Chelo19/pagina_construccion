@@ -97,6 +97,7 @@ export default function EditCategory(){
         cacheControl: '3600',
         upsert: true
       })
+      console.log(data);
       validError(error);
     }
     if(!newName && !img){

@@ -15,7 +15,7 @@ export default function AboutUs(){
                     <div className='generic_form gap40' style={{width: 'calc(100% - 40px)', margin: '15px 0'}}>
                         {/* <img className='about_us_img' src={require('../img/logodrecfullsize.png')}/> */}
                         <div className='generic_list'>
-                            <div><img className='generic_list_icon_img' src={require('../img/logodrecfullsize.png')}/><div className='generic_title font36 posL'><span>¿Qué es <span style={{color: '#ff7f22'}}>DREC</span>?</span></div></div>
+                            <div><img className='generic_list_icon_img' src={require('../img/logodrecfullsize.png')}/><div className='generic_title font36 posL'><span className='about_us_title'>¿Qué es <span style={{color: '#ff7f22'}}>DREC</span>?</span></div></div>
                         </div>
                         
                         <div className='generic_description font20 posL gap20' style={{lineHeight: '25px'}}>
