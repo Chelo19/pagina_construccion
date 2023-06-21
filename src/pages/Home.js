@@ -17,12 +17,14 @@ export default function Home(){
     const [noEnterprises, setNoEnterprises] = useState(false);
     const [servicesForDisplay, setServicesForDisplay] = useState(null);
     const [noServicesForDisplay, setNoServicesForDisplay] = useState(false);
+    const [categoriesForDisplay, setCategoriesForDisplay] = useState(null);
     const [locationId, setLocationId] = useState(1);
     var userLocationId;
     var confirmaciones = [false, false];
     const navigate = useNavigate();
     var locationName;
     var displayServicesSel = [];
+    var displayCategoriesSel = [];
     const projects = useRef(null);
     var comprobation = false;
     var maxDS = 0;
@@ -87,11 +89,13 @@ export default function Home(){
                 setLocationId(data[0].location_id);
                 userLocationId = data[0].location_id;
                 getEnterprises();
-                fkDisplayServices();
+                // fkDisplayServices();
+                fkDisplayCategories();
             }
             else{
                 getEnterprises();
-                fkDisplayServices();
+                // fkDisplayServices();
+                fkDisplayCategories();
             }
         }
         catch{
@@ -101,7 +105,7 @@ export default function Home(){
 
     const getDataBases = async () => {
         getEnterprises();
-        fkDisplayServices();
+        // fkDisplayServices();
         if(confirmaciones[0] && confirmaciones[1]){
             console.log("Sale de getDB");
             setLoadingScreen(false);
@@ -125,25 +129,51 @@ export default function Home(){
         }
     }
 
-    const fkDisplayServices = async () => {
+    // const fkDisplayServices = async () => {
+    //     const { data, error } = await supabase
+    //     .from('display_services')
+    //     .select(`service_id, services ( id, name, img_url )`)
+    //     .eq("location_id", locationId);
+    //     if(data.length == 0){
+    //         getServicesHome();
+    //     }
+    //     if(displayServicesSel.length >= data.length){
+    //         confirmaciones[1] = true;
+    //         setServicesForDisplay(displayServicesSel);
+    //     }
+    //     else{
+    //         for(var i = 0 ; i < data.length ; i++){
+    //             displayServicesSel.push(data[i].services);
+    //         }
+    //         if(displayServicesSel.length >= data.length){
+    //             confirmaciones[1] = true;
+    //             setServicesForDisplay(displayServicesSel);
+    //         }
+    //     }
+    //     if(confirmaciones[0] && confirmaciones[1]){
+    //         setLoadingScreen(false);
+    //     }
+    // }
+
+    const fkDisplayCategories = async () => {
         const { data, error } = await supabase
-        .from('display_services')
-        .select(`service_id, services ( id, name, img_url )`)
-        .eq("location_id", locationId);
+        .from('display_categories')
+        .select(`category_id, categories( id, name, img_url )`);
+        console.log(data);
         if(data.length == 0){
             getServicesHome();
         }
-        if(displayServicesSel.length >= data.length){
+        if(displayCategoriesSel.length >= data.length){
             confirmaciones[1] = true;
-            setServicesForDisplay(displayServicesSel);
+            setCategoriesForDisplay(displayCategoriesSel);
         }
         else{
             for(var i = 0 ; i < data.length ; i++){
-                displayServicesSel.push(data[i].services);
+                displayCategoriesSel.push(data[i].categories);
             }
-            if(displayServicesSel.length >= data.length){
+            if(displayCategoriesSel.length >= data.length){
                 confirmaciones[1] = true;
-                setServicesForDisplay(displayServicesSel);
+                setCategoriesForDisplay(displayCategoriesSel);
             }
         }
         if(confirmaciones[0] && confirmaciones[1]){
@@ -263,12 +293,22 @@ export default function Home(){
                     {!noServicesForDisplay ?
                         <>
                             <div className="categories_cards_container_home">
-                            {servicesForDisplay.map((displayService) => {
+                            {/* {servicesForDisplay.map((displayService) => {
                                 return(
                                 <Link to={`/service2/${displayService.id}`} className="categories_card" key={displayService.id}>
                                     <img src={displayService.img_url[0]}/>
                                     <div className="categories_card__head_home">
                                     <span>{displayService.name}</span>
+                                    </div>
+                                </Link>
+                                )
+                            })} */}
+                            {categoriesForDisplay.map((displayCategory) => {
+                                return(
+                                <Link to={`/services2/${displayCategory.id}`} className="categories_card" key={displayCategory.id}>
+                                    <img src={displayCategory.img_url[0]}/>
+                                    <div className="categories_card__head_home">
+                                    <span>{displayCategory.name}</span>
                                     </div>
                                 </Link>
                                 )
