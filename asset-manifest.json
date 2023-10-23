@@ -1,0 +1,40 @@
+{
+  "files": {
+    "main.css": "/static/css/main.9cb53866.css",
+    "main.js": "/static/js/main.0ae89427.js",
+    "static/media/construction_img3.png": "/static/media/construction_img3.92ed6a350c38e2263593.png",
+    "static/media/construction_img2.jpg": "/static/media/construction_img2.d63e3ebb011615c9a5da.jpg",
+    "static/media/primero.png": "/static/media/primero.33a6421c35498b73b29c.png",
+    "static/media/tercero.png": "/static/media/tercero.564171cf53e1ca354eb8.png",
+    "static/media/segundo.png": "/static/media/segundo.2879f2ed9a9fab922537.png",
+    "static/media/supervision.png": "/static/media/supervision.5fe579282135ef85ee1e.png",
+    "static/media/menudesplegable.png": "/static/media/menudesplegable.3dff313366a97f803d5d.png",
+    "static/media/plataforma.png": "/static/media/plataforma.b59b1bbe07cc58364f5f.png",
+    "static/media/financiamiento.png": "/static/media/financiamiento.00c4cd666a974252f802.png",
+    "static/media/servicios.png": "/static/media/servicios.eb5840b594600f74c3d0.png",
+    "static/media/pattern_1.jpg": "/static/media/pattern_1.c092e3fb74933b0c6f9c.jpg",
+    "static/media/cuenta2.png": "/static/media/cuenta2.3f15814e84cc8be9e1b5.png",
+    "static/media/usuario.png": "/static/media/usuario.dfdbad394ebd74e30587.png",
+    "static/media/solicitudes.png": "/static/media/solicitudes.813bae71277af7ebf2ab.png",
+    "static/media/myservices.png": "/static/media/myservices.ce5eb0f65b5c0262f7e4.png",
+    "static/media/cotizaciones.png": "/static/media/cotizaciones.d5406d32d98c4d47cd5e.png",
+    "static/media/search.png": "/static/media/search.6c02171e684ad8add748.png",
+    "static/media/aliados.png": "/static/media/aliados.6e3fa0b271121a95ad6e.png",
+    "static/media/serviciocliente2.png": "/static/media/serviciocliente2.dc90731025829913ced3.png",
+    "static/media/enviadas.png": "/static/media/enviadas.167eb333885febd5cf6f.png",
+    "static/media/pendientes.png": "/static/media/pendientes.bcd49a90c5a938f1b323.png",
+    "static/media/logodrecfullsize.png": "/static/media/logodrecfullsize.05ce35a20ec4e6e2b39c.png",
+    "static/media/categorias.png": "/static/media/categorias.3fd07c60a45ae9a67825.png",
+    "static/media/mailicon.png": "/static/media/mailicon.bed0d46df5fabff45658.png",
+    "static/media/whatsicon.png": "/static/media/whatsicon.544f92c097e2e06c93bf.png",
+    "static/media/closetab.png": "/static/media/closetab.9321bd6354f323fcc57a.png",
+    "static/media/fbicon.png": "/static/media/fbicon.4f0b3a395de443c1d165.png",
+    "index.html": "/index.html",
+    "main.9cb53866.css.map": "/static/css/main.9cb53866.css.map",
+    "main.0ae89427.js.map": "/static/js/main.0ae89427.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.9cb53866.css",
+    "static/js/main.0ae89427.js"
+  ]
+}
