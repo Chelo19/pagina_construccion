@@ -1,0 +1,101 @@
+.profiles_background{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+}
+
+.profiles_container{
+    height: calc(100% - 50px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.profiles_gallery{
+    width: calc(100% - 40px);
+    height: calc(100% - 40px);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 20px;
+    padding: 20px;
+}
+
+.profiles_item{
+    transition: .5s;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+    background-color: #ebebeb;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+}
+
+.profiles_item:hover{
+    transition: 1s;
+    border: 1px solid #ff7f22;
+    background-color: white;
+}
+
+.profiles_item_container{
+    width: calc(100% - 30px);
+    height: calc(100% - 30px);
+    display: grid;
+    grid-template-rows: 50% 30%;
+    gap: 15px;
+    justify-content: center;
+    align-content: center;
+}
+
+.profiles_item_title{
+    font-size: 20px;
+    color: rgba(0, 0, 0, 0.8);
+    letter-spacing: 1px;
+    text-overflow: ellipsis;
+    overflow: scroll;
+    text-align: center;
+    display: grid;
+    place-items: center;
+}
+
+.profiles_item_img{
+}
+
+.profiles_item_img img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+@media (min-width: 500px){
+
+    .profiles_background{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .profiles_container{
+        margin-top: 100px;
+        width: 1000px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .profiles_gallery{
+        display: flex;
+        width: 100%;
+        flex-wrap: wrap;
+        flex-direction: column;
+    }
+    .profiles_item_container{
+        width: 200px;
+        height: 200px;
+    }
+    .profiles_item_title{
+        overflow: hidden;
+    }
+}

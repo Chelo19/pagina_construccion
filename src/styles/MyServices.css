@@ -1,0 +1,337 @@
+.my_services_background{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 100px;
+    padding-bottom: 20px;
+}
+
+.my_services_container{
+    width: 95%;
+    display: grid;
+    /* grid-template-columns: 3fr 7fr; */
+}
+
+.my_services_container_left{
+    padding: 20px 10px 20px 20px;
+    background-color: #161825;
+    display: none;
+    /* display: flex; */
+}
+
+.my_services_sidebar_container{
+    width: 100%;
+    height: 100%;
+    background-color: #ebebeb;
+    border-radius: 10px;
+}
+
+.my_services_container_right{
+    padding: 20px 20px 20px 20px;
+    /* background-color: #161825; */
+    border-radius: 20px;
+    display: flex;
+}
+
+.my_services_services_container{
+    width: 100%;
+    background-color: #ebebeb;
+    border-radius: 10px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    place-items: center;
+    grid-gap: 20px;
+    padding: 20px;
+}
+
+.my_services_service{
+    width: 100%;
+    height: 350px;
+    background-color: #ebebeb;
+    border-radius: 10px;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.my_services_service:hover .my_services_title{
+    transition: .5s;
+    color: #ff7f22;
+}
+
+.my_services_title{
+    transition: .5s;
+    width: 90%;
+    height: 25%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    color: #161825;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+#my_services_date{
+    font-size: 15px;
+}
+
+.my_services_img{
+    width: 90%;
+    height: 65%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.my_services_img img{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
+
+.my_services_in_service{
+    font-family: 'Poppins', sans-serif;
+    width: 100%;
+    height: 100%;
+    background-color: #ebebeb;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #161825;
+    gap: 20px;
+}
+
+.my_services_in_service_container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    gap: 20px;
+    position: relative;
+}
+
+.my_services_in_service_return_button{
+    width: 50px;
+    height: 50px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    background-color: #ff7f22;
+    position: absolute;
+    padding: 10px;
+    border-radius: 100%;
+    top: calc(0% + 30px);
+    right: calc(0% + 30px);
+    animation: buttonItems 1s infinite;
+}
+
+.my_services_in_service_return_button img{
+    width: 100%;
+    height: 100%;
+    transform: rotate(180deg);
+    filter: invert(1);
+    object-fit: cover;
+}
+
+.my_services_in_service_title{
+    width: 90%;
+    font-size: 60px;
+}
+
+.my_services_in_service_description{
+    width: 90%;
+    font-size: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.my_services_in_service_img{
+    width: 90%;
+    border-radius: 10px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    padding: 20px;
+}
+
+.my_services_in_service_img_individual_img{
+    width: 100%;
+    height: 400px;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.my_services_in_service_img_individual_img img{
+    border-radius: 10px;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.my_services_no_items{
+    width: 100%;
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+    justify-content: center;
+    align-items: center;
+    background-color: #ebebeb;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    font-size: 60px;
+    border-radius: 10px;
+}
+
+.my_services_no_items_back{
+    transition: .5s;
+    display: flex;
+    gap: 40px;
+    height: 10%;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    background-color: #161825;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    animation: button 1s infinite;
+}
+
+.my_services_no_items_back:hover{
+    transition: .3s;
+    background-color: #ff7f22;
+}
+
+.my_services_no_items_back span{
+    color: #ebebeb;
+}
+
+.my_services_no_items_back_arrow{
+    width: 90%;
+    height: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.my_services_no_items_back_arrow img{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    filter: invert(1);
+    transform: rotate(180deg);
+}
+
+@media(max-width: 500px){
+    .my_services_container{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .my_services_container_left{
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        padding: 20px;
+    }
+
+    .my_services_sidebar_container{
+        min-height: 100px;
+    }
+
+    .my_services_container_right{
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        padding: 0px;
+    }
+
+    .my_services_services_container{
+        display: flex;
+        flex-direction: column;
+        padding: 5px;
+    }
+
+    .my_services_in_service_return_button{
+        width: 30px;
+        height: 30px;
+        top: calc(0% + 20px);
+        right: calc(0% + 10px);
+    }
+
+    .my_services_in_service_title{
+        font-size: 30px;
+        font-weight: bold;
+    }
+
+    .my_services_in_service_description{
+        font-size: 20px;
+    }
+
+    .my_services_in_service_img{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .my_services_in_service_img_individual_img{
+        width: 100%;
+        height: 200px;
+    }
+
+    .my_services_no_items{
+        font-size: 40px;
+        gap: 40px;
+        height: 350px;
+    }
+
+    .my_services_no_items span{
+        width: 80%;
+    }
+
+    .my_services_no_items_back{
+        width: 60%;
+        gap: 10px;
+        font-size: 25px;
+    }
+
+    .my_services_no_items_back span{
+        width: auto;
+    }
+
+    .my_services_no_items_back_arrow{
+        width: 20%;
+    }
+}
+
+@keyframes button {
+    0%{
+        transform: scale(.97);
+    }
+    50%{
+        transform: scale(1);
+    }
+    100%{
+        transform: scale(.97);
+    }
+}
+
+@keyframes buttonItems {
+    0%{
+        transform: scale(.95);
+    }
+    50%{
+        transform: scale(1);
+    }
+    100%{
+        transform: scale(.95);
+    }
+}

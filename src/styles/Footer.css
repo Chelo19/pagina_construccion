@@ -1,0 +1,140 @@
+.footer_background{
+    height: 40vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+    z-index: 1;
+    position: relative;
+}
+
+.footer_horizontal{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    margin: 0;
+    align-items: center;
+}
+
+.footer_vertical_left{
+    width: 40%;
+    background-color: #161825;
+    padding: 0;
+    margin: 0;
+    height: 100%;
+}
+
+.mid_content{
+    display: none;
+    margin-top: 20px;
+    margin-left: 20px;
+    line-height: 60px;
+}
+
+.mid_content li{
+    transition: .5s;
+    color: #ebebebbb;
+}
+
+.mid_content li:hover{
+    transition: .5s;
+    color: #ff7f22;
+}
+
+.footer_vertical_mid{
+    text-decoration: none;
+    background-color: #161825;
+    width: 30%;
+    font-size: 25px;
+    margin: 0;
+    height: 100%;
+    padding: 0;
+}
+
+.footer_vertical_mid li{
+    list-style: none;
+}
+
+.right_content{
+    margin-top: 20px;
+    margin-left: 20px;
+    line-height: 60px;
+}
+
+.right_content a{
+    display: flex;
+    align-items: center;
+}
+
+.right_content li{
+    transition: .5s;
+    color: #ebebebbb;
+}
+
+.right_content li:hover{
+    transition: .5s;
+    color: #ff7f22;
+}
+
+.right_links{
+    margin-left: 15px;
+}
+
+.footer_vertical_right{
+    margin: 0;
+    background-color: #161825;
+    width: 30%;
+    padding: 0;
+    font-size: 25px;
+    height: 100%;
+}
+
+.footer_titles{
+    font-size: 30px;
+    padding-bottom: 10px;
+    border-bottom: 4px solid #ff7f22;
+    color: #ebebeb;
+}
+
+.logo_footer{
+    width: 18px;
+    height: 18px;
+    filter: invert(100);
+}
+
+.logo_footer_div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 22px;
+    height: 22px;
+    background-color: #ff7f22;
+    border-radius: 90px;
+    padding: 5px;
+}
+
+@media(max-width:500px){
+
+    .footer_background{
+        height: auto;
+    }
+
+    .footer_horizontal{
+        flex-direction: column;
+    }
+
+    .footer_vertical_left{
+        width: 100%;
+        display: none;
+    }
+
+    .footer_vertical_mid{
+        width: 100%;
+        display: none;
+    }
+
+    .footer_vertical_right{
+        width: 100%;
+    }
+
+}

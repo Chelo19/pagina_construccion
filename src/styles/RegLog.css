@@ -1,0 +1,128 @@
+.reg_log_background{
+    /* height: 100vh; */
+    height: auto;
+    /* margin: 40px 0; */
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    font-family: 'Poppins', sans-serif;
+}
+
+.reg_log_background_container{
+    height: calc(100% - 50px);
+    margin: 80px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.reg_log_container{
+    width: 80%;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.reg_log_logo{
+    width: 160px;
+    height: 160px;
+}
+
+.reg_log_logo img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.reg_log_title{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
+    padding-bottom: 5px;
+    border-bottom: 5px solid #ff7f22;
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.reg_log_title span{
+    text-align: center;
+}
+
+.reg_log_form{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 10px 0 10px 0;
+}
+
+.reg_log_input{
+    width: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    font-size: 15px;
+}
+
+#reg_log_submit{
+    width: 60%;
+    transition: .5s;
+    font-size: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    color: #ff7f22;
+    text-align: center;
+    text-decoration: none;
+    margin: 10px 0 10px 0;
+}
+
+#reg_log_submit:hover{
+    transition: .5s;
+    background-color: #ff7f22;
+    color: #ebebeb;
+}
+
+.reg_log_prompt{
+    width: calc(100% - 30px);
+    height: 50px;
+    bottom: calc(0% + 10px);
+    transition: 1s;
+    position: fixed;
+    background-color: #ff7f22;
+    border-radius: 5px;
+    font-size: 20px;
+    color: #ebebeb;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    z-index: 3;             /*PARA POPUP ES ZINDEX 2, PARA HEADER ES 5, PARA FOOTER ES 1 Y PARA PROMPT ES 3*/
+}
+
+.reg_log_options a{
+    color: #ff7f22;
+    text-decoration: none;
+}
+
+.reg_log_options{
+    text-align: center;
+}
+
+@media (min-width: 500px){
+    .reg_log_background{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+    }
+    .reg_log_background_container{
+        width: 1000px;
+    }
+}

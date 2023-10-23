@@ -1,0 +1,108 @@
+.register_background{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    font-family: 'Poppins', sans-serif;
+}
+
+.register_background_container{
+    height: calc(100% - 90px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.register_container{
+    width: 80%;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.register_logo{
+    width: 160px;
+    height: 160px;
+}
+
+.register_logo img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.register_title{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
+    padding-bottom: 5px;
+    border-bottom: 5px solid #ff7f22;
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.register_form{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.register_input{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    font-size: 15px;
+}
+
+.register_input input{
+    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    padding: 5px;
+}
+
+#register_submit{
+    width: 60%;
+    transition: .5s;
+    font-size: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    color: #ff7f22;
+    text-align: center;
+    text-decoration: none;
+    margin: 10px 0 10px 0;
+}
+
+#register_submit:hover{
+    transition: .5s;
+    background-color: #ff7f22;
+    color: #ebebeb;
+}
+
+.register_prompt{
+    transition: 1s;
+    z-index: 2;
+    position: fixed;
+    background-color: #ff7f22;
+    border-radius: 5px;
+    width: 90%;
+    height: 50px;
+    font-size: 20px;
+    color: #ebebeb;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    top: calc(100% - 100px);
+}
+
+.register_options a{
+    color: #ff7f22;
+    text-decoration: none;
+}
