@@ -49,3 +49,9 @@
     color: rgb(0, 0, 0, 0.8);
     font-size: 30px;
 }
+
+@media (min-width: 500px){
+    .add_service2_container{
+        width: 1000px;
+    }
+}

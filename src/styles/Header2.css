@@ -153,3 +153,9 @@
     }
 
 /* } */
+
+@media (min-width: 500px){
+    .nav_items.open{
+        width: 500px;
+    }
+}

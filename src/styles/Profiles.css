@@ -70,3 +70,32 @@
     height: 100%;
     object-fit: contain;
 }
+
+@media (min-width: 500px){
+
+    .profiles_background{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .profiles_container{
+        margin-top: 100px;
+        width: 1000px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .profiles_gallery{
+        display: flex;
+        width: 100%;
+        flex-wrap: wrap;
+        flex-direction: column;
+    }
+    .profiles_item_container{
+        width: 200px;
+        height: 200px;
+    }
+    .profiles_item_title{
+        overflow: hidden;
+    }
+}

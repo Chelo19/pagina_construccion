@@ -40,3 +40,17 @@
     gap: 20px;
     padding: 20px 0;
 }
+
+@media (min-width: 500px){
+    .services_container{
+        width: 1000px;
+    }
+    .gallery_item_img{
+        height: 200px;
+    }
+    .gallery_item_button{
+        width: 100px;
+        height: 30px;
+        font-size: 18px;
+    }
+}

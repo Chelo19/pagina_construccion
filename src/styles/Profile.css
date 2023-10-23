@@ -129,3 +129,18 @@
     color: rgba(0, 0, 0, 0.5);
     margin-bottom: 150px;
 }
+
+@media (min-width: 500px){
+    .profile_background{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .profile_container{
+        width: 1000px;
+        overflow: hidden;
+    }
+    .profile_display span{
+        overflow: hidden;
+    }
+}

@@ -111,3 +111,9 @@
     transition: .5s;
     filter: opacity(.8);
 }
+
+@media (min-width: 500px){
+    .service_container{
+        width: 1000px;
+    }
+}

@@ -65,3 +65,13 @@
     text-decoration: none;
     color: #ff7f22;
 }
+
+@media (min-width: 500px){
+    .project_item_content{
+        height: auto;
+        font-size: 25px;
+    }
+    .project_item{
+        height: auto;
+    }
+}

@@ -130,3 +130,9 @@
     justify-content: center;
     gap: 20px;
 }
+
+@media (min-width: 500px){
+    .cotizaciones_container{
+        width: 1000px;
+    }
+}

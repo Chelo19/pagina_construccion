@@ -114,3 +114,15 @@
 .reg_log_options{
     text-align: center;
 }
+
+@media (min-width: 500px){
+    .reg_log_background{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+    }
+    .reg_log_background_container{
+        width: 1000px;
+    }
+}

@@ -79,3 +79,9 @@
     text-decoration: none;
     color: rgba(0, 0, 0, 0.8);
 }
+
+@media (min-width: 500px){
+    .edit_services_container{
+        width: 1000px;
+    }
+}

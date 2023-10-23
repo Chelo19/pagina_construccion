@@ -98,3 +98,17 @@
 .profile_list_results_item_static span{
     overflow: scroll;
 }
+
+@media (min-width: 500px){
+    .profile_list_background{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .profile_list_container{
+        width: 1000px;
+    }
+    .profile_list_results_item_static span{
+        overflow: hidden;
+    }
+}

@@ -166,3 +166,8 @@
     color: #ebebeb;
 }
 
+@media (min-width: 500px){
+    .requests_container{
+        width: 500px;
+    }
+}

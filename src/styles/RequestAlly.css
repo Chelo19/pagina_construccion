@@ -181,3 +181,9 @@
     color: #161825;
     background-color: #ebebeb;
 }
+
+@media (min-width: 500px){
+    .request_ally_container{
+        width: 1000px;
+    }
+}

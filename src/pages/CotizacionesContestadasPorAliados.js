@@ -43,10 +43,15 @@ export default function CotizacionesContestadasPorAliados(){
         .from('cotizaciones_allies')
         .select('*, ally_email(*), cotizacion_id(*, service_id(*, category_id(*)))')
         .not('ally_response', 'is', null);
+        console.log(error);
+        console.log(data);
         if(data.length > 0){
             setCotizacionesAllies(data);
-            console.log(data);
             getCotizaciones();
+        }
+        else{
+            setCotizaciones(data);
+            setIsLoading(false);
         }
     }
 

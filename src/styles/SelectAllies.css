@@ -238,3 +238,9 @@
     color: white;
     background-color: #161825;
 }
+
+@media (min-width: 500px){
+    .select_allies_results_item span{
+        overflow: hidden;
+    }
+}
