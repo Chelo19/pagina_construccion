@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 export default function Footer(){
 
-    const [superAdminPhone, setSuperAdminPhone] = useState(+528672207801);
+    const [superAdminPhone, setSuperAdminPhone] = useState(+5218281220943);
 
 
 
@@ -48,7 +48,7 @@ export default function Footer(){
                                 </a>
                             </li>
                             <li>
-                                <a target="_blank" href={'/'} style={{ color: 'inherit', textDecoration: 'inherit'}}>
+                                <a target="_blank" href={'mailto:grupodrec@gmail.com'} style={{ color: 'inherit', textDecoration: 'inherit'}}>
                                     <div className='logo_footer_div'>
                                         <img className='logo_footer' src={require('../img/mailicon.png')}></img>
                                     </div>

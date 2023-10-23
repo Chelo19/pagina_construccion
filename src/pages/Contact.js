@@ -37,7 +37,7 @@ export default function Contact(){
         if(message){
             emailjs.send("service_rqa3brt","template_a3asdl2",{
             additionalMessage: additionalMessage,
-            contactEmail: 'marcelodeleongo2@gmail.com',
+            contactEmail: 'grupodrec@gmail.com',
             email: userEmail,
             message: message},
             'a9hJXSTK7xAdC26he');
@@ -77,10 +77,10 @@ export default function Contact(){
                         </form>
                     </div>
                     <div className='contact_img_container'>
-                        <a target="_blank" href={`https://wa.me/+528672207801`} id='contact_img'>
+                        <a target="_blank" href={`https://wa.me/+5218281220943`} id='contact_img'>
                             <img src={require('../img/whatsicon.png')}/>
                         </a>
-                        <a target="_blank" href={'/'} id='contact_img'>
+                        <a target="_blank" href={'mailto:grupodrec@gmail.com'} id='contact_img'>
                             <img src={require('../img/mailicon.png')}/>
                         </a>
                     </div>
@@ -91,10 +91,10 @@ export default function Contact(){
                         <a target="_blank" href={'https://www.instagram.com/drec_constructor/'} id='contact_link_img'>
                             <img src={require('../img/igicon.png')}/>
                         </a>
-                        <a target="_blank" href={`https://wa.me/+528672207801`} id='contact_link_img'>
+                        <a target="_blank" href={`https://wa.me/+5218281220943`} id='contact_link_img'>
                             <img src={require('../img/whatsicon.png')}/>
                         </a>
-                        <a target="_blank" href={'/'} id='contact_link_img'>
+                        <a target="_blank" href={'mailto:grupodrec@gmail.com'} id='contact_link_img'>
                             <img src={require('../img/mailicon.png')}/>
                         </a>
                     </div>
